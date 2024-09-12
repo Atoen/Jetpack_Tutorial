@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Samouczek Jetpack</string>
+    <string name="back_again_to_close">Cofnij ponownie, aby zamknąć aplikację</string>
+    <string name="settings">Ustawienia</string>
+    <string name="select_language">Wybierz język aplikacji</string>
+    <string name="polish">Polski</string>
+    <string name="english">Angielski</string>
+
+    <string name="theme">Motyw aplikacji</string>
+    <string name="theme_auto">Automatyczny</string>
+    <string name="theme_light">Jasny</string>
+    <string name="theme_dark">Ciemny</string>
+
+    <!-- Groups -->
+    <string name="group_getting_started">Pierwsze kroki z Jetpack Compose</string>
+    <string name="group_layout">Układy i Motywy</string>
+    <string name="group_state_navigation">Stan i Nawigacja</string>
+    <string name="group_advanced">Zaawansowane Koncepcje</string>
+    <string name="group_getting_started_description">Poznaj podstawy Jetpack Compose, w tym konfigurację środowiska i tworzenie pierwszego elementu composable.</string>
+    <string name="group_layout_description">Zagłęb się w układy Compose, motywy i stylizację swojej aplikacji.</string>
+    <string name="group_state_navigation_description">Efektywnie zarządzaj stanem i nawiguj między ekranami w aplikacji Compose.</string>
+    <string name="group_advanced_description">Poznaj zaawansowane tematy Jetpack Compose, takie jak animacje, niestandardowe układy i optymalizacja wydajności.</string>
+    <string name="completed">Ukończone</string>
+    <string name="completed_percent">Ukończono %1$d%%</string>
+
+    <!-- Lessons -->
+
+</resources>
