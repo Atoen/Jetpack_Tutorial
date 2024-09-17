@@ -1,5 +1,6 @@
 package com.abachta.jetpacktutorial.ui.components
 
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -22,16 +23,19 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.core.os.LocaleListCompat
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.data.courses
+import com.abachta.jetpacktutorial.ui.AppLocale
 import com.abachta.jetpacktutorial.ui.SnackbarController
 import com.abachta.jetpacktutorial.ui.SnackbarEvent
 import com.abachta.jetpacktutorial.ui.appBarTitle
-import com.abachta.jetpacktutorial.data.Courses
 import com.abachta.jetpacktutorial.ui.screens.CourseScreen
+import com.abachta.jetpacktutorial.ui.screens.HomeScreen
 import com.abachta.jetpacktutorial.ui.screens.LessonScreen
 import com.abachta.jetpacktutorial.ui.screens.Screen
 import com.abachta.jetpacktutorial.ui.screens.SettingsScreen
@@ -42,14 +46,19 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppLayout(
-    viewModel: SettingsViewModel
+    viewModel: SettingsViewModel,
+    onExit: () -> Unit
 ) {
     val scope = rememberCoroutineScope()
     val navController = rememberNavController()
     val snackbarHostState = remember { SnackbarHostState() }
 
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
-    val (title, isOnHomeScreen) = currentBackStackEntry.appBarTitle()
+    val titleRes = currentBackStackEntry.appBarTitle()
+    val isOnHomeScreen = titleRes == R.string.app_name
+
+    val localeTag = AppCompatDelegate.getApplicationLocales().get(0)?.language ?: "en"
+    val locale = AppLocale.fromLanguageTag(localeTag)
 
     ObserveAsEvents(
         flow = SnackbarController.events,
@@ -70,16 +79,19 @@ fun AppLayout(
     }
 
     val backAgainMessage = stringResource(R.string.back_again_to_close)
-    TwiceBackHandler {
-        scope.launch {
-            SnackbarController.sendEvent(
-                SnackbarEvent(
-                    message = backAgainMessage,
-                    SnackbarDuration.Short
+    TwiceBackHandler(
+        onFirstBack = {
+            scope.launch {
+                SnackbarController.sendEvent(
+                    SnackbarEvent(
+                        message = backAgainMessage,
+                        SnackbarDuration.Short
+                    )
                 )
-            )
-        }
-    }
+            }
+        },
+        onSecondBack = onExit
+    )
 
     Scaffold(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
@@ -90,7 +102,7 @@ fun AppLayout(
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 title = {
-                    Text(title)
+                    Text(stringResource(titleRes))
                 },
                 navigationIcon = {
                     IconButton(onClick = {
@@ -122,10 +134,14 @@ fun AppLayout(
             modifier = Modifier.padding(contentPadding),
         ) {
             slidingComposable<Screen.Home> {
-                CourseList(
-                    courses = Courses,
+                HomeScreen(
+                    courses = courses,
                     onCourseClick = { course ->
-                        navController.navigate(Screen.Course(course.titleResId, course.descriptionResId))
+                        navController.navigate(Screen.Course(
+                            titleResId = course.titleResId,
+                            descriptionResId = course.descriptionResId,
+                            id = course.id
+                        ))
                     }
                 )
             }
@@ -133,23 +149,41 @@ fun AppLayout(
             slidingComposable<Screen.Settings> {
                 SettingsScreen(
                     appTheme = viewModel.theme,
-                    onThemeSelected = { viewModel.theme = it }
+                    onThemeSelected = { viewModel.theme = it },
+                    appLocale = locale,
+                    onLocaleSelected = { locale ->
+                        AppCompatDelegate.setApplicationLocales(
+                            LocaleListCompat.forLanguageTags(
+                                locale.tag
+                            )
+                        )
+                    }
                 )
             }
 
             slidingComposable<Screen.Course> {
                 val arg = it.toRoute<Screen.Course>()
                 CourseScreen(
-                    course = arg,
-                    onLessonClick = {
-                        navController.navigate(Screen.Lesson(R.string.lesson_getting_started_1_1, R.string.TODO))
+                    courseData = arg,
+                    onLessonClick = { lesson ->
+                        navController.navigate(Screen.Lesson(
+                            titleResId = lesson.titleResId,
+                            descriptionResId = lesson.descriptionResId,
+                            courseId = arg.id,
+                            id = lesson.id
+                        ))
                     }
                 )
             }
 
             slidingComposable<Screen.Lesson> {
                 val arg = it.toRoute<Screen.Lesson>()
-                LessonScreen(lesson = arg)
+                LessonScreen(
+                    lessonData = arg,
+                    onLessonCompleted = {
+                        navController.navigateUp()
+                    }
+                )
             }
         }
     }

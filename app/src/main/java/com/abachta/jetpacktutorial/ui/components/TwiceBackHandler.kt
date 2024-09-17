@@ -20,7 +20,8 @@ sealed class BackNavigation {
 @Composable
 fun TwiceBackHandler(
     duration: Duration = 4.seconds,
-    onFirstBack: () -> Unit
+    onFirstBack: () -> Unit,
+    onSecondBack: () -> Unit
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
     var backState by remember { mutableStateOf<BackNavigation>(BackNavigation.Idle) }
@@ -35,5 +36,9 @@ fun TwiceBackHandler(
     BackHandler(enabled = backState == BackNavigation.Idle) {
         backState = BackNavigation.FirstBack
         onFirstBack()
+    }
+
+    BackHandler(enabled = backState == BackNavigation.FirstBack) {
+        onSecondBack()
     }
 }

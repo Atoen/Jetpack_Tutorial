@@ -4,7 +4,7 @@ import androidx.annotation.StringRes
 import com.abachta.jetpacktutorial.R
 
 enum class AppLocale(
-    val code: String,
+    val tag: String,
     val flag: String,
     @StringRes val displayNameResId: Int
 ) {

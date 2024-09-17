@@ -6,10 +6,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
@@ -17,47 +15,73 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.abachta.jetpacktutorial.data.Lesson
-import com.abachta.jetpacktutorial.ui.components.LessonList
+import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.data.getCourseById
+import com.abachta.jetpacktutorial.lessons.getLessonById
+import com.abachta.jetpacktutorial.ui.components.ExtendableFloatingActionButton
 import kotlinx.coroutines.launch
 
 @Composable
 fun LessonScreen(
-    lesson: Screen.Lesson
+    lessonData: Screen.Lesson,
+    onLessonCompleted: () -> Unit,
 ) {
+    val course = getCourseById(lessonData.courseId)
+    val lesson = getLessonById(lessonData.id)
+
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(pageCount = { Lesson.GettingStarted1.pages.count() + 1 })
+    val pagerState = rememberPagerState(pageCount = { lesson.pages.count() + 1 })
+
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.currentPage }.collect { page ->
+            lesson.progress.completePage()
+        }
+    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         floatingActionButton = {
-            FloatingActionButton(
+            val isOnLastPage = pagerState.currentPage == lesson.pages.count()
+            val shouldExtend = pagerState.settledPage == lesson.pages.count()
+
+            ExtendableFloatingActionButton(
+                icon = {
+                    Icon(
+                        imageVector = if (isOnLastPage) {
+                            Icons.Filled.Check
+                        } else Icons.AutoMirrored.Filled.ArrowForward,
+                        contentDescription = null
+                    )
+                },
+                text = { Text(stringResource(R.string.lesson_completed)) },
                 onClick = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(pagerState.settledPage + 1)
+                    if (isOnLastPage) {
+                        course.progress.completeLesson()
+                        onLessonCompleted()
+                    } else {
+                        scope.launch {
+                            pagerState.animateScrollToPage(pagerState.currentPage + 1)
+                        }
                     }
-                }
-            ) {
-                Icon(
-                    imageVector = Icons.Filled.Check,
-                    contentDescription = null
-                )
-            }
+                },
+                extended = shouldExtend
+            )
         }
     ) { contentPadding ->
         Box(
@@ -68,9 +92,9 @@ fun LessonScreen(
                 modifier = Modifier.fillMaxSize()
             ) { page ->
                 if (page == 0) {
-                    LessonStartPage(lesson)
+                    LessonStartPage(lessonData)
                 } else {
-                    Lesson.GettingStarted1.pages[page - 1].Content()
+                    lesson.pages[page - 1].content()
                 }
             }
 
@@ -80,7 +104,6 @@ fun LessonScreen(
                     .wrapContentHeight()
                     .fillMaxWidth()
                     .align(Alignment.BottomCenter)
-                    .padding(bottom = 8.dp)
             ) {
                 repeat(pagerState.pageCount) { i ->
                     val color = if (pagerState.currentPage == i) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.outlineVariant

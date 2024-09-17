@@ -1,49 +1,24 @@
 package com.abachta.jetpacktutorial.data
 
-import androidx.compose.material3.Text
+import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 
-interface LessonPage {
-    @Composable
-    fun Content()
-}
-
-sealed class Lesson(
-    val title: String,
+class Lesson(
+    @StringRes val titleResId: Int,
+    @StringRes val descriptionResId: Int,
     val pages: List<LessonPage>,
-    val progress: LessonProgress = LessonProgress(pages.count())
-) {
-    data object GettingStarted1 : Lesson(
-        title = "Getting started 1",
-        pages = listOf(GettingStarted1_1, GettingStarted1_2),
-    )
+    val progress: LessonProgress = LessonProgress(pages.count()),
+    val id: Int = LessonId.next()
+)
 
-    data object GettingStarted2 : Lesson(
-        title = "Getting started 2",
-        pages = listOf(),
-    )
+sealed class LessonId {
+    companion object {
+        private var current: Int = 0
 
-    data object GettingStarted3 : Lesson(
-        title = "Getting started 3",
-        pages = listOf(),
-    )
-}
-
-data object GettingStarted1_1 : LessonPage {
-    @Composable
-    override fun Content() {
-        Text("Hello 1")
+        fun next() = current++
     }
 }
 
-data object GettingStarted1_2 : LessonPage {
-    @Composable
-    override fun Content() {
-        Text("Hello 2")
-    }
-}
-
-
-
-
-
+class LessonPage(
+    val content: @Composable () -> Unit
+)

@@ -6,7 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
 import androidx.compose.runtime.setValue
 
-class CourseProgress(private val lessonCount: Int) {
+class CourseProgress(private val lessons: List<Lesson>) {
 
     var lessonsCompleted: Int = 0
         private set
@@ -18,9 +18,9 @@ class CourseProgress(private val lessonCount: Int) {
     val isCompleted by derivedStateOf { value == 1.0f }
 
     fun completeLesson() {
-        if (lessonsCompleted < lessonCount) {
+        if (lessonsCompleted < lessons.count()) {
             lessonsCompleted++
-            value = lessonsCompleted / lessonCount.toFloat()
+            value = lessonsCompleted / lessons.count().toFloat()
         }
     }
 

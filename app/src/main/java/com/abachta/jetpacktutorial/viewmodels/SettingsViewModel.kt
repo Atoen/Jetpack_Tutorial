@@ -33,6 +33,8 @@ class SettingsViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             theme = preferences.getInt("theme")?.let { AppTheme.fromInt(it) } ?: AppTheme.Auto
+
+            _isReady.value = true
         }
     }
 }

@@ -12,4 +12,16 @@ class LessonProgress(private val pageCount: Int) {
         private set
 
     val isCompleted = value == 1.0f
+
+    fun completePage() {
+        if (pagesCompleted < pageCount) {
+            pagesCompleted++
+            value = pagesCompleted / pageCount.toFloat()
+        }
+    }
+
+    fun resetProgress() {
+        pagesCompleted = 0
+        value = 0.0f
+    }
 }

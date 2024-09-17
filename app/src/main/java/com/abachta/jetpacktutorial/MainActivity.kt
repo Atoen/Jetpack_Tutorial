@@ -2,38 +2,43 @@ package com.abachta.jetpacktutorial
 
 import android.graphics.Color
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.abachta.jetpacktutorial.ui.components.AppLayout
-import com.abachta.jetpacktutorial.ui.components.CourseList
-import com.abachta.jetpacktutorial.data.Courses
 import com.abachta.jetpacktutorial.ui.AppTheme
+import com.abachta.jetpacktutorial.ui.components.AppLayout
 import com.abachta.jetpacktutorial.ui.theme.JetpackTutorialTheme
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private val viewModel by viewModels<SettingsViewModel>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        installSplashScreen().setKeepOnScreenCondition {
+            !viewModel.isReady.value
+        }
+
         setContent {
             val viewModel = hiltViewModel<SettingsViewModel>()
             JetpackTutorialTheme(
                 appTheme = viewModel.theme
             ) {
                 enableEdgeToEdge(appTheme = viewModel.theme)
-                AppLayout(viewModel)
+                AppLayout(
+                    viewModel = viewModel,
+                    onExit = {
+                        finishAffinity()
+                    }
+                )
             }
         }
     }

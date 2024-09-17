@@ -27,7 +27,17 @@
     <string name="lesson_getting_started_1_1" translatable="false">Getting Started 1 - 1</string>
     <string name="lesson_getting_started_1_2" translatable="false">Getting Started 1 - 2</string>
     <string name="lesson_getting_started_1_3" translatable="false">Getting Started 1 - 3</string>
+    <string name="continue_course">Continue</string>
+    <string name="swipe_to_dismiss">Swipe to dismiss</string>
+    <string name="lesson_completed">Lesson completed</string>
 
     <!-- Lessons -->
+    <plurals name="lesson_pages">
+        <item quantity="one">%d page</item>
+        <item quantity="other">%d pages</item>
+    </plurals>
+    <string name="compose_introduction_title">What is Jetpack Compose?</string>
+    <string name="setting_up_environment_title">Setting up environment</string>
+    <string name="creating_first_component_title">Creating first component</string>
 
 </resources>

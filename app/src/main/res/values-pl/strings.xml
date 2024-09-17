@@ -23,7 +23,19 @@
     <string name="group_advanced_description">Poznaj zaawansowane tematy Jetpack Compose, takie jak animacje, niestandardowe układy i optymalizacja wydajności.</string>
     <string name="completed">Ukończone</string>
     <string name="completed_percent">Ukończono %1$d%%</string>
+    <string name="continue_course">Kontynuuj</string>
+    <string name="swipe_to_dismiss">Przesuń, aby ukryć</string>
+    <string name="lesson_completed">Lekcja ukończona</string>
 
     <!-- Lessons -->
+    <plurals name="lesson_pages">
+        <item quantity="one">%d strona</item>
+        <item quantity="few">%d strony</item>
+        <item quantity="many">%d stron</item>
+        <item quantity="other">%d stron</item>
+    </plurals>
+    <string name="compose_introduction_title">Co to Jetpack Compose?</string>
+    <string name="setting_up_environment_title">Konfigurowanie środowiska</string>
+    <string name="creating_first_component_title">Tworzenie pierwszego komponentu</string>
 
 </resources>

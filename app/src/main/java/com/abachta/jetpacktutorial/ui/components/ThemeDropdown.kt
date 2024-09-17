@@ -1,7 +1,6 @@
 package com.abachta.jetpacktutorial.ui.components
 
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.LightMode
@@ -35,12 +34,10 @@ fun ThemeDropdownMenu(
     }
 
     var expanded by remember { mutableStateOf(false) }
-    val themes = remember { AppTheme.entries.toTypedArray() }
 
     ExposedDropdownMenuBox(
         expanded = expanded,
         onExpandedChange = { expanded = !expanded },
-        modifier = Modifier.fillMaxWidth()
     ) {
         TextField(
             readOnly = true,
@@ -60,13 +57,12 @@ fun ThemeDropdownMenu(
             },
             modifier = Modifier
                 .menuAnchor()
-                .fillMaxWidth()
         )
         ExposedDropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
         ) {
-            themes.forEach { theme ->
+            AppTheme.entries.forEach { theme ->
                 DropdownMenuItem(
                     onClick = {
                         onThemeSelected(theme)

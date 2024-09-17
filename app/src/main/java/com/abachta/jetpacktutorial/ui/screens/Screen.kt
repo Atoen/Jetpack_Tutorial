@@ -14,12 +14,15 @@ sealed class Screen {
     @Serializable
     data class Course(
         @StringRes val titleResId: Int,
-        @StringRes val descriptionResId: Int
+        @StringRes val descriptionResId: Int,
+        val id: Int
     ) : Screen()
 
     @Serializable
     data class Lesson(
         @StringRes val titleResId: Int,
-        @StringRes val descriptionResId: Int
+        @StringRes val descriptionResId: Int,
+        val courseId: Int,
+        val id: Int
     ) : Screen()
 }

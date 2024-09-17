@@ -13,11 +13,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.data.Lesson
+import com.abachta.jetpacktutorial.data.getCourseById
 import com.abachta.jetpacktutorial.ui.components.LessonList
 
 @Composable
 fun CourseScreen(
-    course: Screen.Course,
+    courseData: Screen.Course,
     onLessonClick: (Lesson) -> Unit
 ) {
     Column(
@@ -25,24 +26,20 @@ fun CourseScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
-            text = stringResource(course.titleResId),
+            text = stringResource(courseData.titleResId),
             style = MaterialTheme.typography.titleLarge,
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold
         )
         Text(
-            text = stringResource(course.descriptionResId),
+            text = stringResource(courseData.descriptionResId),
             style = MaterialTheme.typography.bodyLarge
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
         LessonList(
-            lessons = listOf(
-                Lesson.GettingStarted1,
-                Lesson.GettingStarted2,
-                Lesson.GettingStarted3
-            ),
+            lessons = getCourseById(courseData.id).lessons,
             onLessonClick = onLessonClick
         )
     }

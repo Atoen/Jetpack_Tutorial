@@ -1,5 +1,6 @@
 package com.abachta.jetpacktutorial.ui
 
+import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContentScope
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
@@ -7,8 +8,6 @@ import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
@@ -19,19 +18,22 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.ui.screens.Screen
 import kotlin.reflect.KClass
 
-@Composable
-@ReadOnlyComposable
-fun NavBackStackEntry?.appBarTitle() : Pair<String, Boolean> {
-    if (this == null) return stringResource(R.string.app_name) to false
+@StringRes
+fun NavBackStackEntry?.appBarTitle() : Int {
+    if (this == null) return R.string.app_name
 
-    if (isOn<Screen.Home>()) return stringResource(R.string.app_name) to true
-    if (isOn<Screen.Settings>()) return stringResource(R.string.settings) to false
+    if (isOn<Screen.Home>()) return R.string.app_name
+    if (isOn<Screen.Settings>()) return R.string.settings
 
     if (isOn<Screen.Course>()) {
-        return stringResource(getCourseName()) to false
+        return getCourseNameRes()
     }
 
-    return stringResource(R.string.app_name) to false
+    if (isOn<Screen.Lesson>()) {
+        return getLessonNameRes()
+    }
+
+    return R.string.app_name
 }
 
 inline fun <reified T: Screen> NavBackStackEntry.isOn(): Boolean =
@@ -39,14 +41,20 @@ inline fun <reified T: Screen> NavBackStackEntry.isOn(): Boolean =
         it.hasRoute(T::class)
     }
 
-private fun NavBackStackEntry.getCourseName(): Int =
+@StringRes
+private fun NavBackStackEntry.getCourseNameRes(): Int =
     this.toRoute<Screen.Course>().titleResId
+
+@StringRes
+private fun NavBackStackEntry.getLessonNameRes(): Int =
+    this.toRoute<Screen.Lesson>().titleResId
 
 fun <T : Screen> order(screen: KClass<T>): Int {
     return when (screen) {
         Screen.Home::class -> 0
         Screen.Settings::class -> -1
         Screen.Course::class -> 1
+        Screen.Lesson::class -> 2
         else -> 0
     }
 }
