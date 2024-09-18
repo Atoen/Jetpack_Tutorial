@@ -30,10 +30,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.courses
+import com.abachta.jetpacktutorial.lessons.gettingStartedLessons
 import com.abachta.jetpacktutorial.ui.AppLocale
 import com.abachta.jetpacktutorial.ui.SnackbarController
 import com.abachta.jetpacktutorial.ui.SnackbarEvent
 import com.abachta.jetpacktutorial.ui.appBarTitle
+import com.abachta.jetpacktutorial.ui.navigateToCourse
+import com.abachta.jetpacktutorial.ui.navigateToLesson
 import com.abachta.jetpacktutorial.ui.screens.CourseScreen
 import com.abachta.jetpacktutorial.ui.screens.HomeScreen
 import com.abachta.jetpacktutorial.ui.screens.LessonScreen
@@ -136,12 +139,11 @@ fun AppLayout(
             slidingComposable<Screen.Home> {
                 HomeScreen(
                     courses = courses,
-                    onCourseClick = { course ->
-                        navController.navigate(Screen.Course(
-                            titleResId = course.titleResId,
-                            descriptionResId = course.descriptionResId,
-                            id = course.id
-                        ))
+                    lessonToContinue = gettingStartedLessons.first(),
+                    onCourseClick = { navController.navigateToCourse(it) },
+                    onContinueClick = { course, lesson ->
+                        navController.navigateToCourse(course)
+                        navController.navigateToLesson(lesson, course.id)
                     }
                 )
             }
@@ -166,12 +168,7 @@ fun AppLayout(
                 CourseScreen(
                     courseData = arg,
                     onLessonClick = { lesson ->
-                        navController.navigate(Screen.Lesson(
-                            titleResId = lesson.titleResId,
-                            descriptionResId = lesson.descriptionResId,
-                            courseId = arg.id,
-                            id = lesson.id
-                        ))
+                        navController.navigateToLesson(lesson, arg.id)
                     }
                 )
             }

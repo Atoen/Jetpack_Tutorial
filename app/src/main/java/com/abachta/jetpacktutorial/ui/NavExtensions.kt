@@ -12,9 +12,12 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.data.Course
+import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.ui.screens.Screen
 import kotlin.reflect.KClass
 
@@ -118,4 +121,21 @@ fun exitTransition(reversed: Boolean): ExitTransition {
     } else {
         slideOutHorizontally { it }
     }
+}
+
+fun NavHostController.navigateToCourse(course: Course) {
+    navigate(Screen.Course(
+        titleResId = course.titleResId,
+        descriptionResId = course.descriptionResId,
+        id = course.id
+    ))
+}
+
+fun NavHostController.navigateToLesson(lesson: Lesson, courseId: Int) {
+    navigate(Screen.Lesson(
+        titleResId = lesson.titleResId,
+        descriptionResId = lesson.descriptionResId,
+        courseId = courseId,
+        id = lesson.id
+    ))
 }
