@@ -18,7 +18,6 @@ import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.Lesson
-import com.abachta.jetpacktutorial.ui.screens.Screen
 import kotlin.reflect.KClass
 
 @StringRes
@@ -124,7 +123,8 @@ fun exitTransition(reversed: Boolean): ExitTransition {
 }
 
 fun NavHostController.navigateToCourse(course: Course) {
-    navigate(Screen.Course(
+    navigate(
+        Screen.Course(
         titleResId = course.titleResId,
         descriptionResId = course.descriptionResId,
         id = course.id
@@ -132,7 +132,8 @@ fun NavHostController.navigateToCourse(course: Course) {
 }
 
 fun NavHostController.navigateToLesson(lesson: Lesson, courseId: Int) {
-    navigate(Screen.Lesson(
+    navigate(
+        Screen.Lesson(
         titleResId = lesson.titleResId,
         descriptionResId = lesson.descriptionResId,
         courseId = courseId,

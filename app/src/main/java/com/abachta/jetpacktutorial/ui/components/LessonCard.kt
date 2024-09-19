@@ -34,7 +34,7 @@ fun LessonCard(
     lesson: Lesson,
     onClick: () -> Unit
 ) {
-    val lessonIsCompleted = lesson.progress.isCompleted
+    val lessonIsCompleted = lesson.progress.completed
 
     ElevatedCard(
         modifier = Modifier

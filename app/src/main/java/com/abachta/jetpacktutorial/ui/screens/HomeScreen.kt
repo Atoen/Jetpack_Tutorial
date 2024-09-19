@@ -28,7 +28,7 @@ fun HomeScreen(
             ContinuePopup(
                 lessonToContinue = lesson,
                 onContinueClick = {
-                    val course = getCourseById(lesson.id)
+                    val course = getCourseById(lesson.id) // FIXME: use course id 
                     onContinueClick(course, lesson)
                 }
             )

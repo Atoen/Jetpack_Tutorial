@@ -13,14 +13,13 @@
     <string name="theme_dark">Ciemny</string>
 
     <!-- Groups -->
-    <string name="group_getting_started">Pierwsze kroki z Jetpack Compose</string>
-    <string name="group_layout">Układy i Motywy</string>
-    <string name="group_state_navigation">Stan i Nawigacja</string>
-    <string name="group_advanced">Zaawansowane Koncepcje</string>
-    <string name="group_getting_started_description">Poznaj podstawy Jetpack Compose, w tym konfigurację środowiska i tworzenie pierwszego elementu composable.</string>
-    <string name="group_layout_description">Zagłęb się w układy Compose, motywy i stylizację swojej aplikacji.</string>
-    <string name="group_state_navigation_description">Efektywnie zarządzaj stanem i nawiguj między ekranami w aplikacji Compose.</string>
-    <string name="group_advanced_description">Poznaj zaawansowane tematy Jetpack Compose, takie jak animacje, niestandardowe układy i optymalizacja wydajności.</string>
+    <string name="course_getting_started">Pierwsze kroki z Jetpack Compose</string>
+    <string name="course_layouts_elements">Układy i Elementy Interfejsu</string>
+    <string name="course_theming_styling">Stylizowanie Interfejsu</string>
+    <string name="course_getting_started_description">Poznaj podstawy Jetpack Compose, w tym konfigurację środowiska i tworzenie pierwszego elementu composable.</string>
+    <string name="course_layout_description">Zagłęb się w układy Compose, motywy i stylizację swojej aplikacji.</string>
+    <string name="ciurse_state_navigation_description">Efektywnie zarządzaj stanem i nawiguj między ekranami w aplikacji Compose.</string>
+    <string name="course_advanced_description">Poznaj zaawansowane tematy Jetpack Compose, takie jak animacje, niestandardowe układy i optymalizacja wydajności.</string>
     <string name="completed">Ukończone</string>
     <string name="completed_percent">Ukończono %1$d%%</string>
     <string name="continue_course">Kontynuuj</string>
@@ -37,5 +36,11 @@
     <string name="compose_introduction_title">Co to Jetpack Compose?</string>
     <string name="setting_up_environment_title">Konfigurowanie środowiska</string>
     <string name="creating_first_component_title">Tworzenie pierwszego komponentu</string>
+    <string name="completed_n_of">Ukończono %1$d z %2$d lekcji</string>
+    <string name="course_compose_basics">Podstawy Jetpack Compose</string>
+    <string name="course_state_lifecycle">"Stan i Cykl Życia "</string>
+    <string name="course_interactivity_navigation">Interaktywność i Nawigacja</string>
+    <string name="course_animations_transitions">Animacje i Przejścia</string>
+    <string name="course_advanced">Zaawansowane</string>
 
 </resources>

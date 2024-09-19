@@ -56,7 +56,7 @@ fun CourseCard(
         ) {
             Row(
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top, // Ensure vertical alignment
+            verticalAlignment = Alignment.Top,
             modifier = Modifier.fillMaxWidth()
         ) {
             Text(
@@ -66,7 +66,7 @@ fun CourseCard(
                 color = MaterialTheme.colorScheme.primary,
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
-                modifier = Modifier.weight(1f) // Give the text space to avoid squishing
+                modifier = Modifier.weight(1f)
             )
 
             if (courseIsCompleted) {
@@ -75,15 +75,15 @@ fun CourseCard(
                     contentDescription = stringResource(R.string.completed),
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
-                        .padding(start = 8.dp) // Add padding between text and icon
+                        .padding(start = 8.dp)
                         .size(
                             with(LocalDensity.current) {
                                 20.sp.toDp()
                             }
                         )
-                )
+                    )
+                }
             }
-        }
 
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -132,7 +132,7 @@ fun CourseCard(
 @Composable
 fun CourseCardPreview() {
 
-    Course.GettingStarted.progress.completeLesson()
+//    Course.GettingStarted.progress.completeLesson()
 
     CourseCard(
         course = Course.GettingStarted,

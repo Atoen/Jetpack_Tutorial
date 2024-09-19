@@ -15,14 +15,13 @@
     <string name="theme_dark">Dark</string>
 
     <!-- Groups -->
-    <string name="group_getting_started">Getting Started with Jetpack Compose</string>
-    <string name="group_layout">Layouts and Theming</string>
-    <string name="group_state_navigation">State and Navigation</string>
-    <string name="group_advanced">Advanced Concepts</string>
-    <string name="group_getting_started_description">Learn the basics of Jetpack Compose, including setting up your envionment and creating your first composable.</string>
-    <string name="group_layout_description">Dive into Compose layouts, theming, and styling your app.</string>
-    <string name="group_state_navigation_description">Manage state effectively and navigate between screens in your Compose app.</string>
-    <string name="group_advanced_description">Explore advanced Jetpack Compose topics like animations, custom layouts, and performance optimization.</string>
+    <string name="course_getting_started">Getting Started with Jetpack Compose</string>
+    <string name="course_layouts_elements">Layouts and UI Elements</string>
+    <string name="course_theming_styling">Theming and Styling</string>
+    <string name="course_getting_started_description">Learn the basics of Jetpack Compose, including setting up your envionment and creating your first composable.</string>
+    <string name="course_layout_description">Dive into Compose layouts, theming, and styling your app.</string>
+    <string name="ciurse_state_navigation_description">Manage state effectively and navigate between screens in your Compose app.</string>
+    <string name="course_advanced_description">Explore advanced Jetpack Compose topics like animations, custom layouts, and performance optimization.</string>
     <string name="TODO" translatable="false">!!TODO!!</string>
     <string name="lesson_getting_started_1_1" translatable="false">Getting Started 1 - 1</string>
     <string name="lesson_getting_started_1_2" translatable="false">Getting Started 1 - 2</string>
@@ -39,5 +38,11 @@
     <string name="compose_introduction_title">What is Jetpack Compose?</string>
     <string name="setting_up_environment_title">Setting up environment</string>
     <string name="creating_first_component_title">Creating first component</string>
+    <string name="completed_n_of">Completed %1$d of %2$d lessons</string>
+    <string name="course_compose_basics">Jetpack Compose Basics</string>
+    <string name="course_state_lifecycle">State and Lifecycle</string>
+    <string name="course_interactivity_navigation">Interactivity and Navigation</string>
+    <string name="course_animations_transitions">Animation and Transitions</string>
+    <string name="course_advanced">Advanced</string>
 
 </resources>

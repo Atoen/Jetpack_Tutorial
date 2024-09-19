@@ -40,7 +40,7 @@ import com.abachta.jetpacktutorial.ui.navigateToLesson
 import com.abachta.jetpacktutorial.ui.screens.CourseScreen
 import com.abachta.jetpacktutorial.ui.screens.HomeScreen
 import com.abachta.jetpacktutorial.ui.screens.LessonScreen
-import com.abachta.jetpacktutorial.ui.screens.Screen
+import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.ui.screens.SettingsScreen
 import com.abachta.jetpacktutorial.ui.slidingComposable
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
@@ -139,7 +139,7 @@ fun AppLayout(
             slidingComposable<Screen.Home> {
                 HomeScreen(
                     courses = courses,
-                    lessonToContinue = gettingStartedLessons.first(),
+                    lessonToContinue = viewModel.lessonToContinue,
                     onCourseClick = { navController.navigateToCourse(it) },
                     onContinueClick = { course, lesson ->
                         navController.navigateToCourse(course)
@@ -159,6 +159,9 @@ fun AppLayout(
                                 locale.tag
                             )
                         )
+                    },
+                    onClear = {
+                        viewModel.clearLessons()
                     }
                 )
             }
@@ -178,6 +181,7 @@ fun AppLayout(
                 LessonScreen(
                     lessonData = arg,
                     onLessonCompleted = {
+                        viewModel.completeLesson(it)
                         navController.navigateUp()
                     }
                 )

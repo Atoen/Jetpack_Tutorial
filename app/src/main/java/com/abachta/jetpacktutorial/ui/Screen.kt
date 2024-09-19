@@ -1,4 +1,4 @@
-package com.abachta.jetpacktutorial.ui.screens
+package com.abachta.jetpacktutorial.ui
 
 import androidx.annotation.StringRes
 import kotlinx.serialization.Serializable

@@ -16,49 +16,49 @@ sealed class Course(
         get() = progress.isCompleted
 
     data object GettingStarted : Course(
-        titleResId = R.string.group_getting_started,
-        descriptionResId = R.string.group_getting_started_description,
+        titleResId = R.string.course_getting_started,
+        descriptionResId = R.string.course_getting_started_description,
         lessons = gettingStartedLessons,
     )
 
-    data object ComposeEssentials  : Course(
-        titleResId = R.string.TODO,
+    data object ComposeBasics : Course(
+        titleResId = R.string.course_compose_basics,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
 
     data object LayoutsAndUIElements : Course(
-        titleResId = R.string.TODO,
+        titleResId = R.string.course_layouts_elements,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
 
     data object ThemingAndStyling : Course(
-        titleResId = R.string.TODO,
+        titleResId = R.string.course_theming_styling,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
 
     data object StateAndLifecycle : Course(
-        titleResId = R.string.TODO,
+        titleResId = R.string.course_state_lifecycle,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
 
     data object InteractivityAndNavigation : Course(
-        titleResId = R.string.TODO,
+        titleResId = R.string.course_interactivity_navigation,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
 
     data object AnimationsAndTransitions : Course(
-        titleResId = R.string.TODO,
+        titleResId = R.string.course_animations_transitions,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
 
     data object AdvancedCompose : Course(
-        titleResId = R.string.TODO,
+        titleResId = R.string.course_advanced,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
@@ -74,7 +74,7 @@ sealed class CourseId {
 
 val courses = listOf(
     Course.GettingStarted,
-    Course.ComposeEssentials,
+    Course.ComposeBasics,
     Course.LayoutsAndUIElements,
     Course.ThemingAndStyling,
     Course.StateAndLifecycle,

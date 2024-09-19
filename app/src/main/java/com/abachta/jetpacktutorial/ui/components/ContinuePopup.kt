@@ -46,9 +46,9 @@ fun ContinuePopup(
     lessonToContinue: Lesson,
     onContinueClick: () -> Unit
 ) {
-    var displayed by rememberSaveable { mutableStateOf(false) }
-    var display by remember { mutableStateOf(false) }
     var dismissed by rememberSaveable { mutableStateOf(false) }
+    var animated by rememberSaveable { mutableStateOf(false) }
+    var display by remember { mutableStateOf(animated) }
 
     val dismissState = rememberSwipeToDismissBoxState(
         confirmValueChange = {
@@ -60,11 +60,11 @@ fun ContinuePopup(
         }
     )
 
-    if (!displayed) {
+    if (!animated) {
         LaunchedEffect(true) {
             delay(200)
             display = true
-            displayed = true
+            animated = true
         }
     }
 

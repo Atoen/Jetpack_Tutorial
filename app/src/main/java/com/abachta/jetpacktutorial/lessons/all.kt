@@ -15,3 +15,7 @@ fun getLessonById(lessonId: Int): Lesson {
         lessons.first()
     }
 }
+
+fun tryGetLessonById(lessonId: Int): Lesson? {
+    return lessonMap[lessonId]
+}

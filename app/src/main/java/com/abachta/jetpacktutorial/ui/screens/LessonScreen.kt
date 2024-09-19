@@ -32,27 +32,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
-import com.abachta.jetpacktutorial.data.getCourseById
+import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.lessons.getLessonById
+import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.ui.components.ExtendableFloatingActionButton
 import kotlinx.coroutines.launch
 
 @Composable
 fun LessonScreen(
     lessonData: Screen.Lesson,
-    onLessonCompleted: () -> Unit,
+    onLessonCompleted: (Lesson) -> Unit,
 ) {
-    val course = getCourseById(lessonData.courseId)
     val lesson = getLessonById(lessonData.id)
 
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState(pageCount = { lesson.pages.count() + 1 })
-
-    LaunchedEffect(pagerState) {
-        snapshotFlow { pagerState.currentPage }.collect { page ->
-            lesson.progress.completePage()
-        }
-    }
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -72,8 +66,8 @@ fun LessonScreen(
                 text = { Text(stringResource(R.string.lesson_completed)) },
                 onClick = {
                     if (isOnLastPage) {
-                        course.progress.completeLesson()
-                        onLessonCompleted()
+                        lesson.complete()
+                        onLessonCompleted(lesson)
                     } else {
                         scope.launch {
                             pagerState.animateScrollToPage(pagerState.currentPage + 1)

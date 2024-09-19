@@ -12,8 +12,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Lesson
+import com.abachta.jetpacktutorial.data.completedCount
 import com.abachta.jetpacktutorial.data.getCourseById
+import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.ui.components.LessonList
 
 @Composable
@@ -31,15 +34,26 @@ fun CourseScreen(
             color = MaterialTheme.colorScheme.primary,
             fontWeight = FontWeight.Bold
         )
+
         Text(
             text = stringResource(courseData.descriptionResId),
             style = MaterialTheme.typography.bodyLarge
         )
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
+
+        val course = getCourseById(courseData.id)
+        val lessons = course.lessons
+
+        Text(
+            text = stringResource(R.string.completed_n_of, lessons.completedCount(), lessons.count()),
+            style = MaterialTheme.typography.bodyMedium
+        )
+
+        Spacer(modifier = Modifier.height(4.dp))
 
         LessonList(
-            lessons = getCourseById(courseData.id).lessons,
+            lessons = course.lessons,
             onLessonClick = onLessonClick
         )
     }
