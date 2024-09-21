@@ -22,7 +22,7 @@
     <string name="course_advanced_description">Poznaj zaawansowane tematy Jetpack Compose, takie jak animacje, niestandardowe układy i optymalizacja wydajności.</string>
     <string name="completed">Ukończone</string>
     <string name="completed_percent">Ukończono %1$d%%</string>
-    <string name="continue_course">Kontynuuj</string>
+    <string name="popup_continue">Kontynuuj</string>
     <string name="swipe_to_dismiss">Przesuń, aby ukryć</string>
     <string name="lesson_completed">Lekcja ukończona</string>
 
@@ -42,5 +42,11 @@
     <string name="course_interactivity_navigation">Interaktywność i Nawigacja</string>
     <string name="course_animations_transitions">Animacje i Przejścia</string>
     <string name="course_advanced">Zaawansowane</string>
+    <string name="clear_all_progress">Usuń wszystkie postępy</string>
+    <string name="dialog_cancel">Anuluj</string>
+    <string name="dialog_clear_progress">Usuń postępy</string>
+    <string name="dialog_clear_title">Usuń wszystkie postępy</string>
+    <string name="dialog_clear_text">Czy na pewno chcesz zresetować postęp we wszystkich kursach? Tej akcji nie można cofnąć.</string>
+    <string name="popup_start">Zaczynajmy</string>
 
 </resources>

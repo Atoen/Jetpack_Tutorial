@@ -17,6 +17,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Course
+import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
 import kotlin.reflect.KClass
 
@@ -127,16 +128,16 @@ fun NavHostController.navigateToCourse(course: Course) {
         Screen.Course(
         titleResId = course.titleResId,
         descriptionResId = course.descriptionResId,
-        id = course.id
+        id = course.id.value
     ))
 }
 
-fun NavHostController.navigateToLesson(lesson: Lesson, courseId: Int) {
+fun NavHostController.navigateToLesson(lesson: Lesson, courseId: CourseId) {
     navigate(
         Screen.Lesson(
         titleResId = lesson.titleResId,
         descriptionResId = lesson.descriptionResId,
-        courseId = courseId,
-        id = lesson.id
+        courseId = courseId.value,
+        id = lesson.id.value
     ))
 }

@@ -9,11 +9,18 @@ sealed class Course(
     @StringRes val titleResId: Int,
     @StringRes val descriptionResId: Int,
     val lessons: List<Lesson>,
-    val progress : CourseProgress = CourseProgress(lessons),
-    val id: Int = CourseId.next()
+    val id: CourseId = CourseId.next()
 ) {
+    val progress = CourseProgress(lessons)
+
     val isCompleted: Boolean
         get() = progress.isCompleted
+
+    init {
+        lessons.forEach {
+            it.courseId.value = id
+        }
+    }
 
     data object GettingStarted : Course(
         titleResId = R.string.course_getting_started,
@@ -64,11 +71,13 @@ sealed class Course(
     )
 }
 
-sealed class CourseId {
+data class CourseId(val value: Int) {
     companion object {
         private var current: Int = 0
 
-        fun next() = current++
+        fun next() = synchronized(this) {
+            CourseId(current++)
+        }
     }
 }
 
@@ -85,7 +94,7 @@ val courses = listOf(
 
 private val coursesMap = courses.associateBy { it.id }
 
-fun getCourseById(courseId: Int): Course {
+fun getCourseById(courseId: CourseId): Course {
     return coursesMap.getOrElse(courseId) {
         Log.e(null, "Unable to retrieve course with id $courseId")
         courses.first()

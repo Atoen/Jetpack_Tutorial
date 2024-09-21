@@ -40,10 +40,17 @@ import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.getCourseById
 import kotlinx.coroutines.delay
 
+enum class LessonPopupType {
+    Start,
+    Continue
+}
+
+data class LessonPopupData(val lesson: Lesson, val type: LessonPopupType)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContinuePopup(
-    lessonToContinue: Lesson,
+fun LessonPopup(
+    lessonPopupData: LessonPopupData,
     onContinueClick: () -> Unit
 ) {
     var dismissed by rememberSaveable { mutableStateOf(false) }
@@ -115,13 +122,20 @@ fun ContinuePopup(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
+
+                        val topTextId = when (lessonPopupData.type) {
+                            LessonPopupType.Start -> R.string.popup_start
+                            LessonPopupType.Continue -> R.string.popup_continue
+                        }
+
                         Text(
-                            text = stringResource(R.string.continue_course),
+                            text = stringResource(topTextId),
                             fontSize = 12.sp,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
 
-                        val course = getCourseById(lessonToContinue.id)
+                        val lesson = lessonPopupData.lesson
+                        val course = getCourseById(lesson.courseId.value)
 
                         Text(
                             text = stringResource(course.titleResId),
@@ -130,7 +144,7 @@ fun ContinuePopup(
                         )
 
                         Text(
-                            text = stringResource(lessonToContinue.titleResId),
+                            text = stringResource(lesson.titleResId),
                             fontSize = 16.sp,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             fontWeight = FontWeight.SemiBold

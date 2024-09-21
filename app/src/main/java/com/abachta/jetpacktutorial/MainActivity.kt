@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.abachta.jetpacktutorial.ui.AppTheme
-import com.abachta.jetpacktutorial.ui.components.AppLayout
+import com.abachta.jetpacktutorial.ui.AppLayout
 import com.abachta.jetpacktutorial.ui.theme.JetpackTutorialTheme
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
 import dagger.hilt.android.AndroidEntryPoint

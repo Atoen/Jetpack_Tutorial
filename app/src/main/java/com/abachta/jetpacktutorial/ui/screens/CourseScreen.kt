@@ -13,6 +13,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.completedCount
 import com.abachta.jetpacktutorial.data.getCourseById
@@ -42,7 +43,7 @@ fun CourseScreen(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        val course = getCourseById(courseData.id)
+        val course = getCourseById(CourseId(courseData.id))
         val lessons = course.lessons
 
         Text(

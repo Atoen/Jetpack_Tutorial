@@ -5,27 +5,38 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.tooling.preview.Preview
 
 class Lesson(
     @StringRes val titleResId: Int,
     @StringRes val descriptionResId: Int,
     val pages: List<LessonPage>,
-    val progress: LessonProgress = LessonProgress(),
-    val id: Int = LessonId.next()
+    val id: LessonId = LessonId.next(),
 ) {
+    val progress = LessonProgress()
+
     val isCompleted
         get() = progress.completed
+
+    val courseId = LessonCourseId(0)
 
     fun complete() = progress.complete()
 }
 
-sealed class LessonId {
+data class LessonId(val value: Int) {
+
+    fun next() = LessonId(value + 1)
+
     companion object {
         private var current: Int = 0
 
-        fun next() = current++
+        fun next() = synchronized(this) {
+            LessonId(current++)
+        }
     }
+}
+
+data class LessonCourseId(var value: CourseId) {
+    constructor(value: Int) : this(CourseId(value))
 }
 
 class LessonProgress {

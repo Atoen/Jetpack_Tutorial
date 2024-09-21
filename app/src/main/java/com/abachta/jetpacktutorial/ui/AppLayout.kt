@@ -1,4 +1,4 @@
-package com.abachta.jetpacktutorial.ui.components
+package com.abachta.jetpacktutorial.ui
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.foundation.layout.padding
@@ -29,20 +29,15 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.data.CourseId
+import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.courses
-import com.abachta.jetpacktutorial.lessons.gettingStartedLessons
-import com.abachta.jetpacktutorial.ui.AppLocale
-import com.abachta.jetpacktutorial.ui.SnackbarController
-import com.abachta.jetpacktutorial.ui.SnackbarEvent
-import com.abachta.jetpacktutorial.ui.appBarTitle
-import com.abachta.jetpacktutorial.ui.navigateToCourse
-import com.abachta.jetpacktutorial.ui.navigateToLesson
 import com.abachta.jetpacktutorial.ui.screens.CourseScreen
 import com.abachta.jetpacktutorial.ui.screens.HomeScreen
 import com.abachta.jetpacktutorial.ui.screens.LessonScreen
-import com.abachta.jetpacktutorial.ui.Screen
+import com.abachta.jetpacktutorial.ui.components.ObserveAsEvents
+import com.abachta.jetpacktutorial.ui.components.TwiceBackHandler
 import com.abachta.jetpacktutorial.ui.screens.SettingsScreen
-import com.abachta.jetpacktutorial.ui.slidingComposable
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
 import kotlinx.coroutines.launch
 
@@ -139,11 +134,14 @@ fun AppLayout(
             slidingComposable<Screen.Home> {
                 HomeScreen(
                     courses = courses,
-                    lessonToContinue = viewModel.lessonToContinue,
+                    lessonPopupData = viewModel.lessonPopupData,
                     onCourseClick = { navController.navigateToCourse(it) },
                     onContinueClick = { course, lesson ->
                         navController.navigateToCourse(course)
                         navController.navigateToLesson(lesson, course.id)
+                    },
+                    onRefreshPopup = {
+                        viewModel.refreshLessonPopup()
                     }
                 )
             }
@@ -171,7 +169,7 @@ fun AppLayout(
                 CourseScreen(
                     courseData = arg,
                     onLessonClick = { lesson ->
-                        navController.navigateToLesson(lesson, arg.id)
+                        navController.navigateToLesson(lesson, CourseId(arg.id))
                     }
                 )
             }
@@ -180,8 +178,8 @@ fun AppLayout(
                 val arg = it.toRoute<Screen.Lesson>()
                 LessonScreen(
                     lessonData = arg,
-                    onLessonCompleted = {
-                        viewModel.completeLesson(it)
+                    onLessonCompleted = { lesson ->
+                        viewModel.completeLesson(lesson)
                         navController.navigateUp()
                     }
                 )

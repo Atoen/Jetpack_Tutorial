@@ -19,20 +19,19 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.ui.AppTheme
 
-data class CodeColors(
+private data class CodeColors(
     val keyword: Color,
     val annotation: Color,
     val string: Color,
     val comment: Color
 )
 
-data class CodeTokenStyle(
+private data class CodeTokenStyle(
     val keywords: SpanStyle,
     val annotations: SpanStyle,
     val strings: SpanStyle,
@@ -50,19 +49,24 @@ data class CodeTokenStyle(
     }
 }
 
-val lightCodeColors = CodeColors(
+private val lightCodeColors = CodeColors(
     keyword = Color(0xFF1155D6),
     annotation = Color(0xFF818102),
     string = Color(0xFF0294A2),
     comment =  Color(0xFF717171)
 )
 
-val darkCodeColors = CodeColors(
+private val darkCodeColors = CodeColors(
     keyword = Color(0xFF6B94E9),
     annotation = Color(0xFFBAB429),
     string = Color(0xFF65C1CA),
     comment =  Color(0xFF8F8F8F)
 )
+
+private val keywordPattern = Regex("\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null)\\b")
+private val annotationPattern = Regex("@\\w+")
+private val stringPattern = Regex("\"(.*?)\"")
+private val commentPattern = Regex("//.*")
 
 @Composable
 fun CodeListing(
@@ -70,11 +74,6 @@ fun CodeListing(
     modifier: Modifier = Modifier,
     theme: AppTheme = AppTheme.Auto,
 ) {
-    val keywordPattern = Regex("\\b(val|var|fun|if|else|for|while|when|return|import|package|class|interface|object)\\b")
-    val annotationPattern = Regex("@\\w+")
-    val stringPattern = Regex("\"(.*?)\"")
-    val commentPattern = Regex("//.*")
-
     val colors = when (theme) {
         AppTheme.Light -> lightCodeColors
         AppTheme.Dark -> darkCodeColors

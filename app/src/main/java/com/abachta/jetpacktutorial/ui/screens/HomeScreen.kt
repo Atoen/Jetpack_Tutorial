@@ -3,6 +3,7 @@ package com.abachta.jetpacktutorial.ui.screens
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -10,26 +11,33 @@ import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.courses
 import com.abachta.jetpacktutorial.data.getCourseById
-import com.abachta.jetpacktutorial.ui.components.ContinuePopup
+import com.abachta.jetpacktutorial.ui.components.LessonPopup
 import com.abachta.jetpacktutorial.ui.components.CourseList
+import com.abachta.jetpacktutorial.ui.components.LessonPopupData
 
 @Composable
 fun HomeScreen(
     courses: List<Course>,
     onCourseClick: (Course) -> Unit,
-    lessonToContinue: Lesson? = null,
-    onContinueClick: (Course, Lesson) -> Unit
+    lessonPopupData: LessonPopupData? = null,
+    onContinueClick: (Course, Lesson) -> Unit,
+    onRefreshPopup: () -> Unit
 ) {
+
+    LaunchedEffect(true) {
+        onRefreshPopup()
+    }
+
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        lessonToContinue?.let { lesson ->
-            ContinuePopup(
-                lessonToContinue = lesson,
+        lessonPopupData?.let { data ->
+            LessonPopup(
+                lessonPopupData = data,
                 onContinueClick = {
-                    val course = getCourseById(lesson.id) // FIXME: use course id 
-                    onContinueClick(course, lesson)
+                    val course = getCourseById(data.lesson.courseId.value)
+                    onContinueClick(course, data.lesson)
                 }
             )
         }
@@ -47,6 +55,7 @@ private fun HomeScreenPreview() {
     HomeScreen(
         courses = courses,
         onCourseClick = {},
-        onContinueClick = { _, _ -> }
+        onContinueClick = { _, _ -> },
+        onRefreshPopup = {}
     )
 }

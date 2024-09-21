@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Lesson
+import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.lessons.getLessonById
 import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.ui.components.ExtendableFloatingActionButton
@@ -43,7 +44,7 @@ fun LessonScreen(
     lessonData: Screen.Lesson,
     onLessonCompleted: (Lesson) -> Unit,
 ) {
-    val lesson = getLessonById(lessonData.id)
+    val lesson = getLessonById(LessonId(lessonData.id))
 
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState(pageCount = { lesson.pages.count() + 1 })
