@@ -27,7 +27,10 @@ data class LessonId(val value: Int) {
     fun next() = LessonId(value + 1)
 
     companion object {
-        private var current: Int = 0
+
+        const val START_ID = 1
+
+        private var current: Int = START_ID
 
         fun next() = synchronized(this) {
             LessonId(current++)

@@ -73,7 +73,10 @@ sealed class Course(
 
 data class CourseId(val value: Int) {
     companion object {
-        private var current: Int = 0
+
+        const val START_ID = 1
+
+        private var current: Int = START_ID
 
         fun next() = synchronized(this) {
             CourseId(current++)
@@ -81,7 +84,7 @@ data class CourseId(val value: Int) {
     }
 }
 
-val courses = listOf(
+val allCourses = listOf(
     Course.GettingStarted,
     Course.ComposeBasics,
     Course.LayoutsAndUIElements,
@@ -92,11 +95,11 @@ val courses = listOf(
     Course.AdvancedCompose
 )
 
-private val coursesMap = courses.associateBy { it.id }
+private val coursesMap = allCourses.associateBy { it.id }
 
 fun getCourseById(courseId: CourseId): Course {
     return coursesMap.getOrElse(courseId) {
         Log.e(null, "Unable to retrieve course with id $courseId")
-        courses.first()
+        allCourses.first()
     }
 }

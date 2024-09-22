@@ -1,8 +1,6 @@
 package com.abachta.jetpacktutorial.data.db
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.abachta.jetpacktutorial.data.db.daos.LessonDao
 import com.abachta.jetpacktutorial.data.db.entities.DbLesson

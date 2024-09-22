@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.abachta.jetpacktutorial.data.Course
-import com.abachta.jetpacktutorial.data.courses
+import com.abachta.jetpacktutorial.data.allCourses
 
 @Composable
 fun CourseList(
@@ -27,7 +27,7 @@ fun CourseList(
 fun GroupListPreview() {
 
     CourseList(
-        courses = courses,
+        courses = allCourses,
         onCourseClick = {}
     )
 }

@@ -15,16 +15,19 @@ interface LessonDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(lesson: DbLesson)
 
-    @Query("SELECT * FROM DbLesson WHERE completed = 1 ORDER BY id DESC LIMIT 1")
-    suspend fun getLastCompletedLesson(): DbLesson?
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertBulk(lessons: List<DbLesson>)
 
-    @Query("DELETE FROM DbLesson")
-    suspend fun removeAll()
+    @Query("SELECT id FROM DbLesson WHERE completed = 0 ORDER BY id ASC")
+    suspend fun getFirstUncompletedLessonId(): Int?
 
-    @Query("DELETE FROM DbLesson WHERE id IN (:ids)")
-    suspend fun removeByIds(ids: List<Int>)
+    @Query("UPDATE DbLesson SET completed = 0")
+    suspend fun clearAll()
 
-    @Query("DELETE FROM DbLesson WHERE id = :id")
-    suspend fun removeById(id: Int)
+    @Query("UPDATE DbLesson SET completed = 0 WHERE id IN (:ids)")
+    suspend fun clearByIds(ids: List<Int>)
+
+    @Query("UPDATE DbLesson SET completed = 0 WHERE id = :id")
+    suspend fun clearById(id: Int)
 
 }

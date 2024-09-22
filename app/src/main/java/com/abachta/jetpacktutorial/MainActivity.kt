@@ -8,7 +8,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.abachta.jetpacktutorial.ui.AppTheme
 import com.abachta.jetpacktutorial.ui.AppLayout
 import com.abachta.jetpacktutorial.ui.theme.JetpackTutorialTheme
@@ -28,13 +27,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContent {
-            val viewModel = hiltViewModel<SettingsViewModel>()
             JetpackTutorialTheme(
                 appTheme = viewModel.theme
             ) {
                 enableEdgeToEdge(appTheme = viewModel.theme)
                 AppLayout(
-                    viewModel = viewModel,
+                    settingsViewModel = viewModel,
                     onExit = {
                         finishAffinity()
                     }

@@ -1,20 +1,14 @@
 package com.abachta.jetpacktutorial.viewmodels
 
-import androidx.compose.runtime.derivedStateOf
-import androidx.compose.runtime.getValue
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
+import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.Preferences
-import com.abachta.jetpacktutorial.data.courses
-import com.abachta.jetpacktutorial.data.db.LessonRepository
-import com.abachta.jetpacktutorial.lessons.getFirstLesson
-import com.abachta.jetpacktutorial.lessons.tryGetNextLesson
+import com.abachta.jetpacktutorial.ui.AppLocale
 import com.abachta.jetpacktutorial.ui.AppTheme
-import com.abachta.jetpacktutorial.ui.components.LessonPopupData
-import com.abachta.jetpacktutorial.ui.components.LessonPopupType
+import com.abachta.jetpacktutorial.ui.LessonPopupOption
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -23,87 +17,65 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingsViewModel @Inject constructor(
-    private val preferences: Preferences,
-    private val lessonRepository: LessonRepository
+    private val preferences: Preferences
 ) : ViewModel() {
 
     private val _isReady = MutableStateFlow(false)
-    private val _theme = mutableStateOf(AppTheme.Auto)
+
+    private val _theme = mutableStateOf<AppTheme>(AppTheme.Auto)
+    private val _locale = mutableStateOf<AppLocale>(AppLocale.English)
+    private val _showLessonPopup = mutableStateOf<LessonPopupOption>(LessonPopupOption.Enabled)
 
     val isReady = _isReady.asStateFlow()
 
-    var popupLesson by mutableStateOf<Lesson?>(null)
-        private set
-
-    var popupType by mutableStateOf(LessonPopupType.Start)
-        private set
-
-    val lessonPopupData by derivedStateOf {
-        popupLesson?.let {
-            LessonPopupData(it, popupType)
-        }
-    }
-
-    var theme: AppTheme
+    var theme
         get() = _theme.value
         set(value) {
             _theme.value = value
             viewModelScope.launch {
-                preferences.setInt("theme", theme.value)
+                preferences.setInt(THEME_KEY, value.value)
+            }
+        }
+
+    var locale
+        get() = _locale.value
+        set(value) {
+            _locale.value = value
+            AppCompatDelegate.setApplicationLocales(
+                LocaleListCompat.forLanguageTags(
+                    value.tag
+                )
+            )
+        }
+
+    var lessonPopup
+        get() = _showLessonPopup.value
+        set(value) {
+            _showLessonPopup.value = value
+            viewModelScope.launch {
+                preferences.setBoolean(POPUP_KEY, value.enabled)
             }
         }
 
     init {
         viewModelScope.launch {
-            theme = preferences.getInt("theme")?.let { AppTheme.fromInt(it) } ?: AppTheme.Auto
+            _theme.value = preferences.getInt(THEME_KEY)?.let {
+                AppTheme.fromInt(it)
+            } ?: AppTheme.Auto
 
-            getLessonToShowOnPopup()
+            _showLessonPopup.value = preferences.getBoolean(POPUP_KEY)?.let {
+                LessonPopupOption.fromBoolean(it)
+            } ?: LessonPopupOption.Enabled
+
+            val localeTag = AppCompatDelegate.getApplicationLocales().get(0)?.language ?: "en"
+            _locale.value = AppLocale.fromLanguageTag(localeTag)
 
             _isReady.value = true
         }
     }
 
-    private suspend fun getLessonToShowOnPopup() {
-        lessonRepository.updateLessonsProgress()
-
-        val lastCompletedLesson = lessonRepository.getLastCompletedLesson()
-        if (lastCompletedLesson == null) {
-            popupLesson = getFirstLesson()
-            popupType = LessonPopupType.Start
-        } else {
-            popupLesson = tryGetNextLesson(lastCompletedLesson.id)?.also {
-                popupType = LessonPopupType.Continue
-            }
-        }
-    }
-
-    fun refreshLessonPopup() {
-        viewModelScope.launch {
-            val lastCompletedLesson = lessonRepository.getLastCompletedLesson()
-            if (lastCompletedLesson == null) {
-                popupLesson = getFirstLesson()
-                popupType = LessonPopupType.Start
-            } else {
-                popupLesson = tryGetNextLesson(lastCompletedLesson.id)?.also {
-                    popupType = LessonPopupType.Continue
-                }
-            }
-        }
-    }
-
-    fun completeLesson(lesson: Lesson) {
-        viewModelScope.launch {
-            lessonRepository.insertLesson(lesson)
-        }
-    }
-
-    fun clearLessons() {
-        courses.forEach {
-            it.progress.resetProgress()
-        }
-
-        viewModelScope.launch {
-            lessonRepository.removeAllLessons()
-        }
+    companion object {
+        private const val THEME_KEY = "theme"
+        private const val POPUP_KEY = "popup"
     }
 }

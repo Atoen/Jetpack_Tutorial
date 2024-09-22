@@ -3,11 +3,11 @@
     <string name="app_name">Samouczek Jetpack</string>
     <string name="back_again_to_close">Cofnij ponownie, aby zamknąć aplikację</string>
     <string name="settings">Ustawienia</string>
-    <string name="select_language">Wybierz język aplikacji</string>
+    <string name="select_app_language">Wybierz język aplikacji</string>
     <string name="polish">Polski</string>
     <string name="english">Angielski</string>
 
-    <string name="theme">Motyw aplikacji</string>
+    <string name="app_theme">Motyw aplikacji</string>
     <string name="theme_auto">Automatyczny</string>
     <string name="theme_light">Jasny</string>
     <string name="theme_dark">Ciemny</string>
@@ -48,5 +48,11 @@
     <string name="dialog_clear_title">Usuń wszystkie postępy</string>
     <string name="dialog_clear_text">Czy na pewno chcesz zresetować postęp we wszystkich kursach? Tej akcji nie można cofnąć.</string>
     <string name="popup_start">Zaczynajmy</string>
+    <string name="enabled">Włączone</string>
+    <string name="disabled">Wyłączone</string>
+    <string name="select_app_theme">Wybierz motyw aplikacji</string>
+    <string name="app_language">Język aplikacji</string>
+    <string name="lesson_popup">Następna lekcja</string>
+    <string name="lesson_popup_options">Wyświetlanie następnej lekcji</string>
 
 </resources>

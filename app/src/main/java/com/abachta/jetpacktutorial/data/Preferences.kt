@@ -1,7 +1,6 @@
 package com.abachta.jetpacktutorial.data
 
 import android.content.Context
-import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
@@ -13,7 +12,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 private const val PREFERENCES_NAME = "preferences"
-val Context.dataStore by preferencesDataStore(name = PREFERENCES_NAME)
+private val Context.dataStore by preferencesDataStore(name = PREFERENCES_NAME)
 
 @Singleton
 class Preferences @Inject constructor(

@@ -6,56 +6,46 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.Lesson
-import com.abachta.jetpacktutorial.data.courses
 import com.abachta.jetpacktutorial.data.getCourseById
 import com.abachta.jetpacktutorial.ui.components.LessonPopup
 import com.abachta.jetpacktutorial.ui.components.CourseList
-import com.abachta.jetpacktutorial.ui.components.LessonPopupData
+import com.abachta.jetpacktutorial.viewmodels.CourseViewModel
 
 @Composable
 fun HomeScreen(
-    courses: List<Course>,
+    viewModel: CourseViewModel,
     onCourseClick: (Course) -> Unit,
-    lessonPopupData: LessonPopupData? = null,
     onContinueClick: (Course, Lesson) -> Unit,
-    onRefreshPopup: () -> Unit
+    showPopup: Boolean
 ) {
-
     LaunchedEffect(true) {
-        onRefreshPopup()
+        viewModel.refreshLessonPopup()
     }
 
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        lessonPopupData?.let { data ->
+        val data = viewModel.lessonPopupData
+        if (showPopup && data != null) {
             LessonPopup(
                 lessonPopupData = data,
                 onContinueClick = {
                     val course = getCourseById(data.lesson.courseId.value)
                     onContinueClick(course, data.lesson)
+                },
+                shouldAnimate = viewModel.shouldAnimatePopup,
+                onAnimated = {
+                    viewModel.shouldAnimatePopup = false
                 }
             )
         }
 
         CourseList(
-            courses = courses,
+            courses = viewModel.courses,
             onCourseClick = onCourseClick
         )
     }
-}
-
-@Composable
-@Preview(showBackground = true)
-private fun HomeScreenPreview() {
-    HomeScreen(
-        courses = courses,
-        onCourseClick = {},
-        onContinueClick = { _, _ -> },
-        onRefreshPopup = {}
-    )
 }

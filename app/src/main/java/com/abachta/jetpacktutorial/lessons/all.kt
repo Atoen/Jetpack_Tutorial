@@ -4,18 +4,18 @@ import android.util.Log
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 
-private val lessons = listOf(
+val allLessons = listOf(
     gettingStartedLessons
 ).flatten()
 
-private val lessonMap = lessons.associateBy { it.id }
+private val lessonMap = allLessons.associateBy { it.id }
 
-fun getFirstLesson() = lessons.first()
+fun getFirstLesson() = allLessons.first()
 
 fun getLessonById(lessonId: LessonId): Lesson {
     return lessonMap.getOrElse(lessonId) {
         Log.e(null, "Unable to retrieve lesson with id $lessonId")
-        lessons.first()
+        allLessons.first()
     }
 }
 

@@ -30,6 +30,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -51,13 +52,18 @@ data class LessonPopupData(val lesson: Lesson, val type: LessonPopupType)
 @Composable
 fun LessonPopup(
     lessonPopupData: LessonPopupData,
-    onContinueClick: () -> Unit
+    onContinueClick: () -> Unit,
+    shouldAnimate: Boolean,
+    onAnimated: () -> Unit
 ) {
     var dismissed by rememberSaveable { mutableStateOf(false) }
     var animated by rememberSaveable { mutableStateOf(false) }
     var display by remember { mutableStateOf(animated) }
 
     val dismissState = rememberSwipeToDismissBoxState(
+        positionalThreshold = with(LocalDensity.current) {
+            { 120.dp.toPx() }
+        },
         confirmValueChange = {
             if (it != SwipeToDismissBoxValue.Settled) {
                 dismissed = true
@@ -67,11 +73,19 @@ fun LessonPopup(
         }
     )
 
-    if (!animated) {
-        LaunchedEffect(true) {
+    LaunchedEffect(true) {
+        if (shouldAnimate) {
+            animated = false
+            dismissed = false
+            dismissState.reset()
+        }
+
+        if (!animated) {
             delay(200)
             display = true
             animated = true
+
+            onAnimated()
         }
     }
 

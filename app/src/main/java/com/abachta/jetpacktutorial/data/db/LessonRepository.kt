@@ -4,6 +4,7 @@ import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.db.daos.LessonDao
 import com.abachta.jetpacktutorial.data.db.entities.DbLesson
+import com.abachta.jetpacktutorial.lessons.allLessons
 import com.abachta.jetpacktutorial.lessons.getLessonById
 import javax.inject.Inject
 
@@ -27,28 +28,34 @@ class LessonRepository @Inject constructor(
                 lesson.progress.reset()
             }
         }
+
+        val mapped = allLessons.map { lesson ->
+            DbLesson(lesson.id.value, lesson.isCompleted)
+        }
+
+        lessonDao.insertBulk(mapped)
     }
 
     suspend fun insertLesson(lesson: Lesson) {
         lessonDao.insert(DbLesson(lesson.id.value, lesson.isCompleted))
     }
 
-    suspend fun getLastCompletedLesson(): Lesson? {
-        val completed = lessonDao.getLastCompletedLesson()
-        return completed?.let {
-            getLessonById(LessonId(it.id))
+    suspend fun getNextLesson(): Lesson? {
+        val id = lessonDao.getFirstUncompletedLessonId()
+        return id?.let {
+            getLessonById(LessonId(it))
         }
     }
 
     suspend fun removeAllLessons() {
-        lessonDao.removeAll()
+        lessonDao.clearAll()
     }
 
     suspend fun removeLessonsByIds(ids: List<Int>) {
-        lessonDao.removeByIds(ids)
+        lessonDao.clearByIds(ids)
     }
 
     suspend fun removeLessonById(id: Int) {
-        lessonDao.removeById(id)
+        lessonDao.clearById(id)
     }
 }

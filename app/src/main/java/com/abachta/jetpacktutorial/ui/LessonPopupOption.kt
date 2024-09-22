@@ -6,14 +6,13 @@ import androidx.compose.ui.res.stringResource
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.ui.components.SelectableTextProvider
 
-sealed class AppTheme(
-    val value: Int,
+sealed class LessonPopupOption(
+    val enabled: Boolean,
     @StringRes val displayNameResId: Int
 ) : SelectableTextProvider {
 
-    data object Auto : AppTheme(0, R.string.theme_auto)
-    data object Light : AppTheme(1, R.string.theme_light)
-    data object Dark : AppTheme(2, R.string.theme_dark)
+    data object Enabled: LessonPopupOption(true, R.string.enabled)
+    data object Disabled: LessonPopupOption(false, R.string.disabled)
 
     @Composable
     override fun getText(): String = stringResource(displayNameResId)
@@ -21,14 +20,13 @@ sealed class AppTheme(
     companion object {
 
         val entries by lazy {
-            listOf(Auto, Light, Dark)
+            listOf(Enabled, Disabled)
         }
 
-        fun fromInt(int: Int): AppTheme {
-            return when (int) {
-                1 -> Light
-                2 -> Dark
-                else -> Auto
+        fun fromBoolean(value: Boolean): LessonPopupOption {
+            return when (value) {
+                true -> Enabled
+                false -> Disabled
             }
         }
     }

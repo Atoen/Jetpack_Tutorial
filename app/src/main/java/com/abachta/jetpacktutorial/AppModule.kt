@@ -3,8 +3,6 @@ package com.abachta.jetpacktutorial
 import android.content.Context
 import androidx.room.Room
 import com.abachta.jetpacktutorial.data.db.LessonDatabase
-import com.abachta.jetpacktutorial.data.db.LessonRepository
-import com.abachta.jetpacktutorial.data.db.daos.LessonDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
