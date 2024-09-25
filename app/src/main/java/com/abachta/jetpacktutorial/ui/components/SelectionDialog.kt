@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.abachta.jetpacktutorial.R
-import com.abachta.jetpacktutorial.ui.AppTheme
+import com.abachta.jetpacktutorial.settings.AppTheme
 
 interface SelectableTextProvider {
     @Composable

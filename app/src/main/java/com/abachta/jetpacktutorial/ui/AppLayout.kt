@@ -164,6 +164,8 @@ fun AppLayout(
                 val arg = it.toRoute<Screen.Lesson>()
                 LessonScreen(
                     lessonData = arg,
+                    appTheme = settingsViewModel.theme,
+                    listingFont = settingsViewModel.listingFont,
                     onLessonCompleted = { lesson ->
                         courseViewModel.completeLesson(lesson)
                         navController.navigateUp()

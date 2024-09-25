@@ -1,20 +1,23 @@
 package com.abachta.jetpacktutorial.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.selection.SelectionContainer
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
@@ -22,7 +25,11 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.abachta.jetpacktutorial.ui.AppTheme
+import com.abachta.jetpacktutorial.data.LessonPageOptions
+import com.abachta.jetpacktutorial.settings.AppTheme
+import com.abachta.jetpacktutorial.settings.CodeListingFont
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 private data class CodeColors(
     val keyword: Color,
@@ -63,78 +70,99 @@ private val darkCodeColors = CodeColors(
     comment =  Color(0xFF8F8F8F)
 )
 
-private val keywordPattern = Regex("\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null)\\b")
-private val annotationPattern = Regex("@\\w+")
-private val stringPattern = Regex("\"(.*?)\"")
-private val commentPattern = Regex("//.*")
+private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null)\\b"
+private const val annotationPattern = "@\\w+"
+private const val stringPattern = "\"(.*?)\""
+private const val commentPattern = "//.*"
+
+private val combinedPattern = Regex(
+    "($annotationPattern)|($stringPattern)|($commentPattern)|$keywordPattern"
+)
+
+private fun highlightSyntax(
+    code: String,
+    style: CodeTokenStyle
+): AnnotatedString {
+    return buildAnnotatedString {
+        var currentIndex = 0
+        val matches = combinedPattern.findAll(code)
+
+        for (match in matches) {
+            append(code.substring(currentIndex, match.range.first))
+
+            when {
+                match.groups[1] != null -> withStyle(style.annotations) { append(match.value) }
+                match.groups[2] != null -> withStyle(style.strings) { append(match.value) }
+                match.groups[4] != null -> withStyle(style.comments) { append(match.value) }
+                match.groups[5] != null -> withStyle(style.keywords) { append(match.value) }
+            }
+
+            currentIndex = match.range.last + 1
+        }
+
+        append(code.substring(currentIndex))
+    }
+}
+
+sealed class CodeListingTitlePosition {
+    data object Top : CodeListingTitlePosition()
+    data object Bottom : CodeListingTitlePosition()
+}
 
 @Composable
 fun CodeListing(
     code: String,
     modifier: Modifier = Modifier,
-    theme: AppTheme = AppTheme.Auto,
+    options: LessonPageOptions,
+    title: @Composable (() -> Unit)? = null,
+    titlePosition: CodeListingTitlePosition = CodeListingTitlePosition.Top
 ) {
-    val colors = when (theme) {
+    val colors = when (options.theme) {
         AppTheme.Light -> lightCodeColors
         AppTheme.Dark -> darkCodeColors
         AppTheme.Auto -> if (isSystemInDarkTheme()) darkCodeColors else lightCodeColors
     }
 
-    val style = CodeTokenStyle.create(colors)
-
-    val lines = code.split("\n")
-    val annotatedLines = lines.map { line ->
-        buildAnnotatedString {
-            var currentIndex = 0
-            val matches = listOf(
-                keywordPattern.findAll(line).toList(),
-                stringPattern.findAll(line).toList(),
-                annotationPattern.findAll(line).toList(),
-                commentPattern.findAll(line).toList()
-            ).flatten().sortedBy { it.range.first }
-
-            for (match in matches) {
-                append(line.substring(currentIndex, match.range.first))
-                when {
-                    keywordPattern.matches(match.value) -> withStyle(style.keywords) {
-                        append(match.value)
-                    }
-                    annotationPattern.matches(match.value) -> withStyle(style.annotations) {
-                        append(match.value)
-                    }
-                    stringPattern.matches(match.value) -> withStyle(style.strings) {
-                        append(match.value)
-                    }
-                    commentPattern.matches(match.value) -> withStyle(style.comments) {
-                        append(match.value)
-                    }
-                }
-                currentIndex = match.range.last + 1
+    var parsedCode by remember {
+        mutableStateOf(
+            buildAnnotatedString {
+                append(code)
             }
-            append(line.substring(currentIndex))
+        )
+    }
+
+    LaunchedEffect(code, colors) {
+        val style = CodeTokenStyle.create(colors)
+        val result = withContext(Dispatchers.Main) {
+            highlightSyntax(code, style)
         }
+        parsedCode = result
     }
 
     Box(
         modifier = modifier
             .fillMaxWidth()
             .background(MaterialTheme.colorScheme.surfaceVariant)
-            .border(1.dp, MaterialTheme.colorScheme.outlineVariant)
-            .verticalScroll(rememberScrollState())
             .padding(8.dp)
     ) {
+        if (titlePosition == CodeListingTitlePosition.Top) {
+            title?.let { it() }
+        }
+
         SelectionContainer {
             Column {
-                annotatedLines.forEach { annotatedLine ->
-                    Text(
-                        text = annotatedLine,
-                        style = MaterialTheme.typography.bodyMedium.copy(
-                            fontFamily = FontFamily.Monospace
-                        ),
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    )
-                }
+                Text(
+                    text = parsedCode,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontFamily = FontFamily.Monospace,
+                    fontSize = options.listingFont.size,
+                    lineHeight = options.listingFont.lineHeight
+                )
             }
+        }
+
+        if (titlePosition == CodeListingTitlePosition.Bottom) {
+            title?.let { it() }
         }
     }
 }
@@ -147,10 +175,13 @@ private fun CodeListingPreview() {
                 @Composable
                 fun Greeting(name: String) {
                     // This is a greeting function with a very long comment text line
-                    val greeting = "Hello, $\name!"
+                    val greeting = "Hello, ${'$'}name!"
                     Text(text = greeting)
                 }
             """.trimIndent(),
-        theme = AppTheme.Dark
+        options = LessonPageOptions(
+            theme = AppTheme.Light,
+            listingFont = CodeListingFont.Medium
+        )
     )
 }

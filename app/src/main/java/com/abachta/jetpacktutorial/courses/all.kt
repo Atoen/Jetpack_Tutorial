@@ -1,11 +1,14 @@
-package com.abachta.jetpacktutorial.lessons
+package com.abachta.jetpacktutorial.courses
 
 import android.util.Log
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
+import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
+import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 
 val allLessons = listOf(
-    gettingStartedLessons
+    gettingStartedLessons,
+    jetpackBasicsLessons
 ).flatten()
 
 private val lessonMap = allLessons.associateBy { it.id }

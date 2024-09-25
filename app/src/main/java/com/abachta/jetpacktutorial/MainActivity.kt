@@ -8,7 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import com.abachta.jetpacktutorial.ui.AppTheme
+import com.abachta.jetpacktutorial.settings.AppTheme
 import com.abachta.jetpacktutorial.ui.AppLayout
 import com.abachta.jetpacktutorial.ui.theme.JetpackTutorialTheme
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel

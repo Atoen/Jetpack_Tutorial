@@ -4,8 +4,8 @@ import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.db.daos.LessonDao
 import com.abachta.jetpacktutorial.data.db.entities.DbLesson
-import com.abachta.jetpacktutorial.lessons.allLessons
-import com.abachta.jetpacktutorial.lessons.getLessonById
+import com.abachta.jetpacktutorial.courses.allLessons
+import com.abachta.jetpacktutorial.courses.getLessonById
 import javax.inject.Inject
 
 //interface LessonRepository {

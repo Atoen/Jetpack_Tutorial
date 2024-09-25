@@ -1,10 +1,13 @@
 package com.abachta.jetpacktutorial.data
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.abachta.jetpacktutorial.settings.AppTheme
+import com.abachta.jetpacktutorial.settings.CodeListingFont
 
 class Lesson(
     @StringRes val titleResId: Int,
@@ -56,6 +59,13 @@ class LessonProgress {
     }
 }
 
+data class LessonPageOptions(
+    val theme: AppTheme,
+    val listingFont: CodeListingFont
+)
+
 class LessonPage(
-    val content: @Composable () -> Unit
+    @StringRes
+    val headingResId: Int? = null,
+    val content: @Composable ColumnScope.(LessonPageOptions) -> Unit
 )

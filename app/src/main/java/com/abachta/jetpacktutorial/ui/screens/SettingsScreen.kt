@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.Language
@@ -31,9 +32,10 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
-import com.abachta.jetpacktutorial.ui.AppLocale
-import com.abachta.jetpacktutorial.ui.AppTheme
-import com.abachta.jetpacktutorial.ui.LessonPopupOption
+import com.abachta.jetpacktutorial.settings.AppLocale
+import com.abachta.jetpacktutorial.settings.AppTheme
+import com.abachta.jetpacktutorial.settings.LessonPopupOption
+import com.abachta.jetpacktutorial.settings.CodeListingFont
 import com.abachta.jetpacktutorial.ui.components.SelectableTextProvider
 import com.abachta.jetpacktutorial.ui.components.SelectionDialog
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
@@ -54,16 +56,17 @@ fun SettingsScreen(
             AppTheme.Auto -> if (isSystemInDarkTheme()) Icons.Filled.DarkMode else Icons.Filled.LightMode
         }
 
+        // App theme
         DialogRow(
             icon = themeIcon,
             selectedItem = viewModel.theme,
             onItemSelected = { viewModel.theme = it },
             dialogItems = AppTheme.entries,
             dialogTitle = stringResource(R.string.select_app_theme),
-            rowTitle = stringResource(R.string.app_theme),
-            autoClose = false
+            rowTitle = stringResource(R.string.app_theme)
         )
 
+        // App language
         DialogRow(
             icon = Icons.Filled.Language,
             selectedItem = viewModel.locale,
@@ -78,6 +81,7 @@ fun SettingsScreen(
             LessonPopupOption.Disabled -> Icons.Filled.NotificationsNone
         }
 
+        // Lesson popup
         DialogRow(
             icon = popupIcon,
             selectedItem = viewModel.lessonPopup,
@@ -90,6 +94,19 @@ fun SettingsScreen(
             rowTitle = stringResource(R.string.lesson_popup)
         )
 
+        // Code font
+        DialogRow(
+            icon = Icons.Filled.Code,
+            selectedItem = viewModel.listingFont,
+            onItemSelected = {
+                viewModel.listingFont = it
+            },
+            dialogItems = CodeListingFont.entries,
+            dialogTitle = stringResource(R.string.select_listing_font),
+            rowTitle = stringResource(R.string.code_listing_font)
+        )
+
+        // Clear progress
         AlertDialogRow(
             rowIcon = Icons.Filled.DeleteForever,
             rowTitle = stringResource(R.string.clear_all_progress),

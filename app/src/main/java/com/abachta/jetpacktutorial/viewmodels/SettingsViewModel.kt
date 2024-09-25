@@ -6,9 +6,10 @@ import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abachta.jetpacktutorial.data.Preferences
-import com.abachta.jetpacktutorial.ui.AppLocale
-import com.abachta.jetpacktutorial.ui.AppTheme
-import com.abachta.jetpacktutorial.ui.LessonPopupOption
+import com.abachta.jetpacktutorial.settings.AppLocale
+import com.abachta.jetpacktutorial.settings.AppTheme
+import com.abachta.jetpacktutorial.settings.LessonPopupOption
+import com.abachta.jetpacktutorial.settings.CodeListingFont
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -25,6 +26,7 @@ class SettingsViewModel @Inject constructor(
     private val _theme = mutableStateOf<AppTheme>(AppTheme.Auto)
     private val _locale = mutableStateOf<AppLocale>(AppLocale.English)
     private val _showLessonPopup = mutableStateOf<LessonPopupOption>(LessonPopupOption.Enabled)
+    private val _listingFont = mutableStateOf<CodeListingFont>(CodeListingFont.Medium)
 
     val isReady = _isReady.asStateFlow()
 
@@ -57,6 +59,15 @@ class SettingsViewModel @Inject constructor(
             }
         }
 
+    var listingFont
+        get() = _listingFont.value
+        set(value) {
+            _listingFont.value = value
+            viewModelScope.launch {
+                preferences.setInt(FONT_KEY, value.value)
+            }
+        }
+
     init {
         viewModelScope.launch {
             _theme.value = preferences.getInt(THEME_KEY)?.let {
@@ -66,6 +77,10 @@ class SettingsViewModel @Inject constructor(
             _showLessonPopup.value = preferences.getBoolean(POPUP_KEY)?.let {
                 LessonPopupOption.fromBoolean(it)
             } ?: LessonPopupOption.Enabled
+
+            _listingFont.value = preferences.getInt(FONT_KEY)?.let {
+                CodeListingFont.fromInt(it)
+            } ?: CodeListingFont.Medium
 
             val localeTag = AppCompatDelegate.getApplicationLocales().get(0)?.language ?: "en"
             _locale.value = AppLocale.fromLanguageTag(localeTag)
@@ -77,5 +92,6 @@ class SettingsViewModel @Inject constructor(
     companion object {
         private const val THEME_KEY = "theme"
         private const val POPUP_KEY = "popup"
+        private const val FONT_KEY = "font"
     }
 }

@@ -3,7 +3,8 @@ package com.abachta.jetpacktutorial.data
 import android.util.Log
 import androidx.annotation.StringRes
 import com.abachta.jetpacktutorial.R
-import com.abachta.jetpacktutorial.lessons.gettingStartedLessons
+import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
+import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 
 sealed class Course(
     @StringRes val titleResId: Int,
@@ -31,7 +32,7 @@ sealed class Course(
     data object ComposeBasics : Course(
         titleResId = R.string.course_compose_basics,
         descriptionResId = R.string.TODO,
-        lessons = listOf(),
+        lessons = jetpackBasicsLessons,
     )
 
     data object LayoutsAndUIElements : Course(

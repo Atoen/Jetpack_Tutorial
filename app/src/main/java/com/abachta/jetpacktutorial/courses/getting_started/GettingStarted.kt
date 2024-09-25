@@ -1,4 +1,4 @@
-package com.abachta.jetpacktutorial.lessons
+package com.abachta.jetpacktutorial.courses.getting_started
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -93,6 +93,7 @@ val Introduction_4 = LessonPage {
             .padding(16.dp)
     ) {
         CodeListing(
+            options = it,
             code = """
                 @Composable
                 fun Greeting(name: String) {

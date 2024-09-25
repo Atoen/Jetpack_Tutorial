@@ -14,8 +14,8 @@
 
     <!-- Groups -->
     <string name="course_getting_started">Pierwsze kroki z Jetpack Compose</string>
-    <string name="course_layouts_elements">Układy i Elementy Interfejsu</string>
-    <string name="course_theming_styling">Stylizowanie Interfejsu</string>
+    <string name="course_layouts_elements">Układy i elementy interfejsu</string>
+    <string name="course_theming_styling">Stylizowanie interfejsu</string>
     <string name="course_getting_started_description">Poznaj podstawy Jetpack Compose, w tym konfigurację środowiska i tworzenie pierwszego elementu composable.</string>
     <string name="course_layout_description">Zagłęb się w układy Compose, motywy i stylizację swojej aplikacji.</string>
     <string name="ciurse_state_navigation_description">Efektywnie zarządzaj stanem i nawiguj między ekranami w aplikacji Compose.</string>
@@ -54,5 +54,35 @@
     <string name="app_language">Język aplikacji</string>
     <string name="lesson_popup">Następna lekcja</string>
     <string name="lesson_popup_options">Wyświetlanie następnej lekcji</string>
+    <string name="lesson_text_title">Wyświetlanie tekstu</string>
+    <string name="text_7_heading">Konfiguracja układ tekstu</string>
+    <string name="font_small">Mała</string>
+    <string name="font_medium">Średnia</string>
+    <string name="font_big">Duża</string>
+    <string name="code_listing_font">Czcionka wyświetlanego kodu</string>
+    <string name="select_listing_font">Wybierz czcionkę wyświetlanego kodu</string>
+    <string name="text_1_heading">Wyświetlanie zwykłego tekstu</string>
+    <string name="text_1_1">Najprostszym sposobem, aby wyświetlić tekst jest użycie funkcji kompozycyjnej <tt>Text</tt>.\nPosiada ona jeden wymagany parametr: string do wyświetlenia.</string>
+    <string name="text_1_2">Ten kod wyświetli następujący tekst:</string>
+    <string name="text_2_heading">Stylizacja tekstu</string>
+    <string name="text_2_1">Funkcja kompozycyjna <tt>Text</tt> posiada wiele opcjonalnych parametrów, których możesz użyć, aby zmienić wygląd wyśweitlanego tekstu.</string>
+    <string name="text_2_2">Zmiana koloru tekstu:</string>
+    <string name="text_2_3">Zmiana rozmiaru tekstu:</string>
+    <string name="text_3_heading">Modyfikowanie czcionki</string>
+    <string name="text_3_1">Wyświetlanie tekstu jako kursywę:</string>
+    <string name="text_3_2">Wyświetlanie tekstu jako pogrubiony:</string>
+    <string name="text_3_3">Jetpack Compose oferuje również inne grubości czcionek: Thin, ExtraLight, Light, Normal, Medium, SemiBold, ExtraBold i Black.\nMożesz również utworzyć niestandardową grubość czcionki, przekazując wartość Int do konstruktora.</string>
+    <string name="text_5_heading">Zaawansowana stylizacja</string>
+    <string name="text_5_1">Możesz dodać cień do tekstu, tworząc nowy TextStyle i określając kolor, przesunięcie oraz promień rozmycia cienia.</string>
+    <string name="text_4_heading">Ozdoby tekstu</string>
+    <string name="text_4_1">Rysowanie poziomej linii na tekście:</string>
+    <string name="text_4_2">Możesz połączyć dekoracje tekstu za pomocą funkcji TextDecoration.combine lub operatora dodawania:</string>
+    <string name="text_6_heading">Zaawansowana stylizacja - wiele stylów</string>
+    <string name="text_6_1">Możesz użyć kilku styli w jednej funkcji Text za pomocą klasy AnnotatedString. Funkcja pomocnicza buildAnnotatedString pozwala na łatwe dodawanie fragmentów tekstu z róznymi stylami.</string>
+    <string name="text_8_heading">Wyświetlanie tekstu z zasobów</string>
+    <string name="text_8_1">Rekomendowanym podejściem do wyświetlania tekstu jest wykorzystywanie zasobów (string resources) zamiast wpisywania wartości na sztywno w kodzie.\nPozwala to na łatwiejsze użycie tego samego tekstu w wielu miejsach, zmniejszając przy tym szansę na pomyłkę.\nDodatkowo, ułatwia to znacząco przygotowanie aplikacji do obsługi wielu języków.</string>
+    <string name="hello_world">Witaj, świecie! (po polsku)</string>
+    <string name="text_7_1">Możesz ograniczyć liczbę wyświetlanych linijek dla długich tekstów:</string>
+    <string name="text_7_2">Dodatkowo, możesz również zaznaczyć przepełnienie tekstu:</string>
 
 </resources>

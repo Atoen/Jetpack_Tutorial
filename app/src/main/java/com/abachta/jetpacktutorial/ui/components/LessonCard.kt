@@ -27,7 +27,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Lesson
-import com.abachta.jetpacktutorial.lessons.gettingStartedLessons
+import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 
 @Composable
 fun LessonCard(

@@ -5,7 +5,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.abachta.jetpacktutorial.data.Lesson
-import com.abachta.jetpacktutorial.lessons.gettingStartedLessons
+import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 
 @Composable
 fun LessonList(
