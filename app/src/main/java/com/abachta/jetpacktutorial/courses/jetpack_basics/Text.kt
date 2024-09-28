@@ -11,6 +11,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -22,12 +24,13 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 
-val text_1 = LessonPage(
+private val text_1 = LessonPage(
     headingResId = R.string.text_1_heading
 ) {
 
-    Text(stringResource(R.string.text_1_1))
+    ResText(R.string.text_1_1)
 
     CodeListing(
         options = it,
@@ -39,95 +42,141 @@ val text_1 = LessonPage(
         """.trimIndent()
     )
 
-    Text(stringResource(R.string.text_1_2))
+    ResText(R.string.text_1_2)
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         Text("Hello, World!")
     }
 }
 
-val text_2 = LessonPage (
+private val text_2 = LessonPage (
     headingResId = R.string.text_2_heading
 ) {
-    Text(stringResource(R.string.text_2_1))
 
-    Text(stringResource(R.string.text_2_2))
+    ResText(R.string.text_2_1)
+
+    ResText(R.string.text_2_2)
 
     CodeListing(
         options = it,
         code = """
             @Composable
             fun BigText() {
-                Text("Hello, World", color = Color.Blue)
+                Text("Hello, World!", color = Color.Blue)
             }
         """.trimIndent()
     )
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        Text("Hello, World", color = Color.Blue)
+        Text("Hello, World!", color = Color.Blue)
     }
 
-    Text(stringResource(R.string.text_2_3))
+    ResText(R.string.text_2_3)
 
     CodeListing(
         options = it,
         code = """
             @Composable
             fun BlueText() {
-                Text("Hello, World", fontSize = 30.sp)
+                Text("Hello, World!", fontSize = 30.sp)
             }
         """.trimIndent()
     )
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        Text("Hello, World", fontSize = 30.sp)
+        Text("Hello, World!", fontSize = 30.sp)
     }
 }
 
-val text_3 = LessonPage(
+private val text_3 = LessonPage(
     headingResId = R.string.text_3_heading
 ) {
 
-    Text(stringResource(R.string.text_3_1))
+    ResText(R.string.text_3_1)
+
+    CodeListing(
+        options = it,
+        code = """
+            @Composable
+            fun MonospaceText() {
+                Text("Hello, World!", fontFamily = FontFamily.Monospace)
+            }
+        """.trimIndent()
+    )
+
+    Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+        Text("Hello, World!", fontFamily = FontFamily.Monospace)
+    }
+
+    ResText(R.string.text_3_2)
+
+    CodeListing(
+        options = it,
+        code = """
+            @Composable
+            fun CustomFontText() {
+                val fontFamily = FontFamily(
+                    Font(R.font.jacquarda_bastarda_9)
+                )
+        
+                Text("Hello, World!", fontFamily = fontFamily)
+            }
+        """.trimIndent()
+    )
+
+    Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+        val fontFamily = FontFamily(
+            Font(R.font.jacquarda_bastarda_9)
+        )
+
+        Text("Hello, World!", fontFamily = fontFamily)
+    }
+}
+
+private val text_4 = LessonPage(
+    headingResId = R.string.text_4_heading
+) {
+
+    ResText(R.string.text_4_1)
 
     CodeListing(
         options = it,
         code = """
             @Composable
             fun ItalicText() {
-                Text("Hello, World", fontStyle = FontStyle.Italic)
+                Text("Hello, World!", fontStyle = FontStyle.Italic)
             }
         """.trimIndent()
     )
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        Text("Hello, World", fontStyle = FontStyle.Italic)
+        Text("Hello, World!", fontStyle = FontStyle.Italic)
     }
 
-    Text(stringResource(R.string.text_3_2))
+    ResText(R.string.text_4_2)
 
     CodeListing(
         options = it,
         code = """
             @Composable
             fun BoldText() {
-                Text("Hello, World", fontWeight = FontWeight.Bold)
+                Text("Hello, World!", fontWeight = FontWeight.Bold)
             }
         """.trimIndent()
     )
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        Text("Hello, World", fontWeight = FontWeight.Bold)
+        Text("Hello, World!", fontWeight = FontWeight.Bold)
     }
 
-    Text(stringResource(R.string.text_3_3))
+    ResText(R.string.text_4_3)
 }
 
-val text_4 = LessonPage(
-    headingResId = R.string.text_4_heading
+private val text_5 = LessonPage(
+    headingResId = R.string.text_5_heading
 ) {
 
-    Text(stringResource(R.string.text_4_1))
+    ResText(R.string.text_5_1)
 
     CodeListing(
         options = it,
@@ -149,7 +198,7 @@ val text_4 = LessonPage(
         )
     }
 
-    Text(stringResource(R.string.text_4_2))
+    ResText(R.string.text_5_2)
 
     CodeListing(
         options = it,
@@ -172,11 +221,11 @@ val text_4 = LessonPage(
     }
 }
 
-val text_5 = LessonPage(
-    headingResId = R.string.text_5_heading
+private val text_6 = LessonPage(
+    headingResId = R.string.text_6_heading
 ) {
 
-    Text(stringResource(R.string.text_5_1))
+    ResText(R.string.text_6_1)
 
     CodeListing(
         options = it,
@@ -211,11 +260,11 @@ val text_5 = LessonPage(
     }
 }
 
-val text_6 = LessonPage(
-    headingResId = R.string.text_6_heading
+private val text_7 = LessonPage(
+    headingResId = R.string.text_7_heading
 ) {
 
-    Text(stringResource(R.string.text_6_1))
+    ResText(R.string.text_7_1)
 
     CodeListing(
         options = it,
@@ -250,16 +299,17 @@ val text_6 = LessonPage(
                 withStyle(style = SpanStyle(fontWeight = FontWeight.Bold, color = Color.Red)) {
                     append("W")
                 }
-                append("orld")
+                append("orld!")
             }
         )
     }
 }
 
-val text_7 = LessonPage(
-    headingResId = R.string.text_7_heading
+private val text_8 = LessonPage(
+    headingResId = R.string.text_8_heading
 ) {
-    Text(stringResource(R.string.text_7_1))
+
+    ResText(R.string.text_8_1)
 
     CodeListing(
         options = it,
@@ -279,7 +329,7 @@ val text_7 = LessonPage(
         Text("hello ".repeat(50), maxLines = 2)
     }
 
-    Text(stringResource(R.string.text_7_2))
+    ResText(R.string.text_8_2)
 
     CodeListing(
         options = it,
@@ -309,11 +359,11 @@ val text_7 = LessonPage(
     }
 }
 
-val text_8 = LessonPage(
-    headingResId = R.string.text_8_heading
+private val text_9 = LessonPage(
+    headingResId = R.string.text_9_heading
 ) {
 
-    Text(stringResource(R.string.text_8_1))
+    ResText(R.string.text_9_1)
 
     CodeListing(
         options = it,
@@ -343,4 +393,5 @@ val textPages = listOf(
     text_6,
     text_7,
     text_8,
+    text_9
 )

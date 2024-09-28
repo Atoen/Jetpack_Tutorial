@@ -70,7 +70,7 @@ private val darkCodeColors = CodeColors(
     comment =  Color(0xFF8F8F8F)
 )
 
-private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null)\\b"
+private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null|class|override)\\b"
 private const val annotationPattern = "@\\w+"
 private const val stringPattern = "\"(.*?)\""
 private const val commentPattern = "//.*"
@@ -85,9 +85,8 @@ private fun highlightSyntax(
 ): AnnotatedString {
     return buildAnnotatedString {
         var currentIndex = 0
-        val matches = combinedPattern.findAll(code)
 
-        for (match in matches) {
+        combinedPattern.findAll(code).forEach { match ->
             append(code.substring(currentIndex, match.range.first))
 
             when {

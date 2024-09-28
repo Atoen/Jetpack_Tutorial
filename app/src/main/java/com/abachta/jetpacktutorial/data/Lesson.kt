@@ -20,12 +20,13 @@ class Lesson(
     val isCompleted
         get() = progress.completed
 
-    val courseId = LessonCourseId(0)
+    val courseId = LessonCourseId(CourseId(0))
 
     fun complete() = progress.complete()
 }
 
-data class LessonId(val value: Int) {
+@JvmInline
+value class LessonId(val value: Int) {
 
     fun next() = LessonId(value + 1)
 
@@ -42,7 +43,7 @@ data class LessonId(val value: Int) {
 }
 
 data class LessonCourseId(var value: CourseId) {
-    constructor(value: Int) : this(CourseId(value))
+//    constructor(value: Int) : this(CourseId(value))
 }
 
 class LessonProgress {

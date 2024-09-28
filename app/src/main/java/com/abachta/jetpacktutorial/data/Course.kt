@@ -72,7 +72,8 @@ sealed class Course(
     )
 }
 
-data class CourseId(val value: Int) {
+@JvmInline
+value class CourseId(val value: Int) {
     companion object {
 
         const val START_ID = 1
