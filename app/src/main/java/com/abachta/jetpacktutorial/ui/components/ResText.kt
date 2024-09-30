@@ -11,8 +11,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.withStyle
 
-private val pattern = Regex("<tt>(.*?)</tt>")
-
 @Composable
 fun ResText(
     @StringRes resId: Int,
@@ -20,7 +18,7 @@ fun ResText(
 ) {
     val text = stringResource(resId)
 
-    if ('<' in text) {
+    if ('|' in text) {
         Text(
             text = parseMonospaceText(text),
             modifier = modifier
@@ -32,6 +30,8 @@ fun ResText(
         )
     }
 }
+
+private val pattern = Regex("\\|(.*?)\\|")
 
 fun parseMonospaceText(text: String): AnnotatedString {
     return buildAnnotatedString {

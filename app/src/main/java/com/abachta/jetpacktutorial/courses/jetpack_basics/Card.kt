@@ -1,5 +1,6 @@
 package com.abachta.jetpacktutorial.courses.jetpack_basics
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -19,10 +20,15 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val card_1 = LessonPage (
     headingResId = R.string.card_1_heading
 ) {
+
+    ResText(R.string.card_1_1)
+
+    ResText(R.string.card_1_2)
 
     CodeListing(
         options = it,
@@ -47,6 +53,8 @@ private val card_1 = LessonPage (
             )
         }
     }
+
+    ResText(R.string.card_1_3)
 
     CodeListing(
         options = it,
@@ -76,12 +84,13 @@ private val card_1 = LessonPage (
             )
         }
     }
-
 }
 
 private val card_2 = LessonPage (
     headingResId = R.string.card_2_heading
 ) {
+
+    ResText(R.string.card_2_1)
 
     CodeListing(
         options = it,
@@ -144,6 +153,8 @@ private val card_3 = LessonPage (
     headingResId = R.string.card_3_heading
 ) {
 
+    ResText(R.string.card_3_1)
+
     CodeListing(
         options = it,
         code = """
@@ -154,7 +165,8 @@ private val card_3 = LessonPage (
                         containerColor = Color.Green,
                         contentColor = Color.DarkGray
                     ),
-                    shape = RoundedCornerShape(4.dp)
+                    shape = RoundedCornerShape(4.dp),
+                    border = BorderStroke(width = 10.dp, color = Color.Red)
                 ) {
                     Text(
                         text = "Customized card",
@@ -171,7 +183,8 @@ private val card_3 = LessonPage (
                 containerColor = Color.Green,
                 contentColor = Color.DarkGray
             ),
-            shape = RoundedCornerShape(4.dp)
+            shape = RoundedCornerShape(4.dp),
+            border = BorderStroke(width = 10.dp, color = Color.Red)
         ) {
             Text(
                 text = "Customized card",

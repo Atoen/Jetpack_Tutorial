@@ -30,6 +30,7 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 // https://www.publicdomainpictures.net/en/view-image.php?image=42947&picture=golden-retriever-dog
 // https://www.publicdomainpictures.net/en/view-image.php?image=53874&picture=dogs-golden-retriever
@@ -38,6 +39,8 @@ import com.abachta.jetpacktutorial.ui.components.Preview
 private val image_1 = LessonPage (
    headingResId = R.string.image_1_heading
 ) {
+
+    ResText(R.string.image_1_1)
 
     CodeListing(
         options = it,
@@ -64,6 +67,9 @@ private val image_1 = LessonPage (
 private val image_2 = LessonPage (
    headingResId = R.string.image_2_heading
 ) {
+
+    ResText(R.string.image_2_1)
+
     CodeListing(
         options = it,
         code = """
@@ -91,6 +97,8 @@ private val image_3 = LessonPage (
    headingResId = R.string.image_3_heading
 ) {
 
+    ResText(R.string.image_3_1)
+
     CodeListing(
         options = it,
         code = """
@@ -104,7 +112,6 @@ private val image_3 = LessonPage (
             }
         """.trimIndent()
     )
-
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         Column {
@@ -130,6 +137,8 @@ private val image_3 = LessonPage (
 private val image_4 = LessonPage (
    headingResId = R.string.image_4_heading
 ) {
+
+    ResText(R.string.image_4_1)
 
     CodeListing(
         options = it,
@@ -178,6 +187,8 @@ private val image_5 = LessonPage (
    headingResId = R.string.image_5_heading
 ) {
 
+    ResText(R.string.image_5_1)
+
     CodeListing(
         options = it,
         code = """
@@ -194,7 +205,7 @@ private val image_5 = LessonPage (
 
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        Column {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
 
             val blendModes = listOf(
                 BlendMode.Clear, BlendMode.Src, BlendMode.Dst, BlendMode.SrcOver, BlendMode.DstOver,
@@ -227,6 +238,8 @@ private val image_5 = LessonPage (
 private val image_6 = LessonPage (
    headingResId = R.string.image_6_heading
 ) {
+
+    ResText(R.string.image_6_1)
 
     CodeListing(
         options = it,

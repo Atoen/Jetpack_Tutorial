@@ -12,6 +12,7 @@ import androidx.compose.foundation.gestures.draggable
 import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -44,17 +45,24 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 import kotlin.math.roundToInt
 
 private val modifier_1 = LessonPage (
    headingResId = R.string.modifier_1_heading
 ) {
+
+    ResText(R.string.modifier_1_1)
 
     CodeListing(
         options = it,
@@ -88,6 +96,10 @@ private val modifier_1 = LessonPage (
 private val modifier_2 = LessonPage (
    headingResId = R.string.modifier_2_heading
 ) {
+
+    ResText(R.string.modifier_2_1)
+
+    ResText(R.string.modifier_2_2)
 
     CodeListing(
         options = it,
@@ -141,6 +153,8 @@ private val modifier_2 = LessonPage (
 private val modifier_3 = LessonPage (
    headingResId = R.string.modifier_3_heading
 ) {
+
+    ResText(R.string.modifier_3_1)
 
     CodeListing(
             options = it,
@@ -203,6 +217,8 @@ private val modifier_4 = LessonPage (
    headingResId = R.string.modifier_4_heading
 ) {
 
+    ResText(R.string.modifier_4_1)
+
     CodeListing(
         options = it,
         code = """
@@ -256,6 +272,8 @@ private val modifier_5 = LessonPage (
    headingResId = R.string.modifier_5_heading
 ) {
 
+    ResText(R.string.modifier_5_1)
+
     CodeListing(
         options = it,
         code = """
@@ -307,10 +325,11 @@ private val modifier_5 = LessonPage (
     }
 }
 
-
 private val modifier_6 = LessonPage (
    headingResId = R.string.modifier_6_heading
 ) {
+
+    ResText(R.string.modifier_6_1)
 
     CodeListing(
         options = it,
@@ -340,6 +359,8 @@ private val modifier_6 = LessonPage (
             Text("Count: $count")
         }
     }
+
+    ResText(R.string.modifier_6_2)
 
     CodeListing(
         options = it,
@@ -384,6 +405,8 @@ private val modifier_6 = LessonPage (
 private val modifier_7 = LessonPage (
    headingResId = R.string.modifier_7_heading
 ) {
+
+    ResText(R.string.modifier_7_1)
 
     CodeListing(
         options = it,
@@ -470,21 +493,23 @@ private val modifier_8 = LessonPage (
    headingResId = R.string.modifier_8_heading
 ) {
 
+    ResText(R.string.modifier_8_1)
+
     CodeListing(
         options = it,
         code = """
             @Composable
             fun AnimatedSize() {
-                var visible by remember { mutableStateOf(false) }
-                
+                var short by remember { mutableStateOf(true) }
+        
                 Button(
-                    onClick = { visible = !visible },
+                    onClick = { short = !short },
                     modifier = Modifier.animateContentSize()
                 ) {
-                    Text(if (visible) "Visible" else "Hidden")
-                    if (visible) {
-                        Text("More text")
-                    }
+                    Text(
+                        text = if (short) "short" else "Longer text that spans\nmultiple lines",
+                        modifier = Modifier.animateContentSize()
+                    )
                 }
             }
         """.trimIndent()
@@ -495,11 +520,12 @@ private val modifier_8 = LessonPage (
 
         Button(
             onClick = { short = !short },
-            modifier = Modifier
-                .animateContentSize()
-                .padding(16.dp)
+            modifier = Modifier.animateContentSize()
         ) {
-            Text(if (short) "short" else "Longer text that spans\nmultiple lines")
+            Text(
+                text = if (short) "short" else "Longer text that spans\nmultiple lines",
+                modifier = Modifier.animateContentSize()
+            )
         }
     }
 }
@@ -507,6 +533,8 @@ private val modifier_8 = LessonPage (
 private val modifier_9 = LessonPage (
    headingResId = R.string.modifier_9_heading
 ) {
+
+    ResText(R.string.modifier_9_1)
 
     CodeListing(
         options = it,
@@ -561,6 +589,8 @@ private val modifier_10 = LessonPage (
    headingResId = R.string.modifier_10_heading
 ) {
 
+    ResText(R.string.modifier_10_1)
+
     CodeListing(
         options = it,
         code = """
@@ -593,6 +623,42 @@ private val modifier_10 = LessonPage (
 private val modifier_11 = LessonPage (
    headingResId = R.string.modifier_11_heading
 ) {
+
+    ResText(R.string.modifier_11_1)
+
+    CodeListing(
+        options = it,
+        code = """
+            Button(
+                onClick = {},
+                modifier = Modifier.semantics { 
+                    role = Role.Button
+                    stateDescription = "Enabled button"
+                }
+            ) {
+                Text("Button")
+            }
+        """.trimIndent()
+    )
+
+    Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+        Button(
+            onClick = {},
+            modifier = Modifier.semantics {
+                role = Role.Button
+                stateDescription = "Enabled button"
+            }
+        ) {
+            Text("Button")
+        }
+    }
+}
+
+private val modifier_12 = LessonPage (
+   headingResId = R.string.modifier_12_heading
+) {
+
+    ResText(R.string.modifier_12_1)
 
     CodeListing(
         options = it,
@@ -627,6 +693,39 @@ private val modifier_11 = LessonPage (
     }
 }
 
+private val modifier_13 = LessonPage (
+   headingResId = R.string.modifier_13_heading
+) {
+
+    ResText(R.string.modifier_13_1)
+
+    CodeListing(
+        options = it,
+        code = """
+            val customModifier = Modifier
+                .padding(8.dp)
+                .background(Color.Blue)
+                .padding(16.dp)
+
+            Text("Text 1", customModifier)
+            
+            Text("Text 2", customModifier)
+        """.trimIndent()
+    )
+
+    Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+        Column {
+            val customModifier = Modifier
+                .padding(8.dp)
+                .background(Color.Blue)
+                .padding(16.dp)
+
+            Text("Text 1", customModifier)
+
+            Text("Text 2", customModifier)
+        }
+    }
+}
 
 val modifierPages = listOf(
     modifier_1,
@@ -640,4 +739,6 @@ val modifierPages = listOf(
     modifier_9,
     modifier_10,
     modifier_11,
+    modifier_12,
+    modifier_13
 )

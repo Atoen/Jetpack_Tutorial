@@ -32,15 +32,19 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val text_field_1 = LessonPage (
    headingResId = R.string.text_field_1_heading
 ) {
+
+    ResText(R.string.text_field_1_1)
+
     CodeListing(
         options = it,
         code = """
             @Composable
-            fun TextField() {
+            fun SimpleTextField() {
                 var text by remember { mutableStateOf("") }
                 TextField(
                     value = text,
@@ -67,11 +71,16 @@ private val text_field_1 = LessonPage (
             Text("entered: $text")
         }
     }
+
+    ResText(R.string.text_field_1_2)
 }
 
 private val text_field_2 = LessonPage (
    headingResId = R.string.text_field_2_heading
 ) {
+
+    ResText(R.string.text_field_2_1)
+
     CodeListing(
         options = it,
         code = """
@@ -88,7 +97,7 @@ private val text_field_2 = LessonPage (
     Preview(
         modifier = Modifier.align(Alignment.CenterHorizontally)
     ) {
-        var text by remember { mutableStateOf("") }
+        var text by remember { mutableStateOf("1 line only") }
         TextField(
             value = text,
             onValueChange = { text = it },
@@ -113,12 +122,12 @@ private val text_field_2 = LessonPage (
     Preview(
         modifier = Modifier.align(Alignment.CenterHorizontally)
     ) {
-        var text by remember { mutableStateOf("") }
+        var text by remember { mutableStateOf("2 or\n3\nlines") }
         TextField(
             value = text,
             onValueChange = { text = it },
             minLines = 2,
-            maxLines = 4
+            maxLines = 3
         )
     }
 }
@@ -126,6 +135,9 @@ private val text_field_2 = LessonPage (
 private val text_field_3 = LessonPage (
    headingResId = R.string.text_field_3_heading
 ) {
+
+    ResText(R.string.text_field_3_1)
+
     CodeListing(
         options = it,
         code = """
@@ -178,6 +190,9 @@ private val text_field_3 = LessonPage (
 private val text_field_4 = LessonPage (
    headingResId = R.string.text_field_4_heading
 ) {
+
+    ResText(R.string.text_field_4_1)
+
     CodeListing(
         options = it,
         code = """
@@ -232,6 +247,9 @@ private val text_field_4 = LessonPage (
 private val text_field_5 = LessonPage (
    headingResId = R.string.text_field_5_heading
 ) {
+
+    ResText(R.string.text_field_5_1)
+
     CodeListing(
         options = it,
         code = """
@@ -275,6 +293,9 @@ private class CustomVisualTransformation : VisualTransformation {
 private val text_field_6 = LessonPage (
    headingResId = R.string.text_field_6_heading
 ) {
+
+    ResText(R.string.text_field_6_1)
+
     CodeListing(
         options = it,
         code = """
@@ -300,6 +321,8 @@ private val text_field_6 = LessonPage (
             visualTransformation = PasswordVisualTransformation(mask = '\u2022')
         )
     }
+
+    ResText(R.string.text_field_6_2)
 
     CodeListing(
         options = it,
@@ -336,6 +359,7 @@ private val text_field_7 = LessonPage (
    headingResId = R.string.text_field_7_heading
 ) {
 
+    ResText(R.string.text_field_7_1)
 
     CodeListing(
         options = it,
@@ -375,6 +399,9 @@ private val text_field_7 = LessonPage (
 private val text_field_8 = LessonPage (
    headingResId = R.string.text_field_8_heading
 ) {
+
+    ResText(R.string.text_field_8_1)
+
     CodeListing(
         options = it,
         code = """
@@ -408,17 +435,7 @@ private val text_field_8 = LessonPage (
         )
 
         Column {
-
             val keyboardController = LocalSoftwareKeyboardController.current
-
-            TextField(
-                value = text,
-                onValueChange = { text = it },
-                keyboardOptions = KeyboardOptions(
-                    imeAction = imeActions[currentActionIndex]
-                )
-            )
-
             Button(
                 onClick = {
                     currentActionIndex = (currentActionIndex + 1) % imeActions.size
@@ -429,6 +446,14 @@ private val text_field_8 = LessonPage (
             ) {
                 Text(text = "Action: ${imeActions[currentActionIndex]}")
             }
+
+            TextField(
+                value = text,
+                onValueChange = { text = it },
+                keyboardOptions = KeyboardOptions(
+                    imeAction = imeActions[currentActionIndex]
+                )
+            )
         }
     }
 }
@@ -437,20 +462,22 @@ private val text_field_9 = LessonPage (
    headingResId = R.string.text_field_9_heading
 ) {
 
+    ResText(R.string.text_field_9_1)
+
     CodeListing(
         options = it,
         code = """
             ...
             TextField(
-                    value = text,
-                    onValueChange = { text = it },
-                    shape = CutCornerShape(percent = 25),
-                    colors = TextFieldDefaults.colors().copy(
-                        cursorColor = Color.Blue,
-                        focusedContainerColor = Color.Yellow,
-                        unfocusedContainerColor = Color.White
-                    ),
-                    textStyle = TextStyle(fontFamily = FontFamily.Cursive)
+                value = text,
+                onValueChange = { text = it },
+                shape = CutCornerShape(percent = 25),
+                colors = TextFieldDefaults.colors().copy(
+                    cursorColor = Color.Blue,
+                    focusedContainerColor = Color.Yellow,
+                    unfocusedContainerColor = Color.White
+                ),
+                textStyle = TextStyle(fontFamily = FontFamily.Cursive)
             )
             ...
     """.trimIndent()

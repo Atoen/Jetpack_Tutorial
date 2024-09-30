@@ -23,10 +23,15 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val toast_1 = LessonPage (
     headingResId = R.string.toast_1_heading
 ) {
+
+    ResText(R.string.toast_1_1)
+
+    ResText(R.string.toast_1_2)
 
     CodeListing(
         options = it,
@@ -58,13 +63,13 @@ private val toast_1 = LessonPage (
             val context = LocalContext.current
 
             Button(onClick = {
-                Toast.makeText(context, "Toast", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, "Short toast", Toast.LENGTH_SHORT).show()
             }) {
                 Text("Show short")
             }
 
             Button(onClick = {
-                Toast.makeText(context, "Toast", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Long toast", Toast.LENGTH_LONG).show()
             }) {
                 Text("Show long")
             }
@@ -75,6 +80,9 @@ private val toast_1 = LessonPage (
 private val toast_2 = LessonPage (
     headingResId = R.string.toast_2_heading
 ) {
+
+    ResText(R.string.toast_2_1)
+
     CodeListing(
         options = it,
         code = """
@@ -88,9 +96,10 @@ private val toast_2 = LessonPage (
                 } }
 
                 Button(onClick = {
-                    val toast = Toast.makeText(context, "Toast", Toast.LENGTH_SHORT)
-                    toast.addCallback(callback)
-                    toast.show()
+                    Toast.makeText(context, "Toast", Toast.LENGTH_SHORT).apply {
+                        addCallback(callback)
+                        show()
+                    }
                 }) {
                     Text("Show toast")
                 }
@@ -144,6 +153,8 @@ private val toast_2 = LessonPage (
 private val toast_3 = LessonPage (
     headingResId = R.string.toast_3_heading
 ) {
+
+    ResText(R.string.toast_3_1)
 
     CodeListing(
         options = it,
