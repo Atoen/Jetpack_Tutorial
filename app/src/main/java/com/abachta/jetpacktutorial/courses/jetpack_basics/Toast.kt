@@ -34,7 +34,6 @@ private val toast_1 = LessonPage (
     ResText(R.string.toast_1_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun Toasts() {
@@ -84,7 +83,6 @@ private val toast_2 = LessonPage (
     ResText(R.string.toast_2_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ToastCallbacks() {
@@ -157,7 +155,6 @@ private val toast_3 = LessonPage (
     ResText(R.string.toast_3_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun CancelToast() {

@@ -3,6 +3,7 @@ package com.abachta.jetpacktutorial.settings
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.res.stringResource
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.ui.components.SelectableTextProvider
@@ -35,4 +36,8 @@ sealed class AppTheme(
             }
         }
     }
+}
+
+val LocalAppTheme = compositionLocalOf<AppTheme> {
+    AppTheme.Auto
 }

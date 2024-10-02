@@ -25,9 +25,9 @@ import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.abachta.jetpacktutorial.data.LessonPageOptions
 import com.abachta.jetpacktutorial.settings.AppTheme
-import com.abachta.jetpacktutorial.settings.CodeListingFont
+import com.abachta.jetpacktutorial.settings.LocalAppTheme
+import com.abachta.jetpacktutorial.settings.LocalCodeListingFont
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -112,11 +112,10 @@ sealed class CodeListingTitlePosition {
 fun CodeListing(
     code: String,
     modifier: Modifier = Modifier,
-    options: LessonPageOptions,
     title: @Composable (() -> Unit)? = null,
     titlePosition: CodeListingTitlePosition = CodeListingTitlePosition.Top
 ) {
-    val colors = when (options.theme) {
+    val colors = when (LocalAppTheme.current) {
         AppTheme.Light -> lightCodeColors
         AppTheme.Dark -> darkCodeColors
         AppTheme.Auto -> if (isSystemInDarkTheme()) darkCodeColors else lightCodeColors
@@ -132,10 +131,9 @@ fun CodeListing(
 
     LaunchedEffect(code, colors) {
         val style = CodeTokenStyle.create(colors)
-        val result = withContext(Dispatchers.Main) {
+        parsedCode = withContext(Dispatchers.Main) {
             highlightSyntax(code, style)
         }
-        parsedCode = result
     }
 
     Box(
@@ -150,12 +148,14 @@ fun CodeListing(
 
         SelectionContainer {
             Column {
+
+                val font = LocalCodeListingFont.current
                 Text(
                     text = parsedCode,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     fontFamily = FontFamily.Monospace,
-                    fontSize = options.listingFont.size,
-                    lineHeight = options.listingFont.lineHeight
+                    fontSize = font.size,
+                    lineHeight = font.lineHeight
                 )
             }
         }
@@ -177,10 +177,6 @@ private fun CodeListingPreview() {
                     val greeting = "Hello, ${'$'}name!"
                     Text(text = greeting)
                 }
-            """.trimIndent(),
-        options = LessonPageOptions(
-            theme = AppTheme.Light,
-            listingFont = CodeListingFont.Medium
-        )
+            """.trimIndent()
     )
 }

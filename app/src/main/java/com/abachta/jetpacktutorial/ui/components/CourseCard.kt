@@ -55,9 +55,9 @@ fun CourseCard(
                 .padding(16.dp)
         ) {
             Row(
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.Top,
-            modifier = Modifier.fillMaxWidth()
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Top,
+                modifier = Modifier.fillMaxWidth()
         ) {
             Text(
                 text = stringResource(course.titleResId),
@@ -96,8 +96,13 @@ fun CourseCard(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            val progressColor = if (courseIsCompleted) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
-            val trackColor = if (courseIsCompleted) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondaryContainer
+            val progressColor = if (courseIsCompleted) {
+                MaterialTheme.colorScheme.primary
+            } else MaterialTheme.colorScheme.secondary
+
+            val trackColor = if (courseIsCompleted) {
+                MaterialTheme.colorScheme.primaryContainer
+            } else MaterialTheme.colorScheme.secondaryContainer
 
             val animatedProgress by animateFloatAsState(
                 targetValue = course.progress.value,
@@ -105,14 +110,16 @@ fun CourseCard(
                 label = "course_progress"
             )
 
+            val indicatorModifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(4.dp))
+                .height(8.dp)
+
             LinearProgressIndicator(
                 progress = { animatedProgress },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .clip(RoundedCornerShape(4.dp))
-                    .height(8.dp),
+                modifier = indicatorModifier,
                 color = progressColor,
-                trackColor = trackColor,
+                trackColor = trackColor
             )
 
             Spacer(modifier = Modifier.height(8.dp))

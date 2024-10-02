@@ -48,7 +48,6 @@ private val button_1 = LessonPage(
     ResText(R.string.button_1_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ButtonWithText() {
@@ -68,7 +67,6 @@ private val button_1 = LessonPage(
     ResText(R.string.button_1_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun DisabledButton() {
@@ -99,7 +97,6 @@ private val button_2 = LessonPage(
     ResText(R.string.button_2_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ButtonWithAction() {
@@ -134,7 +131,6 @@ private val button_3 = LessonPage (
     ResText(R.string.button_3_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ButtonTypes() {
@@ -196,7 +192,6 @@ private val button_4 = LessonPage (
     ResText(R.string.button_4_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun IconButtonTypes() {
@@ -260,7 +255,6 @@ private val button_5 = LessonPage (
     ResText(R.string.button_5_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ToggleIconButton() {
@@ -330,7 +324,6 @@ private val button_6 = LessonPage (
     ResText(R.string.button_6_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ButtonColors() {
@@ -395,7 +388,6 @@ private val button_7 = LessonPage (
     ResText(R.string.button_7_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ShapedButton() {
@@ -438,7 +430,6 @@ private val button_8 = LessonPage (
     ResText(R.string.button_8_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ButtonBorders() {

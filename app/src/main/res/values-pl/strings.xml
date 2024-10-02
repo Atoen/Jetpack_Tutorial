@@ -168,7 +168,7 @@
     <string name="text_field_4_1">Możesz dodać więcej informacji wizualnych do pola tekstowego za pomocą parametrów |label|, |supportingText|, |leadingIcon| i |trailingIcon|.</string>
     <string name="text_field_5_1">Możesz również dodać |prefix| i |suffix|, które będą wyświetlane wokół wprowadzonego tekstu.</string>
     <string name="text_field_6_1">Tekst można przekształcić wizualnie za pomocą parametru |visualTransformation|.\nMoże to być przydatne na przykład podczas wprowadzania haseł lub kodów pocztowych.\nJetpack Compose zapewnia gotową transformację wizualną haseł: |PasswordVisualTransformation|.\n</string>
-    <string name="text_field_6_2">Możliwe jest utworzenie niestandardowej transformacji wizualnej. |CustomVisalTransformation| zastępuje widoczne litery cyframi 0-9 w zależności od ich położenia.\nWarto podkreślić, że rzeczywista wartość tekstowa pozostaje niezmieniona; nadal zawiera dokładnie to, co wprowadził użytkownik.</string>
+    <string name="text_field_6_2">Możliwe jest utworzenie niestandardowej transformacji wizualnej. |CustomVisalTransformation| zastępuje widoczne litery cyframi 0–9 w zależności od ich położenia.\nWarto podkreślić, że rzeczywista wartość tekstowa pozostaje niezmieniona; nadal zawiera dokładnie to, co wprowadził użytkownik.</string>
     <string name="text_field_7_1">Możesz zmodyfikować pole tekstowe, aby wyświetlić użytkownikowi różne typy klawiatury za pomocą parametru |keyboardOptions|.\nAby mieć pewność, że wprowadzony tekst zawiera tylko dozwolone symbole (np. liczby), możesz filtrować wprowadzony tekst w wywołaniu zwrotnym |onValueChanged|.</string>
     <string name="text_field_8_1">Można zmienić akcję IME wyświetlaną na klawiaturze, tworząc obiekt |KeyboardOptions| z określoną akcją IME i przekazując go do funkcji kompozycyjnej.\n</string>
     <string name="text_field_9_1">Możesz zmienić wygląd pola tekstowego, przekazując niestandardowe parametry |TextFieldColors| i |TextStyle| do funkcji kompozycyjnej.</string>
@@ -187,5 +187,7 @@
     <string name="toast_1_2">Aby wyświetlić wiadomość toast, musisz najpierw utworzyć obiekt Toast.\nMożesz to zrobić za pomocą metody |Toast.makeText|, która przyjmuje następujące parametry: |Context| powiązany z wiadomością, tekst do wyświetlenia i czas trwania tosta.\nW Jetpack Compose, można łatwo uzykać dostęp do konteksu za pomocą funkcji kompozycyjnej |LocalContext.Current|.\n\nPo utworzeniu obiektu toastu możesz użyć metody |call| na nim, aby wyświetlić go na ekranie.</string>
     <string name="toast_2_1">Możesz dodać wywołania zwrotne do tosta, aby wiedzieć, kiedy jest on wyświetlany i ukrywany.\nAby to zrobić, możesz utworzyć obiekt dziedziczący po |Toast.Callback| i zarejestrować go za pomocą metody |addCallback|.\n</string>
     <string name="toast_3_1">Możesz ograniczyć czas widoczności wiadomości wywołując metodę |cancel|, aby ukryć ją wcześniej.</string>
+    <string name="quiz_question_n_of">Pytanie %1$d z %2$d</string>
+    <string name="quiz_check">Sprawdź</string>
 
 </resources>

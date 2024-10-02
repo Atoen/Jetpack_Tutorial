@@ -43,7 +43,6 @@ private val image_1 = LessonPage (
     ResText(R.string.image_1_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun SimpleImage() {
@@ -71,7 +70,6 @@ private val image_2 = LessonPage (
     ResText(R.string.image_2_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun VectorImage() {
@@ -100,7 +98,6 @@ private val image_3 = LessonPage (
     ResText(R.string.image_3_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun TransparentImage() {
@@ -141,7 +138,6 @@ private val image_4 = LessonPage (
     ResText(R.string.image_4_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun SaturatedImage() {
@@ -190,7 +186,6 @@ private val image_5 = LessonPage (
     ResText(R.string.image_5_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun TintedImage() {
@@ -242,7 +237,6 @@ private val image_6 = LessonPage (
     ResText(R.string.image_6_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ScaledImage() {

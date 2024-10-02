@@ -65,7 +65,6 @@ private val modifier_1 = LessonPage (
     ResText(R.string.modifier_1_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun CardWithModifier() {
@@ -102,7 +101,6 @@ private val modifier_2 = LessonPage (
     ResText(R.string.modifier_2_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ModifierOrdering() {
@@ -126,7 +124,6 @@ private val modifier_2 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ModifierOrdering() {
@@ -157,7 +154,6 @@ private val modifier_3 = LessonPage (
     ResText(R.string.modifier_3_1)
 
     CodeListing(
-            options = it,
         code = """
             @Composable
             fun Sizing() {
@@ -185,7 +181,6 @@ private val modifier_3 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun Sizing() {
@@ -220,7 +215,6 @@ private val modifier_4 = LessonPage (
     ResText(R.string.modifier_4_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun PaddedButton() {
@@ -244,7 +238,6 @@ private val modifier_4 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun PaddedButton() {
@@ -275,7 +268,6 @@ private val modifier_5 = LessonPage (
     ResText(R.string.modifier_5_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun verticalScrollable() {
@@ -303,7 +295,6 @@ private val modifier_5 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun horizontalScrollable() {
@@ -332,7 +323,6 @@ private val modifier_6 = LessonPage (
     ResText(R.string.modifier_6_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun Clicking() {
@@ -363,7 +353,6 @@ private val modifier_6 = LessonPage (
     ResText(R.string.modifier_6_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             @OptIn(ExperimentalFoundationApi::class)
@@ -409,7 +398,6 @@ private val modifier_7 = LessonPage (
     ResText(R.string.modifier_7_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun HorizontalDrag() {
@@ -445,7 +433,6 @@ private val modifier_7 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun DraggableIcon() {
@@ -496,7 +483,6 @@ private val modifier_8 = LessonPage (
     ResText(R.string.modifier_8_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun AnimatedSize() {
@@ -537,7 +523,6 @@ private val modifier_9 = LessonPage (
     ResText(R.string.modifier_9_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun BlurredText() {
@@ -557,7 +542,6 @@ private val modifier_9 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun BlurredImage() {
@@ -592,7 +576,6 @@ private val modifier_10 = LessonPage (
     ResText(R.string.modifier_10_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ClippingShapes() {
@@ -627,7 +610,6 @@ private val modifier_11 = LessonPage (
     ResText(R.string.modifier_11_1)
 
     CodeListing(
-        options = it,
         code = """
             Button(
                 onClick = {},
@@ -661,7 +643,6 @@ private val modifier_12 = LessonPage (
     ResText(R.string.modifier_12_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ConditionalModifier() {
@@ -700,7 +681,6 @@ private val modifier_13 = LessonPage (
     ResText(R.string.modifier_13_1)
 
     CodeListing(
-        options = it,
         code = """
             val customModifier = Modifier
                 .padding(8.dp)

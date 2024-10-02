@@ -93,7 +93,6 @@ val Introduction_4 = LessonPage {
             .padding(16.dp)
     ) {
         CodeListing(
-            options = it,
             code = """
                 @Composable
                 fun Greeting(name: String) {

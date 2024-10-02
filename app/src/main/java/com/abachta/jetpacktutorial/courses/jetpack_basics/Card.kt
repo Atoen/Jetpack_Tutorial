@@ -31,7 +31,6 @@ private val card_1 = LessonPage (
     ResText(R.string.card_1_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun SimpleCard() {
@@ -57,7 +56,6 @@ private val card_1 = LessonPage (
     ResText(R.string.card_1_3)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ClickableCard() {
@@ -93,7 +91,6 @@ private val card_2 = LessonPage (
     ResText(R.string.card_2_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun SimpleElevatedCard() {
@@ -125,7 +122,6 @@ private val card_2 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun SimpleOutlinedCard() {
@@ -156,7 +152,6 @@ private val card_3 = LessonPage (
     ResText(R.string.card_3_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun CustomCard() {

@@ -6,14 +6,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.abachta.jetpacktutorial.settings.AppTheme
-import com.abachta.jetpacktutorial.settings.CodeListingFont
 
 class Lesson(
     @StringRes val titleResId: Int,
     @StringRes val descriptionResId: Int,
     val pages: List<LessonPage>,
     val id: LessonId = LessonId.next(),
+    val quiz: Quiz? = null
 ) {
     val progress = LessonProgress()
 
@@ -21,6 +20,9 @@ class Lesson(
         get() = progress.completed
 
     val courseId = LessonCourseId(CourseId(0))
+
+    val hasChallenge
+        get() = true
 
     fun complete() = progress.complete()
 }
@@ -42,9 +44,7 @@ value class LessonId(val value: Int) {
     }
 }
 
-data class LessonCourseId(var value: CourseId) {
-//    constructor(value: Int) : this(CourseId(value))
-}
+data class LessonCourseId(var value: CourseId)
 
 class LessonProgress {
 
@@ -60,13 +60,8 @@ class LessonProgress {
     }
 }
 
-data class LessonPageOptions(
-    val theme: AppTheme,
-    val listingFont: CodeListingFont
-)
-
 class LessonPage(
     @StringRes
     val headingResId: Int? = null,
-    val content: @Composable ColumnScope.(LessonPageOptions) -> Unit
+    val content: @Composable ColumnScope.() -> Unit
 )

@@ -3,6 +3,7 @@ package com.abachta.jetpacktutorial.settings
 import androidx.annotation.StringRes
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.sp
@@ -39,4 +40,8 @@ sealed class CodeListingFont(
             }
         }
     }
+}
+
+val LocalCodeListingFont = compositionLocalOf<CodeListingFont> {
+    CodeListingFont.Medium
 }

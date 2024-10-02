@@ -41,7 +41,6 @@ private val text_field_1 = LessonPage (
     ResText(R.string.text_field_1_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun SimpleTextField() {
@@ -82,7 +81,6 @@ private val text_field_2 = LessonPage (
     ResText(R.string.text_field_2_1)
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(
@@ -106,7 +104,6 @@ private val text_field_2 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(
@@ -139,7 +136,6 @@ private val text_field_3 = LessonPage (
     ResText(R.string.text_field_3_1)
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(
@@ -163,7 +159,6 @@ private val text_field_3 = LessonPage (
     }
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(
@@ -194,7 +189,6 @@ private val text_field_4 = LessonPage (
     ResText(R.string.text_field_4_1)
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(
@@ -251,7 +245,6 @@ private val text_field_5 = LessonPage (
     ResText(R.string.text_field_5_1)
 
     CodeListing(
-        options = it,
         code = """
             ...
         TextField(
@@ -297,7 +290,6 @@ private val text_field_6 = LessonPage (
     ResText(R.string.text_field_6_1)
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(
@@ -325,7 +317,6 @@ private val text_field_6 = LessonPage (
     ResText(R.string.text_field_6_2)
 
     CodeListing(
-        options = it,
         code = """
             class CustomVisualTransformation : VisualTransformation {
                 override fun filter(text: AnnotatedString): TransformedText {
@@ -362,7 +353,6 @@ private val text_field_7 = LessonPage (
     ResText(R.string.text_field_7_1)
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(
@@ -403,7 +393,6 @@ private val text_field_8 = LessonPage (
     ResText(R.string.text_field_8_1)
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(
@@ -465,7 +454,6 @@ private val text_field_9 = LessonPage (
     ResText(R.string.text_field_9_1)
 
     CodeListing(
-        options = it,
         code = """
             ...
             TextField(

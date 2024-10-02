@@ -19,6 +19,7 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
+import com.abachta.jetpacktutorial.data.Quiz
 import kotlin.reflect.KClass
 
 @StringRes
@@ -36,6 +37,10 @@ fun NavBackStackEntry?.appBarTitle() : Int {
         return getLessonNameRes()
     }
 
+    if (isOn<Screen.Quiz>()) {
+        return getQuizNameRes()
+    }
+
     return R.string.app_name
 }
 
@@ -51,6 +56,10 @@ private fun NavBackStackEntry.getCourseNameRes(): Int =
 @StringRes
 private fun NavBackStackEntry.getLessonNameRes(): Int =
     this.toRoute<Screen.Lesson>().titleResId
+
+@StringRes
+private fun NavBackStackEntry.getQuizNameRes(): Int =
+    this.toRoute<Screen.Quiz>().titleResId
 
 fun <T : Screen> order(screen: KClass<T>): Int {
     return when (screen) {
@@ -126,18 +135,29 @@ fun exitTransition(reversed: Boolean): ExitTransition {
 fun NavHostController.navigateToCourse(course: Course) {
     navigate(
         Screen.Course(
-        titleResId = course.titleResId,
-        descriptionResId = course.descriptionResId,
-        id = course.id.value
-    ))
+            titleResId = course.titleResId,
+            descriptionResId = course.descriptionResId,
+            id = course.id.value
+        )
+    )
 }
 
 fun NavHostController.navigateToLesson(lesson: Lesson, courseId: CourseId) {
     navigate(
         Screen.Lesson(
-        titleResId = lesson.titleResId,
-        descriptionResId = lesson.descriptionResId,
-        courseId = courseId.value,
-        id = lesson.id.value
-    ))
+            titleResId = lesson.titleResId,
+            descriptionResId = lesson.descriptionResId,
+            courseId = courseId.value,
+            id = lesson.id.value
+        )
+    )
+}
+
+fun NavHostController.navigateToQuiz(quiz: Quiz) {
+    navigate(
+        Screen.Quiz(
+            titleResId = quiz.titleResId,
+            quizId = quiz.id
+        )
+    )
 }

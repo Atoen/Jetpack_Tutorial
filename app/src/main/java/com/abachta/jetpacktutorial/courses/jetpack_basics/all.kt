@@ -2,11 +2,13 @@ package com.abachta.jetpacktutorial.courses.jetpack_basics
 
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Lesson
+import com.abachta.jetpacktutorial.ui.screens.composeTextQuiz
 
 private val text = Lesson(
     titleResId = R.string.lesson_text_title,
     descriptionResId = R.string.TODO,
-    pages = textPages
+    pages = textPages,
+    quiz = composeTextQuiz
 )
 
 private val button = Lesson(

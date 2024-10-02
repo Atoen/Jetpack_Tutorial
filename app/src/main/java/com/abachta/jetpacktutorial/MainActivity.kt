@@ -7,8 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.abachta.jetpacktutorial.settings.AppTheme
+import com.abachta.jetpacktutorial.settings.LocalAppTheme
+import com.abachta.jetpacktutorial.settings.LocalCodeListingFont
 import com.abachta.jetpacktutorial.ui.AppLayout
 import com.abachta.jetpacktutorial.ui.theme.JetpackTutorialTheme
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
@@ -27,16 +30,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         setContent {
-            JetpackTutorialTheme(
-                appTheme = viewModel.theme
+            CompositionLocalProvider(
+                LocalAppTheme provides viewModel.theme,
+                LocalCodeListingFont provides viewModel.listingFont
             ) {
-                enableEdgeToEdge(appTheme = viewModel.theme)
-                AppLayout(
-                    settingsViewModel = viewModel,
-                    onExit = {
-                        finishAffinity()
-                    }
-                )
+                JetpackTutorialTheme {
+                    enableEdgeToEdge(appTheme = viewModel.theme)
+                    AppLayout(
+                        settingsViewModel = viewModel,
+                        onExit = {
+                            finishAffinity()
+                        }
+                    )
+                }
             }
         }
     }

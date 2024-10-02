@@ -34,6 +34,7 @@ import com.abachta.jetpacktutorial.ui.screens.HomeScreen
 import com.abachta.jetpacktutorial.ui.screens.LessonScreen
 import com.abachta.jetpacktutorial.ui.components.ObserveAsEvents
 import com.abachta.jetpacktutorial.ui.components.TwiceBackHandler
+import com.abachta.jetpacktutorial.ui.screens.QuizScreen
 import com.abachta.jetpacktutorial.ui.screens.SettingsScreen
 import com.abachta.jetpacktutorial.viewmodels.CourseViewModel
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
@@ -164,10 +165,27 @@ fun AppLayout(
                 val arg = it.toRoute<Screen.Lesson>()
                 LessonScreen(
                     lessonData = arg,
-                    appTheme = settingsViewModel.theme,
-                    listingFont = settingsViewModel.listingFont,
-                    onLessonCompleted = { lesson ->
+                    onBack = {
+                        navController.navigateUp()
+                    },
+                    onLessonComplete = { lesson ->
                         courseViewModel.completeLesson(lesson)
+                    },
+                    onGoToQuiz = { quiz ->
+                        navController.navigateUp()
+                        navController.navigateToQuiz(quiz)
+                    },
+                    onGoToCodeChallenge = {
+
+                    }
+                )
+            }
+
+            slidingComposable<Screen.Quiz> {
+                val arg = it.toRoute<Screen.Quiz>()
+                QuizScreen(
+                    quizData = arg,
+                    onQuizFinished = {
                         navController.navigateUp()
                     }
                 )

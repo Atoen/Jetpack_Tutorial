@@ -149,19 +149,19 @@
     <string name="modifier_12_heading">Conditional modifier</string>
     <string name="modifier_13_heading">Reusing modifier</string>
     <string name="modifier_11_heading">Accessibility</string>
-    <string name="modifier_1_1">Modifiers allow you to decorate or change behaboiur of a composable.\nAll of previously described composables have optional parameter: the modifier.</string>
+    <string name="modifier_1_1">Modifiers allow you to decorate or change behaviour of a composable.\nAll of previously described composables have optional parameter: the modifier.</string>
     <string name="modifier_2_1">The order of applied modifier is significant. Each function makes changes to the modifiers returned by the previous function, which results in the sequence affecting the final result.</string>
-    <string name="modifier_2_2">In the first example the red backgorund is visibly smaller than in the second, because it is applied after the padding, which limits the space for the following modifiers.</string>
+    <string name="modifier_2_2">In the first example the red background is visibly smaller than in the second, because it is applied after the padding, which limits the space for the following modifiers.</string>
     <string name="modifier_3_1">You can change the size of composables by applying the |size|, |height| or |width| modifiers.\nYou can also fill the whole (possibly partially) space by using the |fillMaxSize|, |fillMaxWidth| or |fillMaxHeight|.</string>
-    <string name="modifier_4_1">You can add margins with the |padding| modifier.\nIt can be used to set the same padding on all sides, on horiontal and vertical, or different one on each side.</string>
-    <string name="modifier_5_1">If the content doesn\'t, you can enable scrolling of the container.\nModifiers |verticalScroll| and |horizontalScroll| enable scrolling conent in corresponding directions.\nYou also need to pass the state of the scroll to these modifiers, ususally in the form of |rememberScrollState()| function.</string>
-    <string name="modifier_6_1">Any composable can become clickable with the |clickable| modifier.\nYou need to pass funciton to invoke on each click, simillar to buttons.</string>
+    <string name="modifier_4_1">You can add margins with the |padding| modifier.\nIt can be used to set the same padding on all sides, on horizontal and vertical, or different one on each side.</string>
+    <string name="modifier_5_1">If the content doesn\'t, you can enable scrolling of the container.\nModifiers |verticalScroll| and |horizontalScroll| enable scrolling content in corresponding directions.\nYou also need to pass the state of the scroll to these modifiers, usually in the form of |rememberScrollState()| function.</string>
+    <string name="modifier_6_1">Any composable can become clickable with the |clickable| modifier.\nYou need to pass function to invoke on each click, similar to buttons.</string>
     <string name="modifier_6_2">It is also possible to invoke different actions on double and long click.\nYou can achieve this by using the |combinedClickable| modifier.</string>
-    <string name="modifier_7_1">Composables can also be draggable, by using the |draggable| and |offset| modifiers.\nTo make the dragging work in both axis, you can use the |pointerInput| modifier instead of |draggable| and manually modify the offest in both axis.</string>
+    <string name="modifier_7_1">Composables can also be draggable, by using the |draggable| and |offset| modifiers.\nTo make the dragging work in both axis, you can use the |pointerInput| modifier instead of |draggable| and manually modify the offset in both axis.</string>
     <string name="modifier_8_1">When the content can change its size, you can use |animateContentSize| modifier to allow for a smooth transition.</string>
-    <string name="modifier_9_1">You can blur composables with the |blur| modifier.\nIt requires specyfiing the blur radius and optionally, how to treat the edges of the blur area.</string>
+    <string name="modifier_9_1">You can blur composable with the |blur| modifier.\nIt requires specifying the blur radius and optionally, how to treat the edges of the blur area.</string>
     <string name="modifier_10_1">You can clip content to a specified shape with the |clip| modifier.\nYou can achieve more complex shapes by applying multiple |clip| modifiers.</string>
-    <string name="modifier_11_1">You can add accesibility information to your interface by using |semantics| modifier.\nIt can specify the role of particular element and describe it state for aceesibility services to use.</string>
+    <string name="modifier_11_1">You can add accessibility information to your interface by using |semantics| modifier.\nIt can specify the role of particular element and describe it state for accessibility services to use.</string>
     <string name="modifier_12_1">Modifiers can be conditionally applied by using the |Modifier.then| modifier function.</string>
     <string name="modifier_13_1">Modifiers are regular Kotlin objects - you can create one and reuse it in multiple places later.</string>
     <string name="text_field_1_1">Text fields allow users to enter text. To create one you can use composable |TextField|.\nIt has two required parameters: currently displayed text and function invoked on change of inputted value.</string>
@@ -170,15 +170,15 @@
     <string name="text_field_3_1">Parameters |enabled| and |readOnly| can be used to disable the text field and disallow text modifications respectively.</string>
     <string name="text_field_4_1">You can add more visual information to the text field such as icons and labels using |label|, |supportingText|, |leadingIcon| and |trailingIcon| parameters.</string>
     <string name="text_field_5_1">You can also add |prefix| and |suffix| to display around the entered text.</string>
-    <string name="text_field_6_1">Text can be transofmed visually with the |visualTransformation| parameter. This can be useful, for example, when entering passwords or postal codes.\nJetpack Compose provides ready visual transformation for passwords: |PasswordVisualTransformation|.</string>
-    <string name="text_field_6_2">It is possible to create cusom visual transformation. The |CustomVisalTransformation| replaces visible letters with numbers 0-9 based on their position.\nNote that the actual text value is unchanged; it still contains exactly what the user enetered.</string>
-    <string name="text_field_7_1">You can modify the text field to display different keyboard types to the user with the |keyboardOptions| parameter.\nTo make sure that the enetered text contains only allowed symbols (e.g. numbers), you can filter the entered text in the |onValueChanged| callback.</string>
+    <string name="text_field_6_1">Text can be transformed visually with the |visualTransformation| parameter. This can be useful, for example, when entering passwords or postal codes.\nJetpack Compose provides ready visual transformation for passwords: |PasswordVisualTransformation|.</string>
+    <string name="text_field_6_2">It is possible to create custom visual transformation. The |CustomVisualTransformation| replaces visible letters with numbers 0–9 based on their position.\nNote that the actual text value is unchanged; it still contains exactly what the user entered.</string>
+    <string name="text_field_7_1">You can modify the text field to display different keyboard types to the user with the |keyboardOptions| parameter.\nTo make sure that the entered text contains only allowed symbols (e.g. numbers), you can filter the entered text in the |onValueChanged| callback.</string>
     <string name="text_field_8_1">You can change the IME action that is displayed on the keyboard, by creating instance of |KeyboardOptions| with specified IME action, and passing it to the composable.</string>
     <string name="text_field_9_1">You can change the appearance of the text field by passing custom |TextFieldColors| and |TextStyle| to the composable.</string>
-    <string name="image_1_1">To display an image you can use |Image| composable.\nIt has two required parameters: the painter that is responsible for drawing the image, usually |painterResource|, and |contentDescroption| used by accesibility services.\n|Image| can display png, jpg and webp images.</string>
-    <string name="image_2_1">|Image| composable can also display vector graphics.\nThe file descibing the graphic should be in xml format.</string>
+    <string name="image_1_1">To display an image you can use |Image| composable.\nIt has two required parameters: the painter that is responsible for drawing the image, usually |painterResource|, and |contentDescription| used by accessibility services.\n|Image| can display png, jpg and webp images.</string>
+    <string name="image_2_1">|Image| composable can also display vector graphics.\nThe file describing the graphic should be in xml format.</string>
     <string name="image_3_1">You can modify the alpha value of the displayed image using the |alpha| parameter.</string>
-    <string name="image_4_1">Parameter |colorFilter| allows for modyfiing the color values of each pixel in the image.\nYou can use it to change saturation, shift hue or maually adjust the values.</string>
+    <string name="image_4_1">Parameter |colorFilter| allows for modifying the color values of each pixel in the image.\nYou can use it to change saturation, shift hue or manually adjust the values.</string>
     <string name="image_5_1">You can also tint images using the |colorFilter| parameter.\nThere are multiple color blend modes available, each resulting in different effects.</string>
     <string name="image_6_1">You can change how an image is scaled inside it bounds using the |contentScale| parameter.\nIf you don\'t specify this parameter, |ContentScale.Fit| will be used as default.</string>
     <string name="card_1_1">Cards acts as a containers for application\'s UI.\nCards typically present single coherent piece of content like a news story in a news app or a message in a communicator app.</string>
@@ -187,8 +187,24 @@
     <string name="card_2_1">Jetpack Compose provides other variants of the cards: the |ElevatedCard| and |OutlinedCard|.</string>
     <string name="card_3_1">You can customize the colors, shape and border of the card by providing custom values to the |colors|, |shape| and |border| parameters.</string>
     <string name="toast_1_1">A toast is a small popup message that provides feedback about an operation.\nIt takes small amount of space and disappears automatically after a timeout.</string>
-    <string name="toast_1_2">To show the toast you first need to instantiate a Toast object.\nYou can do this using |Toast.makeText| method, which takes the following parameters: the |Context| associated with the message, the text to display and the duration of the toast.\nIn Jetpack compose, the context can be easly accessed using the |LocalContext.current| composable.\n\nAfter creating the toast object, you can use |show| method on it to display it on screen.</string>
+    <string name="toast_1_2">To show the toast you first need to instantiate a Toast object.\nYou can do this using |Toast.makeText| method, which takes the following parameters: the |Context| associated with the message, the text to display and the duration of the toast.\nIn Jetpack compose, the context can be easily accessed using the |LocalContext.current| composable.\n\nAfter creating the toast object, you can use |show| method on it to display it on screen.</string>
     <string name="toast_2_1">You can add callbacks to the toast to know when it is shown and hidden.\nTo do this you can create an object inheriting from |Toast.Callback| and register it using the |addCallback| method.</string>
     <string name="toast_3_1">You can limit the time the toast is visible by calling the |cancel| method to hide it early.</string>
 
+    <string name="quiz_question_1" translatable="false">Which Composable is used to display text in Jetpack Compose?</string>
+    <string name="quiz_answer_1_1" translatable="false">Text</string>
+    <string name="quiz_answer_1_2" translatable="false">Label</string>
+    <string name="quiz_answer_1_3" translatable="false">Paragraph</string>
+
+    <string name="quiz_question_2" translatable="false">How can you change the font size of Text in Jetpack Compose?</string>
+    <string name="quiz_answer_2_1" translatable="false">Use the fontModifier</string>
+    <string name="quiz_answer_2_2" translatable="false">Use the fontSize parameter in TextStyle</string>
+    <string name="quiz_answer_2_3" translatable="false">Text size cannot be changed</string>
+
+    <string name="quiz_question_3" translatable="false">Which parameter would you use to change the color of Text?</string>
+    <string name="quiz_answer_3_1" translatable="false">fontColor</string>
+    <string name="quiz_answer_3_2" translatable="false">textModifier</string>
+    <string name="quiz_answer_3_3" translatable="false">color in TextStyle</string>
+    <string name="quiz_question_n_of">Question %1$d of %2$d</string>
+    <string name="quiz_check">Check</string>
 </resources>

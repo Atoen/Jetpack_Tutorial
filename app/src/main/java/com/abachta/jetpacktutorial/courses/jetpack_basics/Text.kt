@@ -33,7 +33,6 @@ private val text_1 = LessonPage(
     ResText(R.string.text_1_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun SimpleText() {
@@ -58,7 +57,6 @@ private val text_2 = LessonPage (
     ResText(R.string.text_2_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun BigText() {
@@ -74,7 +72,6 @@ private val text_2 = LessonPage (
     ResText(R.string.text_2_3)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun BlueText() {
@@ -95,7 +92,6 @@ private val text_3 = LessonPage(
     ResText(R.string.text_3_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun MonospaceText() {
@@ -111,7 +107,6 @@ private val text_3 = LessonPage(
     ResText(R.string.text_3_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun CustomFontText() {
@@ -140,7 +135,6 @@ private val text_4 = LessonPage(
     ResText(R.string.text_4_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun ItalicText() {
@@ -156,7 +150,6 @@ private val text_4 = LessonPage(
     ResText(R.string.text_4_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun BoldText() {
@@ -179,7 +172,6 @@ private val text_5 = LessonPage(
     ResText(R.string.text_5_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun TextStrikeThough() {
@@ -201,7 +193,6 @@ private val text_5 = LessonPage(
     ResText(R.string.text_5_2)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun TextCombinedDecorations() {
@@ -228,7 +219,6 @@ private val text_6 = LessonPage(
     ResText(R.string.text_6_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun TextShadow() {
@@ -267,7 +257,6 @@ private val text_7 = LessonPage(
     ResText(R.string.text_7_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun MultipleStylesInText() {
@@ -312,7 +301,6 @@ private val text_8 = LessonPage(
     ResText(R.string.text_8_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun LongText() {
@@ -332,8 +320,6 @@ private val text_8 = LessonPage(
     ResText(R.string.text_8_2)
 
     CodeListing(
-        options = it,
-
         code = """
             @Composable
             fun OverflowedText() {
@@ -366,7 +352,6 @@ private val text_9 = LessonPage(
     ResText(R.string.text_9_1)
 
     CodeListing(
-        options = it,
         code = """
             @Composable
             fun StringResourceText() {

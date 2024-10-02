@@ -25,4 +25,10 @@ sealed class Screen {
         val courseId: Int,
         val id: Int
     ) : Screen()
+
+    @Serializable
+    data class Quiz(
+        @StringRes val titleResId: Int,
+        val quizId: Int
+    ) : Screen()
 }
