@@ -16,6 +16,8 @@ import androidx.compose.material.icons.filled.Language
 import androidx.compose.material.icons.filled.LightMode
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.NotificationsNone
+import androidx.compose.material.icons.filled.Shuffle
+import androidx.compose.material.icons.filled.ShuffleOn
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -36,6 +38,7 @@ import com.abachta.jetpacktutorial.settings.AppLocale
 import com.abachta.jetpacktutorial.settings.AppTheme
 import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.CodeListingFont
+import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import com.abachta.jetpacktutorial.ui.components.SelectableTextProvider
 import com.abachta.jetpacktutorial.ui.components.SelectionDialog
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
@@ -104,6 +107,23 @@ fun SettingsScreen(
             dialogItems = CodeListingFont.entries,
             dialogTitle = stringResource(R.string.select_listing_font),
             rowTitle = stringResource(R.string.code_listing_font)
+        )
+
+        val shuffleIcon = when (viewModel.questionShuffling) {
+            QuizShufflingOption.NoShuffle -> Icons.Filled.Shuffle
+            else -> Icons.Filled.ShuffleOn
+        }
+
+        // Quiz question shuffling
+        DialogRow(
+            icon = shuffleIcon,
+            selectedItem = viewModel.questionShuffling,
+            onItemSelected = {
+                viewModel.questionShuffling = it
+            },
+            dialogItems = QuizShufflingOption.entries,
+            dialogTitle = stringResource(R.string.select_quiz_shuffle),
+            rowTitle = stringResource(R.string.quiz_shuffling_mode)
         )
 
         // Clear progress

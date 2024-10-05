@@ -1,4 +1,8 @@
 <resources>
+
+    <string name="regular_text" translatable="false">This is a regular text without monospace</string>
+    <string name="monospace_text" translatable="false">This text contains |monospace| formatting</string>
+
     <string name="app_name">Jetpack Tutorial</string>
     <string name="back_again_to_close">Back again to close the app</string>
     <string name="settings">Settings</string>
@@ -18,9 +22,9 @@
     <string name="course_getting_started">Getting Started with Jetpack Compose</string>
     <string name="course_layouts_elements">Layouts and UI elements</string>
     <string name="course_theming_styling">Theming and styling</string>
-    <string name="course_getting_started_description">Learn the basics of Jetpack Compose, including setting up your envionment and creating your first composable.</string>
+    <string name="course_getting_started_description">Learn the basics of Jetpack Compose, including setting up your environment and creating your first composable.</string>
     <string name="course_layout_description">Dive into Compose layouts, theming, and styling your app.</string>
-    <string name="ciurse_state_navigation_description">Manage state effectively and navigate between screens in your Compose app.</string>
+    <string name="curse_state_navigation_description">Manage state effectively and navigate between screens in your Compose app.</string>
     <string name="course_advanced_description">Explore advanced Jetpack Compose topics like animations, custom layouts, and performance optimization.</string>
     <string name="TODO" translatable="false">!!TODO!!</string>
     <string name="lesson_getting_started_1_1" translatable="false">Getting Started 1 - 1</string>
@@ -35,6 +39,12 @@
         <item quantity="one">%d page</item>
         <item quantity="other">%d pages</item>
     </plurals>
+
+    <plurals name="incorrect_answers">
+        <item quantity="one">incorrect answer.</item>
+        <item quantity="many">incorrect answers</item>
+    </plurals>
+
     <string name="compose_introduction_title">What is Jetpack Compose?</string>
     <string name="setting_up_environment_title">Setting up environment</string>
     <string name="creating_first_component_title">Creating first component</string>
@@ -126,7 +136,7 @@
     <string name="lesson_image_title">Images</string>
     <string name="image_1_heading">Displaying images</string>
     <string name="image_2_heading">Vector graphics</string>
-    <string name="image_3_heading">Modyfing alpha value</string>
+    <string name="image_3_heading">Modifying alpha value</string>
     <string name="image_4_heading">Applying color filter</string>
     <string name="image_5_heading">Tinting</string>
     <string name="image_6_heading">Content scaling</string>
@@ -187,7 +197,7 @@
     <string name="card_2_1">Jetpack Compose provides other variants of the cards: the |ElevatedCard| and |OutlinedCard|.</string>
     <string name="card_3_1">You can customize the colors, shape and border of the card by providing custom values to the |colors|, |shape| and |border| parameters.</string>
     <string name="toast_1_1">A toast is a small popup message that provides feedback about an operation.\nIt takes small amount of space and disappears automatically after a timeout.</string>
-    <string name="toast_1_2">To show the toast you first need to instantiate a Toast object.\nYou can do this using |Toast.makeText| method, which takes the following parameters: the |Context| associated with the message, the text to display and the duration of the toast.\nIn Jetpack compose, the context can be easily accessed using the |LocalContext.current| composable.\n\nAfter creating the toast object, you can use |show| method on it to display it on screen.</string>
+    <string name="toast_1_2">To show the toast you first need to instantiate a Toast object.\nYou can do this using |Toast.makeText| method, which takes the following parameters: the |Context| associated with the message, the text to display and the duration of the toast.\nIn Jetpack compose, the context can be easily accessed using the |LocalContext.current| composable.\nAfter creating the toast object, you can use |show| method on it to display it on screen.</string>
     <string name="toast_2_1">You can add callbacks to the toast to know when it is shown and hidden.\nTo do this you can create an object inheriting from |Toast.Callback| and register it using the |addCallback| method.</string>
     <string name="toast_3_1">You can limit the time the toast is visible by calling the |cancel| method to hide it early.</string>
 
@@ -207,4 +217,17 @@
     <string name="quiz_answer_3_3" translatable="false">color in TextStyle</string>
     <string name="quiz_question_n_of">Question %1$d of %2$d</string>
     <string name="quiz_check">Check</string>
+    <string name="lesson_more_quiz">Go to quiz</string>
+    <string name="lesson_more_challenge">Go to challenge</string>
+    <string name="code_challenge">Code challenge</string>
+    <string name="start_quiz">Start quiz</string>
+    <string name="quiz_finished">Quiz finished</string>
+    <string name="quiz_answered_correctly_n_of">You answered correctly %1$d out of %2$d questions.</string>
+    <string name="quiz_restart">Restart quiz</string>
+    <string name="quiz_continue">Continue</string>
+    <string name="no_shuffle">Don\'t shuffle</string>
+    <string name="shuffle_questions">Shuffle questions</string>
+    <string name="shuffle_all">Shuffle questions and answers</string>
+    <string name="select_quiz_shuffle">Select shuffling mode</string>
+    <string name="quiz_shuffling_mode">Quiz question shuffling</string>
 </resources>

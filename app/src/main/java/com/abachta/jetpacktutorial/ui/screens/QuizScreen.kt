@@ -5,6 +5,7 @@ import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,9 +21,8 @@ import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material3.BottomAppBar
-import androidx.compose.material3.Button
-import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -30,19 +30,32 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ProgressIndicatorDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Quiz
 import com.abachta.jetpacktutorial.data.QuizAnswer
 import com.abachta.jetpacktutorial.data.QuizQuestion
+import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.ui.components.ExtendableFloatingActionButton
 import com.abachta.jetpacktutorial.ui.components.QuizAnswerCard
@@ -82,23 +95,33 @@ val composeTextQuiz = Quiz(
 @Composable
 fun QuizScreen(
     quizData: Screen.Quiz,
+    shuffleMode: QuizShufflingOption,
     onQuizFinished: () -> Unit
 ) {
     val quiz = composeTextQuiz
     val questionCount = quiz.questions.count()
 
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(pageCount = { questionCount + 1 })
+    val pagerState = rememberPagerState { questionCount + 1 }
     val currentPage = pagerState.currentPage
 
-    LaunchedEffect(Unit) {
-        quiz.reset()
+    val startAnimatingResult by remember {
+        derivedStateOf { pagerState.settledPage == questionCount }
+    }
+
+    var questions by rememberSaveable(quizData, shuffleMode) {
+        mutableStateOf(
+            when (shuffleMode) {
+                QuizShufflingOption.NoShuffle -> quiz.questions
+                else -> quiz.questions.shuffled()
+            }
+        )
     }
 
     Scaffold(
         bottomBar = {
             if (currentPage < questionCount) {
-                val currentQuestion = quiz.questions[currentPage]
+                val currentQuestion = questions[currentPage]
                 BottomAppBar(
                     actions = {
                         IconButton(
@@ -161,11 +184,30 @@ fun QuizScreen(
                     .weight(1f)
                     .fillMaxSize()
             ) { page ->
-                if (page < quiz.questions.count()) {
-                    val question = quiz.questions[page]
-                    QuizQuestionScreen(question)
+                if (page < questionCount) {
+                    val question = questions[page]
+                    QuizQuestionScreen(
+                        question = question,
+                        shuffleAnswers = shuffleMode.shuffleAnswers
+                    )
                 } else {
-                    QuizSummaryScreen(quiz)
+                    QuizSummaryScreen(
+                        quiz = quiz,
+                        startAnimatingResult = startAnimatingResult,
+                        onContinue = onQuizFinished,
+                        onRestart = {
+                            scope.launch {
+                                quiz.reset()
+
+                                questions = when (shuffleMode) {
+                                    QuizShufflingOption.NoShuffle -> quiz.questions
+                                    else -> quiz.questions.shuffled()
+                                }
+
+                                pagerState.animateScrollToPage(0)
+                            }
+                        }
+                    )
                 }
             }
         }
@@ -174,7 +216,8 @@ fun QuizScreen(
 
 @Composable
 private fun QuizQuestionScreen(
-    question: QuizQuestion
+    question: QuizQuestion,
+    shuffleAnswers: Boolean
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -189,7 +232,13 @@ private fun QuizQuestionScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        question.answers.forEach { answer ->
+        val answers = remember {
+            if (shuffleAnswers) {
+                question.answers.shuffled()
+            } else question.answers
+        }
+
+        answers.forEach { answer ->
             QuizAnswerCard(
                 isRevealed = question.revealed,
                 isSelected = answer.selected,
@@ -206,11 +255,12 @@ private fun QuizQuestionScreen(
 }
 
 @Composable
-fun QuizSummaryScreen(quiz: Quiz) {
-    val correctAnswers = quiz.questions.size - quiz.incorrectAnswerCount()
-    val totalQuestions = quiz.questions.size
-    val fractionCorrect = quiz.correctlyAnsweredQuestionFraction()
-
+fun QuizSummaryScreen(
+    quiz: Quiz,
+    startAnimatingResult: Boolean,
+    onContinue: () -> Unit,
+    onRestart: () -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -218,35 +268,38 @@ fun QuizSummaryScreen(quiz: Quiz) {
     ) {
         ElevatedCard(
             modifier = Modifier
-                .align(Alignment.Center)
                 .fillMaxWidth()
-                .height(400.dp)
-                .padding(16.dp),
-            shape = RoundedCornerShape(16.dp),
-            elevation = CardDefaults.elevatedCardElevation(8.dp)
+                .padding(16.dp)
+                .align(Alignment.Center)
         ) {
-            Column(
-                modifier = Modifier.fillMaxSize(),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.SpaceAround
-            ) {
+            Column(modifier = Modifier.padding(16.dp)) {
                 Text(
                     text = stringResource(id = quiz.titleResId),
-                    style = MaterialTheme.typography.headlineSmall,
-                    modifier = Modifier.padding(bottom = 16.dp)
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.primary
                 )
 
                 Text(
-                    text = "You answered $correctAnswers out of $totalQuestions questions correctly!",
-                    style = MaterialTheme.typography.bodyLarge,
-                    modifier = Modifier.padding(bottom = 16.dp)
+                    text = stringResource(R.string.quiz_finished),
+                    style = MaterialTheme.typography.headlineSmall,
+                    color = MaterialTheme.colorScheme.primary
                 )
 
+                Spacer(Modifier.height(16.dp))
+
                 val animatedProgress by animateFloatAsState(
-                    targetValue = fractionCorrect,
+                    targetValue = if (startAnimatingResult){
+                        quiz.correctlyAnsweredQuestionFraction()
+                    } else 0f,
                     animationSpec = ProgressIndicatorDefaults.ProgressAnimationSpec,
-                    label = "quiz_progress"
+                    label = "quiz_result"
                 )
+
+                val color = if (animatedProgress == 1.0f) {
+                    MaterialTheme.colorScheme.primary
+                } else {
+                    MaterialTheme.colorScheme.secondary
+                }
 
                 LinearProgressIndicator(
                     progress = { animatedProgress },
@@ -254,23 +307,69 @@ fun QuizSummaryScreen(quiz: Quiz) {
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(4.dp))
                         .height(8.dp),
-                    color = MaterialTheme.colorScheme.primary,
+                    color = color,
                     trackColor = MaterialTheme.colorScheme.secondaryContainer,
                 )
 
+                Spacer(Modifier.height(8.dp))
+
+                val completedPercent = (animatedProgress * 100).toInt()
                 Text(
-                    text = "%.2f%%".format(animatedProgress * 100),
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier.padding(top = 8.dp)
+                    text = "$completedPercent%",
+                    fontSize = 14.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = color
                 )
 
-                Button(
-                    onClick = { /* Handle restart quiz or navigate */ },
-                    modifier = Modifier.padding(top = 16.dp)
-                ) {
-                    Text("Restart Quiz")
+                Spacer(Modifier.height(16.dp))
+
+                Text(
+                    stringResource(
+                        id = R.string.quiz_answered_correctly_n_of,
+                        quiz.correctlyAnsweredQuestionCount(), quiz.questions.count(),
+                    )
+                )
+
+                val incorrectAnswers = quiz.incorrectAnswerCount()
+                if (incorrectAnswers > 0) {
+
+                    val text = buildAnnotatedString {
+                        withStyle(SpanStyle(color = MaterialTheme.colorScheme.error)) {
+                            append("$incorrectAnswers ")
+                        }
+
+                        append(pluralStringResource(R.plurals.incorrect_answers, incorrectAnswers))
+                    }
+
+                    Text(text)
+                }
+            }
+
+            HorizontalDivider(modifier = Modifier.padding(horizontal = 8.dp))
+
+            Row(
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                TextButton(onClick = onRestart) {
+                    Text(stringResource(R.string.quiz_restart))
+                }
+
+                TextButton(onClick = onContinue) {
+                    Text(stringResource(R.string.quiz_continue))
                 }
             }
         }
     }
+}
+
+@Preview
+@Composable
+private fun QuizSummaryPreview() {
+    QuizSummaryScreen(
+        quiz = composeTextQuiz,
+        startAnimatingResult = true,
+        onContinue = {},
+        onRestart = {}
+    )
 }

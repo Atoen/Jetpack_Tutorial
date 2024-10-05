@@ -24,6 +24,12 @@ class Quiz(
         }
     }
 
+    fun correctlyAnsweredQuestionCount(): Int {
+        return questions.count {
+            it.getIncorrectAnswerCount() == 0
+        }
+    }
+
     @FloatRange(from = 0.0, to = 1.0)
     fun correctlyAnsweredQuestionFraction(): Float {
         return questions.count {

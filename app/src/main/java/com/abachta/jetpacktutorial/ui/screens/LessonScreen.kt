@@ -27,7 +27,6 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.outlined.Lightbulb
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
@@ -40,13 +39,17 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.courses.getFirstLesson
 import com.abachta.jetpacktutorial.courses.getLessonById
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
@@ -68,9 +71,17 @@ fun LessonScreen(
     val lessonPageCount = lesson.pages.count()
 
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState(pageCount = { lessonPageCount + 1 })
+    val pagerState = rememberPagerState { lessonPageCount + 1 }
 
     var showPageIndicator by remember { mutableStateOf(true) }
+
+    LaunchedEffect(pagerState) {
+        snapshotFlow { pagerState.settledPage }.collect { page ->
+            if (page == lessonPageCount) {
+                onLessonComplete(lesson)
+            }
+        }
+    }
 
     LaunchedEffect(pagerState.currentPage) {
         showPageIndicator = true
@@ -90,16 +101,10 @@ fun LessonScreen(
             if (page < lessonPageCount) {
                 Page(lesson.pages[page])
             } else {
-                onLessonComplete(lesson)
-
                 LessonFinishedScreen(
                     lesson = lesson,
                     onCompleteClick = { onBack() },
-                    onQuizClick = {
-                        lesson.quiz?.let {
-                            onGoToQuiz(it)
-                        }
-                    },
+                    onQuizClick = onGoToQuiz,
                     onCodeChallengeClick = { onGoToCodeChallenge() }
                 )
             }
@@ -188,7 +193,7 @@ private fun Page(
 private fun LessonFinishedScreen(
     lesson: Lesson,
     onCompleteClick: () -> Unit,
-    onQuizClick: () -> Unit,
+    onQuizClick: (Quiz) -> Unit,
     onCodeChallengeClick: () -> Unit
 ) {
     Column(
@@ -204,7 +209,7 @@ private fun LessonFinishedScreen(
 
         if (lesson.hasChallenge) {
             LessonOptionCard(
-                text = "Code challenge",
+                text = stringResource(R.string.code_challenge),
                 icon = Icons.Filled.Code,
                 containerColor = MaterialTheme.colorScheme.tertiaryContainer,
                 onClick = onCodeChallengeClick
@@ -213,15 +218,15 @@ private fun LessonFinishedScreen(
 
         lesson.quiz?.let {
             LessonOptionCard(
-                text = "Start quiz",
+                text = stringResource(R.string.start_quiz),
                 icon = Icons.Filled.Lightbulb,
                 containerColor = MaterialTheme.colorScheme.secondaryContainer,
-                onClick = onQuizClick
+                onClick = { onQuizClick(it) }
             )
         }
 
         LessonOptionCard(
-            text = "Lesson completed",
+            text = stringResource(R.string.lesson_completed),
             icon = Icons.Filled.Check,
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             onClick = onCompleteClick
@@ -264,4 +269,15 @@ private fun LessonOptionCard(
             )
         }
     }
+}
+
+@Preview
+@Composable
+private fun LessonFinishedScreenPreview() {
+    LessonFinishedScreen(
+        lesson = getFirstLesson(),
+        onCodeChallengeClick = {},
+        onQuizClick = {},
+        onCompleteClick = {}
+    )
 }

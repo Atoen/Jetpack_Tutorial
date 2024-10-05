@@ -47,7 +47,7 @@ class LessonRepository @Inject constructor(
         }
     }
 
-    suspend fun removeAllLessons() {
+    suspend fun clearAllProgress() {
         lessonDao.clearAll()
     }
 

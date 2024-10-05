@@ -144,7 +144,7 @@ fun AppLayout(
             slidingComposable<Screen.Settings> {
                 SettingsScreen(
                     viewModel = settingsViewModel,
-                    onClearLessons = courseViewModel::clearLessons,
+                    onClearLessons = courseViewModel::clearProgress,
                     onChangePopupSettings = {
                         courseViewModel.shouldAnimatePopup = it.enabled
                     }
@@ -169,9 +169,10 @@ fun AppLayout(
                         navController.navigateUp()
                     },
                     onLessonComplete = { lesson ->
-                        courseViewModel.completeLesson(lesson)
+                        courseViewModel.markLessonCompleted(lesson)
                     },
                     onGoToQuiz = { quiz ->
+                        quiz.reset()
                         navController.navigateUp()
                         navController.navigateToQuiz(quiz)
                     },
@@ -185,6 +186,7 @@ fun AppLayout(
                 val arg = it.toRoute<Screen.Quiz>()
                 QuizScreen(
                     quizData = arg,
+                    shuffleMode = settingsViewModel.questionShuffling,
                     onQuizFinished = {
                         navController.navigateUp()
                     }

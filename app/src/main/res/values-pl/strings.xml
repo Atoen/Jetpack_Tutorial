@@ -18,7 +18,7 @@
     <string name="course_theming_styling">Stylizowanie interfejsu</string>
     <string name="course_getting_started_description">Poznaj podstawy Jetpack Compose, w tym konfigurację środowiska i tworzenie pierwszego elementu composable.</string>
     <string name="course_layout_description">Zagłęb się w układy Compose, motywy i stylizację swojej aplikacji.</string>
-    <string name="ciurse_state_navigation_description">Efektywnie zarządzaj stanem i nawiguj między ekranami w aplikacji Compose.</string>
+    <string name="curse_state_navigation_description">Efektywnie zarządzaj stanem i nawiguj między ekranami w aplikacji Compose.</string>
     <string name="course_advanced_description">Poznaj zaawansowane tematy Jetpack Compose, takie jak animacje, niestandardowe układy i optymalizacja wydajności.</string>
     <string name="completed">Ukończone</string>
     <string name="completed_percent">Ukończono %1$d%%</string>
@@ -33,6 +33,13 @@
         <item quantity="many">%d stron</item>
         <item quantity="other">%d stron</item>
     </plurals>
+
+    <plurals name="incorrect_answers">
+        <item quantity="one">niepoprawna odpowiedź.</item>
+        <item quantity="few">niepoprawne odpowiedzi.</item>
+        <item quantity="many">niepoprawnych odpowiedzi.</item>
+    </plurals>
+
     <string name="compose_introduction_title">Co to Jetpack Compose?</string>
     <string name="setting_up_environment_title">Konfigurowanie środowiska</string>
     <string name="creating_first_component_title">Tworzenie pierwszego komponentu</string>
@@ -189,5 +196,18 @@
     <string name="toast_3_1">Możesz ograniczyć czas widoczności wiadomości wywołując metodę |cancel|, aby ukryć ją wcześniej.</string>
     <string name="quiz_question_n_of">Pytanie %1$d z %2$d</string>
     <string name="quiz_check">Sprawdź</string>
+    <string name="lesson_more_quiz">Przejdź do quizu</string>
+    <string name="lesson_more_challenge">Przejdź do wyzwania</string>
+    <string name="code_challenge">Wyzwanie</string>
+    <string name="start_quiz">Rozpocznij quiz</string>
+    <string name="quiz_finished">Quiz zakończony</string>
+    <string name="quiz_answered_correctly_n_of">Odpowiedziałeś(-aś) poprawnie na %1$d z %2$d pytań.</string>
+    <string name="quiz_restart">Restartuj quiz</string>
+    <string name="quiz_continue">Kontynuuj</string>
+    <string name="no_shuffle">Nie mieszaj</string>
+    <string name="shuffle_questions">Mieszaj pytania</string>
+    <string name="shuffle_all">Miejszaj pytania i odpowiedzi</string>
+    <string name="select_quiz_shuffle">Wybierz tryb losowania</string>
+    <string name="quiz_shuffling_mode">Losownanie pytań quizu</string>
 
 </resources>

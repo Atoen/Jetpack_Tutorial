@@ -45,7 +45,6 @@ class CourseViewModel @Inject constructor(
     }
 
     private suspend fun getLessonToShowOnPopup() {
-
         val lesson = lessonRepository.getNextLesson()
 
         if (lesson == null) {
@@ -67,19 +66,20 @@ class CourseViewModel @Inject constructor(
         }
     }
 
-    fun completeLesson(lesson: Lesson) {
+    fun markLessonCompleted(lesson: Lesson) {
         viewModelScope.launch {
+            lesson.complete()
             lessonRepository.insertLesson(lesson)
         }
     }
 
-    fun clearLessons() {
+    fun clearProgress() {
         courses.forEach {
             it.progress.resetProgress()
         }
 
         viewModelScope.launch {
-            lessonRepository.removeAllLessons()
+            lessonRepository.clearAllProgress()
         }
     }
 }

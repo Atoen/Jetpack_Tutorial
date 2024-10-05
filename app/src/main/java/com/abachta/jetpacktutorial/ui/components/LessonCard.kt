@@ -1,6 +1,5 @@
 package com.abachta.jetpacktutorial.ui.components
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,12 +9,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Code
+import androidx.compose.material.icons.filled.Lightbulb
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,13 +50,12 @@ fun LessonCard(
     ElevatedCard(
         modifier = Modifier
             .widthIn(max = 500.dp)
-            .fillMaxWidth()
-            .padding(vertical = 8.dp),
+            .fillMaxWidth(),
         elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(containerColor = if (lessonIsCompleted) {
             MaterialTheme.colorScheme.primaryContainer
         } else MaterialTheme.colorScheme.surfaceVariant ),
-        onClick = { onClick() }
+        onClick = onClick
     ) {
         Column(
             modifier = Modifier.padding(8.dp)
@@ -79,17 +83,10 @@ fun LessonCard(
                     )
                 }
 
-                var showPopup by remember { mutableStateOf(false) }
-
-                Icon(
-                    imageVector = Icons.Filled.MoreVert,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(start = 4.dp)
-                        .size(20.dp)
-                        .clickable {
-                            showPopup = true
-                        }
+                LessonActionsPopup(
+                    lesson = lesson,
+                    onGoToQuiz = { },
+                    onGoToChallenge = { }
                 )
             }
 
@@ -106,9 +103,67 @@ fun LessonCard(
     }
 }
 
+@Composable
+private fun LessonActionsPopup(
+    lesson: Lesson,
+    onGoToQuiz: () -> Unit,
+    onGoToChallenge: () -> Unit
+) {
+    if (!lesson.hasQuiz && !lesson.hasChallenge) return
+
+    var showPopup by remember { mutableStateOf(false) }
+
+    IconButton(
+        onClick = { showPopup = true },
+        modifier = Modifier.size(24.dp)
+    ) {
+        Icon(
+            imageVector = Icons.Filled.MoreVert,
+            contentDescription = null
+        )
+
+        MaterialTheme(
+            shapes = MaterialTheme.shapes.copy(
+                extraSmall = RoundedCornerShape(16.dp)
+            )
+        ) {
+            DropdownMenu(
+                expanded = showPopup,
+                onDismissRequest = { showPopup = false }
+            ) {
+                if (lesson.hasQuiz) {
+                    DropdownMenuItem(
+                        text = { Text(stringResource(R.string.lesson_more_quiz)) },
+                        onClick = onGoToQuiz,
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Filled.Lightbulb,
+                                contentDescription = null
+                            )
+                        }
+                    )
+                }
+
+                if (lesson.hasChallenge) {
+                    DropdownMenuItem(
+                        text = { Text(stringResource(R.string.lesson_more_challenge)) },
+                        onClick = onGoToChallenge,
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Filled.Code,
+                                contentDescription = null
+                            )
+                        }
+                    )
+                }
+            }
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
-fun LessonCardPreview() {
+private fun LessonCardPreview() {
 
     val lesson = gettingStartedLessons[0]
     lesson.progress.complete()

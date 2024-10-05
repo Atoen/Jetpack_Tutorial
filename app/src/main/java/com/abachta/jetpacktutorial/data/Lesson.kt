@@ -21,6 +21,8 @@ class Lesson(
 
     val courseId = LessonCourseId(CourseId(0))
 
+    val hasQuiz = quiz != null
+
     val hasChallenge
         get() = true
 

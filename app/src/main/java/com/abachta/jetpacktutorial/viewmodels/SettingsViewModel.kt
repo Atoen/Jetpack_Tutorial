@@ -10,10 +10,12 @@ import com.abachta.jetpacktutorial.settings.AppLocale
 import com.abachta.jetpacktutorial.settings.AppTheme
 import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.CodeListingFont
+import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import java.util.Locale
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,6 +29,7 @@ class SettingsViewModel @Inject constructor(
     private val _locale = mutableStateOf<AppLocale>(AppLocale.English)
     private val _showLessonPopup = mutableStateOf<LessonPopupOption>(LessonPopupOption.Enabled)
     private val _listingFont = mutableStateOf<CodeListingFont>(CodeListingFont.Medium)
+    private val _questionShuffling = mutableStateOf<QuizShufflingOption>(QuizShufflingOption.ShuffleQuestions)
 
     val isReady = _isReady.asStateFlow()
 
@@ -68,6 +71,15 @@ class SettingsViewModel @Inject constructor(
             }
         }
 
+    var questionShuffling
+        get() = _questionShuffling.value
+        set(value) {
+            _questionShuffling.value = value
+            viewModelScope.launch {
+                preferences.setInt(SHUFFLE_KEY, value.value)
+            }
+        }
+
     init {
         viewModelScope.launch {
             _theme.value = preferences.getInt(THEME_KEY)?.let {
@@ -82,7 +94,14 @@ class SettingsViewModel @Inject constructor(
                 CodeListingFont.fromInt(it)
             } ?: CodeListingFont.Medium
 
-            val localeTag = AppCompatDelegate.getApplicationLocales().get(0)?.language ?: "en"
+            _questionShuffling.value = preferences.getInt(SHUFFLE_KEY)?.let {
+                QuizShufflingOption.fromInt(it)
+            } ?: QuizShufflingOption.ShuffleQuestions
+
+            val systemLocale = Locale.getDefault()
+            val localeTag = AppCompatDelegate.getApplicationLocales()
+                .get(0)?.language ?: systemLocale.language
+
             _locale.value = AppLocale.fromLanguageTag(localeTag)
 
             _isReady.value = true
@@ -93,5 +112,6 @@ class SettingsViewModel @Inject constructor(
         private const val THEME_KEY = "theme"
         private const val POPUP_KEY = "popup"
         private const val FONT_KEY = "font"
+        private const val SHUFFLE_KEY = "shuffle"
     }
 }
