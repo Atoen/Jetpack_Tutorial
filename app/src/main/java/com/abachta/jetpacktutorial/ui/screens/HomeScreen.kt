@@ -2,6 +2,8 @@ package com.abachta.jetpacktutorial.ui.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -9,8 +11,8 @@ import androidx.compose.ui.Modifier
 import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.getCourseById
+import com.abachta.jetpacktutorial.ui.components.CourseCard
 import com.abachta.jetpacktutorial.ui.components.LessonPopup
-import com.abachta.jetpacktutorial.ui.components.CourseList
 import com.abachta.jetpacktutorial.viewmodels.CourseViewModel
 
 @Composable
@@ -43,9 +45,13 @@ fun HomeScreen(
             )
         }
 
-        CourseList(
-            courses = viewModel.courses,
-            onCourseClick = onCourseClick
-        )
+        LazyColumn {
+            items(viewModel.courses) { group ->
+                CourseCard(
+                    course = group,
+                    onClick = { onCourseClick(group) }
+                )
+            }
+        }
     }
 }

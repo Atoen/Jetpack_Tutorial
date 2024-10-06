@@ -6,11 +6,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.abachta.jetpacktutorial.courses.getQuizById
 import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
+import com.abachta.jetpacktutorial.data.QuizId
 import com.abachta.jetpacktutorial.data.allCourses
 import com.abachta.jetpacktutorial.data.db.LessonRepository
+import com.abachta.jetpacktutorial.data.models.QuizModel
 import com.abachta.jetpacktutorial.ui.components.LessonPopupData
 import com.abachta.jetpacktutorial.ui.components.LessonPopupType
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,6 +27,7 @@ class CourseViewModel @Inject constructor(
 
     private val popupLesson = mutableStateOf<Lesson?>(null)
     private val popupType = mutableStateOf(LessonPopupType.Start)
+    private var currentQuizModel by mutableStateOf<QuizModel?>(null)
 
     lateinit var courses: List<Course>
 
@@ -58,6 +62,18 @@ class CourseViewModel @Inject constructor(
         } else {
             popupType.value = LessonPopupType.Continue
         }
+    }
+
+    fun getQuizModel(quizId: QuizId): QuizModel {
+        val model = currentQuizModel
+        if (model == null || model.id != quizId) {
+            val newModel = QuizModel.crate(getQuizById(quizId))
+
+            currentQuizModel = newModel
+            return newModel
+        }
+
+        return model
     }
 
     fun refreshLessonPopup() {

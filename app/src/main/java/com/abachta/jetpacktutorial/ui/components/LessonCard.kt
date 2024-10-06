@@ -39,11 +39,14 @@ import androidx.compose.ui.unit.sp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.data.Lesson
+import com.abachta.jetpacktutorial.data.Quiz
 
 @Composable
 fun LessonCard(
     lesson: Lesson,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    onGoToQuiz: (Quiz) -> Unit,
+    onGoToChallenge: () -> Unit
 ) {
     val lessonIsCompleted = lesson.progress.completed
 
@@ -79,14 +82,14 @@ fun LessonCard(
                         imageVector = Icons.Filled.CheckCircle,
                         contentDescription = stringResource(R.string.completed),
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.size(20.dp)
+                        modifier = Modifier.size(24.dp)
                     )
                 }
 
                 LessonActionsPopup(
                     lesson = lesson,
-                    onGoToQuiz = { },
-                    onGoToChallenge = { }
+                    onGoToQuiz = onGoToQuiz,
+                    onGoToChallenge = onGoToChallenge
                 )
             }
 
@@ -106,7 +109,7 @@ fun LessonCard(
 @Composable
 private fun LessonActionsPopup(
     lesson: Lesson,
-    onGoToQuiz: () -> Unit,
+    onGoToQuiz: (Quiz) -> Unit,
     onGoToChallenge: () -> Unit
 ) {
     if (!lesson.hasQuiz && !lesson.hasChallenge) return
@@ -131,10 +134,13 @@ private fun LessonActionsPopup(
                 expanded = showPopup,
                 onDismissRequest = { showPopup = false }
             ) {
-                if (lesson.hasQuiz) {
+                lesson.quiz?.let {
                     DropdownMenuItem(
                         text = { Text(stringResource(R.string.lesson_more_quiz)) },
-                        onClick = onGoToQuiz,
+                        onClick = {
+                            showPopup = false
+                            onGoToQuiz(it)
+                        },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Filled.Lightbulb,
@@ -147,7 +153,10 @@ private fun LessonActionsPopup(
                 if (lesson.hasChallenge) {
                     DropdownMenuItem(
                         text = { Text(stringResource(R.string.lesson_more_challenge)) },
-                        onClick = onGoToChallenge,
+                        onClick = {
+                            showPopup = false
+                            onGoToChallenge()
+                        },
                         leadingIcon = {
                             Icon(
                                 imageVector = Icons.Filled.Code,
@@ -170,6 +179,8 @@ private fun LessonCardPreview() {
 
     LessonCard(
         lesson = lesson,
-        onClick = {}
+        onClick = {},
+        onGoToQuiz = {},
+        onGoToChallenge = {}
     )
 }

@@ -1,14 +1,14 @@
 package com.abachta.jetpacktutorial.courses.jetpack_basics
 
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.courses.jetpack_basics.quizzes.textQuiz
 import com.abachta.jetpacktutorial.data.Lesson
-import com.abachta.jetpacktutorial.ui.screens.composeTextQuiz
 
 private val text = Lesson(
     titleResId = R.string.lesson_text_title,
     descriptionResId = R.string.TODO,
     pages = textPages,
-    quiz = composeTextQuiz
+    quiz = textQuiz
 )
 
 private val button = Lesson(
@@ -55,4 +55,8 @@ val jetpackBasicsLessons = listOf(
     card,
     modifier,
     toast
+)
+
+val jetpackBasicsQuizzes = listOf(
+    textQuiz
 )

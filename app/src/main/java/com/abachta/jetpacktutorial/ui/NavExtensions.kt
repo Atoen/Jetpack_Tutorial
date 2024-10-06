@@ -137,7 +137,7 @@ fun NavHostController.navigateToCourse(course: Course) {
         Screen.Course(
             titleResId = course.titleResId,
             descriptionResId = course.descriptionResId,
-            id = course.id.value
+            courseId = course.id.value
         )
     )
 }
@@ -148,7 +148,7 @@ fun NavHostController.navigateToLesson(lesson: Lesson, courseId: CourseId) {
             titleResId = lesson.titleResId,
             descriptionResId = lesson.descriptionResId,
             courseId = courseId.value,
-            id = lesson.id.value
+            lessonId = lesson.id.value
         )
     )
 }
@@ -157,7 +157,7 @@ fun NavHostController.navigateToQuiz(quiz: Quiz) {
     navigate(
         Screen.Quiz(
             titleResId = quiz.titleResId,
-            quizId = quiz.id
+            quizId = quiz.id.value
         )
     )
 }

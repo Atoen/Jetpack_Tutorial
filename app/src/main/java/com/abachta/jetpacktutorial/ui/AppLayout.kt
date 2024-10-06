@@ -28,12 +28,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
-import com.abachta.jetpacktutorial.data.CourseId
+import com.abachta.jetpacktutorial.ui.components.ObserveAsEvents
+import com.abachta.jetpacktutorial.ui.components.TwiceBackHandler
 import com.abachta.jetpacktutorial.ui.screens.CourseScreen
 import com.abachta.jetpacktutorial.ui.screens.HomeScreen
 import com.abachta.jetpacktutorial.ui.screens.LessonScreen
-import com.abachta.jetpacktutorial.ui.components.ObserveAsEvents
-import com.abachta.jetpacktutorial.ui.components.TwiceBackHandler
 import com.abachta.jetpacktutorial.ui.screens.QuizScreen
 import com.abachta.jetpacktutorial.ui.screens.SettingsScreen
 import com.abachta.jetpacktutorial.viewmodels.CourseViewModel
@@ -111,12 +110,12 @@ fun AppLayout(
                         if (isOnHomeScreen) {
                             Icon(
                                 imageVector = Icons.Filled.Menu,
-                                contentDescription = "Menu"
+                                contentDescription = null
                             )
                         } else {
                             Icon(
                                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = "Back"
+                                contentDescription = null
                             )
                         }
                     }
@@ -133,7 +132,7 @@ fun AppLayout(
                 HomeScreen(
                     viewModel = courseViewModel,
                     showPopup = settingsViewModel.lessonPopup.enabled,
-                    onCourseClick = { navController.navigateToCourse(it) },
+                    onCourseClick = navController::navigateToCourse,
                     onContinueClick = { course, lesson ->
                         navController.navigateToCourse(course)
                         navController.navigateToLesson(lesson, course.id)
@@ -156,8 +155,9 @@ fun AppLayout(
                 CourseScreen(
                     courseData = arg,
                     onLessonClick = { lesson ->
-                        navController.navigateToLesson(lesson, CourseId(arg.id))
-                    }
+                        navController.navigateToLesson(lesson, arg.id)
+                    },
+                    onGoToQuiz = navController::navigateToQuiz
                 )
             }
 
@@ -165,17 +165,9 @@ fun AppLayout(
                 val arg = it.toRoute<Screen.Lesson>()
                 LessonScreen(
                     lessonData = arg,
-                    onBack = {
-                        navController.navigateUp()
-                    },
-                    onLessonComplete = { lesson ->
-                        courseViewModel.markLessonCompleted(lesson)
-                    },
-                    onGoToQuiz = { quiz ->
-                        quiz.reset()
-                        navController.navigateUp()
-                        navController.navigateToQuiz(quiz)
-                    },
+                    onBack = navController::navigateUp,
+                    onLessonComplete = courseViewModel::markLessonCompleted,
+                    onGoToQuiz = navController::navigateToQuiz,
                     onGoToCodeChallenge = {
 
                     }
@@ -184,12 +176,12 @@ fun AppLayout(
 
             slidingComposable<Screen.Quiz> {
                 val arg = it.toRoute<Screen.Quiz>()
+                val model = courseViewModel.getQuizModel(arg.id)
+
                 QuizScreen(
-                    quizData = arg,
+                    quiz = model,
                     shuffleMode = settingsViewModel.questionShuffling,
-                    onQuizFinished = {
-                        navController.navigateUp()
-                    }
+                    onQuizFinished = navController::navigateUp
                 )
             }
         }

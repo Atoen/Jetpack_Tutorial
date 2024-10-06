@@ -52,53 +52,21 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.abachta.jetpacktutorial.R
-import com.abachta.jetpacktutorial.data.Quiz
-import com.abachta.jetpacktutorial.data.QuizAnswer
-import com.abachta.jetpacktutorial.data.QuizQuestion
+import com.abachta.jetpacktutorial.courses.jetpack_basics.quizzes.textQuiz
+import com.abachta.jetpacktutorial.data.models.QuizModel
+import com.abachta.jetpacktutorial.data.models.QuizQuestionModel
 import com.abachta.jetpacktutorial.settings.QuizShufflingOption
-import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.ui.components.ExtendableFloatingActionButton
 import com.abachta.jetpacktutorial.ui.components.QuizAnswerCard
 import kotlinx.coroutines.launch
 
-val composeTextQuiz = Quiz(
-    titleResId = R.string.lesson_text_title,
-    questions = listOf(
-        QuizQuestion(
-            textResId = R.string.quiz_question_1,
-            answers = listOf(
-                QuizAnswer(textResId = R.string.quiz_answer_1_1, isCorrect = true),
-                QuizAnswer(textResId = R.string.quiz_answer_1_2),
-                QuizAnswer(textResId = R.string.quiz_answer_1_3)
-            )
-        ),
-        QuizQuestion(
-            textResId = R.string.quiz_question_2,
-            answers = listOf(
-                QuizAnswer(textResId = R.string.quiz_answer_2_1),
-                QuizAnswer(textResId = R.string.quiz_answer_2_2, isCorrect = true),
-                QuizAnswer(textResId = R.string.quiz_answer_2_3)
-            )
-        ),
-        QuizQuestion(
-            textResId = R.string.quiz_question_3,
-            answers = listOf(
-                QuizAnswer(textResId = R.string.quiz_answer_3_1),
-                QuizAnswer(textResId = R.string.quiz_answer_3_2),
-                QuizAnswer(textResId = R.string.quiz_answer_3_3, isCorrect = true)
-            )
-        )
-    )
-)
-
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun QuizScreen(
-    quizData: Screen.Quiz,
+    quiz: QuizModel,
     shuffleMode: QuizShufflingOption,
     onQuizFinished: () -> Unit
 ) {
-    val quiz = composeTextQuiz
     val questionCount = quiz.questions.count()
 
     val scope = rememberCoroutineScope()
@@ -109,7 +77,7 @@ fun QuizScreen(
         derivedStateOf { pagerState.settledPage == questionCount }
     }
 
-    var questions by rememberSaveable(quizData, shuffleMode) {
+    var questions by rememberSaveable(shuffleMode) {
         mutableStateOf(
             when (shuffleMode) {
                 QuizShufflingOption.NoShuffle -> quiz.questions
@@ -216,7 +184,7 @@ fun QuizScreen(
 
 @Composable
 private fun QuizQuestionScreen(
-    question: QuizQuestion,
+    question: QuizQuestionModel,
     shuffleAnswers: Boolean
 ) {
     Column(
@@ -256,7 +224,7 @@ private fun QuizQuestionScreen(
 
 @Composable
 fun QuizSummaryScreen(
-    quiz: Quiz,
+    quiz: QuizModel,
     startAnimatingResult: Boolean,
     onContinue: () -> Unit,
     onRestart: () -> Unit
@@ -367,7 +335,7 @@ fun QuizSummaryScreen(
 @Composable
 private fun QuizSummaryPreview() {
     QuizSummaryScreen(
-        quiz = composeTextQuiz,
+        quiz = QuizModel.crate(textQuiz),
         startAnimatingResult = true,
         onContinue = {},
         onRestart = {}

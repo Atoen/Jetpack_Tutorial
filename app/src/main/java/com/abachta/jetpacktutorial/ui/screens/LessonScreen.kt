@@ -67,7 +67,7 @@ fun LessonScreen(
     onGoToCodeChallenge: () -> Unit,
     onGoToQuiz: (Quiz) -> Unit
 ) {
-    val lesson = getLessonById(LessonId(lessonData.id))
+    val lesson = getLessonById(LessonId(lessonData.lessonId))
     val lessonPageCount = lesson.pages.count()
 
     val scope = rememberCoroutineScope()
