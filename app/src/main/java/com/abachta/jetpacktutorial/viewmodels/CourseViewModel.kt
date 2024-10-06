@@ -73,6 +73,7 @@ class CourseViewModel @Inject constructor(
             return newModel
         }
 
+        model.reset()
         return model
     }
 
