@@ -76,16 +76,13 @@ fun CourseCard(
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .padding(start = 8.dp)
-                        .size(
-                            with(LocalDensity.current) {
-                                20.sp.toDp()
-                            }
-                        )
+                        .size(24.dp)
                     )
                 }
             }
 
             Spacer(modifier = Modifier.height(8.dp))
+
             Text(
                 text = stringResource(course.descriptionResId),
                 fontSize = 16.sp,
@@ -129,7 +126,7 @@ fun CourseCard(
                 text = stringResource(R.string.completed_percent, completedPercent),
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
-                color = if (course.isCompleted) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                color = progressColor
             )
         }
     }

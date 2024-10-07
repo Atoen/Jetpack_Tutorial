@@ -25,43 +25,40 @@ class CourseViewModel @Inject constructor(
     private val lessonRepository: LessonRepository
 ) : ViewModel() {
 
-    private val popupLesson = mutableStateOf<Lesson?>(null)
-    private val popupType = mutableStateOf(LessonPopupType.Start)
+    private var popupLesson by mutableStateOf<Lesson?>(null)
+    private var popupType by mutableStateOf(LessonPopupType.Start)
     private var currentQuizModel by mutableStateOf<QuizModel?>(null)
 
-    lateinit var courses: List<Course>
-
+    var shouldAnimatePopup by mutableStateOf(true)
     val lessonPopupData by derivedStateOf {
-        popupLesson.value?.let {
-            LessonPopupData(it, popupType.value)
+        popupLesson?.let {
+            LessonPopupData(it, popupType)
         }
     }
 
-    var shouldAnimatePopup by mutableStateOf(true)
+    lateinit var courses: List<Course>
 
     init {
         viewModelScope.launch {
             courses = allCourses
 
             lessonRepository.updateLessonsProgress()
-            getLessonToShowOnPopup()
+            updateLessonPopup()
         }
     }
 
-    private suspend fun getLessonToShowOnPopup() {
+    private suspend fun updateLessonPopup() {
         val lesson = lessonRepository.getNextLesson()
 
         if (lesson == null) {
-            popupLesson.value = null
+            popupLesson= null
             return
         }
 
-        popupLesson.value = lesson
-        if (lesson.id.value == LessonId.START_ID) {
-            popupType.value = LessonPopupType.Start
-        } else {
-            popupType.value = LessonPopupType.Continue
-        }
+        popupLesson = lesson
+        popupType = if (lesson.id.value == LessonId.START_ID) {
+            LessonPopupType.Start
+        } else LessonPopupType.Continue
     }
 
     fun getQuizModel(quizId: QuizId): QuizModel {
@@ -79,7 +76,7 @@ class CourseViewModel @Inject constructor(
 
     fun refreshLessonPopup() {
         viewModelScope.launch {
-            getLessonToShowOnPopup()
+            updateLessonPopup()
         }
     }
 

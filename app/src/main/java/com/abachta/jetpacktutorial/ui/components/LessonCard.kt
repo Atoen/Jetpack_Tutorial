@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
+import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.Quiz
 
@@ -46,7 +47,7 @@ fun LessonCard(
     lesson: Lesson,
     onClick: () -> Unit,
     onGoToQuiz: (Quiz) -> Unit,
-    onGoToChallenge: () -> Unit
+    onGoToChallenge: (CodeChallenge) -> Unit
 ) {
     val lessonIsCompleted = lesson.progress.completed
 
@@ -110,7 +111,7 @@ fun LessonCard(
 private fun LessonActionsPopup(
     lesson: Lesson,
     onGoToQuiz: (Quiz) -> Unit,
-    onGoToChallenge: () -> Unit
+    onGoToChallenge: (CodeChallenge) -> Unit
 ) {
     if (!lesson.hasQuiz && !lesson.hasChallenge) return
 
@@ -150,12 +151,12 @@ private fun LessonActionsPopup(
                     )
                 }
 
-                if (lesson.hasChallenge) {
+                lesson.challenge?.let {
                     DropdownMenuItem(
                         text = { Text(stringResource(R.string.lesson_more_challenge)) },
                         onClick = {
                             showPopup = false
-                            onGoToChallenge()
+                            onGoToChallenge(it)
                         },
                         leadingIcon = {
                             Icon(

@@ -17,10 +17,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.Quiz
-import com.abachta.jetpacktutorial.data.completedCount
+import com.abachta.jetpacktutorial.data.models.completedCount
 import com.abachta.jetpacktutorial.data.getCourseById
 import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.ui.components.LessonCard
@@ -29,7 +30,8 @@ import com.abachta.jetpacktutorial.ui.components.LessonCard
 fun CourseScreen(
     courseData: Screen.Course,
     onLessonClick: (Lesson) -> Unit,
-    onGoToQuiz: (Quiz) -> Unit
+    onGoToQuiz: (Quiz) -> Unit,
+    onGoToChallenge: (CodeChallenge) -> Unit
 ) {
     Column(
         modifier = Modifier.padding(16.dp),
@@ -70,7 +72,7 @@ fun CourseScreen(
                     lesson = lesson,
                     onClick = { onLessonClick(lesson) },
                     onGoToQuiz = onGoToQuiz,
-                    onGoToChallenge = {}
+                    onGoToChallenge = onGoToChallenge
                 )
             }
         }

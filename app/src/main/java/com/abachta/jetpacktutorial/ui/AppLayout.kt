@@ -30,6 +30,7 @@ import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.ui.components.ObserveAsEvents
 import com.abachta.jetpacktutorial.ui.components.TwiceBackHandler
+import com.abachta.jetpacktutorial.ui.screens.ChallengeScreen
 import com.abachta.jetpacktutorial.ui.screens.CourseScreen
 import com.abachta.jetpacktutorial.ui.screens.HomeScreen
 import com.abachta.jetpacktutorial.ui.screens.LessonScreen
@@ -92,13 +93,11 @@ fun AppLayout(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         topBar = {
             TopAppBar(
+                title = { Text(stringResource(titleRes)) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
-                title = {
-                    Text(stringResource(titleRes))
-                },
                 navigationIcon = {
                     IconButton(onClick = {
                         if (isOnHomeScreen) {
@@ -107,17 +106,14 @@ fun AppLayout(
                             navController.navigateUp()
                         }
                     }) {
-                        if (isOnHomeScreen) {
-                            Icon(
-                                imageVector = Icons.Filled.Menu,
-                                contentDescription = null
-                            )
-                        } else {
-                            Icon(
-                                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                contentDescription = null
-                            )
-                        }
+                        val icon = if (isOnHomeScreen) {
+                            Icons.Filled.Menu
+                        } else Icons.AutoMirrored.Filled.ArrowBack
+
+                        Icon(
+                            imageVector = icon,
+                            contentDescription = null
+                        )
                     }
                 }
             )
@@ -157,7 +153,8 @@ fun AppLayout(
                     onLessonClick = { lesson ->
                         navController.navigateToLesson(lesson, arg.id)
                     },
-                    onGoToQuiz = navController::navigateToQuiz
+                    onGoToQuiz = navController::navigateToQuiz,
+                    onGoToChallenge = navController::navigateToChallenge
                 )
             }
 
@@ -168,9 +165,7 @@ fun AppLayout(
                     onBack = navController::navigateUp,
                     onLessonComplete = courseViewModel::markLessonCompleted,
                     onGoToQuiz = navController::navigateToQuiz,
-                    onGoToCodeChallenge = {
-
-                    }
+                    onGoToCodeChallenge = navController::navigateToChallenge
                 )
             }
 
@@ -182,6 +177,14 @@ fun AppLayout(
                     quiz = model,
                     shuffleMode = settingsViewModel.questionShuffling,
                     onQuizFinished = navController::navigateUp
+                )
+            }
+
+            slidingComposable<Screen.Challenge> {
+                val arg = it.toRoute<Screen.Challenge>()
+
+                ChallengeScreen(
+                    challengeData = arg
                 )
             }
         }

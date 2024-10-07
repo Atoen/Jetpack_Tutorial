@@ -51,6 +51,7 @@ import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.getFirstLesson
 import com.abachta.jetpacktutorial.courses.getLessonById
+import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.LessonPage
@@ -64,7 +65,7 @@ fun LessonScreen(
     lessonData: Screen.Lesson,
     onBack: () -> Unit,
     onLessonComplete: (Lesson) -> Unit,
-    onGoToCodeChallenge: () -> Unit,
+    onGoToCodeChallenge: (CodeChallenge) -> Unit,
     onGoToQuiz: (Quiz) -> Unit
 ) {
     val lesson = getLessonById(LessonId(lessonData.lessonId))
@@ -105,7 +106,7 @@ fun LessonScreen(
                     lesson = lesson,
                     onCompleteClick = { onBack() },
                     onQuizClick = onGoToQuiz,
-                    onCodeChallengeClick = { onGoToCodeChallenge() }
+                    onCodeChallengeClick = onGoToCodeChallenge
                 )
             }
         }
@@ -152,7 +153,6 @@ fun LessonScreen(
                         MaterialTheme.colorScheme.onSurface
                     } else MaterialTheme.colorScheme.outlineVariant,
                     modifier = Modifier
-                        .padding(0.dp)
                         .size(12.dp)
                         .clickable {
                             scope.launch {
@@ -194,7 +194,7 @@ private fun LessonFinishedScreen(
     lesson: Lesson,
     onCompleteClick: () -> Unit,
     onQuizClick: (Quiz) -> Unit,
-    onCodeChallengeClick: () -> Unit
+    onCodeChallengeClick: (CodeChallenge) -> Unit
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -207,12 +207,12 @@ private fun LessonFinishedScreen(
             .padding(horizontal = 16.dp)
     ) {
 
-        if (lesson.hasChallenge) {
+        lesson.challenge?.let {
             LessonOptionCard(
                 text = stringResource(R.string.code_challenge),
                 icon = Icons.Filled.Code,
                 containerColor = MaterialTheme.colorScheme.tertiaryContainer,
-                onClick = onCodeChallengeClick
+                onClick = { onCodeChallengeClick(it) }
             )
         }
 
@@ -226,7 +226,7 @@ private fun LessonFinishedScreen(
         }
 
         LessonOptionCard(
-            text = stringResource(R.string.lesson_completed),
+            text = stringResource(R.string.finish_lesson),
             icon = Icons.Filled.Check,
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             onClick = onCompleteClick

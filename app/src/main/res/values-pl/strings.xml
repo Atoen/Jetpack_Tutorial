@@ -24,7 +24,7 @@
     <string name="completed_percent">Ukończono %1$d%%</string>
     <string name="popup_continue">Kontynuuj</string>
     <string name="swipe_to_dismiss">Przesuń, aby ukryć</string>
-    <string name="lesson_completed">Lekcja ukończona</string>
+    <string name="finish_lesson">Lekcja ukończona</string>
 
     <!-- Lessons -->
     <plurals name="lesson_pages">
@@ -209,5 +209,7 @@
     <string name="shuffle_all">Miejszaj pytania i odpowiedzi</string>
     <string name="select_quiz_shuffle">Wybierz tryb losowania</string>
     <string name="quiz_shuffling_mode">Losownanie pytań quizu</string>
+    <string name="challenge_show_code">Pokaż kod</string>
+    <string name="challenge_hide_code">Ukryj kod</string>
 
 </resources>

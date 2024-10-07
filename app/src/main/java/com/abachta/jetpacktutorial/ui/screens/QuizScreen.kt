@@ -112,17 +112,14 @@ fun QuizScreen(
                         ExtendableFloatingActionButton(
                             text = { Text(stringResource(R.string.quiz_check)) },
                             icon = {
-                                if (!currentQuestion.revealed) {
-                                    Icon(
-                                        imageVector = Icons.Filled.Check,
-                                        contentDescription = null
-                                    )
-                                } else {
-                                    Icon(
-                                        imageVector = Icons.AutoMirrored.Filled.ArrowForward,
-                                        contentDescription = null
-                                    )
-                                }
+                                val icon = if (!currentQuestion.revealed) {
+                                    Icons.Filled.Check
+                                } else Icons.AutoMirrored.Filled.ArrowForward
+
+                                Icon(
+                                    imageVector = icon,
+                                    contentDescription = null
+                                )
                             },
                             onClick = {
                                 if (!currentQuestion.revealed) {
@@ -140,43 +137,42 @@ fun QuizScreen(
             }
         }
     ) {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .verticalScroll(rememberScrollState())
-        ) {
-            HorizontalPager(
-                state = pagerState,
-                userScrollEnabled = false,
-                modifier = Modifier
-                    .weight(1f)
-                    .fillMaxSize()
-            ) { page ->
-                if (page < questionCount) {
-                    val question = questions[page]
+        HorizontalPager(
+            state = pagerState,
+            userScrollEnabled = false,
+            modifier = Modifier.fillMaxSize()
+        ) { page ->
+            if (page < questionCount) {
+                val question = questions[page]
+
+                Column(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .verticalScroll(rememberScrollState())
+                ) {
                     QuizQuestionScreen(
                         question = question,
                         shuffleAnswers = shuffleMode.shuffleAnswers
                     )
-                } else {
-                    QuizSummaryScreen(
-                        quiz = quiz,
-                        startAnimatingResult = startAnimatingResult,
-                        onContinue = onQuizFinished,
-                        onRestart = {
-                            scope.launch {
-                                quiz.reset()
-
-                                questions = when (shuffleMode) {
-                                    QuizShufflingOption.NoShuffle -> quiz.questions
-                                    else -> quiz.questions.shuffled()
-                                }
-
-                                pagerState.animateScrollToPage(0)
-                            }
-                        }
-                    )
                 }
+            } else {
+                QuizSummaryScreen(
+                    quiz = quiz,
+                    startAnimatingResult = startAnimatingResult,
+                    onContinue = onQuizFinished,
+                    onRestart = {
+                        scope.launch {
+                            quiz.reset()
+
+                            questions = when (shuffleMode) {
+                                QuizShufflingOption.NoShuffle -> quiz.questions
+                                else -> quiz.questions.shuffled()
+                            }
+
+                            pagerState.animateScrollToPage(0)
+                        }
+                    }
+                )
             }
         }
     }

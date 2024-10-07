@@ -1,6 +1,7 @@
 package com.abachta.jetpacktutorial.ui
 
 import androidx.annotation.StringRes
+import com.abachta.jetpacktutorial.data.ChallengeId
 import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.QuizId
@@ -9,6 +10,7 @@ import kotlinx.serialization.Transient
 
 @Serializable
 sealed class Screen {
+
     @Serializable
     data object Home : Screen()
 
@@ -22,7 +24,7 @@ sealed class Screen {
         val courseId: Int
     ) : Screen() {
         @Transient
-        val id: CourseId = CourseId(courseId)
+        val id = CourseId(courseId)
     }
 
     @Serializable
@@ -33,7 +35,7 @@ sealed class Screen {
         val lessonId: Int
     ) : Screen() {
         @Transient
-        val id: LessonId = LessonId(lessonId)
+        val id = LessonId(lessonId)
     }
 
     @Serializable
@@ -42,6 +44,15 @@ sealed class Screen {
         val quizId: Int
     ) : Screen() {
         @Transient
-        val id: QuizId = QuizId(quizId)
+        val id = QuizId(quizId)
+    }
+
+    @Serializable
+    data class Challenge(
+        @StringRes val titleResId: Int,
+        val challengeId: Int
+    ) : Screen() {
+        @Transient
+        val id = ChallengeId(challengeId)
     }
 }

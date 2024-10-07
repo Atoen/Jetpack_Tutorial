@@ -1,6 +1,7 @@
 package com.abachta.jetpacktutorial.courses.jetpack_basics
 
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.courses.jetpack_basics.challenges.textChallenge
 import com.abachta.jetpacktutorial.courses.jetpack_basics.quizzes.textQuiz
 import com.abachta.jetpacktutorial.data.Lesson
 
@@ -8,7 +9,8 @@ private val text = Lesson(
     titleResId = R.string.lesson_text_title,
     descriptionResId = R.string.TODO,
     pages = textPages,
-    quiz = textQuiz
+    quiz = textQuiz,
+    challenge = textChallenge
 )
 
 private val button = Lesson(
@@ -59,4 +61,8 @@ val jetpackBasicsLessons = listOf(
 
 val jetpackBasicsQuizzes = listOf(
     textQuiz
+)
+
+val jetpackBasicsChallenges = listOf(
+    textChallenge
 )

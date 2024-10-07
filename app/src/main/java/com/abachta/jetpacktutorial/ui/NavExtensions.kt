@@ -16,6 +16,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
@@ -41,6 +42,10 @@ fun NavBackStackEntry?.appBarTitle() : Int {
         return getQuizNameRes()
     }
 
+    if (isOn<Screen.Challenge>()) {
+        return getChallengeNameRes()
+    }
+
     return R.string.app_name
 }
 
@@ -60,6 +65,10 @@ private fun NavBackStackEntry.getLessonNameRes(): Int =
 @StringRes
 private fun NavBackStackEntry.getQuizNameRes(): Int =
     this.toRoute<Screen.Quiz>().titleResId
+
+@StringRes
+private fun NavBackStackEntry.getChallengeNameRes(): Int =
+    this.toRoute<Screen.Challenge>().titleResId
 
 fun <T : Screen> order(screen: KClass<T>): Int {
     return when (screen) {
@@ -161,3 +170,13 @@ fun NavHostController.navigateToQuiz(quiz: Quiz) {
         )
     )
 }
+
+fun NavHostController.navigateToChallenge(challenge: CodeChallenge) {
+    navigate(
+        Screen.Challenge(
+            titleResId = challenge.titleResId,
+            challengeId = challenge.id.value
+        )
+    )
+}
+

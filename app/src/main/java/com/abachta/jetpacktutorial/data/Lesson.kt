@@ -12,7 +12,8 @@ class Lesson(
     @StringRes val descriptionResId: Int,
     val pages: List<LessonPage>,
     val id: LessonId = LessonId.next(),
-    val quiz: Quiz? = null
+    val quiz: Quiz? = null,
+    val challenge: CodeChallenge? = null
 ) {
     val progress = LessonProgress()
 
@@ -23,8 +24,7 @@ class Lesson(
 
     val hasQuiz = quiz != null
 
-    val hasChallenge
-        get() = true
+    val hasChallenge = challenge != null
 
     fun complete() = progress.complete()
 }

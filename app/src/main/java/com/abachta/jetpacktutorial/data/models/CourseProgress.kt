@@ -1,8 +1,9 @@
-package com.abachta.jetpacktutorial.data
+package com.abachta.jetpacktutorial.data.models
 
 import androidx.annotation.FloatRange
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import com.abachta.jetpacktutorial.data.Lesson
 
 class CourseProgress(private val lessons: List<Lesson>) {
 

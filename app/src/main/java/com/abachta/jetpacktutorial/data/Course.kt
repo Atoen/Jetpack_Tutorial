@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
+import com.abachta.jetpacktutorial.data.models.CourseProgress
 
 sealed class Course(
     @StringRes val titleResId: Int,

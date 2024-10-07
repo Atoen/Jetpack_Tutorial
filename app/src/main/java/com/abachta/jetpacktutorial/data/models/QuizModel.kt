@@ -40,13 +40,11 @@ class QuizModel(
     }
 
     companion object {
-        fun crate(quiz: Quiz): QuizModel {
-            return QuizModel(
-                titleResId = quiz.titleResId,
-                questions = quiz.questions.map(QuizQuestionModel::create),
-                id = quiz.id
-            )
-        }
+        fun crate(quiz: Quiz) = QuizModel(
+            titleResId = quiz.titleResId,
+            questions = quiz.questions.map(QuizQuestionModel::create),
+            id = quiz.id
+        )
     }
 }
 
@@ -73,13 +71,11 @@ class QuizQuestionModel(
     }
 
     companion object {
-        fun create(quizQuestion: QuizQuestion): QuizQuestionModel {
-            return QuizQuestionModel(
-                textResId = quizQuestion.textResId,
-                content = quizQuestion.content,
-                answers = quizQuestion.answers.map(QuizAnswerModel::create)
-            )
-        }
+        fun create(quizQuestion: QuizQuestion) = QuizQuestionModel(
+            textResId = quizQuestion.textResId,
+            content = quizQuestion.content,
+            answers = quizQuestion.answers.map(QuizAnswerModel::create)
+        )
     }
 }
 
@@ -97,11 +93,9 @@ class QuizAnswerModel(
     }
 
     companion object {
-        fun create(quizAnswer: QuizAnswer): QuizAnswerModel {
-            return QuizAnswerModel(
-                textResId = quizAnswer.textResId,
-                isCorrect = quizAnswer.isCorrect
-            )
-        }
+        fun create(quizAnswer: QuizAnswer) = QuizAnswerModel(
+            textResId = quizAnswer.textResId,
+            isCorrect = quizAnswer.isCorrect
+        )
     }
 }
