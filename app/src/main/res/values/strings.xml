@@ -45,7 +45,9 @@
         <item quantity="many">incorrect answers</item>
     </plurals>
 
-    <string name="compose_introduction_title">What is Jetpack Compose?</string>
+
+
+    <string name="lesson_introduction_title">What is Jetpack Compose?</string>
     <string name="setting_up_environment_title">Setting up environment</string>
     <string name="creating_first_component_title">Creating first component</string>
     <string name="completed_n_of">Completed %1$d of %2$d lessons</string>
@@ -201,20 +203,20 @@
     <string name="toast_2_1">You can add callbacks to the toast to know when it is shown and hidden.\nTo do this you can create an object inheriting from |Toast.Callback| and register it using the |addCallback| method.</string>
     <string name="toast_3_1">You can limit the time the toast is visible by calling the |cancel| method to hide it early.</string>
 
-    <string name="quiz_question_1" translatable="false">Which Composable is used to display text in Jetpack Compose?</string>
-    <string name="quiz_answer_1_1" translatable="false">Text</string>
-    <string name="quiz_answer_1_2" translatable="false">Label</string>
-    <string name="quiz_answer_1_3" translatable="false">Paragraph</string>
+    <string name="quiz_text_1">Which Composable is used to display text in Jetpack Compose?</string>
+    <string name="quiz_text_1_1">Text</string>
+    <string name="quiz_text_1_2">Label</string>
+    <string name="quiz_text_1_3">Paragraph</string>
 
-    <string name="quiz_question_2" translatable="false">How can you change the font size of Text in Jetpack Compose?</string>
-    <string name="quiz_answer_2_1" translatable="false">Use the fontModifier</string>
-    <string name="quiz_answer_2_2" translatable="false">Use the fontSize parameter in TextStyle</string>
-    <string name="quiz_answer_2_3" translatable="false">Text size cannot be changed</string>
+    <string name="quiz_text_2">How can you change the font size of Text in Jetpack Compose?</string>
+    <string name="quiz_text_2_1">Applying the FontModifier to the text</string>
+    <string name="quiz_text_2_2">Using the fontSize parameter</string>
+    <string name="quiz_text_2_3">The font size cannot be changed</string>
 
-    <string name="quiz_question_3" translatable="false">Which parameter would you use to change the color of Text?</string>
-    <string name="quiz_answer_3_1" translatable="false">fontColor</string>
-    <string name="quiz_answer_3_2" translatable="false">textModifier</string>
-    <string name="quiz_answer_3_3" translatable="false">color in TextStyle</string>
+    <string name="quiz_text_3">Which parameter would you use to change the color of Text?</string>
+    <string name="quiz_text_3_1" translatable="false">fontColor</string>
+    <string name="quiz_text_3_2" translatable="false">tint</string>
+    <string name="quiz_text_3_3" translatable="false">color</string>
     <string name="quiz_question_n_of">Question %1$d of %2$d</string>
     <string name="quiz_check">Check</string>
     <string name="lesson_more_quiz">Go to quiz</string>
@@ -232,4 +234,73 @@
     <string name="quiz_shuffling_mode">Quiz question shuffling</string>
     <string name="challenge_show_code">Show code</string>
     <string name="challenge_hide_code">Hide code</string>
+    <string name="quiz_text_4">What class can store the text and its visual style?</string>
+    <string name="quiz_text_4_1" translatable="false">StyledText</string>
+    <string name="quiz_text_4_2" translatable="false">ColoredSpan</string>
+    <string name="quiz_text_4_3" translatable="false">AnnotatedString</string>
+    <string name="introduction_1_heading">Jetpack Compose</string>
+    <string name="introduction_1_1">Jetpack Compose is recommended toolkit for building UI for Android apps.\nIt simplifies and accelerates UI development, allowing you to create your app with less code, useful tools and intuitive Kotlin APIs.</string>
+    <string name="introduction_2_heading">Declarative UI with composables</string>
+    <string name="introduction_2_1">In Jetpack Compose, UI elements are created as functions, called composables.\nThese functions describe the UI\'s structure and appearance in a declarative manner.</string>
+    <string name="introduction_2_2">Changes in state of the composables automatically triggers updates to the UI, removing the need for manual refreshes.</string>
+    <string name="introduction_3_heading">Key benefits of Jetpack Compose</string>
+    <string name="introduction_3_1">"Jetpack Compose offers several key benefits, compared to traditional XML-based approach: "</string>
+    <string name="introduction_3_2">Better code readability</string>
+    <string name="introduction_3_3">Easier maintainability</string>
+    <string name="introduction_3_4">Easily adaptable in existing projects</string>
+    <string name="introduction_3_5">Features like live preview,  hot reload and full Android Studio support makes developing with Jetpack Compose easier and faster.</string>
+    <string name="lesson_setting_up_environment_title">Setting up environment</string>
+    <string name="setting_up_1_1">For the best experience developing with Compose, download and install Android Studio.\nIt includes many smart editor features, such as new project templates and the ability to immediately preview your UI and animations.</string>
+    <string name="setting_up_1_2">Creating new project</string>
+    <string name="setting_up_1_3">To create a new project that has Jetpack Compose setup correctly, proceed as follows:</string>
+    <string name="setting_up_1_4">Click *Start a new Android Studio project*.</string>
+    <string name="setting_up_1_5">In the *Select a Project Template* window, select *Empty Activity* and click *Next*.</string>
+    <string name="setting_up_1_6">In the *Configure your project* window set the *Name*, *Package name* and *Save location* as you normally would.\nIn the *Minimum API level* dropdown menu, select API level 21 or higher.</string>
+    <string name="setting_up_1_7">Click *Finish*.</string>
+    <string name="setting_up_1_heading" translatable="false">Android Studio</string>
+    <string name="setting_up_2_heading">Setting up an existing app</string>
+    <string name="setting_up_2_1">Configure the Compose compiler using the *Compose Compiler Gradle* plugin and add the following definition to your app\'s |build.gradle| file:</string>
+    <string name="setting_up_2_2">Setting the |compose| flag to |true| inside the build features block enables Compose functionality in Android Studio.</string>
+    <string name="setting_up_2_3">Finally, add the Compose BOM and the Compose libraries you plan to use in the |dependencies| block:</string>
+    <string name="setting_up_3_heading">Jetpack Compose sample apps</string>
+    <string name="setting_up_3_1">The fastest way to experiment with the Jetpack Compose is by trying the sample apps.\nTo import a sample app project from Android Studio, proceed as follows:</string>
+    <string name="setting_up_3_2">In the Android Studio welcome screen select *Import an Android code sample*.</string>
+    <string name="setting_up_3_3">In the top search bar type \"compose\".</string>
+    <string name="setting_up_3_4">Select one of the Jetpack Compose sample apps from the search results and click *Next*.</string>
+    <string name="setting_up_3_6">Change the *Application name* and *Project location* or keep the default values.</string>
+    <string name="setting_up_3_5">Click *Finish*.</string>
+    <string name="setting_up_3_7">Android Studio downloads the sample app and open the projects.\nYou can then inspect |MainActivity.kt| file to see example usage of Jetpack Compose APIs.</string>
+    <string name="setting_up_4_heading">Running your app on virtual devices</string>
+    <string name="setting_up_4_1">The Android Emulator lets you test your app on many different virtual devices. The emulator is bundled with Android Studio.\nTo use the emulator follow these steps:</string>
+    <string name="setting_up_4_2">Emulator system requirements</string>
+    <string name="setting_up_4_3" translatable="false">16 GB RAM</string>
+    <string name="setting_up_4_4">64-bit Windows 10 or higher, MacOS 12 or higher, Linux, or ChromeOS operating system</string>
+    <string name="setting_up_4_5">16 GB disk space</string>
+    <string name="setting_up_4_6">Create an Android Virtual Device (AVD)</string>
+    <string name="setting_up_4_7">Each instance of the Android Emulator uses and AVD to specify the Android version and hardware of the simulated device.\nTo create an AVD you can use the *Device Manager*.</string>
+    <string name="setting_up_4_8">After creating the AVD you can start the Android Emulator and run your project:</string>
+    <string name="setting_up_4_9">In the toolbar, select the AVD you want to run your app on.</string>
+    <string name="setting_up_4_10">Click *Run*. The emulator might take a while to launch for the first time.</string>
+    <string name="setting_up_5_heading">Running your app on a local device</string>
+    <string name="setting_up_5_1">Before you can launch you app on your device you need to enable *USB debugging* in the *Developer options*.\nAfter connecting your device to the computer via USB cable you can click *Run* in Android studio to build and start the application on the device.</string>
+    <string name="quiz_introduction_1">Which programming language is primarily used in Jetpack Compose?</string>
+    <string name="quiz_introduction_1_2" translatable="false">Kotlin</string>
+    <string name="quiz_introduction_1_3" translatable="false">Java</string>
+    <string name="quiz_introduction_1_1" translatable="false">C++</string>
+    <string name="quiz_introduction_2">What is the name of a UI element in Jetpack Compose?</string>
+    <string name="quiz_introduction_2_1" translatable="false">Composable</string>
+    <string name="quiz_introduction_2_2" translatable="false">View</string>
+    <string name="quiz_introduction_2_3" translatable="false">Widget</string>
+    <string name="quiz_introduction_3">How is a composable defined in Jetpack Compose?</string>
+    <string name="quiz_introduction_3_1">As a class</string>
+    <string name="quiz_introduction_3_2">As a function</string>
+    <string name="quiz_introduction_3_3">As a constant</string>
+    <string name="quiz_setting_up_1">Which IDE is recommended for Jetpack Compose?</string>
+    <string name="quiz_setting_up_2">Does Android Studio allow for testing applications on virtual devices?</string>
+    <string name="quiz_setting_up_1_1" translatable="false">InteliJ IDEA</string>
+    <string name="quiz_setting_up_1_2" translatable="false">Visual Studio</string>
+    <string name="quiz_setting_up_1_3" translatable="false">Android Studio</string>
+    <string name="quiz_setting_up_2_1">Yes, using the Phone Virtualization System</string>
+    <string name="quiz_setting_up_2_2">Yes, using the Android Emulator</string>
+    <string name="quiz_setting_up_2_3">No</string>
 </resources>

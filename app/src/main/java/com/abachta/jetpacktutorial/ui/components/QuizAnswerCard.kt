@@ -140,7 +140,7 @@ private fun QuizAnswerCardPreview() {
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         QuizAnswerCard(
-            textResId = R.string.quiz_answer_1_1,
+            textResId = R.string.quiz_text_1_1,
             isSelected = true,
             isCorrect = false,
             isRevealed = false,
@@ -148,7 +148,7 @@ private fun QuizAnswerCardPreview() {
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_answer_1_2,
+            textResId = R.string.quiz_text_1_2,
             isSelected = false,
             isCorrect = false,
             isRevealed = false,
@@ -156,28 +156,28 @@ private fun QuizAnswerCardPreview() {
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_answer_1_1,
+            textResId = R.string.quiz_text_1_1,
             isSelected = true,
             isCorrect = true,
             onClick = { }
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_answer_1_2,
+            textResId = R.string.quiz_text_1_2,
             isSelected = true,
             isCorrect = false,
             onClick = { }
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_answer_1_3,
+            textResId = R.string.quiz_text_1_3,
             isSelected = false,
             isCorrect = true,
             onClick = { }
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_answer_1_3,
+            textResId = R.string.quiz_text_1_3,
             isSelected = false,
             isCorrect = false,
             onClick = { }

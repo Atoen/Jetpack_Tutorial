@@ -4,6 +4,7 @@ import android.util.Log
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
+import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedQuizzes
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsChallenges
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsQuizzes
@@ -18,6 +19,7 @@ val allLessons = listOf(
 ).flatten()
 
 val allQuizzes = listOf(
+    gettingStartedQuizzes,
     jetpackBasicsQuizzes
 ).flatten()
 

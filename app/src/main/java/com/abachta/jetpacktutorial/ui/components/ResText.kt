@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -14,8 +15,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -24,38 +27,49 @@ import com.abachta.jetpacktutorial.R
 @Composable
 fun ResText(
     @StringRes resId: Int,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    style: TextStyle = LocalTextStyle.current
 ) {
     val text = stringResource(resId)
 
-    if ('|' in text) {
+    if ('|' in text || '*' in text) {
         Text(
-            text = parseMonospaceText(text, MaterialTheme.colorScheme.outlineVariant),
-            modifier = modifier
+            text = parseFormattedText(text, MaterialTheme.colorScheme.outlineVariant),
+            modifier = modifier,
+            style = style
         )
     } else {
         Text(
             text = text,
-            modifier = modifier
+            modifier = modifier,
+            style = style
         )
     }
 }
 
-private val pattern = Regex("\\|(.*?)\\|")
+private const val monospacePattern = "\\|(.*?)\\|"
+private const val boldPattern = "\\*(.*?)\\*"
 
-fun parseMonospaceText(text: String, backgroundColor: Color): AnnotatedString {
+private val combinedPattern = Regex(
+    "$monospacePattern|$boldPattern"
+)
+
+private val boldStyle = SpanStyle(fontWeight = FontWeight.Bold)
+
+fun parseFormattedText(text: String, backgroundColor: Color): AnnotatedString {
     return buildAnnotatedString {
         var currentIndex = 0
-        val style = SpanStyle(
+        val monospaceStyle = SpanStyle(
             fontFamily = FontFamily.Monospace,
             background = backgroundColor
         )
 
-        pattern.findAll(text).forEach { match ->
+        combinedPattern.findAll(text).forEach { match ->
             append(text.substring(currentIndex, match.range.first))
 
-            withStyle(style = style) {
-                append(match.groupValues[1])
+            when {
+                match.groups[1] != null -> withStyle(monospaceStyle) { append(match.groupValues[1]) }
+                match.groups[2] != null -> withStyle(boldStyle) { append(match.groupValues[2]) }
             }
 
             currentIndex = match.range.last + 1

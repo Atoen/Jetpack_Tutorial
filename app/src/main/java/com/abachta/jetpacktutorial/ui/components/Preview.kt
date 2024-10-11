@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun Preview(
     modifier: Modifier = Modifier,
+    showBorder: Boolean = true,
     content: @Composable () -> Unit,
 ) {
     var magnifierCenter by remember { mutableStateOf(Offset.Unspecified) }
@@ -28,7 +29,9 @@ fun Preview(
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .border(2.dp, MaterialTheme.colorScheme.tertiaryContainer)
+            .then(if (showBorder) {
+                Modifier.border(2.dp, MaterialTheme.colorScheme.tertiaryContainer)
+            } else Modifier)
             .padding(8.dp)
             .magnifier(
                 sourceCenter = { magnifierCenter },
