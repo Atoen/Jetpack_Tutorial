@@ -46,7 +46,7 @@ private val image_1 = LessonPage (
         code = """
             @Composable
             fun SimpleImage() {
-                Image(
+                c-Image(
                     painter = painterResource(R.drawable.image_dog),
                     contentDescription = null
                 )
@@ -73,7 +73,7 @@ private val image_2 = LessonPage (
         code = """
             @Composable
             fun VectorImage() {
-                Image(
+                c-Image(
                     painter = painterResource(R.drawable.chart_histogram),
                     contentDescription = null
                 )
@@ -101,7 +101,7 @@ private val image_3 = LessonPage (
         code = """
             @Composable
             fun TransparentImage() {
-                Image(
+                c-Image(
                     painter = painterResource(R.drawable.image_dog),
                     contentDescription = null,
                     alpha = alpha
@@ -141,7 +141,7 @@ private val image_4 = LessonPage (
         code = """
             @Composable
             fun SaturatedImage() {
-                Image(
+                c-Image(
                     painter = painterResource(R.drawable.image_dog),
                     contentDescription = null,
                     colorFilter = ColorFilter.colorMatrix(
@@ -189,7 +189,7 @@ private val image_5 = LessonPage (
         code = """
             @Composable
             fun TintedImage() {
-                Image(
+                c-Image(
                     painter = painterResource(R.drawable.image_dog),
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(Color.Yellow, blendMode = <blend mode>)
@@ -240,7 +240,7 @@ private val image_6 = LessonPage (
         code = """
             @Composable
             fun ScaledImage() {
-                Image(
+                c-Image(
                     painter = painterResource(R.drawable.image_dog_portrait),
                     contentDescription = null,
                     contentScale = <content scale>,

@@ -68,10 +68,10 @@ private val modifier_1 = LessonPage (
         code = """
             @Composable
             fun CardWithModifier() {
-                 Card(
+                 c-Card(
                     modifier = Modifier.size(width = 200.dp, height = 120.dp)
                 ) {
-                    Text(
+                    c-Text(
                         text = "Text card",
                         modifier = Modifier.padding(16.dp)
                     )
@@ -104,7 +104,7 @@ private val modifier_2 = LessonPage (
         code = """
             @Composable
             fun ModifierOrdering() {
-                Text(
+                c-Text(
                     text = "Text display",
                     modifier = Modifier
                         .padding(16.dp)
@@ -127,7 +127,7 @@ private val modifier_2 = LessonPage (
         code = """
             @Composable
             fun ModifierOrdering() {
-                Text(
+                c-Text(
                     text = "Text display",
                     modifier = Modifier
                         .background(Color.Red)
@@ -157,13 +157,13 @@ private val modifier_3 = LessonPage (
         code = """
             @Composable
             fun Sizing() {
-                Button(
+                c-Button(
                     onClick = {},
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(60.dp)
                 ) {
-                    Text("Button")
+                    c-Text("Button")
                 }
             }
         """.trimIndent()
@@ -184,13 +184,13 @@ private val modifier_3 = LessonPage (
         code = """
             @Composable
             fun Sizing() {
-                Button(
+                c-Button(
                     onClick = {},
                     modifier = Modifier
                         .fillMaxSize(0.7f)
                         .height(40.dp)
                 ) {
-                    Text("Button")
+                    c-Text("Button")
                 }
             }
         """.trimIndent()
@@ -218,8 +218,8 @@ private val modifier_4 = LessonPage (
         code = """
             @Composable
             fun PaddedButton() {
-                Button(onClick = {}) {
-                    Text(
+                c-Button(onClick = {}) {
+                    c-Text(
                         text = "Button",
                         modifier = Modifier.padding(10.dp)
                     )
@@ -241,8 +241,8 @@ private val modifier_4 = LessonPage (
         code = """
             @Composable
             fun PaddedButton() {
-                Button(onClick = {}) {
-                    Text(
+                c-Button(onClick = {}) {
+                    c-Text(
                         text = "Button",
                         modifier = Modifier.padding(horizontal = 40.dp, vertical = 10.dp)
                     )
@@ -271,13 +271,13 @@ private val modifier_5 = LessonPage (
         code = """
             @Composable
             fun verticalScrollable() {
-                Box(
+                c-Box(
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(100.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    Text(stringResource(R.string.lorem_ipsum))
+                    c-Text(stringResource(R.string.lorem_ipsum))
                 }
             }
         """.trimIndent()
@@ -298,10 +298,10 @@ private val modifier_5 = LessonPage (
         code = """
             @Composable
             fun horizontalScrollable() {
-                Box(
+                c-Box(
                     modifier = Modifier.horizontalScroll(rememberScrollState())
                 ) {
-                    Text(stringResource(R.string.lorem_ipsum))
+                    c-Text(stringResource(R.string.lorem_ipsum))
                 }
             }
         """.trimIndent()
@@ -327,12 +327,12 @@ private val modifier_6 = LessonPage (
             @Composable
             fun Clicking() {
                 var count by remember { mutableIntStateOf(0) }
-                Box(
+                c-Box(
                     modifier = Modifier
                         .size(width = 120.dp, height = 100.dp)
                         .clickable { count++ }
                 ) {
-                    Text("Count: ${'$'}count")
+                    c-Text("Count: ${'$'}count")
                 }
             }
         """.trimIndent()
@@ -358,7 +358,7 @@ private val modifier_6 = LessonPage (
             @OptIn(ExperimentalFoundationApi::class)
             fun CombinedClicking() {
                 var count by remember { mutableIntStateOf(0) }
-                Box(
+                c-Box(
                     modifier = Modifier
                         .size(width = 120.dp, height = 60.dp)
                         .combinedClickable(
@@ -367,7 +367,7 @@ private val modifier_6 = LessonPage (
                             onLongClick = { count *= 2 }
                         )
                 ) {
-                    Text("Count: ${'$'}count")
+                    c-Text("Count: ${'$'}count")
                 }
             }
         """.trimIndent()
@@ -402,7 +402,7 @@ private val modifier_7 = LessonPage (
             @Composable
             fun HorizontalDrag() {
                 var offsetX by remember { mutableStateOf(0f) }
-                Text(
+                c-Text(
                     modifier = Modifier
                         .offset { IntOffset(offsetX.roundToInt(), 0) }
                         .draggable(
@@ -439,7 +439,7 @@ private val modifier_7 = LessonPage (
                 var offsetX by remember { mutableFloatStateOf(0f) }
                 var offsetY by remember { mutableFloatStateOf(0f) }
         
-                Icon(
+                c-Icon(
                     imageVector = Icons.Filled.OpenWith,
                     contentDescription = null,
                     Modifier
@@ -488,11 +488,11 @@ private val modifier_8 = LessonPage (
             fun AnimatedSize() {
                 var short by remember { mutableStateOf(true) }
         
-                Button(
+                c-Button(
                     onClick = { short = !short },
                     modifier = Modifier.animateContentSize()
                 ) {
-                    Text(
+                    c-Text(
                         text = if (short) "short" else "Longer text that spans\nmultiple lines",
                         modifier = Modifier.animateContentSize()
                     )
@@ -526,7 +526,7 @@ private val modifier_9 = LessonPage (
         code = """
             @Composable
             fun BlurredText() {
-                Text(
+                c-Text(
                     text = "Blurred text",
                     modifier = Modifier.blur(2.dp)
                 )
@@ -545,7 +545,7 @@ private val modifier_9 = LessonPage (
         code = """
             @Composable
             fun BlurredImage() {
-                Image(
+                c-Image(
                     painter = painterResource(R.drawable.image_dog_portrait),
                     contentDescription = null,
                     modifier = Modifier.blur(
@@ -579,7 +579,7 @@ private val modifier_10 = LessonPage (
         code = """
             @Composable
             fun ClippingShapes() {
-                Image(
+                c-Image(
                     painter = painterResource(R.drawable.image_dog_portrait),
                     contentDescription = null,
                     modifier = Modifier
@@ -611,14 +611,17 @@ private val modifier_11 = LessonPage (
 
     CodeListing(
         code = """
-            Button(
-                onClick = {},
-                modifier = Modifier.semantics { 
-                    role = Role.Button
-                    stateDescription = "Enabled button"
+            @Composable
+            fun SemanticsButton() {
+                c-Button(
+                    onClick = {},
+                    modifier = Modifier.semantics { 
+                        role = Role.Button
+                        stateDescription = "Enabled button"
+                    }
+                ) {
+                    c-Text("Button")
                 }
-            ) {
-                Text("Button")
             }
         """.trimIndent()
     )
@@ -647,14 +650,14 @@ private val modifier_12 = LessonPage (
             @Composable
             fun ConditionalModifier() {
                 var toggled by remember { mutableStateOf(false) }
-                Button(
+                c-Button(
                     onClick = { toggled = !toggled },
                     modifier = Modifier
                         .fillMaxWidth()
                         .then(if (toggled) Modifier.padding(20.dp) else Modifier)
                         .height(50.dp)
                 ) {
-                    Text("Toggle modifier")
+                    c-Text("Toggle modifier")
                 }
             }
         """.trimIndent()
@@ -687,9 +690,9 @@ private val modifier_13 = LessonPage (
                 .background(Color.Blue)
                 .padding(16.dp)
 
-            Text("Text 1", customModifier)
+            c-Text("Text 1", customModifier)
             
-            Text("Text 2", customModifier)
+            c-Text("Text 2", customModifier)
         """.trimIndent()
     )
 

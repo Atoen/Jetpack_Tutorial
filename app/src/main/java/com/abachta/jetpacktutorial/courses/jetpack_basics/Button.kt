@@ -51,8 +51,8 @@ private val button_1 = LessonPage(
         code = """
             @Composable
             fun ButtonWithText() {
-                Button(onClick = {}) {
-                    Text("Button")
+                c-Button(onClick = {}) {
+                    c-Text("Button")
                 }
             }
         """.trimIndent()
@@ -70,11 +70,11 @@ private val button_1 = LessonPage(
         code = """
             @Composable
             fun DisabledButton() {
-                Button(
+                c-Button(
                     onClick = {},
                     enabled = false
                 ) {
-                    Text("Button")
+                    c-Text("Button")
                 }
             }
         """.trimIndent()
@@ -102,10 +102,10 @@ private val button_2 = LessonPage(
             fun ButtonWithAction() {
                 var count by remember { mutableIntStateOf(0) }
                 
-                Button(onClick = {
+                c-Button(onClick = {
                     count++
                 }) {
-                    Text("Count: ${'$'}count")
+                    c-Text("Count: ${'$'}count")
                 }
             }
         """.trimIndent()
@@ -134,24 +134,24 @@ private val button_3 = LessonPage (
         code = """
             @Composable
             fun ButtonTypes() {
-                Button(onClick = {}) { 
-                    Text("Filled")
+                c-Button(onClick = {}) { 
+                    c-Text("Filled")
                 }
         
-                FilledTonalButton (onClick = {}) {
-                    Text("Tonal")
+                c-FilledTonalButton (onClick = {}) {
+                    c-Text("Tonal")
                 }
         
-                OutlinedButton(onClick = {}) {
-                    Text("Outlined")
+                c-OutlinedButton(onClick = {}) {
+                    c-Text("Outlined")
                 }
         
-                ElevatedButton(onClick = {}) {
-                    Text("Elevated")
+                c-ElevatedButton(onClick = {}) {
+                    c-Text("Elevated")
                 }
         
-                TextButton(onClick = {}) {
-                    Text("Text")
+                c-TextButton(onClick = {}) {
+                    c-Text("Text")
                 }
             }
         """.trimIndent()
@@ -195,22 +195,22 @@ private val button_4 = LessonPage (
         code = """
             @Composable
             fun IconButtonTypes() {
-                IconButton (onClick = {}) {
-                    Icon(
+                c-IconButton (onClick = {}) {
+                    c-Icon(
                         imageVector = Icons.Filled.Check,
                         contentDescription = null
                     )
                 }
     
-                FilledIconButton(onClick = {}) {
-                    Icon(
+                c-FilledIconButton(onClick = {}) {
+                    c-Icon(
                         imageVector = Icons.Filled.Check,
                         contentDescription = null
                     )
                 }
     
-                OutlinedIconButton(onClick = {}) {
-                    Icon(
+                c-OutlinedIconButton(onClick = {}) {
+                    c-Icon(
                         imageVector = Icons.Filled.Check,
                         contentDescription = null
                     )
@@ -260,11 +260,11 @@ private val button_5 = LessonPage (
             fun ToggleIconButton() {
                 var checked by remember { mutableStateOf(false) }
     
-                FilledIconToggleButton(
+                c-FilledIconToggleButton(
                     checked = checked,
                     onCheckedChange = { checked = !checked }
                 ) {
-                    Icon(
+                    c-Icon(
                         imageVector = if (checked) Icons.Filled.Check else Icons.Filled.Close,
                         contentDescription = null
                     )
@@ -334,19 +334,19 @@ private val button_6 = LessonPage (
                     disabledContentColor = Color.Blue
                 )
                 
-                Button(
+                c-Button(
                     onClick = {},
                     colors = colors
                 ) {
-                    Text("Colorful")
+                    c-Text("Colorful")
                 }
         
-                Button(
+                c-Button(
                     onClick = {},
                     colors = colors,
                     enabled = false
                 ) {
-                    Text("Colorful")
+                    c-Text("Colorful")
                 }
             }
         """.trimIndent()
@@ -391,7 +391,7 @@ private val button_7 = LessonPage (
         code = """
             @Composable
             fun ShapedButton() {
-                Button(
+                c-Button(
                     onClick = {},
                     shape = CutCornerShape(percent = 25),
                     contentPadding = PaddingValues(
@@ -401,7 +401,7 @@ private val button_7 = LessonPage (
                         bottom = 20.dp
                     )
                 ) {
-                    Text("Custom shape")
+                    c-Text("Custom shape")
                 }
             }
         """.trimIndent()
@@ -433,14 +433,14 @@ private val button_8 = LessonPage (
         code = """
             @Composable
             fun ButtonBorders() {
-                Button(
+                c-Button(
                     onClick = {},
                     border = BorderStroke(
                         width = 1.dp,
                         color = Color.Red
                     )
                 ) {
-                    Text("Custom shape")
+                    c-Text("Custom shape")
                 }
     
                 val gradientBrush = Brush.linearGradient(
@@ -449,14 +449,14 @@ private val button_8 = LessonPage (
                     end = Offset(100f, 100f)
                 )
     
-                Button(
+                c-Button(
                     onClick = {},
                     border = BorderStroke(
                         width = 5.dp,
                         brush = gradientBrush
                     )
                 ) {
-                    Text("Custom shape")
+                    c-Text("Custom shape")
                 }
             }
         """.trimIndent()

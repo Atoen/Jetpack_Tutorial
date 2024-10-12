@@ -35,6 +35,7 @@ private data class CodeColors(
     val keyword: Color,
     val annotation: Color,
     val string: Color,
+    val composable: Color,
     val comment: Color
 )
 
@@ -42,6 +43,7 @@ private data class CodeTokenStyle(
     val keywords: SpanStyle,
     val annotations: SpanStyle,
     val strings: SpanStyle,
+    val composables: SpanStyle,
     val comments: SpanStyle
 ) {
     companion object {
@@ -50,6 +52,7 @@ private data class CodeTokenStyle(
                 keywords = SpanStyle(color = colors.keyword),
                 annotations = SpanStyle(color = colors.annotation),
                 strings = SpanStyle(color = colors.string),
+                composables = SpanStyle(color = colors.composable),
                 comments = SpanStyle(color = colors.comment, fontStyle = FontStyle.Italic)
             )
         }
@@ -60,6 +63,7 @@ private val lightCodeColors = CodeColors(
     keyword = Color(0xFF1155D6),
     annotation = Color(0xFF818102),
     string = Color(0xFF0294A2),
+    composable = Color(0xFF029A02),
     comment =  Color(0xFF717171)
 )
 
@@ -67,16 +71,18 @@ private val darkCodeColors = CodeColors(
     keyword = Color(0xFF6B94E9),
     annotation = Color(0xFFBAB429),
     string = Color(0xFF65C1CA),
+    composable = Color(0xFF6BB289),
     comment =  Color(0xFF8F8F8F)
 )
 
-private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null|class|override)\\b"
+private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null|class|override|import|super)\\b"
 private const val annotationPattern = "@\\w+"
 private const val stringPattern = "\"(.*?)\""
 private const val commentPattern = "//.*"
+private const val composablePattern = "\\bc-(\\w+)\\b"
 
 private val combinedPattern = Regex(
-    "($annotationPattern)|($stringPattern)|($commentPattern)|$keywordPattern"
+    "($annotationPattern)|($stringPattern)|($commentPattern)|$composablePattern|$keywordPattern"
 )
 
 private fun highlightSyntax(
@@ -93,7 +99,8 @@ private fun highlightSyntax(
                 match.groups[1] != null -> withStyle(style.annotations) { append(match.value) }
                 match.groups[2] != null -> withStyle(style.strings) { append(match.value) }
                 match.groups[4] != null -> withStyle(style.comments) { append(match.value) }
-                match.groups[5] != null -> withStyle(style.keywords) { append(match.value) }
+                match.groups[5] != null -> withStyle(style.composables) { append(match.groupValues[5]) }
+                match.groups[6] != null -> withStyle(style.keywords) { append(match.value) }
             }
 
             currentIndex = match.range.last + 1
@@ -142,7 +149,7 @@ fun CodeListing(
             .background(MaterialTheme.colorScheme.surfaceVariant)
             .padding(8.dp)
     ) {
-        if (titlePosition == CodeListingTitlePosition.Top) {
+        if (titlePosition is CodeListingTitlePosition.Top) {
             title?.let { it() }
         }
 
@@ -160,7 +167,7 @@ fun CodeListing(
             }
         }
 
-        if (titlePosition == CodeListingTitlePosition.Bottom) {
+        if (titlePosition is CodeListingTitlePosition.Bottom) {
             title?.let { it() }
         }
     }
@@ -171,12 +178,12 @@ fun CodeListing(
 private fun CodeListingPreview() {
     CodeListing(
         code = """
-                @Composable
-                fun Greeting(name: String) {
-                    // This is a greeting function with a very long comment text line
-                    val greeting = "Hello, ${'$'}name!"
-                    Text(text = greeting)
-                }
-            """.trimIndent()
+            @Composable
+            fun Greeting(name: String) {
+                // This is a greeting function with a very long comment text line
+                val greeting = "Hello, ${'$'}name!"
+                c-Text(text = greeting)
+            }
+        """.trimIndent()
     )
 }

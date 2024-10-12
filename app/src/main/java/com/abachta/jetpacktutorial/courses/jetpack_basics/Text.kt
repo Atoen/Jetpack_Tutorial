@@ -36,7 +36,7 @@ private val text_1 = LessonPage(
         code = """
             @Composable
             fun SimpleText() {
-                Text("Hello, World!")
+                c-Text("Hello, World!")
             }
         """.trimIndent()
     )
@@ -60,7 +60,7 @@ private val text_2 = LessonPage (
         code = """
             @Composable
             fun BigText() {
-                Text("Hello, World!", color = Color.Blue)
+                c-Text("Hello, World!", color = Color.Blue)
             }
         """.trimIndent()
     )
@@ -75,7 +75,7 @@ private val text_2 = LessonPage (
         code = """
             @Composable
             fun BlueText() {
-                Text("Hello, World!", fontSize = 30.sp)
+                c-Text("Hello, World!", fontSize = 30.sp)
             }
         """.trimIndent()
     )
@@ -95,7 +95,7 @@ private val text_3 = LessonPage(
         code = """
             @Composable
             fun MonospaceText() {
-                Text("Hello, World!", fontFamily = FontFamily.Monospace)
+                c-Text("Hello, World!", fontFamily = FontFamily.Monospace)
             }
         """.trimIndent()
     )
@@ -114,7 +114,7 @@ private val text_3 = LessonPage(
                     Font(R.font.jacquarda_bastarda_9)
                 )
         
-                Text("Hello, World!", fontFamily = fontFamily)
+                c-Text("Hello, World!", fontFamily = fontFamily)
             }
         """.trimIndent()
     )
@@ -138,7 +138,7 @@ private val text_4 = LessonPage(
         code = """
             @Composable
             fun ItalicText() {
-                Text("Hello, World!", fontStyle = FontStyle.Italic)
+                c-Text("Hello, World!", fontStyle = FontStyle.Italic)
             }
         """.trimIndent()
     )
@@ -153,7 +153,7 @@ private val text_4 = LessonPage(
         code = """
             @Composable
             fun BoldText() {
-                Text("Hello, World!", fontWeight = FontWeight.Bold)
+                c-Text("Hello, World!", fontWeight = FontWeight.Bold)
             }
         """.trimIndent()
     )
@@ -175,7 +175,7 @@ private val text_5 = LessonPage(
         code = """
             @Composable
             fun TextStrikeThough() {
-                Text(
+                c-Text(
                     text = "Hello, world!",
                     textDecoration = TextDecoration.LineThrough
                 )
@@ -196,7 +196,7 @@ private val text_5 = LessonPage(
         code = """
             @Composable
             fun TextCombinedDecorations() {
-                Text(
+                c-Text(
                     text = "Hello, world!",
                     textDecoration = TextDecoration.LineThrough + TextDecoration.Underline
                 )
@@ -223,7 +223,7 @@ private val text_6 = LessonPage(
             @Composable
             fun TextShadow() {
                 val offset = Offset(5.0f, 10.0f)
-                Text(
+                c-Text(
                     text = "Hello, world!",
                     style = TextStyle(
                         fontSize = 24.sp,
@@ -260,7 +260,7 @@ private val text_7 = LessonPage(
         code = """
             @Composable
             fun MultipleStylesInText() {
-                Text(
+                c-Text(
                     buildAnnotatedString {
                         withStyle(style = SpanStyle(color = Color.Blue)) {
                             append("H")
@@ -304,7 +304,7 @@ private val text_8 = LessonPage(
         code = """
             @Composable
             fun LongText() {
-                Text("hello ".repeat(50), maxLines = 2)
+                c-Text("hello ".repeat(50), maxLines = 2)
             }
         """.trimIndent()
     )
@@ -323,7 +323,7 @@ private val text_8 = LessonPage(
         code = """
             @Composable
             fun OverflowedText() {
-                Text(
+                c-Text(
                     text = "Hello World ".repeat(50),
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis
@@ -355,7 +355,7 @@ private val text_9 = LessonPage(
         code = """
             @Composable
             fun StringResourceText() {
-                Text(
+                c-Text(
                     text = stringResource(R.string.hello_world)
                 )
             }

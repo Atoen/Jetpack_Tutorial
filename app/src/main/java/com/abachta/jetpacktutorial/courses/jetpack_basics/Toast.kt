@@ -39,13 +39,13 @@ private val toast_1 = LessonPage (
             fun Toasts() {
                 val context = LocalContext.current
         
-                Button(onClick = {
+                c-Button(onClick = {
                     Toast.makeText(context, "Toast", Toast.LENGTH_SHORT).show()
                 }) {
                     Text("Show short")
                 }
         
-                Button(onClick = {
+                c-Button(onClick = {
                     Toast.makeText(context, "Toast", Toast.LENGTH_LONG).show()
                 }) {
                     Text("Show long")
@@ -93,16 +93,16 @@ private val toast_2 = LessonPage (
                     override fun onToastHidden() { isVisible = false }
                 } }
 
-                Button(onClick = {
+                c-Button(onClick = {
                     Toast.makeText(context, "Toast", Toast.LENGTH_SHORT).apply {
                         addCallback(callback)
                         show()
                     }
                 }) {
-                    Text("Show toast")
+                    c-Text("Show toast")
                 }
 
-                Text(if (isVisible) "visible" else "not visible")
+                c-Text(if (isVisible) "visible" else "not visible")
             }
         """.trimIndent()
     )
@@ -164,7 +164,7 @@ private val toast_3 = LessonPage (
                     Toast.makeText(context, "Toast", Toast.LENGTH_LONG)
                 }
     
-                Button(onClick = {
+                c-Button(onClick = {
                     if (isVisible) {
                         toast.cancel()
                     } else {
@@ -173,7 +173,7 @@ private val toast_3 = LessonPage (
                     
                     isVisible = !isVisible
                 }) {
-                    Text(if (isVisible) "Show" else "Cancel")
+                    c-Text(if (isVisible) "Show" else "Cancel")
                 }
             }
         """.trimIndent()

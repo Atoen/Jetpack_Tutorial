@@ -34,8 +34,8 @@ private val card_1 = LessonPage (
         code = """
             @Composable
             fun SimpleCard() {
-                Card(modifier = Modifier.padding(16.dp)) {
-                    Text(
+                c-Card(modifier = Modifier.padding(16.dp)) {
+                    c-Text(
                         text = "Default card",
                         modifier = Modifier.padding(16.dp)
                     )
@@ -61,8 +61,8 @@ private val card_1 = LessonPage (
             fun ClickableCard() {
                 var count by remember { mutableIntStateOf(0) }
                 
-                Card(onClick = { count++ }) {
-                    Text(
+                c-Card(onClick = { count++ }) {
+                    c-Text(
                         text = "Count: ${'$'}count",
                         modifier = Modifier.padding(16.dp)
                     )
@@ -94,12 +94,12 @@ private val card_2 = LessonPage (
         code = """
             @Composable
             fun SimpleElevatedCard() {
-                ElevatedCard(
+                c-ElevatedCard(
                     elevation = CardDefaults.cardElevation(
                         defaultElevation = 10.dp
                     )
                 ) {
-                    Text(
+                    c-Text(
                         text = "Elevated card",
                         modifier = Modifier.padding(16.dp)
                     )
@@ -125,8 +125,8 @@ private val card_2 = LessonPage (
         code = """
             @Composable
             fun SimpleOutlinedCard() {
-                OutlinedCard {
-                    Text(
+                c-OutlinedCard {
+                    c-Text(
                         text = "Outlined card",
                         modifier = Modifier.padding(16.dp)
                     )
@@ -155,7 +155,7 @@ private val card_3 = LessonPage (
         code = """
             @Composable
             fun CustomCard() {
-                Card(
+                c-Card(
                     colors = CardDefaults.cardColors(
                         containerColor = Color.Green,
                         contentColor = Color.DarkGray
@@ -163,7 +163,7 @@ private val card_3 = LessonPage (
                     shape = RoundedCornerShape(4.dp),
                     border = BorderStroke(width = 10.dp, color = Color.Red)
                 ) {
-                    Text(
+                    c-Text(
                         text = "Customized card",
                         modifier = Modifier.padding(16.dp)
                     )

@@ -82,13 +82,13 @@ private val text_field_2 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = { text = it },
                 singleLine = true
             )
-            ...
+            // ...
         """.trimIndent()
     )
 
@@ -105,14 +105,14 @@ private val text_field_2 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = { text = it },
                 minLines = 2,
                 maxLines = 3
             )
-            ...
+            // ...
         """.trimIndent()
     )
 
@@ -137,13 +137,13 @@ private val text_field_3 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = { text = it },
                 enabled = false
             )
-            ...
+            // ...
         """.trimIndent()
     )
 
@@ -160,13 +160,13 @@ private val text_field_3 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = { text = it },
                 readOnly = true
             )
-            ...
+            // ...
         """.trimIndent()
     )
 
@@ -190,7 +190,7 @@ private val text_field_4 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = { text = it },
@@ -209,7 +209,7 @@ private val text_field_4 = LessonPage (
                     )
                 }
             )
-            ...
+            // ...
         """.trimIndent()
     )
 
@@ -246,14 +246,14 @@ private val text_field_5 = LessonPage (
 
     CodeListing(
         code = """
-            ...
-        TextField(
-            value = text,
-            onValueChange = { text = it },
-            prefix = { Text("Prefix") },
-            suffix = { Text("Suffix") }
-        )
-            ...
+            // ...
+            TextField(
+                value = text,
+                onValueChange = { text = it },
+                prefix = { Text("Prefix") },
+                suffix = { Text("Suffix") }
+            )
+            // ...
         """.trimIndent()
     )
 
@@ -291,14 +291,14 @@ private val text_field_6 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = { text = it },
                 placeholder = { Text("Enter password") },
                 visualTransformation = PasswordVisualTransformation(mask = '\u2022')
             )
-            ...
+            // ...
         """.trimIndent()
     )
 
@@ -354,7 +354,7 @@ private val text_field_7 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = {
@@ -365,7 +365,7 @@ private val text_field_7 = LessonPage (
                 placeholder = { Text("Number only") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
-            ...
+            // ...
         """.trimIndent()
     )
 
@@ -394,7 +394,7 @@ private val text_field_8 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = { text = it },
@@ -402,7 +402,7 @@ private val text_field_8 = LessonPage (
                     imeAction = <action>
                 )
             )
-            ...
+            // ...
         """.trimIndent()
     )
 
@@ -455,7 +455,7 @@ private val text_field_9 = LessonPage (
 
     CodeListing(
         code = """
-            ...
+            // ...
             TextField(
                 value = text,
                 onValueChange = { text = it },
@@ -467,7 +467,7 @@ private val text_field_9 = LessonPage (
                 ),
                 textStyle = TextStyle(fontFamily = FontFamily.Cursive)
             )
-            ...
+            // ...
     """.trimIndent()
     )
 
