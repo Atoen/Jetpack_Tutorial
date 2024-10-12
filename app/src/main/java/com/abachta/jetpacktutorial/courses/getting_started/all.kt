@@ -1,6 +1,7 @@
 package com.abachta.jetpacktutorial.courses.getting_started
 
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.courses.getting_started.quizzes.creatingFirstComposableQuiz
 import com.abachta.jetpacktutorial.courses.getting_started.quizzes.introductionQuiz
 import com.abachta.jetpacktutorial.courses.getting_started.quizzes.settingUpEnvironmentQuiz
 import com.abachta.jetpacktutorial.data.Lesson
@@ -19,12 +20,21 @@ private val settingUpEnvironment = Lesson(
     quiz = settingUpEnvironmentQuiz
 )
 
+private val creatingFirstComposable = Lesson(
+    titleResId = R.string.lesson_creating_first_title,
+    descriptionResId = R.string.TODO,
+    pages = creatingFirstComposablePages,
+    quiz = creatingFirstComposableQuiz
+)
+
 val gettingStartedLessons = listOf(
     introduction,
-    settingUpEnvironment
+    settingUpEnvironment,
+    creatingFirstComposable
 )
 
 val gettingStartedQuizzes = listOf(
     introductionQuiz,
-    settingUpEnvironmentQuiz
+    settingUpEnvironmentQuiz,
+    creatingFirstComposableQuiz
 )

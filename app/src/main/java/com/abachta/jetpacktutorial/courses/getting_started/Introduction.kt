@@ -64,11 +64,11 @@ private val introduction_1 = LessonPage(
                     mutableStateOf(true)
                 }
                 
-                Card(onClick = {
+                c-Card(onClick = {
                     expanded = !expanded
                 }) {
-                    Image(painterResource(R.drawable.jetpack_compose))
-                    AnimatedVisibility(expanded) { 
+                    c-Image(painterResource(R.drawable.jetpack_compose))
+                    c-AnimatedVisibility(expanded) { 
                         Text("Click me")
                     }
                 }

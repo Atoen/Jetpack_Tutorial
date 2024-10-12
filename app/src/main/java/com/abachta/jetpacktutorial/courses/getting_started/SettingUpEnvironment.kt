@@ -1,21 +1,16 @@
 package com.abachta.jetpacktutorial.courses.getting_started
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.ItemizedList
+import com.abachta.jetpacktutorial.ui.components.LabeledImage
 import com.abachta.jetpacktutorial.ui.components.ListItem.Companion.toTextItem
 import com.abachta.jetpacktutorial.ui.components.ResText
 
@@ -127,10 +122,9 @@ private val setting_up_4 = LessonPage (
 
     ResText(R.string.setting_up_4_8)
 
-    Image(
-        painter = painterResource(R.drawable.emulator_select),
-        contentDescription = null,
-        contentScale = ContentScale.FillWidth,
+    LabeledImage(
+        imageResId = R.drawable.emulator_select,
+        labelTextId = R.string.setting_up_4_label_1,
         modifier = Modifier
             .align(Alignment.CenterHorizontally)
             .width(250.dp)

@@ -27,9 +27,6 @@
     <string name="curse_state_navigation_description">Manage state effectively and navigate between screens in your Compose app.</string>
     <string name="course_advanced_description">Explore advanced Jetpack Compose topics like animations, custom layouts, and performance optimization.</string>
     <string name="TODO" translatable="false">!!TODO!!</string>
-    <string name="lesson_getting_started_1_1" translatable="false">Getting Started 1 - 1</string>
-    <string name="lesson_getting_started_1_2" translatable="false">Getting Started 1 - 2</string>
-    <string name="lesson_getting_started_1_3" translatable="false">Getting Started 1 - 3</string>
     <string name="popup_continue">Continue</string>
     <string name="swipe_to_dismiss">Swipe to dismiss</string>
     <string name="finish_lesson">Complete</string>
@@ -204,9 +201,9 @@
     <string name="toast_3_1">You can limit the time the toast is visible by calling the |cancel| method to hide it early.</string>
 
     <string name="quiz_text_1">Which Composable is used to display text in Jetpack Compose?</string>
-    <string name="quiz_text_1_1">Text</string>
-    <string name="quiz_text_1_2">Label</string>
-    <string name="quiz_text_1_3">Paragraph</string>
+    <string name="quiz_text_1_1" translatable="false">Text</string>
+    <string name="quiz_text_1_2" translatable="false">Label</string>
+    <string name="quiz_text_1_3" translatable="false">Paragraph</string>
 
     <string name="quiz_text_2">How can you change the font size of Text in Jetpack Compose?</string>
     <string name="quiz_text_2_1">Applying the FontModifier to the text</string>
@@ -288,7 +285,7 @@
     <string name="quiz_introduction_1_3" translatable="false">Java</string>
     <string name="quiz_introduction_1_1" translatable="false">C++</string>
     <string name="quiz_introduction_2">What is the name of a UI element in Jetpack Compose?</string>
-    <string name="quiz_introduction_2_1" translatable="false">Composable</string>
+    <string name="quiz_introduction_2_1">Composable</string>
     <string name="quiz_introduction_2_2" translatable="false">View</string>
     <string name="quiz_introduction_2_3" translatable="false">Widget</string>
     <string name="quiz_introduction_3">How is a composable defined in Jetpack Compose?</string>
@@ -303,4 +300,32 @@
     <string name="quiz_setting_up_2_1">Yes, using the Phone Virtualization System</string>
     <string name="quiz_setting_up_2_2">Yes, using the Android Emulator</string>
     <string name="quiz_setting_up_2_3">No</string>
+    <string name="creating_first_2_heading">Composable functions</string>
+    <string name="creating_first_2_1">Jetpack Compose is built around composable functions.\nThese functions let you define your app\'s UI programmatically by describing how it should look and providing data, rather than focusing on the process of the UI\'s construction.\nTo create a composable function, just add the |@Composable| annotation to the function name.</string>
+    <string name="creating_first_1_heading">Hello, World!</string>
+    <string name="lesson_creating_first_title">Creating first Composable</string>
+    <string name="creating_first_1_1">To display a simple text on the screen, you can use the |Text| composable inside the |setContent| block.\nThe block acts as an entry point for all UI created in Jetpack Compose.</string>
+    <string name="creating_first_1_2">Android Studio should import the required function automatically.\nIf that is not the case you can try to add the import line manually.</string>
+    <string name="creating_first_2_2">Composable functions can only be called from other composables or an entry point (like the |setContent| block).</string>
+    <string name="creating_first_3_1">You can preview your composables within Android Studio by adding the |@Preview| annotation.\nIn order to preview a composable function it must take no explicit parameters.\nA common practice is to create a second function that calls the previous one with the appropriate arguments.</string>
+    <string name="creating_first_3_heading">Displaying preview</string>
+    <string name="creating_first_3_2">After creating the preview you should rebuild the project.\nThe app itself doesn\'t change, since the preview function isn\'t called anywhere, but Android Studio adds a preview window.\nYou can expand this window by clicking on the split (design/code) view button.</string>
+    <string name="creating_first_3_label_1">Preview window buttons</string>
+    <string name="creating_first_3_label_2">Visible preview window in split screen mode</string>
+    <string name="setting_up_4_label_1">Device selection popup</string>
+    <string name="creating_first_4_heading">Using created composables</string>
+    <string name="creating_first_4_1">To use the composable in your app you have to include it in the UI hierarchy by calling it in the entry point.</string>
+    <string name="creating_first_4_2">Some composable accept other composable functions as parameter.\nThis can be useful for creating more advanced layouts without making the code overly complex.</string>
+    <string name="quiz_creating_first_1">Where can you invoke composable functions?</string>
+    <string name="quiz_creating_first_2">What annotation can you use to display created composable inside Android Studio?</string>
+    <string name="quiz_creating_first_3">How can you preview composable that requires some parameters?</string>
+    <string name="quiz_creating_first_1_1">In all the places you can invoke regular functions</string>
+    <string name="quiz_creating_first_1_2">Only in the file with the MainActivity class</string>
+    <string name="quiz_creating_first_1_3">From other composable functions or entry points</string>
+    <string name="quiz_creating_first_2_1" translatable="false">\@Preview</string>
+    <string name="quiz_creating_first_2_2" translatable="false">\@DebugView</string>
+    <string name="quiz_creating_first_2_3" translatable="false">\@Composable(preview = true)</string>
+    <string name="quiz_creating_first_3_1">By using default arguments</string>
+    <string name="quiz_creating_first_3_2">By creating wrapper preview function that supplies the parameters</string>
+    <string name="quiz_creating_first_3_3">Preview can only be used on parameterless functions</string>
 </resources>

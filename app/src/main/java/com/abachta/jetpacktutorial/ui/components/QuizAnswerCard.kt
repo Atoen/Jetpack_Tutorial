@@ -5,11 +5,14 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
@@ -27,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.Wallpapers
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 
@@ -89,7 +91,7 @@ fun QuizAnswerCard(
         ),
         modifier = Modifier
             .fillMaxWidth()
-            .height(60.dp)
+            .height(intrinsicSize = IntrinsicSize.Min)
             .then(if (answerType == AnswerType.IncorrectUnselected) {
                 Modifier.border(
                     width = 1.5f.dp,
@@ -108,39 +110,39 @@ fun QuizAnswerCard(
                 text = stringResource(textResId),
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(20.dp)
                     .align(Alignment.CenterVertically)
+                    .weight(1f)
             )
 
             if (answerType.shouldDisplayIcon()) {
-
                 val icon = if (isCorrect) Icons.Filled.Check else Icons.Filled.Close
-
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
                     modifier = Modifier
                         .padding(16.dp)
+                        .size(24.dp)
                         .align(Alignment.CenterVertically)
+                )
+            } else {
+                Spacer(modifier = Modifier
+                    .padding(16.dp)
+                    .size(24.dp)
                 )
             }
         }
     }
 }
 
-@Preview(
-    uiMode = Configuration.UI_MODE_NIGHT_NO or Configuration.UI_MODE_TYPE_NORMAL,
-    showSystemUi = false,
-    wallpaper = Wallpapers.NONE, showBackground = true,
-    device = "spec:width=1080px,height=2340px,dpi=440"
-)
+@Preview(showBackground = true)
 @Composable
 private fun QuizAnswerCardPreview() {
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         QuizAnswerCard(
-            textResId = R.string.quiz_text_1_1,
+            textResId = R.string.quiz_creating_first_3_2,
             isSelected = true,
             isCorrect = false,
             isRevealed = false,
@@ -148,7 +150,7 @@ private fun QuizAnswerCardPreview() {
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_text_1_2,
+            textResId = R.string.quiz_creating_first_3_2,
             isSelected = false,
             isCorrect = false,
             isRevealed = false,
@@ -156,28 +158,28 @@ private fun QuizAnswerCardPreview() {
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_text_1_1,
+            textResId = R.string.quiz_creating_first_3_2,
             isSelected = true,
             isCorrect = true,
             onClick = { }
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_text_1_2,
+            textResId = R.string.quiz_creating_first_3_2,
             isSelected = true,
             isCorrect = false,
             onClick = { }
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_text_1_3,
+            textResId = R.string.quiz_creating_first_3_2,
             isSelected = false,
             isCorrect = true,
             onClick = { }
         )
 
         QuizAnswerCard(
-            textResId = R.string.quiz_text_1_3,
+            textResId = R.string.quiz_creating_first_3_2,
             isSelected = false,
             isCorrect = false,
             onClick = { }
