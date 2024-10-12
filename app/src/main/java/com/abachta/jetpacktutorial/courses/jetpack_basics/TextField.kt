@@ -45,13 +45,13 @@ private val text_field_1 = LessonPage (
             @Composable
             fun SimpleTextField() {
                 var text by remember { mutableStateOf("") }
-                TextField(
+                c-TextField(
                     value = text,
                     onValueChange = { text = it },
                     placeholder = { Text("Type here") }
                 )
                 
-                Text("entered: ${'$'}text")
+                c-Text("entered: ${'$'}text")
             }
         """.trimIndent()
     )
@@ -83,7 +83,7 @@ private val text_field_2 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
                 singleLine = true
@@ -106,7 +106,7 @@ private val text_field_2 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
                 minLines = 2,
@@ -138,7 +138,7 @@ private val text_field_3 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
                 enabled = false
@@ -161,7 +161,7 @@ private val text_field_3 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
                 readOnly = true
@@ -191,19 +191,19 @@ private val text_field_4 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
-                label = { Text("Label") },
-                supportingText = { Text("Supporting text") },
+                label = { c-Text("Label") },
+                supportingText = { c-Text("Supporting text") },
                 leadingIcon = {
-                    Icon(
+                    c-Icon(
                         imageVector = Icons.Filled.EditNote,
                         contentDescription = null
                     )
                 },
                 trailingIcon =  { 
-                    Icon(
+                    c-Icon(
                         imageVector = Icons.Filled.Edit,
                         contentDescription = null
                     )
@@ -247,11 +247,11 @@ private val text_field_5 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
-                prefix = { Text("Prefix") },
-                suffix = { Text("Suffix") }
+                prefix = { c-Text("Prefix") },
+                suffix = { c-Text("Suffix") }
             )
             // ...
         """.trimIndent()
@@ -292,10 +292,10 @@ private val text_field_6 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
-                placeholder = { Text("Enter password") },
+                placeholder = { c-Text("Enter password") },
                 visualTransformation = PasswordVisualTransformation(mask = '\u2022')
             )
             // ...
@@ -355,14 +355,14 @@ private val text_field_7 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = {
                     text = it.filter {
                         symbol -> symbol.isDigit()
                     }
                 },
-                placeholder = { Text("Number only") },
+                placeholder = { c-Text("Number only") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
             )
             // ...
@@ -395,7 +395,7 @@ private val text_field_8 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
                 keyboardOptions = KeyboardOptions(
@@ -456,7 +456,7 @@ private val text_field_9 = LessonPage (
     CodeListing(
         code = """
             // ...
-            TextField(
+            c-TextField(
                 value = text,
                 onValueChange = { text = it },
                 shape = CutCornerShape(percent = 25),

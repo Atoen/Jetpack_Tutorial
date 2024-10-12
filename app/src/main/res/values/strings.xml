@@ -328,4 +328,53 @@
     <string name="quiz_creating_first_3_1">By using default arguments</string>
     <string name="quiz_creating_first_3_2">By creating wrapper preview function that supplies the parameters</string>
     <string name="quiz_creating_first_3_3">Preview can only be used on parameterless functions</string>
+    <string name="quiz_button_1">Is it possible to display custom content inside a button?</string>
+    <string name="quiz_button_1_1">Yes, you can display any composable inside button</string>
+    <string name="quiz_button_1_2">Yes, but only composables annotated with @Interactable are allowed</string>
+    <string name="quiz_button_1_3">No, you can put only text inside buttons</string>
+    <string name="quiz_button_2">What composable you can use to create button with only text visible?</string>
+    <string name="quiz_button_2_1" translatable="false">BlankButton</string>
+    <string name="quiz_button_2_2" translatable="false">TextButton</string>
+    <string name="quiz_button_2_3" translatable="false">MinimalButton</string>
+    <string name="quiz_text_field_1">How can you set the number of visible lines in a text field?</string>
+    <string name="quiz_text_field_1_1">With the minLines and maxLines parameters</string>
+    <string name="quiz_text_field_1_2">With the visibleLines parameter</string>
+    <string name="quiz_text_field_1_3">Only through manipulating the displayed string value</string>
+    <string name="quiz_text_field_2">Is it possible to modify the appearance of the inputted text?</string>
+    <string name="quiz_text_field_2_1">Yes, using the textMapper parameter</string>
+    <string name="quiz_text_field_2_2">Yes, using the visualTransformation parameter</string>
+    <string name="quiz_text_field_2_3">Yes, using AnnotatedString class</string>
+    <string name="quiz_text_field_2_4">Only through custom implementation</string>
+    <string name="quiz_text_field_3">Which parameter can be used to display the numeric keypad?</string>
+    <string name="quiz_text_field_3_1" translatable="false">keyboardOptions</string>
+    <string name="quiz_text_field_3_2" translatable="false">keyboardType</string>
+    <string name="quiz_text_field_3_3" translatable="false">keyboardMode</string>
+    <string name="quiz_image_1">How can you create a Painter object, which is a required parameter of the Image composable?</string>
+    <string name="quiz_image_1_1">Using the ImagePainterFactory class</string>
+    <string name="quiz_image_1_2">Using the painterResource function</string>
+    <string name="quiz_image_1_3">Painter objects are created automatically for each image</string>
+    <string name="quiz_image_2">What actions are required to draw a vector graphics using the Image composable?</string>
+    <string name="quiz_image_2_1">Casting the VectorDrawable to Bitmap</string>
+    <string name="quiz_image_2_2">Specifying the type of the image with the format parameter</string>
+    <string name="quiz_image_2_3">The same as when drawing a raster image</string>
+    <string name="quiz_modifier_1">On which composables can you apply modifier?</string>
+    <string name="quiz_modifier_1_1">To every one</string>
+    <string name="quiz_modifier_1_2">Only on those annotated with @Modifiable</string>
+    <string name="quiz_modifier_1_3">On those that accept Modifier as one of the parameters</string>
+    <string name="quiz_modifier_2">Does order of applied modifiers affect the result?</string>
+    <string name="quiz_modifier_2_1">Yes</string>
+    <string name="quiz_modifier_2_2">Yes, if the modifier is not annotated as @Stable</string>
+    <string name="quiz_modifier_2_3">No</string>
+    <string name="quiz_modifier_3">is it required to create new modifier for each composable?</string>
+    <string name="quiz_modifier_3_1">No, if the composables are in the same file</string>
+    <string name="quiz_modifier_3_2">No</string>
+    <string name="quiz_modifier_3_3">Yes, reusing modifiers can create unintended side effects</string>
+    <string name="quiz_card_1">How can you make card clickable?</string>
+    <string name="quiz_card_1_1">By creating a button inside it</string>
+    <string name="quiz_card_1_2">By passing callback to the onClick parameter</string>
+    <string name="quiz_card_1_3">By using the ClicableCard composable</string>
+    <string name="quiz_card_2">Is it possble to change shape of the card?</string>
+    <string name="quiz_card_2_1">No, cards have constant default shape</string>
+    <string name="quiz_card_2_2">Yes, using the cornerRadius parameter</string>
+    <string name="quiz_card_2_3">Yes, by providing custom Shape object for the shape parameter</string>
 </resources>
