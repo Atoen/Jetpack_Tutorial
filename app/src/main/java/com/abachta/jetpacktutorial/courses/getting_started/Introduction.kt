@@ -60,7 +60,7 @@ private val introduction_1 = LessonPage(
         code = """
             @Composable
             fun JetpackCompose() {
-                var expanded by remember {
+                var expanded by c-remember {
                     mutableStateOf(true)
                 }
                 
@@ -89,7 +89,7 @@ private val introduction_2 = LessonPage (
         code = """
             @Composable
             fun Greeting(name: String) {
-                Text("Hello, ${'$'}name!")
+                c-Text("Hello, ${'$'}name!")
             }
         """.trimIndent()
     )

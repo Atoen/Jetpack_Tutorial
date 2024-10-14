@@ -37,7 +37,7 @@ private val toast_1 = LessonPage (
         code = """
             @Composable
             fun Toasts() {
-                val context = LocalContext.current
+                val context = LocalContext.c-current
         
                 c-Button(onClick = {
                     Toast.makeText(context, "Toast", Toast.LENGTH_SHORT).show()
@@ -86,9 +86,9 @@ private val toast_2 = LessonPage (
         code = """
             @Composable
             fun ToastCallbacks() {
-                val context = LocalContext.current
-                var isVisible by remember { mutableStateOf(false) }
-                val callback = remember { object : Toast.Callback() {
+                val context = LocalContext.c-current
+                var isVisible by c-remember { mutableStateOf(false) }
+                val callback = c-remember { object : Toast.Callback() {
                     override fun onToastShown() { isVisible = true }
                     override fun onToastHidden() { isVisible = false }
                 } }
@@ -158,9 +158,9 @@ private val toast_3 = LessonPage (
         code = """
             @Composable
             fun CancelToast() {
-                val context = LocalContext.current
-                var isVisible by remember { mutableStateOf(false) }
-                val toast = remember {
+                val context = LocalContext.c-current
+                var isVisible by c-remember { mutableStateOf(false) }
+                val toast = c-remember {
                     Toast.makeText(context, "Toast", Toast.LENGTH_LONG)
                 }
     

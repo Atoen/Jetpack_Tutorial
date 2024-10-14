@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
+import com.abachta.jetpacktutorial.courses.layout.layoutLessons
 import com.abachta.jetpacktutorial.data.models.CourseProgress
 
 sealed class Course(
@@ -25,21 +26,21 @@ sealed class Course(
     }
 
     data object GettingStarted : Course(
-        titleResId = R.string.course_getting_started,
-        descriptionResId = R.string.course_getting_started_description,
+        titleResId = R.string.course_getting_started_title,
+        descriptionResId = R.string.TODO,
         lessons = gettingStartedLessons,
     )
 
     data object ComposeBasics : Course(
-        titleResId = R.string.course_compose_basics,
+        titleResId = R.string.course_compose_basics_title,
         descriptionResId = R.string.TODO,
         lessons = jetpackBasicsLessons,
     )
 
-    data object LayoutsAndUIElements : Course(
-        titleResId = R.string.course_layouts_elements,
+    data object Layout : Course(
+        titleResId = R.string.course_layout_title,
         descriptionResId = R.string.TODO,
-        lessons = listOf(),
+        lessons = layoutLessons,
     )
 
     data object ThemingAndStyling : Course(
@@ -90,7 +91,7 @@ value class CourseId(val value: Int) {
 val allCourses = listOf(
     Course.GettingStarted,
     Course.ComposeBasics,
-    Course.LayoutsAndUIElements,
+    Course.Layout,
     Course.ThemingAndStyling,
     Course.StateAndLifecycle,
     Course.InteractivityAndNavigation,

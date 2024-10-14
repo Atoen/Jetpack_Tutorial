@@ -100,7 +100,7 @@ private val button_2 = LessonPage(
         code = """
             @Composable
             fun ButtonWithAction() {
-                var count by remember { mutableIntStateOf(0) }
+                var count by c-remember { mutableIntStateOf(0) }
                 
                 c-Button(onClick = {
                     count++
@@ -258,7 +258,7 @@ private val button_5 = LessonPage (
         code = """
             @Composable
             fun ToggleIconButton() {
-                var checked by remember { mutableStateOf(false) }
+                var checked by c-remember { mutableStateOf(false) }
     
                 c-FilledIconToggleButton(
                     checked = checked,

@@ -275,9 +275,9 @@ private val modifier_5 = LessonPage (
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(100.dp)
-                        .verticalScroll(rememberScrollState())
+                        .verticalScroll(c-rememberScrollState())
                 ) {
-                    c-Text(stringResource(R.string.lorem_ipsum))
+                    c-Text(c-stringResource(R.string.lorem_ipsum))
                 }
             }
         """.trimIndent()
@@ -299,9 +299,9 @@ private val modifier_5 = LessonPage (
             @Composable
             fun horizontalScrollable() {
                 c-Box(
-                    modifier = Modifier.horizontalScroll(rememberScrollState())
+                    modifier = Modifier.horizontalScroll(c-rememberScrollState())
                 ) {
-                    c-Text(stringResource(R.string.lorem_ipsum))
+                    c-Text(c-stringResource(R.string.lorem_ipsum))
                 }
             }
         """.trimIndent()
@@ -326,7 +326,7 @@ private val modifier_6 = LessonPage (
         code = """
             @Composable
             fun Clicking() {
-                var count by remember { mutableIntStateOf(0) }
+                var count by c-remember { mutableIntStateOf(0) }
                 c-Box(
                     modifier = Modifier
                         .size(width = 120.dp, height = 100.dp)
@@ -357,7 +357,7 @@ private val modifier_6 = LessonPage (
             @Composable
             @OptIn(ExperimentalFoundationApi::class)
             fun CombinedClicking() {
-                var count by remember { mutableIntStateOf(0) }
+                var count by c-remember { mutableIntStateOf(0) }
                 c-Box(
                     modifier = Modifier
                         .size(width = 120.dp, height = 60.dp)
@@ -401,13 +401,13 @@ private val modifier_7 = LessonPage (
         code = """
             @Composable
             fun HorizontalDrag() {
-                var offsetX by remember { mutableStateOf(0f) }
+                var offsetX by c-remember { mutableStateOf(0f) }
                 c-Text(
                     modifier = Modifier
                         .offset { IntOffset(offsetX.roundToInt(), 0) }
                         .draggable(
                             orientation = Orientation.Horizontal,
-                            state = rememberDraggableState { delta ->
+                            state = c-rememberDraggableState { delta ->
                                 offsetX += delta
                             }
                         ),
@@ -436,8 +436,8 @@ private val modifier_7 = LessonPage (
         code = """
             @Composable
             fun DraggableIcon() {
-                var offsetX by remember { mutableFloatStateOf(0f) }
-                var offsetY by remember { mutableFloatStateOf(0f) }
+                var offsetX by c-remember { mutableFloatStateOf(0f) }
+                var offsetY by c-remember { mutableFloatStateOf(0f) }
         
                 c-Icon(
                     imageVector = Icons.Filled.OpenWith,
@@ -486,7 +486,7 @@ private val modifier_8 = LessonPage (
         code = """
             @Composable
             fun AnimatedSize() {
-                var short by remember { mutableStateOf(true) }
+                var short by c-remember { mutableStateOf(true) }
         
                 c-Button(
                     onClick = { short = !short },
@@ -546,7 +546,7 @@ private val modifier_9 = LessonPage (
             @Composable
             fun BlurredImage() {
                 c-Image(
-                    painter = painterResource(R.drawable.image_dog_portrait),
+                    painter = c-painterResource(R.drawable.image_dog_portrait),
                     contentDescription = null,
                     modifier = Modifier.blur(
                         radius = 20.dp,
@@ -580,7 +580,7 @@ private val modifier_10 = LessonPage (
             @Composable
             fun ClippingShapes() {
                 c-Image(
-                    painter = painterResource(R.drawable.image_dog_portrait),
+                    painter = c-painterResource(R.drawable.image_dog_portrait),
                     contentDescription = null,
                     modifier = Modifier
                         .clip(CutCornerShape(topStart = 20.dp, topEnd = 20.dp))
@@ -649,7 +649,7 @@ private val modifier_12 = LessonPage (
         code = """
             @Composable
             fun ConditionalModifier() {
-                var toggled by remember { mutableStateOf(false) }
+                var toggled by c-remember { mutableStateOf(false) }
                 c-Button(
                     onClick = { toggled = !toggled },
                     modifier = Modifier

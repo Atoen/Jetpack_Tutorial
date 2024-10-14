@@ -356,7 +356,7 @@ private val text_9 = LessonPage(
             @Composable
             fun StringResourceText() {
                 c-Text(
-                    text = stringResource(R.string.hello_world)
+                    text = c-stringResource(R.string.hello_world)
                 )
             }
         """.trimIndent()

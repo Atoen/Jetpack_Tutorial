@@ -47,7 +47,7 @@ private val image_1 = LessonPage (
             @Composable
             fun SimpleImage() {
                 c-Image(
-                    painter = painterResource(R.drawable.image_dog),
+                    painter = c-painterResource(R.drawable.image_dog),
                     contentDescription = null
                 )
             }
@@ -74,7 +74,7 @@ private val image_2 = LessonPage (
             @Composable
             fun VectorImage() {
                 c-Image(
-                    painter = painterResource(R.drawable.chart_histogram),
+                    painter = c-painterResource(R.drawable.chart_histogram),
                     contentDescription = null
                 )
             }
@@ -102,7 +102,7 @@ private val image_3 = LessonPage (
             @Composable
             fun TransparentImage() {
                 c-Image(
-                    painter = painterResource(R.drawable.image_dog),
+                    painter = c-painterResource(R.drawable.image_dog),
                     contentDescription = null,
                     alpha = alpha
                 )
@@ -142,7 +142,7 @@ private val image_4 = LessonPage (
             @Composable
             fun SaturatedImage() {
                 c-Image(
-                    painter = painterResource(R.drawable.image_dog),
+                    painter = c-painterResource(R.drawable.image_dog),
                     contentDescription = null,
                     colorFilter = ColorFilter.colorMatrix(
                         ColorMatrix().apply { setToSaturation(saturation) }
@@ -190,7 +190,7 @@ private val image_5 = LessonPage (
             @Composable
             fun TintedImage() {
                 c-Image(
-                    painter = painterResource(R.drawable.image_dog),
+                    painter = c-painterResource(R.drawable.image_dog),
                     contentDescription = null,
                     colorFilter = ColorFilter.tint(Color.Yellow, blendMode = <blend mode>)
                 )
@@ -198,35 +198,31 @@ private val image_5 = LessonPage (
         """.trimIndent()
     )
 
+    val blendModes = remember { listOf(
+        BlendMode.Clear, BlendMode.Src, BlendMode.Dst, BlendMode.SrcOver, BlendMode.DstOver,
+        BlendMode.SrcIn, BlendMode.DstIn, BlendMode.SrcOut, BlendMode.DstOut, BlendMode.SrcAtop,
+        BlendMode.DstAtop, BlendMode.Xor, BlendMode.Plus, BlendMode.Modulate, BlendMode.Screen,
+        BlendMode.Overlay, BlendMode.Darken, BlendMode.Lighten, BlendMode.ColorDodge, BlendMode.ColorBurn,
+        BlendMode.Hardlight, BlendMode.Softlight, BlendMode.Difference, BlendMode.Exclusion,
+        BlendMode.Multiply, BlendMode.Hue, BlendMode.Saturation, BlendMode.Color, BlendMode.Luminosity
+    ) }
+
+    // Start on modulate
+    var currentBlendModeIndex by remember { mutableIntStateOf(13) }
+    val currentBlendMode = blendModes[currentBlendModeIndex]
+
+    Button(onClick = {
+        currentBlendModeIndex = (currentBlendModeIndex + 1) % blendModes.count()
+    }) {
+        Text("Blend mode: $currentBlendMode")
+    }
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-
-            val blendModes = listOf(
-                BlendMode.Clear, BlendMode.Src, BlendMode.Dst, BlendMode.SrcOver, BlendMode.DstOver,
-                BlendMode.SrcIn, BlendMode.DstIn, BlendMode.SrcOut, BlendMode.DstOut, BlendMode.SrcAtop,
-                BlendMode.DstAtop, BlendMode.Xor, BlendMode.Plus, BlendMode.Modulate, BlendMode.Screen,
-                BlendMode.Overlay, BlendMode.Darken, BlendMode.Lighten, BlendMode.ColorDodge, BlendMode.ColorBurn,
-                BlendMode.Hardlight, BlendMode.Softlight, BlendMode.Difference, BlendMode.Exclusion,
-                BlendMode.Multiply, BlendMode.Hue, BlendMode.Saturation, BlendMode.Color, BlendMode.Luminosity
-            )
-
-            // Start on modulate
-            var currentBlendModeIndex by remember { mutableIntStateOf(13) }
-            val currentBlendMode = blendModes[currentBlendModeIndex]
-
-            Button(onClick = {
-                currentBlendModeIndex = (currentBlendModeIndex + 1) % blendModes.size
-            }) {
-                Text("Blend mode: $currentBlendMode")
-            }
-
-            Image(
-                painter = painterResource(R.drawable.image_dog_portrait),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(Color.Yellow, blendMode = currentBlendMode)
-            )
-        }
+        Image(
+            painter = painterResource(R.drawable.image_dog_portrait),
+            contentDescription = null,
+            colorFilter = ColorFilter.tint(Color.Yellow, blendMode = currentBlendMode)
+        )
     }
 }
 
@@ -241,7 +237,7 @@ private val image_6 = LessonPage (
             @Composable
             fun ScaledImage() {
                 c-Image(
-                    painter = painterResource(R.drawable.image_dog_portrait),
+                    painter = c-painterResource(R.drawable.image_dog_portrait),
                     contentDescription = null,
                     contentScale = <content scale>,
                 )
@@ -249,7 +245,7 @@ private val image_6 = LessonPage (
         """.trimIndent()
     )
 
-    val imageScalingModes = listOf(
+    val imageScalingModes = remember { listOf(
         "Fit" to ContentScale.Fit,
         "Crop" to ContentScale.Crop,
         "FillBounds" to ContentScale.FillBounds,
@@ -257,7 +253,7 @@ private val image_6 = LessonPage (
         "FillWidth" to ContentScale.FillWidth,
         "Inside" to ContentScale.Inside,
         "None" to ContentScale.None
-    )
+    ) }
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         Column(

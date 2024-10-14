@@ -59,7 +59,7 @@ private val card_1 = LessonPage (
         code = """
             @Composable
             fun ClickableCard() {
-                var count by remember { mutableIntStateOf(0) }
+                var count by c-remember { mutableIntStateOf(0) }
                 
                 c-Card(onClick = { count++ }) {
                     c-Text(

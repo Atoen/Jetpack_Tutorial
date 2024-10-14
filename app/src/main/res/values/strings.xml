@@ -19,8 +19,8 @@
     <string name="theme_dark">Dark</string>
 
     <!-- Groups -->
-    <string name="course_getting_started">Getting Started with Jetpack Compose</string>
-    <string name="course_layouts_elements">Layouts and UI elements</string>
+    <string name="course_getting_started_title">Getting Started with Jetpack Compose</string>
+    <string name="course_layout_title">UI layout</string>
     <string name="course_theming_styling">Theming and styling</string>
     <string name="course_getting_started_description">Learn the basics of Jetpack Compose, including setting up your environment and creating your first composable.</string>
     <string name="course_layout_description">Dive into Compose layouts, theming, and styling your app.</string>
@@ -48,7 +48,7 @@
     <string name="setting_up_environment_title">Setting up environment</string>
     <string name="creating_first_component_title">Creating first component</string>
     <string name="completed_n_of">Completed %1$d of %2$d lessons</string>
-    <string name="course_compose_basics">Jetpack Compose Basics</string>
+    <string name="course_compose_basics_title">Jetpack Compose Basics</string>
     <string name="course_state_lifecycle">State and Lifecycle</string>
     <string name="course_interactivity_navigation">Interactivity and Navigation</string>
     <string name="course_animations_transitions">Animation and Transitions</string>
@@ -377,4 +377,31 @@
     <string name="quiz_card_2_1">No, cards have constant default shape</string>
     <string name="quiz_card_2_2">Yes, using the cornerRadius parameter</string>
     <string name="quiz_card_2_3">Yes, by providing custom Shape object for the shape parameter</string>
+    <string name="lesson_box_title">Box</string>
+    <string name="lesson_column_row_title">Column and row</string>
+    <string name="lesson_grid_title">Grid</string>
+    <string name="lesson_scaffold_title">Scaffold</string>
+    <string name="box_1_heading">Aligning items in a box</string>
+    <string name="box_2_heading">Default alignment</string>
+    <string name="box_3_heading">Matching size</string>
+    <string name="column_row_1_heading">Using layout</string>
+    <string name="column_row_2_heading">Adding content</string>
+    <string name="column_row_3_heading">Aligning content</string>
+    <string name="column_row_4_heading">Types of arrangements - column</string>
+    <string name="column_row_5_heading">Types of arrangements - row</string>
+    <string name="column_row_6_heading">Weight</string>
+    <string name="column_row_7_heading">Scrolling content</string>
+    <string name="column_row_8_heading">Lazy containers</string>
+    <string name="column_row_9_heading">Controlling scroll position</string>
+    <string name="column_row_10_heading">Animating content change</string>
+    <string name="grid_1_heading">Creating grids</string>
+    <string name="grid_2_heading">Adaptive size</string>
+    <string name="grid_3_heading">Horizontal grid</string>
+    <string name="grid_4_heading">Content layout</string>
+    <string name="grid_5_heading">Animating content change</string>
+    <string name="grid_6_heading">Controlling scroll position</string>
+    <string name="grid_7_heading">Staggered grids</string>
+    <string name="scaffold_1_heading">Consistent UI layout</string>
+    <string name="scaffold_2_heading">Types of scaffold components</string>
+    <string name="scaffold_3_heading">FAB position</string>
 </resources>

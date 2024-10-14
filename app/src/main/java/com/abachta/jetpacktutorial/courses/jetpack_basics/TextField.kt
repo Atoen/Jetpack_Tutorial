@@ -44,7 +44,7 @@ private val text_field_1 = LessonPage (
         code = """
             @Composable
             fun SimpleTextField() {
-                var text by remember { mutableStateOf("") }
+                var text by c-remember { mutableStateOf("") }
                 c-TextField(
                     value = text,
                     onValueChange = { text = it },
