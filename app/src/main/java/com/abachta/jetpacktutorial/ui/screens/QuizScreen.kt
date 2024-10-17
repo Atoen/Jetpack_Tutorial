@@ -58,6 +58,7 @@ import com.abachta.jetpacktutorial.data.models.QuizQuestionModel
 import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import com.abachta.jetpacktutorial.ui.components.ExtendableFloatingActionButton
 import com.abachta.jetpacktutorial.ui.components.QuizAnswerCard
+import com.abachta.jetpacktutorial.ui.components.ResText
 import kotlinx.coroutines.launch
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -189,8 +190,8 @@ private fun QuizQuestionScreen(
             .fillMaxSize()
             .padding(16.dp)
     ) {
-        Text(
-            text = stringResource(id = question.textResId),
+        ResText(
+            resId = question.textResId,
             style = MaterialTheme.typography.headlineSmall
         )
 

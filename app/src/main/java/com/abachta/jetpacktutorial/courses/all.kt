@@ -2,10 +2,7 @@ package com.abachta.jetpacktutorial.courses
 
 import android.util.Log
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
-import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedQuizzes
-import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsChallenges
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
-import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsQuizzes
 import com.abachta.jetpacktutorial.courses.layout.layoutLessons
 import com.abachta.jetpacktutorial.data.ChallengeId
 import com.abachta.jetpacktutorial.data.CodeChallenge
@@ -20,19 +17,11 @@ val allLessons = listOf(
     layoutLessons
 ).flatten()
 
-val allQuizzes = listOf(
-    gettingStartedQuizzes,
-    jetpackBasicsQuizzes
-).flatten()
-
-val allChallenges = listOf(
-    jetpackBasicsChallenges
-).flatten()
+val allQuizzes = allLessons.mapNotNull { it.quiz }
+val allChallenges = allLessons.mapNotNull { it.challenge }
 
 private val lessonMap = allLessons.associateBy { it.id }
-
 private val quizMap = allQuizzes.associateBy { it.id }
-
 private val challengeMap = allChallenges.associateBy { it.id }
 
 fun getFirstLesson() = allLessons.first()

@@ -1,7 +1,7 @@
 <resources>
 
     <string name="regular_text" translatable="false">This is a regular text without monospace</string>
-    <string name="monospace_text" translatable="false">This text contains |monospace| formatting</string>
+    <string name="formatted_text" translatable="false">This text contains |monospace| and *bold* formatting</string>
 
     <string name="app_name">Jetpack Tutorial</string>
     <string name="back_again_to_close">Back again to close the app</string>
@@ -201,19 +201,19 @@
     <string name="toast_3_1">You can limit the time the toast is visible by calling the |cancel| method to hide it early.</string>
 
     <string name="quiz_text_1">Which Composable is used to display text in Jetpack Compose?</string>
-    <string name="quiz_text_1_1" translatable="false">Text</string>
-    <string name="quiz_text_1_2" translatable="false">Label</string>
-    <string name="quiz_text_1_3" translatable="false">Paragraph</string>
+    <string name="quiz_text_1_1" translatable="false">*Text*</string>
+    <string name="quiz_text_1_2" translatable="false">*Label*</string>
+    <string name="quiz_text_1_3" translatable="false">*Paragraph*</string>
 
     <string name="quiz_text_2">How can you change the font size of Text in Jetpack Compose?</string>
-    <string name="quiz_text_2_1">Applying the FontModifier to the text</string>
-    <string name="quiz_text_2_2">Using the fontSize parameter</string>
+    <string name="quiz_text_2_1">Applying the *FontModifier* to the text</string>
+    <string name="quiz_text_2_2">Using the *fontSize* parameter</string>
     <string name="quiz_text_2_3">The font size cannot be changed</string>
 
     <string name="quiz_text_3">Which parameter would you use to change the color of Text?</string>
-    <string name="quiz_text_3_1" translatable="false">fontColor</string>
-    <string name="quiz_text_3_2" translatable="false">tint</string>
-    <string name="quiz_text_3_3" translatable="false">color</string>
+    <string name="quiz_text_3_1" translatable="false">*fontColor*</string>
+    <string name="quiz_text_3_2" translatable="false">*tint*</string>
+    <string name="quiz_text_3_3" translatable="false">*color*</string>
     <string name="quiz_question_n_of">Question %1$d of %2$d</string>
     <string name="quiz_check">Check</string>
     <string name="lesson_more_quiz">Go to quiz</string>
@@ -232,9 +232,9 @@
     <string name="challenge_show_code">Show code</string>
     <string name="challenge_hide_code">Hide code</string>
     <string name="quiz_text_4">What class can store the text and its visual style?</string>
-    <string name="quiz_text_4_1" translatable="false">StyledText</string>
-    <string name="quiz_text_4_2" translatable="false">ColoredSpan</string>
-    <string name="quiz_text_4_3" translatable="false">AnnotatedString</string>
+    <string name="quiz_text_4_1" translatable="false">*StyledText*</string>
+    <string name="quiz_text_4_2" translatable="false">*ColoredSpan*</string>
+    <string name="quiz_text_4_3" translatable="false">*AnnotatedString*</string>
     <string name="introduction_1_heading">Jetpack Compose</string>
     <string name="introduction_1_1">Jetpack Compose is recommended toolkit for building UI for Android apps.\nIt simplifies and accelerates UI development, allowing you to create your app with less code, useful tools and intuitive Kotlin APIs.</string>
     <string name="introduction_2_heading">Declarative UI with composables</string>
@@ -320,50 +320,49 @@
     <string name="quiz_creating_first_2">What annotation can you use to display created composable inside Android Studio?</string>
     <string name="quiz_creating_first_3">How can you preview composable that requires some parameters?</string>
     <string name="quiz_creating_first_1_1">In all the places you can invoke regular functions</string>
-    <string name="quiz_creating_first_1_2">Only in the file with the MainActivity class</string>
+    <string name="quiz_creating_first_1_2">Only in the file with the *MainActivity* class</string>
     <string name="quiz_creating_first_1_3">From other composable functions or entry points</string>
-    <string name="quiz_creating_first_2_1" translatable="false">\@Preview</string>
-    <string name="quiz_creating_first_2_2" translatable="false">\@DebugView</string>
-    <string name="quiz_creating_first_2_3" translatable="false">\@Composable(preview = true)</string>
+    <string name="quiz_creating_first_2_2" translatable="false">*@DebugView*</string>
+    <string name="quiz_creating_first_2_3" translatable="false">*@Composable(preview = true)*</string>
     <string name="quiz_creating_first_3_1">By using default arguments</string>
     <string name="quiz_creating_first_3_2">By creating wrapper preview function that supplies the parameters</string>
     <string name="quiz_creating_first_3_3">Preview can only be used on parameterless functions</string>
     <string name="quiz_button_1">Is it possible to display custom content inside a button?</string>
     <string name="quiz_button_1_1">Yes, you can display any composable inside button</string>
-    <string name="quiz_button_1_2">Yes, but only composables annotated with @Interactable are allowed</string>
+    <string name="quiz_button_1_2">Yes, but only composables annotated with *@Interactable* are allowed</string>
     <string name="quiz_button_1_3">No, you can put only text inside buttons</string>
     <string name="quiz_button_2">What composable you can use to create button with only text visible?</string>
-    <string name="quiz_button_2_1" translatable="false">BlankButton</string>
-    <string name="quiz_button_2_2" translatable="false">TextButton</string>
-    <string name="quiz_button_2_3" translatable="false">MinimalButton</string>
+    <string name="quiz_button_2_1" translatable="false">*BlankButton*</string>
+    <string name="quiz_button_2_2" translatable="false">*TextButton*</string>
+    <string name="quiz_button_2_3" translatable="false">*MinimalButton*</string>
     <string name="quiz_text_field_1">How can you set the number of visible lines in a text field?</string>
-    <string name="quiz_text_field_1_1">With the minLines and maxLines parameters</string>
-    <string name="quiz_text_field_1_2">With the visibleLines parameter</string>
+    <string name="quiz_text_field_1_1">With the *minLines* and *maxLines* parameters</string>
+    <string name="quiz_text_field_1_2">With the *visibleLines* parameter</string>
     <string name="quiz_text_field_1_3">Only through manipulating the displayed string value</string>
     <string name="quiz_text_field_2">Is it possible to modify the appearance of the inputted text?</string>
-    <string name="quiz_text_field_2_1">Yes, using the textMapper parameter</string>
-    <string name="quiz_text_field_2_2">Yes, using the visualTransformation parameter</string>
-    <string name="quiz_text_field_2_3">Yes, using AnnotatedString class</string>
+    <string name="quiz_text_field_2_1">Yes, using the *textMapper* parameter</string>
+    <string name="quiz_text_field_2_2">Yes, using the *visualTransformation* parameter</string>
+    <string name="quiz_text_field_2_3">Yes, using *AnnotatedString* class</string>
     <string name="quiz_text_field_2_4">Only through custom implementation</string>
     <string name="quiz_text_field_3">Which parameter can be used to display the numeric keypad?</string>
-    <string name="quiz_text_field_3_1" translatable="false">keyboardOptions</string>
-    <string name="quiz_text_field_3_2" translatable="false">keyboardType</string>
-    <string name="quiz_text_field_3_3" translatable="false">keyboardMode</string>
-    <string name="quiz_image_1">How can you create a Painter object, which is a required parameter of the Image composable?</string>
-    <string name="quiz_image_1_1">Using the ImagePainterFactory class</string>
-    <string name="quiz_image_1_2">Using the painterResource function</string>
-    <string name="quiz_image_1_3">Painter objects are created automatically for each image</string>
+    <string name="quiz_text_field_3_1" translatable="false">*keyboardOptions*</string>
+    <string name="quiz_text_field_3_2" translatable="false">*keyboardType*</string>
+    <string name="quiz_text_field_3_3" translatable="false">*keyboardMode*</string>
+    <string name="quiz_image_1">How can you create a *Painter* object, which is a required parameter of the *Image* composable?</string>
+    <string name="quiz_image_1_1">Using the *ImagePainterFactory* class</string>
+    <string name="quiz_image_1_2">Using the *painterResource* function</string>
+    <string name="quiz_image_1_3">*Painter* objects are created automatically for each image</string>
     <string name="quiz_image_2">What actions are required to draw a vector graphics using the Image composable?</string>
-    <string name="quiz_image_2_1">Casting the VectorDrawable to Bitmap</string>
+    <string name="quiz_image_2_1">Casting the *VectorDrawable* to *Bitmap*</string>
     <string name="quiz_image_2_2">Specifying the type of the image with the format parameter</string>
     <string name="quiz_image_2_3">The same as when drawing a raster image</string>
     <string name="quiz_modifier_1">On which composables can you apply modifier?</string>
     <string name="quiz_modifier_1_1">To every one</string>
-    <string name="quiz_modifier_1_2">Only on those annotated with @Modifiable</string>
+    <string name="quiz_modifier_1_2">Only on those annotated with *@Modifiable*</string>
     <string name="quiz_modifier_1_3">On those that accept Modifier as one of the parameters</string>
     <string name="quiz_modifier_2">Does order of applied modifiers affect the result?</string>
     <string name="quiz_modifier_2_1">Yes</string>
-    <string name="quiz_modifier_2_2">Yes, if the modifier is not annotated as @Stable</string>
+    <string name="quiz_modifier_2_2">Yes, if the modifier is not annotated as *@Stable*</string>
     <string name="quiz_modifier_2_3">No</string>
     <string name="quiz_modifier_3">is it required to create new modifier for each composable?</string>
     <string name="quiz_modifier_3_1">No, if the composables are in the same file</string>
@@ -371,12 +370,12 @@
     <string name="quiz_modifier_3_3">Yes, reusing modifiers can create unintended side effects</string>
     <string name="quiz_card_1">How can you make card clickable?</string>
     <string name="quiz_card_1_1">By creating a button inside it</string>
-    <string name="quiz_card_1_2">By passing callback to the onClick parameter</string>
-    <string name="quiz_card_1_3">By using the ClicableCard composable</string>
+    <string name="quiz_card_1_2">By passing callback to the *onClick* parameter</string>
+    <string name="quiz_card_1_3">By using the *ClicableCard* composable</string>
     <string name="quiz_card_2">Is it possble to change shape of the card?</string>
     <string name="quiz_card_2_1">No, cards have constant default shape</string>
-    <string name="quiz_card_2_2">Yes, using the cornerRadius parameter</string>
-    <string name="quiz_card_2_3">Yes, by providing custom Shape object for the shape parameter</string>
+    <string name="quiz_card_2_2">Yes, using the *cornerRadius* parameter</string>
+    <string name="quiz_card_2_3">Yes, by providing custom *Shape* object for the *shape* parameter</string>
     <string name="lesson_box_title">Box</string>
     <string name="lesson_column_row_title">Column and row</string>
     <string name="lesson_grid_title">Grid</string>
@@ -395,7 +394,7 @@
     <string name="column_row_9_heading">Controlling scroll position</string>
     <string name="column_row_10_heading">Animating content change</string>
     <string name="grid_1_heading">Creating grids</string>
-    <string name="grid_2_heading">Adaptive size</string>
+    <string name="grid_2_heading">Cell size</string>
     <string name="grid_3_heading">Horizontal grid</string>
     <string name="grid_4_heading">Content layout</string>
     <string name="grid_5_heading">Animating content change</string>
@@ -403,5 +402,97 @@
     <string name="grid_7_heading">Staggered grids</string>
     <string name="scaffold_1_heading">Consistent UI layout</string>
     <string name="scaffold_2_heading">Types of scaffold components</string>
-    <string name="scaffold_3_heading">FAB position</string>
+    <string name="scaffold_4_heading">FAB position</string>
+    <string name="column_row_1_1">Composable functions can create multiple UI elements. Without any guidance, Compose might arrange them in a not desirable way.\nFor example, the following function creates two texts without spefcyfying any layout:</string>
+    <string name="column_row_1_2">After specifying the layout, the texts are composed in a more predictable manner:</string>
+    <string name="column_row_1_3">In many cases, the |Column| and |Row| composition functions are sufficient to create different application interface layouts.</string>
+    <string name="column_row_2_1">|Column| and |Row| accept multiple composables as their content.\nYou can also nest multiple rows and columns to create more advanced design.</string>
+    <string name="column_row_2_2">When adding multiple composables to the container, the |repeat| function might be useful:</string>
+    <string name="column_row_3_1">You can specify how the content should be arranged inside the container by specyfing the |verticalAlignement| and |horizontalArrangement| for rows and |verticalArrangement| and |horizontalAlignment| for columns.</string>
+    <string name="column_row_3_2">|Arrangement| class also provides functionality for spacing the content with the |spacedBy| method:</string>
+    <string name="column_row_expand">Expand</string>
+    <string name="column_row_collapse">Collapse</string>
+    <string name="column_row_6_1">Elements inside columns and rows can have assigned weights to split the available space accordingly.\nThe higher the element\'s weight, the more space will it occupy.</string>
+    <string name="column_row_7_1">When the content doesn\'t fit inside the container, you can enable scrolling by using the |horizontalScroll| or |verticalScroll| modifiers.</string>
+    <string name="column_row_8_1">When you want to display a large or unknown amount of elements, you should consider using the lazy versions of the containers: |LazyColumn| and |LazyRow|.\nThey can improve the performance of the app significanty by rendering only these elements that are currently visible.</string>
+    <string name="column_row_8_2">Lazy containers don\'t accept other composables as their content directly — you should use the |item| or |items| functions.</string>
+    <string name="column_row_9_1">Lazy containers allow you to control the scroll opsition programatically by using the |LazyListState|.\nThis can be useful if you want to disable the scoll gestures, or to scroll to specific item.\nMethods controlling the scroll are |suspend|ing, so you must call them inside a |coroutineScope|.</string>
+    <string name="column_row_10_1">You can animate the changes of the displayed elements by using the |animateItem| modifier.\nIf the displayed composables are more complex, consider providing unique key for each of them in the |items| function. This can help Compose keep track of them and apply correct animations.</string>
+    <string name="box_1_1">|Box| can be used to put elements on top of another, while allowing for specifying their alignment.</string>
+    <string name="box_1_2">Elements inside a box can use the |align| modifier to configure their alignment.</string>
+    <string name="box_2_1">Instead of setting the alignment on each item separately, you can use the |contentAlignment| parameter to apply the alignment to whole content.</string>
+    <string name="box_3_1">Another use for |Box| is to match the content size to the container\'s. You can do this using the |matchParentSize| modifier.</string>
+    <string name="grid_1_1">Grids are another type of lazy containers. The |LazyVerticalGrid| and |LazyHorizontlGrid| composables provide support for displaying items in a grid.\nLike the |LazyColumn| and |LazyRow| they also provide |item| and |items| functions for adding content.</string>
+    <string name="grid_1_2">When creating grids you must specify the count columns (or rows).</string>
+    <string name="grid_2_1">Instead of setting the count of the columns (or rows) you can set their size.\nYou can make them have |FixedSize| or be |Adaptive|. Adaptive cells will take at least the specified space and thivide the remainig equally.</string>
+    <string name="grid_3_1">Creating horizontal grid is very similar to vertical: simply replace |LazyVerticalGrid| with |LazyHorizontalGrid| and use the |rows| parameter insead of |columns|.</string>
+    <string name="grid_4_1">Gird allows you to change the arrangement of the content similarly to lists with the difference being they use both |VerticalArrangement| and |HorizontalArrangement| and no alignment.</string>
+    <string name="grid_5_1">Like in the lists, you can animate changes in content with the |animateItem| modifier and providing key for each element.</string>
+    <string name="grid_6_1">Using |LazyGridState| you can programmatically control the scroll position. For staggered grid you should use |StaggeredGridState| instead.</string>
+    <string name="grid_7_1">Staggered grids allow the displayed items to have different size across the main axis.</string>
+    <string name="quiz_column_row_1">Can you use nested columns and rows?</string>
+    <string name="quiz_column_row_1_1">Yes</string>
+    <string name="quiz_column_row_1_2">Yes, but can you use at most 2</string>
+    <string name="quiz_column_row_1_3">It is not allowed</string>
+    <string name="quiz_column_row_2">How can you make a column scrollable?</string>
+    <string name="quiz_column_row_2_1">By using the *ScrollableColumn* composable</string>
+    <string name="quiz_column_row_2_2">By applying the *verticalScroll* modifier</string>
+    <string name="quiz_column_row_2_3">Columns and rows are scrollable by default</string>
+    <string name="quiz_column_row_3">Which composables is best suited for displaying large amount of items?</string>
+    <string name="quiz_column_row_3_1" translatable="false">*LazyList*</string>
+    <string name="quiz_column_row_3_2" translatable="false">*RecyclerColumn*</string>
+    <string name="quiz_column_row_3_3" translatable="false">*LazyColumn*</string>
+    <string name="quiz_box_1">How can you position the content of the *Box*?</string>
+    <string name="quiz_box_1_1">By using the container\'s *contentAlignment* parameter</string>
+    <string name="quiz_box_1_2">By using the content\'s *alignment* parameter</string>
+    <string name="quiz_box_1_3">By applying the *align* modifier on the content</string>
+    <string name="quiz_box_1_4">By placing the content inside *Align* block</string>
+    <string name="quiz_box_2">Does *Box* allow for multiple content items?</string>
+    <string name="quiz_box_2_1">*Box* supports only single inner composable</string>
+    <string name="quiz_box_2_2">*Box* can contain any amount of composables</string>
+    <string name="quiz_box_2_3">*Box* can contain up to 3 composables</string>
+    <string name="quiz_grid_1">How can you set content of the lazy grids?</string>
+    <string name="quiz_grid_1_1">By placing them directly inside the *content* lambda</string>
+    <string name="quiz_grid_1_2">By using the *item* or *items* functions</string>
+    <string name="quiz_grid_1_3">By using the *setContent* function</string>
+    <string name="quiz_grid_2">How can you make a *VerticalLazyGrid* scrollable?</string>
+    <string name="quiz_grid_2_1">By applying the *LazyScrollable* modifier</string>
+    <string name="quiz_grid_2_2">By setting the *scrollable* parameter to *true*</string>
+    <string name="quiz_grid_2_3">Lazy grids are scrollable by default</string>
+    <string name="quiz_grid_3">How can you add spacing between items inside *LazyVerticalGrid*?</string>
+    <string name="quiz_grid_3_1">With the *itemSpacing* parameter</string>
+    <string name="quiz_grid_3_2">By using *Arrangement.spacedBy* for *verticalArrangement* and *horizontalArrangement* parameters</string>
+    <string name="quiz_grid_3_3">By applying *contentPadding* modifier</string>
+    <string name="scaffold_3_fab">Change FAB position</string>
+    <string name="scaffold_2_top_bar">Top bar</string>
+    <string name="scaffold_2_bottom_bar">Bottom bar</string>
+    <string name="scaffold_2_fab" translatable="false">FAB</string>
+    <string name="scaffold_5_heading" translatable="false">Snackbar</string>
+    <string name="scaffold_5_snackbar">Show snackbar</string>
+    <string name="scaffold_1_content">Scaffold content</string>
+    <string name="scaffold_3_heading">Content color</string>
+    <string name="scaffold_1_1">In Jetpack Compose, a scaffold is a structure that facilitates creating complex UI in a standardized way.\nIt has a modular structure, allowing you to pick the parts that works best for your app.</string>
+    <string name="scaffold_2_1">The main components of the *Scaffold* are the Top App Bar, the Bottom App Bar, and the FAB (Floating Action Button).\nEach of these components comes in several different versions.</string>
+    <string name="scaffold_3_1">You can customize the default colors of the content with the |containerColor| and |contentColor| parameters.</string>
+    <string name="scaffold_4_1">You can change the FAB postion with the |floatingActionButtonPosition| parameter. The available postions are |Start|, |Center|, |End| and |EndOverlay|.</string>
+    <string name="scaffold_5_1">Another component of |Scaffold| is the snackbar. It it used to display short messages to the user. Unlike the toasts, snackbar messages can be interacted with.</string>
+    <string name="scaffold_5_2">To use the snackbar, you can use the |snackbarHost| parameter like so:</string>
+    <string name="scaffold_5_3">In order to display a message you can use the |showSnackbar| method.\nSnackbar messages can have different duration and optional action label.\nYou can check if the action label was clicked by the user using the return value of the method. Note that displaying snackbar messages is a suspending operation.</string>
+    <string name="scaffold_3_2">Note that, when adding content to the scaffold, you should use the provided padding values:</string>
+    <string name="scaffold_5_4">You can hide the current message by using this approach:</string>
+    <string name="quiz_scaffold_1">What are the main components of a scaffold?</string>
+    <string name="quiz_scaffold_1_5" translatable="false">Main App Bar</string>
+    <string name="quiz_scaffold_1_2" translatable="false">Content Padding</string>
+    <string name="quiz_scaffold_1_3" translatable="false">Bottom App Bar</string>
+    <string name="quiz_scaffold_1_4" translatable="false">FAB</string>
+    <string name="quiz_scaffold_1_1" translatable="false">Top App Bar</string>
+    <string name="quiz_scaffold_2">What is the main purpose of the scaffold?</string>
+    <string name="quiz_scaffold_2_1">To be used as a more advanced alternative to *Box*</string>
+    <string name="quiz_scaffold_2_2">Improving the app\'s UI performance</string>
+    <string name="quiz_scaffold_2_3">Being the main container for other composables</string>
+    <string name="quiz_scaffold_3">How can you check whether user clicked the snackbar action?</string>
+    <string name="quiz_scaffold_3_1">By checking the *wasClicked* field on the snackbar host</string>
+    <string name="quiz_scaffold_3_2">By checking the return value of the *showSnackbar* method</string>
+    <string name="quiz_scaffold_3_3">By checking the state of the *GlobalSnackbarController*</string>
+    <string name="quiz_creating_first_2_1" translatable="false">*@Preview*</string>
 </resources>

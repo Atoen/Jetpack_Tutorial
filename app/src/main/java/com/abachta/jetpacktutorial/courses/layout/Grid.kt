@@ -30,6 +30,7 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 import kotlinx.coroutines.launch
 
 @Composable
@@ -62,10 +63,14 @@ private val grid_1 = LessonPage (
   headingResId = R.string.grid_1_heading
 ) {
 
+    ResText(R.string.grid_1_1)
+
+    ResText(R.string.grid_1_2)
+
     CodeListing(
         code = """
             c-LazyVerticalGrid(
-                columns = GridCells.Fixed(3) or FixedSize(60.dp)
+                columns = GridCells.Fixed(3)
             ) {
                 items(30) { index ->
                     c-GridItem(index)
@@ -87,6 +92,26 @@ private val grid_1 = LessonPage (
             }
         }
     }
+}
+
+private val grid_2 = LessonPage (
+  headingResId = R.string.grid_2_heading
+) {
+
+    ResText(R.string.grid_2_1)
+
+    CodeListing(
+        code = """
+            c-LazyVerticalGrid(
+                columns = GridCells.FixedSize(60.dp)
+                // or Adaptive(minSize = 120.dp)
+            ) {
+                items(30) { index ->
+                    c-GridItem(index)
+                }
+            }
+        """.trimIndent()
+    )
 
     Preview(
         modifier = Modifier
@@ -101,23 +126,6 @@ private val grid_1 = LessonPage (
             }
         }
     }
-}
-
-private val grid_2 = LessonPage (
-  headingResId = R.string.grid_2_heading
-) {
-
-    CodeListing(
-        code = """
-            c-LazyVerticalGrid(
-                columns = GridCells.Adaptive(minSize = 120.dp)
-            ) {
-                items(30) { index ->
-                    c-GridItem(index)
-                }
-            }
-        """.trimIndent()
-    )
 
     Preview(
         modifier = Modifier
@@ -137,6 +145,8 @@ private val grid_2 = LessonPage (
 private val grid_3 = LessonPage (
   headingResId = R.string.grid_3_heading
 ) {
+
+    ResText(R.string.grid_3_1)
 
     CodeListing(
         code = """
@@ -201,8 +211,10 @@ private val grid_4 = LessonPage (
 }
 
 private val grid_5 = LessonPage (
-  headingResId = R.string.grid_4_heading
+  headingResId = R.string.grid_5_heading
 ) {
+
+    ResText(R.string.grid_5_1)
 
     CodeListing(
         code = """
@@ -301,7 +313,7 @@ private val grid_6 = LessonPage (
     val scope = rememberCoroutineScope()
 
     Row (
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)
     ) {
         Button(onClick = {
             scope.launch {
@@ -371,6 +383,8 @@ private fun StaggeredGridCellItem(
 private val grid_7 = LessonPage (
   headingResId = R.string.grid_7_heading
 ) {
+
+    ResText(R.string.grid_7_1)
 
     CodeListing(
         code = """

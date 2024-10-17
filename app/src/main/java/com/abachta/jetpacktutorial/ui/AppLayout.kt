@@ -63,6 +63,7 @@ fun AppLayout(
             val result = snackbarHostState.showSnackbar(
                 message = event.message,
                 duration = event.duration,
+                withDismissAction = event.dismissible,
                 actionLabel = event.action?.name
             )
 
@@ -171,10 +172,8 @@ fun AppLayout(
 
             slidingComposable<Screen.Quiz> {
                 val arg = it.toRoute<Screen.Quiz>()
-                val model = courseViewModel.getQuizModel(arg.id)
-
                 QuizScreen(
-                    quiz = model,
+                    quiz = courseViewModel.getQuizModel(arg.id),
                     shuffleMode = settingsViewModel.questionShuffling,
                     onQuizFinished = navController::navigateUp
                 )

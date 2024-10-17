@@ -7,7 +7,8 @@ import kotlinx.coroutines.flow.receiveAsFlow
 data class SnackbarEvent(
     val message: String,
     val duration: SnackbarDuration,
-    val action: SnackbarAction? = null
+    val action: SnackbarAction? = null,
+    val dismissible: Boolean = false
 )
 
 data class SnackbarAction(

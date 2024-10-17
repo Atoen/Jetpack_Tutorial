@@ -61,9 +61,12 @@ class CourseViewModel @Inject constructor(
         } else LessonPopupType.Continue
     }
 
+
+    // TODO: Not resetting the model on configuration changes
     fun getQuizModel(quizId: QuizId): QuizModel {
         val model = currentQuizModel
         if (model == null || model.id != quizId) {
+
             val newModel = QuizModel.crate(getQuizById(quizId))
 
             currentQuizModel = newModel
@@ -71,6 +74,7 @@ class CourseViewModel @Inject constructor(
         }
 
         model.reset()
+
         return model
     }
 

@@ -70,17 +70,3 @@ val jetpackBasicsLessons = listOf(
     modifier,
     toast
 )
-
-val jetpackBasicsQuizzes = listOf(
-    textQuiz,
-    buttonQuiz,
-    textFieldQuiz,
-    imageQuiz,
-    cardQuiz,
-    modifierQuiz
-)
-
-val jetpackBasicsChallenges = listOf(
-    textChallenge,
-    buttonChallenge
-)

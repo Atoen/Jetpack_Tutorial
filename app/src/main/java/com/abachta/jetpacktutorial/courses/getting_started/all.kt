@@ -32,9 +32,3 @@ val gettingStartedLessons = listOf(
     settingUpEnvironment,
     creatingFirstComposable
 )
-
-val gettingStartedQuizzes = listOf(
-    introductionQuiz,
-    settingUpEnvironmentQuiz,
-    creatingFirstComposableQuiz
-)

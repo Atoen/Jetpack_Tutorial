@@ -5,7 +5,6 @@ import androidx.compose.foundation.gestures.animateScrollBy
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material3.Button
@@ -33,17 +33,21 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 import kotlinx.coroutines.launch
 
 private val column_row_1 = LessonPage (
   headingResId = R.string.column_row_1_heading
 ) {
+
+    ResText(R.string.column_row_1_1)
 
     CodeListing(
         code = """
@@ -59,6 +63,8 @@ private val column_row_1 = LessonPage (
         Text("First text")
         Text("Second text")
     }
+
+    ResText(R.string.column_row_1_2)
 
     CodeListing(
         code = """
@@ -78,11 +84,15 @@ private val column_row_1 = LessonPage (
             Text("Second text")
         }
     }
+
+    ResText(R.string.column_row_1_3)
 }
 
 private val column_row_2 = LessonPage (
   headingResId = R.string.column_row_2_heading
 ) {
+
+    ResText(R.string.column_row_2_1)
 
     CodeListing(
         code = """
@@ -113,6 +123,8 @@ private val column_row_2 = LessonPage (
         }
     }
 
+    ResText(R.string.column_row_2_2)
+
     CodeListing(
         code = """
             c-Column {
@@ -135,6 +147,8 @@ private val column_row_2 = LessonPage (
 private val column_row_3 = LessonPage (
   headingResId = R.string.column_row_3_heading
 ) {
+
+    ResText(R.string.column_row_3_1)
 
     CodeListing(
         code = """
@@ -161,11 +175,13 @@ private val column_row_3 = LessonPage (
         }
     }
 
+    ResText(R.string.column_row_3_2)
+
     CodeListing(
         code = """
             c-Row(
                 verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 ...  
                 c-Column(
@@ -234,8 +250,14 @@ private val column_row_4 = LessonPage (
         label = "column_preview_animation"
     )
 
-    Button(onClick = { expanded = !expanded }) {
-        Text(if (expanded) "Collapse" else "Expand")
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Button(onClick = { expanded = !expanded }) {
+            val text = stringResource(if (expanded) R.string.column_row_collapse else R.string.column_row_expand)
+            Text(text)
+        }
     }
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
@@ -309,8 +331,14 @@ private val column_row_5 = LessonPage (
         label = "row_preview_animation"
     )
 
-    Button(onClick = { expanded = !expanded }) {
-        Text(if (expanded) "Collapse" else "Expand")
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Button(onClick = { expanded = !expanded }) {
+            val text = stringResource(if (expanded) R.string.column_row_collapse else R.string.column_row_expand)
+            Text(text)
+        }
     }
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
@@ -353,6 +381,8 @@ private val column_row_6 = LessonPage (
   headingResId = R.string.column_row_6_heading
 ) {
 
+    ResText(R.string.column_row_6_1)
+
     CodeListing(
         code = """
             c-Row(modifier = Modifier.fillMaxWidth()) {
@@ -385,9 +415,11 @@ private val column_row_7 = LessonPage (
   headingResId = R.string.column_row_7_heading
 ) {
 
+    ResText(R.string.column_row_7_1)
+
     CodeListing(
         code = """
-            c-Row(modifier = Modifier.horizontalScroll(rememberScrollState())) {
+            c-Row(modifier = Modifier.horizontalScroll(c-rememberScrollState())) {
                 repeat(40) { i ->
                     c-Text("Item ${'$'}i")
                 }
@@ -402,17 +434,41 @@ private val column_row_7 = LessonPage (
             }
         }
     }
+
+    CodeListing(
+        code = """
+            c-Column(modifier = Modifier.verticalScroll(c-rememberScrollState())) {
+                repeat(40) { i ->
+                    c-Text("Item ${'$'}i")
+                }
+            }
+        """.trimIndent()
+    )
+
+    Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+        Column(
+            modifier = Modifier
+                .height(200.dp)
+                .verticalScroll(rememberScrollState())
+        ) {
+            repeat(40) { i ->
+                Text("Item $i")
+            }
+        }
+    }
 }
 
 private val column_row_8 = LessonPage (
   headingResId = R.string.column_row_8_heading
 ) {
 
+    ResText(R.string.column_row_8_1)
+
+    ResText(R.string.column_row_8_2)
+
     CodeListing(
         code = """
-            c-LazyColumn(
-                contentPadding = PaddingValues(8.dp)
-            ) {
+            c-LazyColumn {
                 item {
                     c-Text("First item")
                 }
@@ -433,10 +489,7 @@ private val column_row_8 = LessonPage (
             .align(Alignment.CenterHorizontally)
             .height(200.dp)
     ) {
-        LazyColumn(
-            contentPadding = PaddingValues(8.dp),
-            modifier = Modifier.height(200.dp)
-        ) {
+        LazyColumn(modifier = Modifier.height(200.dp)) {
             item {
                 Text("First item")
             }
@@ -455,6 +508,8 @@ private val column_row_8 = LessonPage (
 private val column_row_9 = LessonPage (
   headingResId = R.string.column_row_9_heading
 ) {
+
+    ResText(R.string.column_row_9_1)
 
     CodeListing(
         code = """
@@ -487,7 +542,8 @@ private val column_row_9 = LessonPage (
     val scope = rememberCoroutineScope()
 
     Row (
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)
     ) {
         Button(onClick = {
             scope.launch {
@@ -528,6 +584,8 @@ private val column_row_10 = LessonPage (
   headingResId = R.string.column_row_10_heading
 ) {
 
+    ResText(R.string.column_row_10_1)
+
     CodeListing(
         code = """            
             c-LazyColumn {
@@ -546,7 +604,8 @@ private val column_row_10 = LessonPage (
 
     val list = remember { mutableStateListOf(0, 1) }
     Row(
-        horizontalArrangement = Arrangement.spacedBy(4.dp)
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(4.dp, Alignment.CenterHorizontally)
     ) {
         Button(onClick = {
             val count = list.count()

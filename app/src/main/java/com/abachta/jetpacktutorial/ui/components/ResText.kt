@@ -91,6 +91,6 @@ private fun ResTextPreview() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        ResText(resId = R.string.monospace_text)
+        ResText(resId = R.string.formatted_text)
     }
 }

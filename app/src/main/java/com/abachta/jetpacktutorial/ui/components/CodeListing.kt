@@ -75,7 +75,7 @@ private val darkCodeColors = CodeColors(
     comment =  Color(0xFF8F8F8F)
 )
 
-private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null|class|override|import|super)\\b"
+private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null|class|override|import|super|suspend)\\b"
 private const val annotationPattern = "@\\w+"
 private const val stringPattern = "\"(.*?)\""
 private const val commentPattern = "//.*"
@@ -120,7 +120,7 @@ fun CodeListing(
     code: String,
     modifier: Modifier = Modifier,
     title: @Composable (() -> Unit)? = null,
-    titlePosition: CodeListingTitlePosition = CodeListingTitlePosition.Top
+    titlePosition: CodeListingTitlePosition = CodeListingTitlePosition.Top,
 ) {
     val colors = when (LocalAppTheme.current) {
         AppTheme.Light -> lightCodeColors
@@ -155,7 +155,6 @@ fun CodeListing(
 
         SelectionContainer {
             Column {
-
                 val font = LocalCodeListingFont.current
                 Text(
                     text = parsedCode,

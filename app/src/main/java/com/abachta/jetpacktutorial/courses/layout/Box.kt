@@ -13,10 +13,15 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val box_1 = LessonPage (
   headingResId = R.string.box_1_heading
 ) {
+
+    ResText(R.string.box_1_1)
+
+    ResText(R.string.box_1_2)
 
     CodeListing(
         code = """
@@ -63,6 +68,8 @@ private val box_2 = LessonPage (
   headingResId = R.string.box_1_heading
 ) {
 
+    ResText(R.string.box_2_1)
+
     CodeListing(
         code = """
             c-Box(
@@ -96,6 +103,8 @@ private val box_2 = LessonPage (
 private val box_3 = LessonPage (
   headingResId = R.string.box_1_heading
 ) {
+
+    ResText(R.string.box_3_1)
 
     CodeListing(
         code = """

@@ -30,6 +30,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MediumTopAppBar
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SmallFloatingActionButton
+import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -37,6 +38,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -44,12 +46,20 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
+import com.abachta.jetpacktutorial.ui.SnackbarAction
+import com.abachta.jetpacktutorial.ui.SnackbarController
+import com.abachta.jetpacktutorial.ui.SnackbarEvent
+import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 private val scaffold_1 = LessonPage (
    headingResId = R.string.scaffold_1_heading
 ) {
+
+    ResText(R.string.scaffold_1_1)
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         Scaffold(
@@ -79,7 +89,7 @@ private val scaffold_1 = LessonPage (
             Column (
                 modifier = Modifier.padding(contentPadding)
             ) {
-
+                ResText(R.string.scaffold_1_content)
             }
         }
     }
@@ -111,6 +121,8 @@ private val scaffold_2 = LessonPage (
    headingResId = R.string.scaffold_2_heading
 ) {
 
+    ResText(R.string.scaffold_2_1)
+
     var currentTopBarIndex by remember { mutableIntStateOf(1) }
     var currentBottomBarIndex by remember { mutableIntStateOf(1) }
     var currentFABIndex by remember { mutableIntStateOf(1) }
@@ -121,21 +133,21 @@ private val scaffold_2 = LessonPage (
         modifier = Modifier.fillMaxWidth()
     ) {
         Button(onClick = {
-            currentTopBarIndex = (currentTopBarIndex + 1) % 4
+            currentTopBarIndex = (currentTopBarIndex + 1) % TopBarType.entries.size
         }) {
-            Text("Top Bar")
+            ResText(R.string.scaffold_2_top_bar)
         }
 
         Button(onClick = {
-            currentBottomBarIndex = (currentBottomBarIndex + 1) % 3
+            currentBottomBarIndex = (currentBottomBarIndex + 1) % BottomBarType.entries.size
         }) {
-            Text("Bottom Bar")
+            ResText(R.string.scaffold_2_bottom_bar)
         }
 
         Button(onClick = {
-            currentFABIndex = (currentFABIndex + 1) % 5
+            currentFABIndex = (currentFABIndex + 1) % FABType.entries.size
         }) {
-            Text("FAB")
+            ResText(R.string.scaffold_2_fab)
         }
     }
 
@@ -158,7 +170,6 @@ private val scaffold_2 = LessonPage (
             Column (
                 modifier = Modifier.padding(contentPadding)
             ) {
-
             }
         }
     }
@@ -370,13 +381,77 @@ private val scaffold_3 = LessonPage (
    headingResId = R.string.scaffold_3_heading
 ) {
 
+    ResText(R.string.scaffold_3_1)
+
+    Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
+        Scaffold(
+            containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+            contentColor = MaterialTheme.colorScheme.error,
+
+            topBar = {
+                TopAppBar(
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = MaterialTheme.colorScheme.primaryContainer,
+                        titleContentColor = MaterialTheme.colorScheme.primary,
+                    ),
+                    title = {
+                        Text("Top app bar")
+                    }
+                )
+            },
+            bottomBar = {
+                BottomBar(
+                    barType = BottomBarType.BottomBarWithFab,
+                    fabType = FABType.Standard
+                )
+            },
+            modifier = Modifier.height(400.dp)
+        ) { contentPadding ->
+            Column (
+                modifier = Modifier.padding(contentPadding)
+            ) {
+                ResText(R.string.scaffold_1_content)
+            }
+        }
+    }
+
+    ResText(R.string.scaffold_3_2)
+
+    CodeListing(
+        code = """
+            c-Scaffold(
+                // ...
+            ) { contentPadding ->
+                c-Column ( // or any other composable
+                    modifier = Modifier.padding(contentPadding)
+                ) {
+                    // ...
+                }
+            }
+        """.trimIndent()
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+private val scaffold_4 = LessonPage (
+   headingResId = R.string.scaffold_4_heading
+) {
+
+    ResText(R.string.scaffold_4_1)
+
     var currentFABPositionIndex by remember { mutableIntStateOf(1) }
 
-    Button(onClick = {
-        currentFABPositionIndex = (currentFABPositionIndex + 1) % 4
-    }) {
-        Text("FAB")
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Button(onClick = {
+            currentFABPositionIndex = (currentFABPositionIndex + 1) % 4
+        }) {
+            ResText(R.string.scaffold_3_fab)
+        }
     }
+
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         Scaffold(
             topBar = {
@@ -411,14 +486,100 @@ private val scaffold_3 = LessonPage (
             Column (
                 modifier = Modifier.padding(contentPadding)
             ) {
-
             }
         }
     }
 }
 
+private val scaffold_5 = LessonPage (
+   headingResId = R.string.scaffold_5_heading
+) {
+
+    ResText(R.string.scaffold_5_1)
+
+    ResText(R.string.scaffold_5_2)
+
+    CodeListing(
+        code = """
+            val snackbarHostState = c-remember { SnackbarHostState() }
+            
+            c-Scaffold(
+                snackbarHost = {
+                    c-SnackbarHost(snackbarHostState)
+                }
+                // ...
+            ) { 
+                // ...
+            }
+        """.trimIndent()
+    )
+
+    ResText(R.string.scaffold_5_3)
+
+    CodeListing(
+        code = """
+            suspend fun showMessage(message: String) {
+                val result = snackbarHostState.showSnackbar(
+                    message = message,
+                    duration = SnackbarDuration.Long, // or Short or Indefinite,
+                    withDismissAction = true,
+                    actionLabel = "Go"
+                )
+                
+                if (result == SnackbarResult.ActionPerformed) {
+                    // ...
+                }
+            }
+        """.trimIndent()
+    )
+
+    val scope = rememberCoroutineScope()
+    val innerEvent = SnackbarEvent(
+        message = "Dismissible snackbar message!",
+        duration = SnackbarDuration.Indefinite,
+        dismissible = true
+    )
+
+    val outerEvent = SnackbarEvent(
+        message = "Hello!",
+        duration = SnackbarDuration.Short,
+        action = SnackbarAction(
+            name = "Click me!",
+            action = {
+                scope.launch {
+                    SnackbarController.sendEvent(innerEvent)
+                }
+            }
+        )
+    )
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Button(onClick = {
+            scope.launch {
+                SnackbarController.sendEvent(outerEvent)
+            }
+        }) {
+            ResText(R.string.scaffold_5_snackbar)
+        }
+    }
+
+    ResText(R.string.scaffold_5_4)
+
+    CodeListing(
+        code = """
+            // Not suspending
+            snackbarHostState.currentSnackbarData?.dismiss()
+        """.trimIndent()
+    )
+}
+
 val scaffoldPages = listOf(
     scaffold_1,
     scaffold_2,
-    scaffold_3
+    scaffold_3,
+    scaffold_4,
+    scaffold_5
 )
