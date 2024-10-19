@@ -75,7 +75,7 @@ private val darkCodeColors = CodeColors(
     comment =  Color(0xFF8F8F8F)
 )
 
-private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null|class|override|import|super|suspend)\\b"
+private const val keywordPattern = "\\b(val|var|fun|by|if|else|for|while|when|return|true|false|null|class|override|import|super|suspend|private)\\b"
 private const val annotationPattern = "@\\w+"
 private const val stringPattern = "\"(.*?)\""
 private const val commentPattern = "//.*"

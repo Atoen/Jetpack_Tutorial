@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import com.abachta.jetpacktutorial.viewmodels.AppVisualsAccessor
 
 class Lesson(
     @StringRes val titleResId: Int,
@@ -65,5 +66,5 @@ class LessonProgress {
 class LessonPage(
     @StringRes
     val headingResId: Int? = null,
-    val content: @Composable ColumnScope.() -> Unit
+    val content: @Composable ColumnScope.(AppVisualsAccessor) -> Unit
 )

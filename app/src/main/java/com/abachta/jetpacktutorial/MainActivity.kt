@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
                 LocalAppTheme provides viewModel.theme,
                 LocalCodeListingFont provides viewModel.listingFont
             ) {
-                JetpackTutorialTheme {
+                JetpackTutorialTheme(
+                    dynamicColors = viewModel.dynamicColors
+                ) {
                     enableEdgeToEdge(appTheme = viewModel.theme)
                     AppLayout(
                         settingsViewModel = viewModel,
@@ -51,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         val barStyle = when (appTheme) {
             AppTheme.Auto -> SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
             AppTheme.Light -> SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT)
-            AppTheme.Dark -> SystemBarStyle.dark(Color.TRANSPARENT)
+            else -> SystemBarStyle.dark(Color.TRANSPARENT)
         }
 
         enableEdgeToEdge(

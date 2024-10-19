@@ -499,6 +499,39 @@ private val scaffold_5 = LessonPage (
 
     ResText(R.string.scaffold_5_2)
 
+    val scope = rememberCoroutineScope()
+    val innerEvent = SnackbarEvent(
+        message = "Dismissible snackbar message!",
+        duration = SnackbarDuration.Indefinite,
+        dismissible = true
+    )
+
+    val outerEvent = SnackbarEvent(
+        message = "Hello!",
+        duration = SnackbarDuration.Short,
+        action = SnackbarAction(
+            name = "Click me!",
+            action = {
+                scope.launch {
+                    SnackbarController.sendEvent(innerEvent)
+                }
+            }
+        )
+    )
+
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        Button(onClick = {
+            scope.launch {
+                SnackbarController.sendEvent(outerEvent)
+            }
+        }) {
+            ResText(R.string.scaffold_5_snackbar)
+        }
+    }
+
     CodeListing(
         code = """
             val snackbarHostState = c-remember { SnackbarHostState() }
@@ -532,39 +565,6 @@ private val scaffold_5 = LessonPage (
             }
         """.trimIndent()
     )
-
-    val scope = rememberCoroutineScope()
-    val innerEvent = SnackbarEvent(
-        message = "Dismissible snackbar message!",
-        duration = SnackbarDuration.Indefinite,
-        dismissible = true
-    )
-
-    val outerEvent = SnackbarEvent(
-        message = "Hello!",
-        duration = SnackbarDuration.Short,
-        action = SnackbarAction(
-            name = "Click me!",
-            action = {
-                scope.launch {
-                    SnackbarController.sendEvent(innerEvent)
-                }
-            }
-        )
-    )
-
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
-    ) {
-        Button(onClick = {
-            scope.launch {
-                SnackbarController.sendEvent(outerEvent)
-            }
-        }) {
-            ResText(R.string.scaffold_5_snackbar)
-        }
-    }
 
     ResText(R.string.scaffold_5_4)
 

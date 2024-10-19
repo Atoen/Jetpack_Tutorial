@@ -6,6 +6,7 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 import com.abachta.jetpacktutorial.courses.layout.layoutLessons
+import com.abachta.jetpacktutorial.courses.styling.styingLessons
 import com.abachta.jetpacktutorial.data.models.CourseProgress
 
 sealed class Course(
@@ -43,10 +44,10 @@ sealed class Course(
         lessons = layoutLessons,
     )
 
-    data object ThemingAndStyling : Course(
+    data object Styling : Course(
         titleResId = R.string.course_theming_styling,
         descriptionResId = R.string.TODO,
-        lessons = listOf(),
+        lessons = styingLessons,
     )
 
     data object StateAndLifecycle : Course(
@@ -55,13 +56,13 @@ sealed class Course(
         lessons = listOf(),
     )
 
-    data object InteractivityAndNavigation : Course(
+    data object Navigation : Course(
         titleResId = R.string.course_interactivity_navigation,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
 
-    data object AnimationsAndTransitions : Course(
+    data object Animations : Course(
         titleResId = R.string.course_animations_transitions,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
@@ -92,10 +93,10 @@ val allCourses = listOf(
     Course.GettingStarted,
     Course.ComposeBasics,
     Course.Layout,
-    Course.ThemingAndStyling,
+    Course.Styling,
     Course.StateAndLifecycle,
-    Course.InteractivityAndNavigation,
-    Course.AnimationsAndTransitions,
+    Course.Navigation,
+    Course.Animations,
     Course.AdvancedCompose
 )
 

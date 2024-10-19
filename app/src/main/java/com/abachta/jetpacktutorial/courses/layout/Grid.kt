@@ -113,6 +113,8 @@ private val grid_2 = LessonPage (
         """.trimIndent()
     )
 
+    ResText(R.string.grid_2_2)
+
     Preview(
         modifier = Modifier
             .align(Alignment.CenterHorizontally)
@@ -126,6 +128,8 @@ private val grid_2 = LessonPage (
             }
         }
     }
+
+    ResText(R.string.grid_2_3)
 
     Preview(
         modifier = Modifier

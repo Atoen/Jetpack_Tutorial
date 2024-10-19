@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Code
+import androidx.compose.material.icons.filled.ColorLens
 import androidx.compose.material.icons.filled.DarkMode
 import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material.icons.filled.Language
@@ -38,6 +39,7 @@ import com.abachta.jetpacktutorial.settings.AppLocale
 import com.abachta.jetpacktutorial.settings.AppTheme
 import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.CodeListingFont
+import com.abachta.jetpacktutorial.settings.DynamicColorsOption
 import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import com.abachta.jetpacktutorial.ui.components.SelectableTextProvider
 import com.abachta.jetpacktutorial.ui.components.SelectionDialog
@@ -53,6 +55,16 @@ fun SettingsScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.fillMaxSize()
     ) {
+        // App language
+        DialogRow(
+            icon = Icons.Filled.Language,
+            selectedItem = viewModel.locale,
+            onItemSelected = { viewModel.locale = it },
+            dialogItems = AppLocale.entries,
+            dialogTitle = stringResource(R.string.select_app_language),
+            rowTitle = stringResource(R.string.app_language)
+        )
+
         val themeIcon = when (viewModel.theme) {
             AppTheme.Light -> Icons.Filled.LightMode
             AppTheme.Dark -> Icons.Filled.DarkMode
@@ -69,14 +81,14 @@ fun SettingsScreen(
             rowTitle = stringResource(R.string.app_theme)
         )
 
-        // App language
+        // Dynamic colors
         DialogRow(
-            icon = Icons.Filled.Language,
-            selectedItem = viewModel.locale,
-            onItemSelected = { viewModel.locale = it },
-            dialogItems = AppLocale.entries,
-            dialogTitle = stringResource(R.string.select_app_language),
-            rowTitle = stringResource(R.string.app_language)
+            icon = Icons.Filled.ColorLens,
+            selectedItem = viewModel.dynamicColors,
+            onItemSelected = { viewModel.dynamicColors = it },
+            dialogItems = DynamicColorsOption.entries,
+            dialogTitle = stringResource(R.string.use_dynamic_colors),
+            rowTitle = stringResource(R.string.dynamic_colors)
         )
 
         val popupIcon = when (viewModel.lessonPopup) {

@@ -9,7 +9,9 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.tooling.preview.PreviewDynamicColors
 import com.abachta.jetpacktutorial.settings.AppTheme
+import com.abachta.jetpacktutorial.settings.DynamicColorsOption
 import com.abachta.jetpacktutorial.settings.LocalAppTheme
 
 private val DarkColorScheme = darkColorScheme(
@@ -37,7 +39,7 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun JetpackTutorialTheme(
     appTheme: AppTheme = LocalAppTheme.current,
-    useDynamicColors: Boolean = true,
+    dynamicColors: DynamicColorsOption = DynamicColorsOption.Enabled,
     content: @Composable () -> Unit
 ) {
     val context = LocalContext.current
@@ -48,7 +50,7 @@ fun JetpackTutorialTheme(
     }
 
     val colorScheme = when {
-        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && useDynamicColors -> {
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && dynamicColors.enabled -> {
             if (useDarkTheme) dynamicDarkColorScheme(context)
             else dynamicLightColorScheme(context)
         }

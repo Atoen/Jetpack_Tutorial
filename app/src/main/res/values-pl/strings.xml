@@ -388,7 +388,7 @@
     <string name="box_3_1">Innym zastosowaniem |Box| jest dopasowanie rozmiaru zawartości do rozmiaru kontenera. Możesz to zrobić za pomocą modyfikatora |matchParentSize|.\n</string>
     <string name="grid_1_1">Siatki to kolejny typ leniwych kontenerów. Funkcje kompozycyjne |LazyVerticalGrid| i |LazyHorizontlGrid| ułatwiają wyświetlanie elementów w siatce.\nPodobnie jak |LazyColumn| i |LazyRow|, one również udostępniają funkcje |item| i |items| umożliwiające dodawanie treści.</string>
     <string name="grid_1_2">Podczas tworzenia siatki wymagane jest określenie liczbę kolumn (lub wierszy).</string>
-    <string name="grid_2_1">Zamiast ustawiać liczbę kolumn (lub wierszy) możesz ustawić ich rozmiar.\nMożesz sprawić, że będą miały |FixedSize| lub będą |Adaptive|. Komórki adaptacyjne zajmą co najmniej określoną przestrzeń i podzielą pozostałą część równo.</string>
+    <string name="grid_2_1">Zamiast ustawiać liczbę kolumn (lub wierszy) możesz ustawić ich rozmiar.\nMożesz sprawić, że będą miały stały rozmiar lub będą adaptacyjne|. Komórki adaptacyjne zajmą co najmniej określoną przestrzeń i podzielą pozostałą część równo.</string>
     <string name="grid_3_1">Tworzenie siatki poziomej jest bardzo podobne do pionowej: wystarczy zastąpić |LazyVerticalGrid| przez |LazyHorizontalGrid| i użyć parametru |rows| zamiast |columns|.</string>
     <string name="grid_4_1">Gird umożliwia zmianę układu treści podobnie jak w przypadku list, z tą różnicą, że w przypadku Gird używane są zarówno |VerticalArrangement|, jak i |HorizontalArrangement|, a nie |Alignment|.</string>
     <string name="grid_5_1">Podobnie jak w przypadku list, możesz animować zmiany w zawartości za pomocą modyfikatora |animateItem| i podać klucz dla każdego elementu.</string>
@@ -449,5 +449,27 @@
     <string name="quiz_scaffold_3_2">Sparwdzając wartość zwróconą przrz metodę *showSnackbar*</string>
     <string name="quiz_scaffold_3_3">Sprawdzając stan *GlobalSnackbarController*</string>
     <string name="quiz_button_1">Czy można wyświetlić dowolną zawartość wewnątrz przycisku?</string>
+    <string name="lesson_color_scheme_title">Paleta kolorów</string>
+    <string name="color_scheme_1_heading">Tworzenie palety kolorów aplikacji</string>
+    <string name="color_scheme_2_heading">Używanie palety kolorów</string>
+    <string name="color_scheme_3_heading">Kolor tła</string>
+    <string name="lesson_app_theme">Motywy aplikacji i dynamiczna paleta kolorów</string>
+    <string name="app_theme_1_heading">Używanie ciemnego motywu aplikacji</string>
+    <string name="app_theme_2_heading">Dynamiczna paleta kolorów</string>
+    <string name="app_theme_3_heading">Wyświetlanie od krawędzi do krawędzi</string>
+    <string name="grid_2_2">Siatka z komórkami |FixedSize|:</string>
+    <string name="grid_2_3">Siatka z komórkami |Adaptive|:</string>
+    <string name="app_theme_2_current">Obecny motyw: %1$s</string>
+    <string name="use_dynamic_colors">Używaj dynamiczej palety kolorów</string>
+    <string name="dynamic_colors">Dynamiczna paleta kolorów</string>
+    <string name="app_theme_3_current">Dynamiczne kolory: %1$s</string>
+    <string name="material_theme_1_heading">Tworzenie palety kolorów Material Theme</string>
+    <string name="material_theme_2_heading">Stosowanie motywu w aplikacji</string>
+    <string name="material_theme_3_heading">Używanie palety kolorów</string>
+    <string name="material_theme_4_heading">Tworzenie typografii</string>
+    <string name="material_theme_5_heading">Używanie typografii</string>
+    <string name="material_theme_6_heading">Tworzenie kształtów</string>
+    <string name="material_theme_7_heading">Używanie kształtów</string>
+    <string name="material_theme_8_heading">Zakres niestandardowego motywu</string>
 
 </resources>

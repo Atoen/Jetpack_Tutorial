@@ -21,7 +21,7 @@
     <!-- Groups -->
     <string name="course_getting_started_title">Getting Started with Jetpack Compose</string>
     <string name="course_layout_title">UI layout</string>
-    <string name="course_theming_styling">Theming and styling</string>
+    <string name="course_theming_styling">Styling the UI</string>
     <string name="course_getting_started_description">Learn the basics of Jetpack Compose, including setting up your environment and creating your first composable.</string>
     <string name="course_layout_description">Dive into Compose layouts, theming, and styling your app.</string>
     <string name="curse_state_navigation_description">Manage state effectively and navigate between screens in your Compose app.</string>
@@ -424,7 +424,7 @@
     <string name="box_3_1">Another use for |Box| is to match the content size to the container\'s. You can do this using the |matchParentSize| modifier.</string>
     <string name="grid_1_1">Grids are another type of lazy containers. The |LazyVerticalGrid| and |LazyHorizontlGrid| composables provide support for displaying items in a grid.\nLike the |LazyColumn| and |LazyRow| they also provide |item| and |items| functions for adding content.</string>
     <string name="grid_1_2">When creating grids you must specify the count columns (or rows).</string>
-    <string name="grid_2_1">Instead of setting the count of the columns (or rows) you can set their size.\nYou can make them have |FixedSize| or be |Adaptive|. Adaptive cells will take at least the specified space and thivide the remainig equally.</string>
+    <string name="grid_2_1">Instead of setting the count of the columns (or rows) you can set their size.\nYou can make them have fixed size or be adaptive. Adaptive cells will take at least the specified space and thivide the remainig equally.</string>
     <string name="grid_3_1">Creating horizontal grid is very similar to vertical: simply replace |LazyVerticalGrid| with |LazyHorizontalGrid| and use the |rows| parameter insead of |columns|.</string>
     <string name="grid_4_1">Gird allows you to change the arrangement of the content similarly to lists with the difference being they use both |VerticalArrangement| and |HorizontalArrangement| and no alignment.</string>
     <string name="grid_5_1">Like in the lists, you can animate changes in content with the |animateItem| modifier and providing key for each element.</string>
@@ -495,4 +495,27 @@
     <string name="quiz_scaffold_3_2">By checking the return value of the *showSnackbar* method</string>
     <string name="quiz_scaffold_3_3">By checking the state of the *GlobalSnackbarController*</string>
     <string name="quiz_creating_first_2_1" translatable="false">*@Preview*</string>
+    <string name="lesson_color_scheme_title">Color scheme</string>
+    <string name="color_scheme_1_heading">Creating application color scheme</string>
+    <string name="color_scheme_2_heading">Using the color scheme</string>
+    <string name="color_scheme_3_heading">Background color</string>
+    <string name="lesson_material_theme_title" translatable="false">Material Theme</string>
+    <string name="lesson_app_theme">App themes and dynamic colors</string>
+    <string name="app_theme_1_heading">Using dark color theme</string>
+    <string name="app_theme_2_heading">Dynamic color scheme</string>
+    <string name="app_theme_3_heading">Displaying edge to edge</string>
+    <string name="grid_2_2">Grid with |FixedSize| cells:</string>
+    <string name="grid_2_3">Grid with |Adaptive| cells:</string>
+    <string name="app_theme_2_current">Current theme: %1$s</string>
+    <string name="use_dynamic_colors">Use dynamic color scheme</string>
+    <string name="dynamic_colors">Dynamic color scheme</string>
+    <string name="app_theme_3_current">Dynamic colors: %1$s</string>
+    <string name="material_theme_1_heading">Creating Material Theme color scheme</string>
+    <string name="material_theme_2_heading">Applying theme to the app</string>
+    <string name="material_theme_3_heading">Using the color scheme</string>
+    <string name="material_theme_4_heading">Creating typography</string>
+    <string name="material_theme_5_heading">Using the typography</string>
+    <string name="material_theme_6_heading">Creating shapes</string>
+    <string name="material_theme_7_heading">Using the shapes</string>
+    <string name="material_theme_8_heading">Custom theme scope</string>
 </resources>

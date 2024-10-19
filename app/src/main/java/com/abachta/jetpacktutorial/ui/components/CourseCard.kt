@@ -134,9 +134,6 @@ fun CourseCard(
 @Preview(showBackground = true)
 @Composable
 fun CourseCardPreview() {
-
-//    Course.GettingStarted.progress.completeLesson()
-
     CourseCard(
         course = Course.GettingStarted,
         onClick = {}

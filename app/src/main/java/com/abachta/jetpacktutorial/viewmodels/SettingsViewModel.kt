@@ -1,7 +1,9 @@
 package com.abachta.jetpacktutorial.viewmodels
 
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +12,7 @@ import com.abachta.jetpacktutorial.settings.AppLocale
 import com.abachta.jetpacktutorial.settings.AppTheme
 import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.CodeListingFont
+import com.abachta.jetpacktutorial.settings.DynamicColorsOption
 import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -25,22 +28,14 @@ class SettingsViewModel @Inject constructor(
 
     private val _isReady = MutableStateFlow(false)
 
-    private val _theme = mutableStateOf<AppTheme>(AppTheme.Auto)
     private val _locale = mutableStateOf<AppLocale>(AppLocale.English)
+    private val _theme = mutableStateOf<AppTheme>(AppTheme.Auto)
+    private val _dynamicColors = mutableStateOf<DynamicColorsOption>(DynamicColorsOption.Enabled)
     private val _showLessonPopup = mutableStateOf<LessonPopupOption>(LessonPopupOption.Enabled)
     private val _listingFont = mutableStateOf<CodeListingFont>(CodeListingFont.Medium)
     private val _questionShuffling = mutableStateOf<QuizShufflingOption>(QuizShufflingOption.ShuffleQuestions)
 
     val isReady = _isReady.asStateFlow()
-
-    var theme
-        get() = _theme.value
-        set(value) {
-            _theme.value = value
-            viewModelScope.launch {
-                preferences.setInt(THEME_KEY, value.value)
-            }
-        }
 
     var locale
         get() = _locale.value
@@ -51,6 +46,24 @@ class SettingsViewModel @Inject constructor(
                     value.tag
                 )
             )
+        }
+
+    var theme
+        get() = _theme.value
+        set(value) {
+            _theme.value = value
+            viewModelScope.launch {
+                preferences.setInt(THEME_KEY, value.value)
+            }
+        }
+
+    var dynamicColors
+        get() = _dynamicColors.value
+        set(value) {
+            _dynamicColors.value = value
+            viewModelScope.launch {
+                preferences.setBoolean(DYNAMIC_COLORS_KEY, value.enabled)
+            }
         }
 
     var lessonPopup
@@ -108,8 +121,16 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    val nonPersistentAccessor by lazy {
+        object : AppVisualsAccessor {
+            override var theme by _theme
+            override var dynamicColors by _dynamicColors
+        }
+    }
+
     companion object {
         private const val THEME_KEY = "theme"
+        private const val DYNAMIC_COLORS_KEY = "dynamic_colors"
         private const val POPUP_KEY = "popup"
         private const val FONT_KEY = "font"
         private const val SHUFFLE_KEY = "shuffle"

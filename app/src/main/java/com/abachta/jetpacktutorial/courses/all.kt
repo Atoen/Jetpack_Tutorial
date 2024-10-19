@@ -4,6 +4,7 @@ import android.util.Log
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 import com.abachta.jetpacktutorial.courses.layout.layoutLessons
+import com.abachta.jetpacktutorial.courses.styling.styingLessons
 import com.abachta.jetpacktutorial.data.ChallengeId
 import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.Lesson
@@ -14,7 +15,8 @@ import com.abachta.jetpacktutorial.data.QuizId
 val allLessons = listOf(
     gettingStartedLessons,
     jetpackBasicsLessons,
-    layoutLessons
+    layoutLessons,
+    styingLessons
 ).flatten()
 
 val allQuizzes = allLessons.mapNotNull { it.quiz }
