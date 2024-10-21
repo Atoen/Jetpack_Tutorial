@@ -21,7 +21,7 @@ class CourseProgress(private val lessons: List<Lesson>) {
 
 @FloatRange(from = 0.0, to = 1.0)
 fun List<Lesson>.completedProgress(): Float =
-    count { it.isCompleted } / count().toFloat()
+    count { it.isCompleted } / size.toFloat()
 
 fun List<Lesson>.completedCount(): Int =
     count { it.isCompleted }

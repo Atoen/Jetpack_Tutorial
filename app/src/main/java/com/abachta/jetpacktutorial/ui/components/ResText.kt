@@ -18,6 +18,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,7 +33,7 @@ fun ResText(
 ) {
     val text = stringResource(resId)
 
-    if ('|' in text || '*' in text) {
+    if ('|' in text || '*' in text || '#' in text) {
         Text(
             text = parseFormattedText(text, MaterialTheme.colorScheme.outlineVariant),
             modifier = modifier,
@@ -49,12 +50,14 @@ fun ResText(
 
 private const val monospacePattern = "\\|(.*?)\\|"
 private const val boldPattern = "\\*(.*?)\\*"
+private const val italicPattern = "#(.*?)#"
 
 private val combinedPattern = Regex(
-    "$monospacePattern|$boldPattern"
+    "$monospacePattern|$boldPattern|$italicPattern"
 )
 
 private val boldStyle = SpanStyle(fontWeight = FontWeight.Bold)
+private val italicStyle = SpanStyle(fontStyle = FontStyle.Italic)
 
 fun parseFormattedText(text: String, backgroundColor: Color): AnnotatedString {
     return buildAnnotatedString {
@@ -70,6 +73,7 @@ fun parseFormattedText(text: String, backgroundColor: Color): AnnotatedString {
             when {
                 match.groups[1] != null -> withStyle(monospaceStyle) { append(match.groupValues[1]) }
                 match.groups[2] != null -> withStyle(boldStyle) { append(match.groupValues[2]) }
+                match.groups[3] != null -> withStyle(italicStyle) { append(match.groupValues[3]) }
             }
 
             currentIndex = match.range.last + 1

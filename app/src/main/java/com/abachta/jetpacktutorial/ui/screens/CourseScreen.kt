@@ -21,8 +21,8 @@ import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.Quiz
-import com.abachta.jetpacktutorial.data.models.completedCount
 import com.abachta.jetpacktutorial.data.getCourseById
+import com.abachta.jetpacktutorial.data.models.completedCount
 import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.ui.components.LessonCard
 
@@ -65,7 +65,6 @@ fun CourseScreen(
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
             items(lessons) { lesson ->
                 LessonCard(

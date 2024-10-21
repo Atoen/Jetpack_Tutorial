@@ -8,6 +8,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import com.abachta.jetpacktutorial.viewmodels.AppVisualsAccessor
 
+private val defaultCourseId = CourseId(0)
+
 class Lesson(
     @StringRes val titleResId: Int,
     @StringRes val descriptionResId: Int,
@@ -21,7 +23,7 @@ class Lesson(
     val isCompleted
         get() = progress.completed
 
-    val courseId = LessonCourseId(CourseId(0))
+    val courseId = LessonCourseId(defaultCourseId)
 
     val hasQuiz = quiz != null
 

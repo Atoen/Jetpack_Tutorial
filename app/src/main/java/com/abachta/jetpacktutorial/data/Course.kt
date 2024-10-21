@@ -6,6 +6,7 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 import com.abachta.jetpacktutorial.courses.layout.layoutLessons
+import com.abachta.jetpacktutorial.courses.state_lifecycle.stateLessons
 import com.abachta.jetpacktutorial.courses.styling.styingLessons
 import com.abachta.jetpacktutorial.data.models.CourseProgress
 
@@ -53,17 +54,17 @@ sealed class Course(
     data object StateAndLifecycle : Course(
         titleResId = R.string.course_state_lifecycle,
         descriptionResId = R.string.TODO,
-        lessons = listOf(),
+        lessons = stateLessons,
     )
 
     data object Navigation : Course(
-        titleResId = R.string.course_interactivity_navigation,
+        titleResId = R.string.course_navigation,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )
 
     data object Animations : Course(
-        titleResId = R.string.course_animations_transitions,
+        titleResId = R.string.course_animations,
         descriptionResId = R.string.TODO,
         lessons = listOf(),
     )

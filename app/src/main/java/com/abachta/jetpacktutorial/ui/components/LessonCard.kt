@@ -55,7 +55,8 @@ fun LessonCard(
     ElevatedCard(
         modifier = Modifier
             .widthIn(max = 500.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .padding(bottom = 12.dp),
         elevation = CardDefaults.cardElevation(4.dp),
         colors = CardDefaults.cardColors(containerColor = if (lessonIsCompleted) {
             MaterialTheme.colorScheme.primaryContainer
