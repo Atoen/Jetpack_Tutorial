@@ -26,10 +26,14 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val material_theme_1 = LessonPage (
     headingResId = R.string.material_theme_1_heading
 ) {
+
+    ResText(R.string.material_theme_1_1)
+
     CodeListing(
         code = """
             val md_theme_light_primary = Color(0xFF825500)
@@ -38,6 +42,8 @@ private val material_theme_1 = LessonPage (
             // rest of the colors ...
         """.trimIndent()
     )
+
+    ResText(R.string.material_theme_1_2)
 
     CodeListing(
         code = """
@@ -59,11 +65,17 @@ private val material_theme_1 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.material_theme_1_3)
 }
 
 private val material_theme_2 = LessonPage (
     headingResId = R.string.material_theme_2_heading
 ) {
+
+    ResText(R.string.material_theme_2_1)
+
+    ResText(R.string.material_theme_2_2)
 
     CodeListing(
         code = """
@@ -83,6 +95,10 @@ private val material_theme_2 = LessonPage (
 private val material_theme_3 = LessonPage (
     headingResId = R.string.material_theme_3_heading
 ) {
+
+    ResText(R.string.material_theme_3_1)
+
+    ResText(R.string.material_theme_3_2)
 
     CodeListing(
         code = """        
@@ -132,6 +148,8 @@ private val material_theme_4 = LessonPage (
     headingResId = R.string.material_theme_4_heading
 ) {
 
+    ResText(R.string.material_theme_4_1)
+
     CodeListing(
         code = """        
             val typography = Typography(
@@ -166,6 +184,8 @@ private val material_theme_4 = LessonPage (
 private val material_theme_5 = LessonPage (
     headingResId = R.string.material_theme_5_heading
 ) {
+
+    ResText(R.string.material_theme_5_1)
 
     CodeListing(
         code = """
@@ -210,6 +230,8 @@ private val material_theme_6 = LessonPage (
     headingResId = R.string.material_theme_6_heading
 ) {
 
+    ResText(R.string.material_theme_6_1)
+
     CodeListing(
         code = """
             val shapes = Shapes(
@@ -237,6 +259,8 @@ private val material_theme_6 = LessonPage (
 private val material_theme_7 = LessonPage (
     headingResId = R.string.material_theme_7_heading
 ) {
+
+    ResText(R.string.material_theme_7_1)
 
     CodeListing(
         code = """
@@ -287,6 +311,8 @@ private val material_theme_8 = LessonPage (
     headingResId = R.string.material_theme_8_heading
 ) {
 
+    ResText(R.string.material_theme_8_1)
+
     CodeListing(
         code = """
             c-Card { //... }
@@ -299,7 +325,7 @@ private val material_theme_8 = LessonPage (
                     surfaceVariant = c-colorResource(R.color.teal_700)
                 )
             ) {
-                Card { // ... }
+                c-Card { // ... }
             }
         """.trimIndent()
     )

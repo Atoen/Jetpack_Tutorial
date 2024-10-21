@@ -15,10 +15,16 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val color_scheme_1 = LessonPage (
     headingResId = R.string.color_scheme_1_heading
 ) {
+
+    ResText(R.string.color_scheme_1_1)
+
+    ResText(R.string.color_scheme_1_2)
+
     CodeListing(
         code = """
             <?xml version="1.0" encoding="utf-8"?>
@@ -34,6 +40,8 @@ private val color_scheme_1 = LessonPage (
         """.trimIndent()
     )
 
+    ResText(R.string.color_scheme_1_3)
+
     CodeListing(
         code = """
             val color = c-colorResource(R.color.purple_200)
@@ -44,6 +52,9 @@ private val color_scheme_1 = LessonPage (
 private val color_scheme_2 = LessonPage (
     headingResId = R.string.color_scheme_2_heading
 ) {
+
+    ResText(R.string.color_scheme_2_1)
+
     CodeListing(
         code = """
             c-Card(
@@ -75,6 +86,9 @@ private val color_scheme_2 = LessonPage (
 private val color_scheme_3 = LessonPage (
     headingResId = R.string.color_scheme_3_heading
 ) {
+
+    ResText(R.string.color_scheme_3_1)
+
     CodeListing(
         code = """
             c-Box(

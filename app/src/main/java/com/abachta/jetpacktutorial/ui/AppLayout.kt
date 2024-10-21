@@ -182,7 +182,6 @@ fun AppLayout(
 
             slidingComposable<Screen.Challenge> {
                 val arg = it.toRoute<Screen.Challenge>()
-
                 ChallengeScreen(
                     challengeData = arg
                 )

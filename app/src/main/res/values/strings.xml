@@ -39,10 +39,8 @@
 
     <plurals name="incorrect_answers">
         <item quantity="one">incorrect answer.</item>
-        <item quantity="many">incorrect answers</item>
+        <item quantity="other">incorrect answers</item>
     </plurals>
-
-
 
     <string name="lesson_introduction_title">What is Jetpack Compose?</string>
     <string name="setting_up_environment_title">Setting up environment</string>
@@ -105,15 +103,15 @@
     <string name="button_2_1">To perform some action when the user clicks the button, you can pass a function to the |onClick| callback.</string>
     <string name="button_2_2">The |remember| and |mutableIntStateOf| will be explained in later lessons.</string>
     <string name="button_3_heading">Types of buttons</string>
-    <string name="button_3_1">Jetpack Compose provides 5 predefined types of buttons: filled (default), tonal, outlined, elevated and text.\nYou can one which will fit your app style and its expected beahavoiur.</string>
+    <string name="button_3_1">Jetpack Compose provides 5 predefined types of buttons: filled (default), tonal, outlined, elevated and text.\nYou can one which will fit your app style and its expected behaviour.</string>
     <string name="button_4_heading">Icon buttons</string>
-    <string name="button_4_1">Another variant of button is the icon button. It ususually contains a single icon (but it can also be something different).\nIt comes in 3 variants: default, filled and outlined.</string>
+    <string name="button_4_1">Another variant of button is the icon button. It usually contains a single icon (but it can also be something different).\nIt comes in 3 variants: default, filled and outlined.</string>
     <string name="button_5_heading">Toggle buttons</string>
-    <string name="button_5_1">Icon buttons can also be used as toggles to cycle between checked and unchecked state on each click.\nThey have two required parameters: the current check state (boolean) and funciton to invoke when the state changes.\nIcon toggle buttons come in 3 variations: filled, tonal and outlined.</string>
+    <string name="button_5_1">Icon buttons can also be used as toggles to cycle between checked and unchecked state on each click.\nThey have two required parameters: the current check state (boolean) and function to invoke when the state changes.\nIcon toggle buttons come in 3 variations: filled, tonal and outlined.</string>
     <string name="button_1_2">You can disable button by setting the |enabled|parameter to false.</string>
     <string name="button_6_heading">Customizing colors</string>
     <string name="button_6_1">You can change the colors of a button by creating new |ButtonColors| and passing it to the composable:</string>
-    <string name="button_7_heading">Modyfing shape</string>
+    <string name="button_7_heading">Modifying shape</string>
     <string name="button_7_1">You can change the shape of a button by providing custom one.\nPadding of the content can also be specified by the |contentPadding| parameter.</string>
     <string name="button_8_heading">Border</string>
     <string name="button_8_1">You can add borders to button using the |border| parameter.\nBorder can have solid color or a gradient.</string>
@@ -371,8 +369,8 @@
     <string name="quiz_card_1">How can you make card clickable?</string>
     <string name="quiz_card_1_1">By creating a button inside it</string>
     <string name="quiz_card_1_2">By passing callback to the *onClick* parameter</string>
-    <string name="quiz_card_1_3">By using the *ClicableCard* composable</string>
-    <string name="quiz_card_2">Is it possble to change shape of the card?</string>
+    <string name="quiz_card_1_3">By using the *ClickableCard* composable</string>
+    <string name="quiz_card_2">Is it possible to change shape of the card?</string>
     <string name="quiz_card_2_1">No, cards have constant default shape</string>
     <string name="quiz_card_2_2">Yes, using the *cornerRadius* parameter</string>
     <string name="quiz_card_2_3">Yes, by providing custom *Shape* object for the *shape* parameter</string>
@@ -403,29 +401,29 @@
     <string name="scaffold_1_heading">Consistent UI layout</string>
     <string name="scaffold_2_heading">Types of scaffold components</string>
     <string name="scaffold_4_heading">FAB position</string>
-    <string name="column_row_1_1">Composable functions can create multiple UI elements. Without any guidance, Compose might arrange them in a not desirable way.\nFor example, the following function creates two texts without spefcyfying any layout:</string>
+    <string name="column_row_1_1">Composable functions can create multiple UI elements. Without any guidance, Compose might arrange them in a not desirable way.\nFor example, the following function creates two texts without specifying any layout:</string>
     <string name="column_row_1_2">After specifying the layout, the texts are composed in a more predictable manner:</string>
     <string name="column_row_1_3">In many cases, the |Column| and |Row| composition functions are sufficient to create different application interface layouts.</string>
     <string name="column_row_2_1">|Column| and |Row| accept multiple composables as their content.\nYou can also nest multiple rows and columns to create more advanced design.</string>
     <string name="column_row_2_2">When adding multiple composables to the container, the |repeat| function might be useful:</string>
-    <string name="column_row_3_1">You can specify how the content should be arranged inside the container by specyfing the |verticalAlignement| and |horizontalArrangement| for rows and |verticalArrangement| and |horizontalAlignment| for columns.</string>
+    <string name="column_row_3_1">You can specify how the content should be arranged inside the container by specifying the |verticalAlignement| and |horizontalArrangement| for rows and |verticalArrangement| and |horizontalAlignment| for columns.</string>
     <string name="column_row_3_2">|Arrangement| class also provides functionality for spacing the content with the |spacedBy| method:</string>
     <string name="column_row_expand">Expand</string>
     <string name="column_row_collapse">Collapse</string>
     <string name="column_row_6_1">Elements inside columns and rows can have assigned weights to split the available space accordingly.\nThe higher the element\'s weight, the more space will it occupy.</string>
     <string name="column_row_7_1">When the content doesn\'t fit inside the container, you can enable scrolling by using the |horizontalScroll| or |verticalScroll| modifiers.</string>
-    <string name="column_row_8_1">When you want to display a large or unknown amount of elements, you should consider using the lazy versions of the containers: |LazyColumn| and |LazyRow|.\nThey can improve the performance of the app significanty by rendering only these elements that are currently visible.</string>
+    <string name="column_row_8_1">When you want to display a large or unknown amount of elements, you should consider using the lazy versions of the containers: |LazyColumn| and |LazyRow|.\nThey can improve the performance of the app significantly by rendering only these elements that are currently visible.</string>
     <string name="column_row_8_2">Lazy containers don\'t accept other composables as their content directly — you should use the |item| or |items| functions.</string>
-    <string name="column_row_9_1">Lazy containers allow you to control the scroll opsition programatically by using the |LazyListState|.\nThis can be useful if you want to disable the scoll gestures, or to scroll to specific item.\nMethods controlling the scroll are |suspend|ing, so you must call them inside a |coroutineScope|.</string>
+    <string name="column_row_9_1">Lazy containers allow you to control the scroll position programmatically by using the |LazyListState|.\nThis can be useful if you want to disable the scroll gestures, or to scroll to specific item.\nMethods controlling the scroll are |suspend|ing, so you must call them inside a |coroutineScope|.</string>
     <string name="column_row_10_1">You can animate the changes of the displayed elements by using the |animateItem| modifier.\nIf the displayed composables are more complex, consider providing unique key for each of them in the |items| function. This can help Compose keep track of them and apply correct animations.</string>
     <string name="box_1_1">|Box| can be used to put elements on top of another, while allowing for specifying their alignment.</string>
     <string name="box_1_2">Elements inside a box can use the |align| modifier to configure their alignment.</string>
     <string name="box_2_1">Instead of setting the alignment on each item separately, you can use the |contentAlignment| parameter to apply the alignment to whole content.</string>
     <string name="box_3_1">Another use for |Box| is to match the content size to the container\'s. You can do this using the |matchParentSize| modifier.</string>
-    <string name="grid_1_1">Grids are another type of lazy containers. The |LazyVerticalGrid| and |LazyHorizontlGrid| composables provide support for displaying items in a grid.\nLike the |LazyColumn| and |LazyRow| they also provide |item| and |items| functions for adding content.</string>
+    <string name="grid_1_1">Grids are another type of lazy containers. The |LazyVerticalGrid| and |LazyHorizontalGrid| composables provide support for displaying items in a grid.\nLike the |LazyColumn| and |LazyRow| they also provide |item| and |items| functions for adding content.</string>
     <string name="grid_1_2">When creating grids you must specify the count columns (or rows).</string>
-    <string name="grid_2_1">Instead of setting the count of the columns (or rows) you can set their size.\nYou can make them have fixed size or be adaptive. Adaptive cells will take at least the specified space and thivide the remainig equally.</string>
-    <string name="grid_3_1">Creating horizontal grid is very similar to vertical: simply replace |LazyVerticalGrid| with |LazyHorizontalGrid| and use the |rows| parameter insead of |columns|.</string>
+    <string name="grid_2_1">Instead of setting the count of the columns (or rows) you can set their size.\nYou can make them have fixed size or be adaptive. Adaptive cells will take at least the specified space and divide the remaining equally.</string>
+    <string name="grid_3_1">Creating horizontal grid is very similar to vertical: simply replace |LazyVerticalGrid| with |LazyHorizontalGrid| and use the |rows| parameter instead of |columns|.</string>
     <string name="grid_4_1">Gird allows you to change the arrangement of the content similarly to lists with the difference being they use both |VerticalArrangement| and |HorizontalArrangement| and no alignment.</string>
     <string name="grid_5_1">Like in the lists, you can animate changes in content with the |animateItem| modifier and providing key for each element.</string>
     <string name="grid_6_1">Using |LazyGridState| you can programmatically control the scroll position. For staggered grid you should use |StaggeredGridState| instead.</string>
@@ -474,7 +472,7 @@
     <string name="scaffold_1_1">In Jetpack Compose, a scaffold is a structure that facilitates creating complex UI in a standardized way.\nIt has a modular structure, allowing you to pick the parts that works best for your app.</string>
     <string name="scaffold_2_1">The main components of the *Scaffold* are the Top App Bar, the Bottom App Bar, and the FAB (Floating Action Button).\nEach of these components comes in several different versions.</string>
     <string name="scaffold_3_1">You can customize the default colors of the content with the |containerColor| and |contentColor| parameters.</string>
-    <string name="scaffold_4_1">You can change the FAB postion with the |floatingActionButtonPosition| parameter. The available postions are |Start|, |Center|, |End| and |EndOverlay|.</string>
+    <string name="scaffold_4_1">You can change the FAB position with the |floatingActionButtonPosition| parameter. The available positions are |Start|, |Center|, |End| and |EndOverlay|.</string>
     <string name="scaffold_5_1">Another component of |Scaffold| is the snackbar. It it used to display short messages to the user. Unlike the toasts, snackbar messages can be interacted with.</string>
     <string name="scaffold_5_2">To use the snackbar, you can use the |snackbarHost| parameter like so:</string>
     <string name="scaffold_5_3">In order to display a message you can use the |showSnackbar| method.\nSnackbar messages can have different duration and optional action label.\nYou can check if the action label was clicked by the user using the return value of the method. Note that displaying snackbar messages is a suspending operation.</string>
@@ -498,7 +496,7 @@
     <string name="lesson_color_scheme_title">Color scheme</string>
     <string name="color_scheme_1_heading">Creating application color scheme</string>
     <string name="color_scheme_2_heading">Using the color scheme</string>
-    <string name="color_scheme_3_heading">Background color</string>
+    <string name="color_scheme_3_heading">Applying colors with modifiers</string>
     <string name="lesson_material_theme_title" translatable="false">Material Theme</string>
     <string name="lesson_app_theme">App themes and dynamic colors</string>
     <string name="app_theme_1_heading">Using dark color theme</string>
@@ -518,4 +516,62 @@
     <string name="material_theme_6_heading">Creating shapes</string>
     <string name="material_theme_7_heading">Using the shapes</string>
     <string name="material_theme_8_heading">Custom theme scope</string>
+    <string name="color_scheme_1_1">You can create color palette for you application using XML resources.\nCreating a palette allows for easier reuse of colors and helps make your application design become more consistent.</string>
+    <string name="color_scheme_1_2">Example |colors.xml| file:</string>
+    <string name="color_scheme_1_3">To access the colors from the palette you can use the |colorResource| function:</string>
+    <string name="color_scheme_2_1">Many composables have defined default values (eg. |CardDefaults|) that help when applying the color palette.</string>
+    <string name="color_scheme_3_1">If the composable doesn\'t accept colors directly you can use the |background| modifier to set the background color.</string>
+    <string name="material_theme_1_1">Material theme is a more standardized way of creating an application theme. When creating color scheme, the individual colors are named based of their function rather than their value.</string>
+    <string name="material_theme_1_2">After creating the color scheme you can use it in the |MaterialTheme| composable to apply it to the content.</string>
+    <string name="material_theme_2_1">You can apply the theme to the whole app by wrapping it\'s layout inside the created |AppTheme| composable.\nDoing this will make sure that the look of each composable is consistent with the design.</string>
+    <string name="material_theme_2_2">Applying the theme to the entire app inside the |MainActivity.kt| file:</string>
+    <string name="material_theme_3_1">In order to access specific colors you can use the |MaterialTheme.colorScheme| object.\nThe descriptive names of the colors help you decide which color is best suited for specific role in the UI hierarchy.</string>
+    <string name="material_theme_3_2">An example of a color combination is |primaryContainer| with |onPrimaryContainer|. These colors provide a natural look and appropriate contrast of the UI elements.</string>
+    <string name="material_theme_1_3">Creating custom color schemes can be streamlined by using the Material 3 online color generator.</string>
+    <string name="material_theme_4_1">|MaterialTheme| can also be used to specify the typography for your app.</string>
+    <string name="material_theme_5_1">To use the created text styles you can use the |MaterialTheme.typography| object.</string>
+    <string name="material_theme_6_1">The shapes of the composables can also be customized using |MaterialTheme|</string>
+    <string name="material_theme_7_1">Most composables use the specified shapes automatically. When you want to set it explicitly you can use the |MaterialTheme.shapes| object.</string>
+    <string name="material_theme_8_1">You can opt-out of the main design of the application by creating separate |MaterialTheme| scope with different values:</string>
+    <string name="app_theme_1_1">You can add the ability to change the app theme by creating separate color schemes for light and dark mode and deciding which to use based on certain condition.</string>
+    <string name="app_theme_1_2">You can determine whether the device uses dark system theme by using the |isSystemInDarkTheme| function.</string>
+    <string name="app_theme_2_1">Devices with Android 12 and above can use the dynamic colors feature.\nThis feature uses special algorithm that creates custom color scheme based on the user\'s wallpaper.\nThis allows the app to become more personalized and better match the system theme.</string>
+    <string name="app_theme_2_2">To create the dynamic color scheme you can use the |dynamicDarkColorScheme| or |dynamicLightColorScheme| functions.</string>
+    <string name="app_theme_no_e2e">Top app bar with *edge to edge* disabled:</string>
+    <string name="app_theme_e2e">Top app bar with *edge to edge* enabled:</string>
+    <string name="app_theme_3_1">Apps targeting SDK 35 or later have edge-to-edge enabled automatically when running on Android 15. To enable edge-to-edge on previous Android versions, do the following:</string>
+    <string name="app_theme_3_2">1. Add |androidx.activity| library to the dependencies in the |build.gradle| file:</string>
+    <string name="app_theme_3_3">2. Import and the |enableEdgeToEdge| function and call it inside the |onCreate| method of your activity.</string>
+    <string name="quiz_app_theme_1">Which function can be used to determine the system theme?</string>
+    <string name="quiz_app_theme_1_1" translatable="false">*getSystemTheme*</string>
+    <string name="quiz_app_theme_1_2" translatable="false">*isSystemInDarkTheme*</string>
+    <string name="quiz_app_theme_1_3" translatable="false">*isSystemInLightTheme*</string>
+    <string name="quiz_app_theme_2">From which Android version is the dynamic colors feature available?</string>
+    <string name="quiz_app_theme_2_1" translatable="false">Android 12</string>
+    <string name="quiz_app_theme_2_2" translatable="false">Android KitKat</string>
+    <string name="quiz_app_theme_2_3" translatable="false">Android 14</string>
+    <string name="quiz_app_theme_3">How can you enable edge-to-edge display?</string>
+    <string name="quiz_app_theme_3_1">Using the *setFullScreen(true)* function</string>
+    <string name="quiz_app_theme_3_2">"By setting the *edgeToEdge* to *true* in the app's manifest "</string>
+    <string name="quiz_app_theme_3_3">Using the *enableEdgeToEdge* function</string>
+    <string name="quiz_color_scheme_1">How can you access the colors defined in the resource files?</string>
+    <string name="quiz_color_scheme_1_1">Using the *R.color* directly</string>
+    <string name="quiz_color_scheme_1_2">Using the *colorResource* function</string>
+    <string name="quiz_color_scheme_1_3">By copying the HEX value of the color in resource file</string>
+    <string name="quiz_color_scheme_2">How can you change the color of a composable that doesn\'t accept any color parameter?</string>
+    <string name="quiz_color_scheme_2_1">By placing it inside *Color* block</string>
+    <string name="quiz_color_scheme_2_2">By applying the *background* modifier</string>
+    <string name="quiz_color_scheme_2_3">It is not possible</string>
+    <string name="quiz_material_theme_1">Colors in Material Theme are named after:</string>
+    <string name="quiz_material_theme_1_1">Their RGB values</string>
+    <string name="quiz_material_theme_1_2">Their function</string>
+    <string name="quiz_material_theme_1_3">Standard codenames</string>
+    <string name="quiz_material_theme_2">What does the size of Material Theme shape indicate?</string>
+    <string name="quiz_material_theme_2_1">The size of the composable</string>
+    <string name="quiz_material_theme_2_2">Inner padding of the composable</string>
+    <string name="quiz_material_theme_2_3">Corner radius of the composable</string>
+    <string name="quiz_material_theme_3">Can composables inside *MaterialTheme* be additionally customized?</string>
+    <string name="quiz_material_theme_3_1">No</string>
+    <string name="quiz_material_theme_3_2">Yes, by using the *@Override* annotation on the style</string>
+    <string name="quiz_material_theme_3_3">Yes, by creating new *MaterialTheme* block</string>
 </resources>
