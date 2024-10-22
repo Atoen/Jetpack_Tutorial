@@ -188,13 +188,29 @@ private val remember_4 = LessonPage (
         }
     }
 
+    ResText(R.string.remember_4_3)
+
     CodeListing(
         code = """
             @Parcelize
             data class User(val name: String, val age: Int) : Parcelable
+        """.trimIndent()
+    )
+
+    CodeListing(
+        code = """
+            val UserSaver = run {
+                val nameKey = "Name"
+                val ageKey = "Age"
+                mapSaver(
+                    save = { mapOf(nameKey to it.name, ageKey to it.age) },
+                    restore = { User(it[nameKey] as String, it[ageKey] as Int) }
+                )
+            }
             
-            @Composable UserCard() {
-                var currentUser by c-rememberSaveable {
+            @Composable
+            fun UserCard() {
+                var currentUser by c-rememberSaveable(stateSaver = UserSaver) {
                     mutableStateOf(User("Admin", 25))
                 }
             }

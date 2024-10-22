@@ -547,9 +547,9 @@
     <string name="lifecycle_4_heading">Pomijanie rekompozycji</string>
     <string name="lifecycle_4_1">Możesz pomóc Compose w identyfikowaniu elementów kompozycyjnych umieszczając je w funkcji kompozycyjnej |key|. Wartość |key| nie musi być #globalnie# unikatowa, musi być unikalna tylko dla bieżącego miejsca wywołania.</string>
     <string name="remember_1_1">W Jetpack Compose stan interfejsu użytkownika reprezentowany jest za pomocą obserwowalnych typów |State|. Tworząc obiekt stanu wewnątrz funkcji kompozycyjnej, należy umieścić go w funkcji |remember|.\nFunkcja |remember| przechowuje wynik obliczeń podczas początkowej kompozycji i ponownie go wykorzystuje później podczas rekompozycji.</string>
-    <string name="remember_1_2">Istnieją trzy sposoby utworzenia obiektu |MutableState| w funkcji kompozycyjnej:</string>
+    <string name="remember_1_2">Dostępne są trzy sposoby tworzenia obiektu |MutableState| w funkcji kompozycyjnej:</string>
     <string name="remember_1_3">Te deklaracje są równoważne. Powinieneś wybrać tę, która jest dla Ciebie najłatwiejsza do odczytania.\nSkładnia delegata |by| wymaga następujących importów:</string>
-    <string name="remember_2_1">Obiekty |State| są odpowiedzialne za wywoływanie rekompozycji i aktualizowanie interfejsu użytkownika. \nPomimo tego, że funkcja |remember| akceptuje dowolne parametry, tylko modyfikacja obiektów stanu spowoduje zmianę interfejsu użytkownika.\n</string>
+    <string name="remember_2_1">Obiekty |State| są odpowiedzialne za wywoływanie rekompozycji i aktualizowanie interfejsu użytkownika. \nPomimo tego, że funkcja |remember| akceptuje dowolne parametry, tylko modyfikacja obiektów stanu spowoduje zmianę interfejsu użytkownika.</string>
     <string name="remember_2_2">W tym przykładzie oba przyciski mają identyczną lambdę |onClick|. Można zauważyć, że przycisk *CountInt* nie aktualizuje się po kliknięciu.</string>
     <string name="remember_3_1">Obiekt composable, który używa |remember| do przechowywania obiektu, tworzy stan wewnętrzny, co powoduje, że funkcja kompozycyjna posiada #stan#.\nFunkcje kompozycyjne ze stanem mogą być łatwiejsze w użyciu, ale często są mniej elastyczne i oferują mniej kontroli.</string>
     <string name="remember_3_2">Możesz zmienić stanową funkcję kompozycyjną na bezstanową za pomocą *state hoisting*. Polega to na zastąpieniu zmiennej stanu dwoma parametrami: jednym podającym bieżącą wartość i drugim, będącym wywołaniem zwrotnym w celu żądania zmiany wartości.</string>
@@ -560,5 +560,30 @@
     <string name="remember_4_1">Funkcja |rememberSaveable| pozwala zapamiętać stan nie tylko podczas rekompozycji, ale także podczas odtwarzania aktywności lub procesu.\nDzieje się tak, na przykład, gdy ekran jest obracany lub gdy zmienia się motyw systemu.</string>
     <string name="remember_4_2">Pierwsze pole tekstowe utraci swoją zawartość po obróceniu ekranu, natomiast drugie ją zachowa.</string>
     <string name="remember_5_1">Możesz ponownie wyzwolić obliczenia zapamiętywania, podając parametry kluczy dla funkcji |remember| i |rememberSaveable|. Gdy którykolwiek z kluczy ulegnie zmianie, funkcje zapomną wartości swojego stanu i obliczą ją ponownie.</string>
+    <string name="quiz_lifecycle_1">W jaki sposób można modyfikować *Kompozycję*?</string>
+    <string name="quiz_lifecycle_1_1">Poprzez użycie dowolnej funkcji kompozycyjnej</string>
+    <string name="quiz_lifecycle_1_2">Przez wywołanie rekompozycji</string>
+    <string name="quiz_lifecycle_1_3">Przez utworzenie nowej *Kompozycja*, która zastępuje starą</string>
+    <string name="quiz_lifecycle_2">W jaki sposób Compose identyfikuje instancje elementów kompozycyjnych?</string>
+    <string name="quiz_lifecycle_2_1">Tylko po miejscu wywołania</string>
+    <string name="quiz_lifecycle_2_2">Po ich parametrach wejściowych</string>
+    <string name="quiz_lifecycle_2_3">Po miejscu oraz kolejności wywołania</string>
+    <string name="quiz_lifecycle_3">Podczas rekompozycji, które funkcje kompozycyjne są ponownie wywoływane?</string>
+    <string name="quiz_lifecycle_3_1">Wszystkie</string>
+    <string name="quiz_lifecycle_3_2">Te, których parametry wejściowe mogły ulec zmianie</string>
+    <string name="quiz_lifecycle_3_3">Tylko te, które zwracają wartość *Unit*</string>
+    <string name="quiz_remember_1">Jaki jest zalecany sposób tworzenia obiektu stanu wewnątrz funkcji kompozycyjnej?</string>
+    <string name="quiz_remember_1_2">Tworzenie *MutableStateOf* wewnątrz *remember*</string>
+    <string name="quiz_remember_1_1">Używanie *remember* do zapisywania dowolnej wartości</string>
+    <string name="quiz_remember_1_3">Korzystanie z funkcji *createState*</string>
+    <string name="quiz_remember_2">Jak można zmienić stanową funkcję kompozycyjną na bezstanową?</string>
+    <string name="quiz_remember_2_1">Poprzrz nie używanie funkcji *remember*</string>
+    <string name="quiz_remember_2_2">Przechowując cały stan w oddzielnej klasie</string>
+    <string name="quiz_remember_2_3">Korzystając ze schematu *wyoszenia stanu*</string>
+    <string name="quiz_remember_3">Jak można zachować stan pomiędzy *Kompozycjami*?</string>
+    <string name="quiz_remember_3_1">Poprzez podanie parametru *key* do funkcji *remember*</string>
+    <string name="quiz_remember_3_2">Używając funkcji *rememberSaveable*</string>
+    <string name="quiz_remember_3_3">Korzystając z *data class* do przechowywania stanu</string>
+    <string name="remember_4_3">Ponieważ |rememberSaveable| przechowuje dane w |Bundle|, zapisywanie złożonych typów jest niceo bardziej skomplikowane, niż w przypadku użycia |remember|.\nNajprostszym rozwiązaniem jest adnotacja typu za pomocą |@Parcelize|. Inną opcją jest użycie |mapSaver| do zdefiniowania własnych reguł konwersji obiektu na zestaw wartości, które można zapisać w |Bundle|.</string>
 
 </resources>

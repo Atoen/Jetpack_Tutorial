@@ -68,7 +68,7 @@ fun QuizAnswerCard(
     @StringRes textResId: Int,
     isSelected: Boolean,
     isCorrect: Boolean,
-    isRevealed: Boolean = true,
+    isRevealed: Boolean,
     onClick: () -> Unit
 ) {
     val answerType = when {
@@ -95,8 +95,8 @@ fun QuizAnswerCard(
                     color = colorScheme.error,
                     shape = CardDefaults.elevatedShape
                 )
-            } else Modifier)
-
+            } else Modifier
+        )
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
@@ -158,6 +158,7 @@ private fun QuizAnswerCardPreview() {
             textResId = R.string.quiz_creating_first_3_2,
             isSelected = true,
             isCorrect = true,
+            isRevealed = true,
             onClick = { }
         )
 
@@ -165,6 +166,7 @@ private fun QuizAnswerCardPreview() {
             textResId = R.string.quiz_creating_first_3_2,
             isSelected = true,
             isCorrect = false,
+            isRevealed = true,
             onClick = { }
         )
 
@@ -172,6 +174,7 @@ private fun QuizAnswerCardPreview() {
             textResId = R.string.quiz_creating_first_3_2,
             isSelected = false,
             isCorrect = true,
+            isRevealed = true,
             onClick = { }
         )
 
@@ -179,6 +182,7 @@ private fun QuizAnswerCardPreview() {
             textResId = R.string.quiz_creating_first_3_2,
             isSelected = false,
             isCorrect = false,
+            isRevealed = true,
             onClick = { }
         )
     }
