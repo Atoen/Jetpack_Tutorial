@@ -524,7 +524,7 @@
     <string name="quiz_material_theme_3_2">Tak, używając adnotacji *@Override* w stylu</string>
     <string name="quiz_material_theme_3_3">Tak, poprzez utworzenie nowego bloku *MaterialTheme*</string>
     <string name="lesson_remember_title">Zapamiętywanie stanu</string>
-    <string name="lesson_view_model_title">Używanie view modelu</string>
+    <string name="lesson_view_model_title">Używanie viewModelu</string>
     <string name="lesson_persistent_title">Trwały stan</string>
     <string name="lesson_lifecycle_title">Cykl życia elementów kompozycyjnych</string>
     <string name="remember_1_heading">Obiekty stanu i funkcja remember</string>
@@ -585,5 +585,30 @@
     <string name="quiz_remember_3_2">Używając funkcji *rememberSaveable*</string>
     <string name="quiz_remember_3_3">Korzystając z *data class* do przechowywania stanu</string>
     <string name="remember_4_3">Ponieważ |rememberSaveable| przechowuje dane w |Bundle|, zapisywanie złożonych typów jest niceo bardziej skomplikowane, niż w przypadku użycia |remember|.\nNajprostszym rozwiązaniem jest adnotacja typu za pomocą |@Parcelize|. Inną opcją jest użycie |mapSaver| do zdefiniowania własnych reguł konwersji obiektu na zestaw wartości, które można zapisać w |Bundle|.</string>
+    <string name="lesson_bottom_sheet_title">Panel dolny</string>
+    <string name="bottom_sheet_display">Wyświetl panel dolny</string>
+    <string name="bottom_sheet_hide">Ukryj panel dolny</string>
+    <string name="bottom_sheet_1_content">Kliknij poza panelem lub przesuń w doł, aby go zamknąć</string>
+    <string name="bottom_sheet_2_content">Przesuń w górę, aby rozwinąć panel. Przesuń w dół, aby zamknąć.</string>
+    <string name="bottom_sheet_1_heading">Wyświetlanie panelu dolnego</string>
+    <string name="bottom_sheet_2_heading">Częściowe rozwijanie panelu</string>
+    <string name="bottom_sheet_3_heading">Określanie szerokości i uchwytu</string>
+    <string name="bottom_sheet_4_heading">Dostosowywanie wyglądu</string>
+    <string name="viewmodel_1_heading">Tworzenie viewModelu</string>
+    <string name="viewmodel_2_heading">Udostępnianie stanu UI</string>
+    <string name="viewmodel_3_heading">Używanie viewModelu w funkcjach kompozycyjnych</string>
+    <string name="viewmodel_4_heading">Operacje asynchroniczne</string>
+    <string name="viewmodel_5_heading">Najlepsze praktyki</string>
+    <string name="persistent_1_heading">Zapisywanie danych w preferencjach</string>
+    <string name="persistent_2_heading">Przechowywanie i pobieranie danych</string>
+    <string name="persistent_3_heading">Łączenie z viewModelem</string>
+    <string name="persistent_4_heading">Używanie zapisanych danych w funkcjach kompozycyjnych</string>
+    <string name="biometrics_auth_failed">Uwierzytelnianie nie powiodło się</string>
+    <string name="biometrics_not_set">Uwierzytelnianie nie zostało ustawione</string>
+    <string name="biometrics_auth_success">Uwierzytelnianie powiodło się</string>
+    <string name="biometrics_feature_unavailable">Funkcja niedostępna</string>
+    <string name="biometrics_hardware_unavailable">Sprzęt niedostępny</string>
+    <string name="lesson_biometrics_title">Biometryka</string>
+    <string name="lesson_notification_title">Wysyłanie powiadiomień</string>
 
 </resources>

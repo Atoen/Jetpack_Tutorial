@@ -28,7 +28,7 @@ private val viewModel = Lesson(
 private val persistent = Lesson(
     titleResId = R.string.lesson_persistent_title,
     descriptionResId = R.string.TODO,
-    pages = listOf()
+    pages = persistentPages
 )
 
 val stateLessons = listOf(

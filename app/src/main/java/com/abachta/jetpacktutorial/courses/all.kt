@@ -1,6 +1,7 @@
 package com.abachta.jetpacktutorial.courses
 
 import android.util.Log
+import com.abachta.jetpacktutorial.courses.advanced.advancedLessons
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 import com.abachta.jetpacktutorial.courses.layout.layoutLessons
@@ -18,7 +19,8 @@ val allLessons = listOf(
     jetpackBasicsLessons,
     layoutLessons,
     styingLessons,
-    stateLessons
+    stateLessons,
+    advancedLessons
 ).flatten()
 
 val allQuizzes = allLessons.mapNotNull { it.quiz }

@@ -167,7 +167,7 @@ fun AppLayout(
                     onLessonComplete = courseViewModel::markLessonCompleted,
                     onGoToQuiz = navController::navigateToQuiz,
                     onGoToCodeChallenge = navController::navigateToChallenge,
-                    visualsAccessor = settingsViewModel.nonPersistentAccessor
+                    visualsAccessor = settingsViewModel.featureAccessor
                 )
             }
 

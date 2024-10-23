@@ -57,8 +57,7 @@ import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.data.Quiz
 import com.abachta.jetpacktutorial.ui.Screen
-import com.abachta.jetpacktutorial.viewmodels.AppVisualsAccessor
-import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
+import com.abachta.jetpacktutorial.viewmodels.AppFeatureAccessor
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -69,7 +68,7 @@ fun LessonScreen(
     onLessonComplete: (Lesson) -> Unit,
     onGoToCodeChallenge: (CodeChallenge) -> Unit,
     onGoToQuiz: (Quiz) -> Unit,
-    visualsAccessor: AppVisualsAccessor
+    visualsAccessor: AppFeatureAccessor
 ) {
     val lesson = getLessonById(LessonId(lessonData.lessonId))
     val lessonPageCount = lesson.pages.count()
@@ -174,7 +173,7 @@ fun LessonScreen(
 @Composable
 private fun Page(
     page: LessonPage,
-    visualsAccessor: AppVisualsAccessor
+    visualsAccessor: AppFeatureAccessor
 ) {
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp),

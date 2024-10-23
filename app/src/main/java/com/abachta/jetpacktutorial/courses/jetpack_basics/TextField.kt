@@ -88,7 +88,6 @@ private val text_field_2 = LessonPage (
                 onValueChange = { text = it },
                 singleLine = true
             )
-            // ...
         """.trimIndent()
     )
 
@@ -112,7 +111,6 @@ private val text_field_2 = LessonPage (
                 minLines = 2,
                 maxLines = 3
             )
-            // ...
         """.trimIndent()
     )
 
@@ -143,7 +141,6 @@ private val text_field_3 = LessonPage (
                 onValueChange = { text = it },
                 enabled = false
             )
-            // ...
         """.trimIndent()
     )
 
@@ -166,7 +163,6 @@ private val text_field_3 = LessonPage (
                 onValueChange = { text = it },
                 readOnly = true
             )
-            // ...
         """.trimIndent()
     )
 
@@ -192,8 +188,7 @@ private val text_field_4 = LessonPage (
         code = """
             // ...
             c-TextField(
-                value = text,
-                onValueChange = { text = it },
+                // ...
                 label = { c-Text("Label") },
                 supportingText = { c-Text("Supporting text") },
                 leadingIcon = {
@@ -209,7 +204,6 @@ private val text_field_4 = LessonPage (
                     )
                 }
             )
-            // ...
         """.trimIndent()
     )
 
@@ -248,12 +242,10 @@ private val text_field_5 = LessonPage (
         code = """
             // ...
             c-TextField(
-                value = text,
-                onValueChange = { text = it },
+                // ...
                 prefix = { c-Text("Prefix") },
                 suffix = { c-Text("Suffix") }
             )
-            // ...
         """.trimIndent()
     )
 
@@ -293,12 +285,10 @@ private val text_field_6 = LessonPage (
         code = """
             // ...
             c-TextField(
-                value = text,
-                onValueChange = { text = it },
+                // ...
                 placeholder = { c-Text("Enter password") },
                 visualTransformation = PasswordVisualTransformation(mask = '\u2022')
             )
-            // ...
         """.trimIndent()
     )
 
@@ -457,8 +447,7 @@ private val text_field_9 = LessonPage (
         code = """
             // ...
             c-TextField(
-                value = text,
-                onValueChange = { text = it },
+                // ...
                 shape = CutCornerShape(percent = 25),
                 colors = TextFieldDefaults.colors().copy(
                     cursorColor = Color.Blue,
@@ -467,8 +456,7 @@ private val text_field_9 = LessonPage (
                 ),
                 textStyle = TextStyle(fontFamily = FontFamily.Cursive)
             )
-            // ...
-    """.trimIndent()
+        """.trimIndent()
     )
 
     Preview(

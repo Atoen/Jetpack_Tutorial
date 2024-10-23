@@ -35,9 +35,16 @@ private val scaffold = Lesson(
     quiz = scaffoldQuiz
 )
 
+private val bottomSheet = Lesson(
+    titleResId = R.string.lesson_bottom_sheet_title,
+    descriptionResId = R.string.TODO,
+    pages = bottomSheetPages,
+)
+
 val layoutLessons = listOf(
     columnAndRow,
     box,
     grid,
-    scaffold
+    scaffold,
+    bottomSheet
 )

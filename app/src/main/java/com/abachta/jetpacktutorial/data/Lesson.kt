@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import com.abachta.jetpacktutorial.viewmodels.AppVisualsAccessor
+import com.abachta.jetpacktutorial.viewmodels.AppFeatureAccessor
 
 private val defaultCourseId = CourseId(0)
 
@@ -68,5 +68,5 @@ class LessonProgress {
 class LessonPage(
     @StringRes
     val headingResId: Int? = null,
-    val content: @Composable ColumnScope.(AppVisualsAccessor) -> Unit
+    val content: @Composable ColumnScope.(AppFeatureAccessor) -> Unit
 )

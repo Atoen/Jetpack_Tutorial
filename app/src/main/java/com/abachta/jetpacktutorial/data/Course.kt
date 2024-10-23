@@ -3,6 +3,7 @@ package com.abachta.jetpacktutorial.data
 import android.util.Log
 import androidx.annotation.StringRes
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.courses.advanced.advancedLessons
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 import com.abachta.jetpacktutorial.courses.layout.layoutLessons
@@ -69,10 +70,10 @@ sealed class Course(
         lessons = listOf(),
     )
 
-    data object AdvancedCompose : Course(
+    data object Advanced : Course(
         titleResId = R.string.course_advanced,
         descriptionResId = R.string.TODO,
-        lessons = listOf(),
+        lessons = advancedLessons,
     )
 }
 
@@ -98,7 +99,7 @@ val allCourses = listOf(
     Course.StateAndLifecycle,
     Course.Navigation,
     Course.Animations,
-    Course.AdvancedCompose
+    Course.Advanced
 )
 
 private val coursesMap = allCourses.associateBy { it.id }

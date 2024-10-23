@@ -7,14 +7,16 @@ import androidx.compose.runtime.setValue
 import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.abachta.jetpacktutorial.BiometricPromptManager
 import com.abachta.jetpacktutorial.data.Preferences
 import com.abachta.jetpacktutorial.settings.AppLocale
 import com.abachta.jetpacktutorial.settings.AppTheme
-import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.CodeListingFont
 import com.abachta.jetpacktutorial.settings.DynamicColorsOption
+import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
@@ -34,6 +36,8 @@ class SettingsViewModel @Inject constructor(
     private val _showLessonPopup = mutableStateOf<LessonPopupOption>(LessonPopupOption.Enabled)
     private val _listingFont = mutableStateOf<CodeListingFont>(CodeListingFont.Medium)
     private val _questionShuffling = mutableStateOf<QuizShufflingOption>(QuizShufflingOption.ShuffleQuestions)
+
+    lateinit var biometricPromptManager: BiometricPromptManager
 
     val isReady = _isReady.asStateFlow()
 
@@ -121,10 +125,21 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
-    val nonPersistentAccessor by lazy {
-        object : AppVisualsAccessor {
+    val featureAccessor by lazy {
+        object : AppFeatureAccessor {
             override var theme by _theme
             override var dynamicColors by _dynamicColors
+
+            override fun showBiometricsPrompt(
+                title: String,
+                description: String,
+                negativeButtonText: String
+            ) {
+                biometricPromptManager.showBiometricPrompt(title, description, negativeButtonText)
+            }
+
+            override val biometricResults: Flow<BiometricPromptManager.BiometricResult>
+                get() = biometricPromptManager.promptResults
         }
     }
 

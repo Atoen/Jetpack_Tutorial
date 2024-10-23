@@ -22,8 +22,12 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<SettingsViewModel>()
 
+    private val promptManager = BiometricPromptManager(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        viewModel.biometricPromptManager = promptManager
 
         installSplashScreen().setKeepOnScreenCondition {
             !viewModel.isReady.value
