@@ -38,7 +38,13 @@ private val scaffold = Lesson(
 private val bottomSheet = Lesson(
     titleResId = R.string.lesson_bottom_sheet_title,
     descriptionResId = R.string.TODO,
-    pages = bottomSheetPages,
+    pages = bottomSheetPages
+)
+
+private val pager = Lesson(
+    titleResId = R.string.lesson_pager_title,
+    descriptionResId = R.string.TODO,
+    pages = listOf(),
 )
 
 val layoutLessons = listOf(
@@ -46,5 +52,6 @@ val layoutLessons = listOf(
     box,
     grid,
     scaffold,
-    bottomSheet
+    bottomSheet,
+    pager
 )

@@ -2,6 +2,7 @@ package com.abachta.jetpacktutorial.viewmodels
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.core.os.LocaleListCompat
@@ -38,6 +39,17 @@ class SettingsViewModel @Inject constructor(
     private val _questionShuffling = mutableStateOf<QuizShufflingOption>(QuizShufflingOption.ShuffleQuestions)
 
     lateinit var biometricPromptManager: BiometricPromptManager
+    lateinit var permissionRequester: (Array<String>) -> Unit
+
+    val visiblePermissionDialogQueue = mutableStateListOf<String>()
+
+    fun dismissDialog() = visiblePermissionDialogQueue.removeLast()
+
+    fun onPermissionResult(permission: String, isGranted: Boolean) {
+        if (!isGranted) {
+            visiblePermissionDialogQueue.add(0, permission)
+        }
+    }
 
     val isReady = _isReady.asStateFlow()
 
@@ -140,6 +152,15 @@ class SettingsViewModel @Inject constructor(
 
             override val biometricResults: Flow<BiometricPromptManager.BiometricResult>
                 get() = biometricPromptManager.promptResults
+
+            override fun requestPermission(permission: String) {
+                permissionRequester(arrayOf(permission))
+            }
+
+            override fun requestPermissions(permissions: Array<String>) {
+                permissionRequester(permissions)
+            }
+
         }
     }
 

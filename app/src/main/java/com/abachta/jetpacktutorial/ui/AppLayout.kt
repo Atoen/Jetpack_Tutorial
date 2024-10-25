@@ -1,5 +1,7 @@
 package com.abachta.jetpacktutorial.ui
 
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
@@ -20,12 +22,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navDeepLink
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.ui.components.ObserveAsEvents
@@ -39,6 +44,10 @@ import com.abachta.jetpacktutorial.ui.screens.SettingsScreen
 import com.abachta.jetpacktutorial.viewmodels.CourseViewModel
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
 import kotlinx.coroutines.launch
+import kotlinx.serialization.Serializable
+
+@Serializable
+private data class DeepLinkScreen(val id: Int)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -185,6 +194,22 @@ fun AppLayout(
                 ChallengeScreen(
                     challengeData = arg
                 )
+            }
+
+            composable<DeepLinkScreen>(
+                deepLinks = listOf(
+                    navDeepLink<DeepLinkScreen>(
+                        basePath = "custom-scheme://deeplink-host"
+                    )
+                )
+            ) {
+                val id = it.toRoute<DeepLinkScreen>().id
+                Box(
+                    modifier = Modifier.fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = "The ID is $id")
+                }
             }
         }
     }

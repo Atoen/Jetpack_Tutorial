@@ -25,15 +25,6 @@ private val viewmodel_1 = LessonPage (
         }
         """.trimIndent()
     )
-
-    CodeListing(
-        code = """
-        import androidx.lifecycle.ViewModel
-        
-        class AppViewModel : ViewModel() {
-        }
-        """.trimIndent()
-    )
 }
 
 private val viewmodel_2 = LessonPage (

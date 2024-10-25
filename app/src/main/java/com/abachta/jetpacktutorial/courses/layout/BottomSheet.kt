@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
-
 package com.abachta.jetpacktutorial.courses.layout
 
 import androidx.compose.foundation.layout.Arrangement
@@ -28,6 +26,7 @@ import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.ResText
 import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalMaterial3Api::class)
 private val bottom_sheet_1 = LessonPage (
    headingResId = R.string.bottom_sheet_1_heading
 ) {
@@ -109,6 +108,7 @@ private val bottom_sheet_1 = LessonPage (
     )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 private val bottom_sheet_2 = LessonPage (
    headingResId = R.string.bottom_sheet_2_heading
 ) {
@@ -163,6 +163,7 @@ private val bottom_sheet_2 = LessonPage (
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 private val bottom_sheet_3 = LessonPage (
    headingResId = R.string.bottom_sheet_3_heading
 ) {
@@ -219,6 +220,7 @@ private val bottom_sheet_3 = LessonPage (
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 private val bottom_sheet_4 = LessonPage (
    headingResId = R.string.bottom_sheet_4_heading
 ) {

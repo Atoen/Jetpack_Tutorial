@@ -18,4 +18,8 @@ interface AppFeatureAccessor {
     )
 
     val biometricResults: Flow<BiometricPromptManager.BiometricResult>
+
+    fun requestPermission(permission: String)
+
+    fun requestPermissions(permissions: Array<String>)
 }

@@ -2,9 +2,11 @@ package com.abachta.jetpacktutorial.courses
 
 import android.util.Log
 import com.abachta.jetpacktutorial.courses.advanced.advancedLessons
+import com.abachta.jetpacktutorial.courses.animations.animationsLessons
 import com.abachta.jetpacktutorial.courses.getting_started.gettingStartedLessons
 import com.abachta.jetpacktutorial.courses.jetpack_basics.jetpackBasicsLessons
 import com.abachta.jetpacktutorial.courses.layout.layoutLessons
+import com.abachta.jetpacktutorial.courses.navigation.navigationLessons
 import com.abachta.jetpacktutorial.courses.state_lifecycle.stateLessons
 import com.abachta.jetpacktutorial.courses.styling.styingLessons
 import com.abachta.jetpacktutorial.data.ChallengeId
@@ -20,6 +22,8 @@ val allLessons = listOf(
     layoutLessons,
     styingLessons,
     stateLessons,
+    navigationLessons,
+    animationsLessons,
     advancedLessons
 ).flatten()
 

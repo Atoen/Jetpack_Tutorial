@@ -2,7 +2,6 @@ package com.abachta.jetpacktutorial.ui
 
 import androidx.annotation.StringRes
 import androidx.compose.animation.AnimatedContentScope
-import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.slideInHorizontally
@@ -80,29 +79,29 @@ fun <T : Screen> order(screen: KClass<T>): Int {
     }
 }
 
-inline fun <reified T : Screen>
-AnimatedContentTransitionScope<NavBackStackEntry>.enterTransition(): EnterTransition {
-    var order = order(T::class)
-    if (order == 0) order = if (targetState.isOn<Screen.Settings>()) -1 else 1
-
-    return if (order > 0) {
-        slideInFromLeft
-    } else {
-        slideInFromRight
-    }
-}
-
-inline fun <reified T : Screen>
-AnimatedContentTransitionScope<NavBackStackEntry>.exitTransition(): ExitTransition {
-    var order = order(T::class)
-    if (order == 0) order = if (targetState.isOn<Screen.Settings>()) -1 else 1
-
-    return if (order < 0) {
-        slideOutToLeft
-    } else {
-        slideOutToRight
-    }
-}
+//inline fun <reified T : Screen>
+//AnimatedContentTransitionScope<NavBackStackEntry>.enterTransition(): EnterTransition {
+//    var order = order(T::class)
+//    if (order == 0) order = if (targetState.isOn<Screen.Settings>()) -1 else 1
+//
+//    return if (order > 0) {
+//        slideInFromLeft
+//    } else {
+//        slideInFromRight
+//    }
+//}
+//
+//inline fun <reified T : Screen>
+//AnimatedContentTransitionScope<NavBackStackEntry>.exitTransition(): ExitTransition {
+//    var order = order(T::class)
+//    if (order == 0) order = if (targetState.isOn<Screen.Settings>()) -1 else 1
+//
+//    return if (order < 0) {
+//        slideOutToLeft
+//    } else {
+//        slideOutToRight
+//    }
+//}
 
 val slideInFromLeft = slideInHorizontally { -it }
 val slideInFromRight = slideInHorizontally { it }
@@ -114,10 +113,10 @@ inline fun <reified T : Screen> NavGraphBuilder.slidingComposable(
     noinline content: @Composable (AnimatedContentScope.(NavBackStackEntry) -> Unit)
 ) {
     composable<T>(
-        enterTransition = { enterTransition<T>() },
-        popEnterTransition = { enterTransition<T>() },
-        exitTransition = { exitTransition<T>()  },
-        popExitTransition = { exitTransition<T>()  }
+        enterTransition = { enterTransition(false) },
+        exitTransition = { exitTransition(false) },
+        popEnterTransition = { enterTransition(true) },
+        popExitTransition = { exitTransition(true) }
     ) {
         content(this, it)
     }

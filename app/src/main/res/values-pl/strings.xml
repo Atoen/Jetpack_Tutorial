@@ -610,5 +610,30 @@
     <string name="biometrics_hardware_unavailable">Sprzęt niedostępny</string>
     <string name="lesson_biometrics_title">Biometryka</string>
     <string name="lesson_notification_title">Wysyłanie powiadiomień</string>
+    <string name="lesson_pager_title">Pager</string>
+    <string name="lesson_nav_ctr_host_title">Kontroller i host nawigacji</string>
+    <string name="lesson_bottom_navbar_title">Dolny pasek nawigacji</string>
+    <string name="lesson_back_handler_title">Obługa cofania</string>
+    <string name="lesson_navigation_suite_title">Zestaw nawigacyjny</string>
+    <string name="lesson_animated_visibility_title">Animowanie interfejsu</string>
+    <string name="lesson_animate_values_title">Animowanie wartości</string>
+    <string name="lesson_nav_transitions_title">Przejścia nawigacji</string>
+    <string name="navigation_1_heading">Tworzenie kontrolera nawigacji</string>
+    <string name="navigation_2_heading">Graf nawigacji</string>
+    <string name="navigation_3_heading">Nawigowanie pomiędzy ekranami</string>
+    <string name="navigation_4_heading">Przekazywanie danych</string>
+    <string name="navigation_5_heading">Głębokie linki</string>
+    <string name="animation_toggle">Przełącz</string>
+    <string name="animating_values_1_heading">Animowianie stanu</string>
+    <string name="animating_values_2_heading">Animowanie DP</string>
+    <string name="animating_values_3_heading">Właściwości animacji</string>
+    <string name="animating_values_4_heading">Animowanie wielu wartości</string>
+    <string name="animating_values_5_heading">Nieskończona animacja</string>
+    <string name="animated_visibility_click">Kliknij, aby zmienić widoczność</string>
+    <string name="animated_visibility_1_heading">Animowanie widoczności</string>
+    <string name="animated_visibility_2_heading">Rodzaje przejść</string>
+    <string name="animated_visibility_3_heading">Łączenie przejść</string>
+    <string name="animated_visibility_4_heading">Animowanie wewnętrznej zawartości</string>
+    <string name="animated_visibility_5_heading">Animowanie zmian zawartości</string>
 
 </resources>

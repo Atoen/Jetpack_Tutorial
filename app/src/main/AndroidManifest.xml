@@ -21,7 +21,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.JetpackTutorial"
         android:localeConfig="@xml/locales_config"
-        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
@@ -32,6 +31,17 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <data android:scheme="custom-scheme" />
+                <data android:host="deeplink-host" />
+                <data android:host="www.deeplink-host" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+
         </activity>
         <service
             android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
