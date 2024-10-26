@@ -8,6 +8,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -45,6 +46,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.Measured
+import androidx.compose.ui.layout.VerticalAlignmentLine
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -55,6 +58,7 @@ import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.LessonPage
+import com.abachta.jetpacktutorial.data.LessonPagesScope
 import com.abachta.jetpacktutorial.data.Quiz
 import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.viewmodels.AppFeatureAccessor
@@ -104,6 +108,7 @@ fun LessonScreen(
             if (page < lessonPageCount) {
                 Page(
                     page = lesson.pages[page],
+                    isCurrentPage = { page == pagerState.currentPage },
                     visualsAccessor = visualsAccessor
                 )
             } else {
@@ -173,6 +178,7 @@ fun LessonScreen(
 @Composable
 private fun Page(
     page: LessonPage,
+    isCurrentPage: () -> Boolean,
     visualsAccessor: AppFeatureAccessor
 ) {
     Column(
@@ -189,9 +195,34 @@ private fun Page(
             )
         }
 
-        page.content(this, visualsAccessor)
+        val lessonPageScope = remember {
+            createLessonPageScope(isCurrentPage)
+        }
+
+        page.content(lessonPageScope, visualsAccessor)
 
         Spacer(Modifier.height(72.dp))
+    }
+}
+
+private fun ColumnScope.createLessonPageScope(
+    isCurrentPage: () -> Boolean
+): LessonPagesScope {
+    return object : LessonPagesScope {
+        override val isCurrentPage: Boolean
+            get() = isCurrentPage()
+
+        override fun Modifier.align(alignment: Alignment.Horizontal) =
+            with(this@createLessonPageScope) { align(alignment) }
+
+        override fun Modifier.alignBy(alignmentLineBlock: (Measured) -> Int) =
+            with(this@createLessonPageScope) { alignBy(alignmentLineBlock) }
+
+        override fun Modifier.alignBy(alignmentLine: VerticalAlignmentLine) =
+            with(this@createLessonPageScope) { alignBy(alignmentLine) }
+
+        override fun Modifier.weight(weight: Float, fill: Boolean) =
+            with(this@createLessonPageScope) { weight(weight, fill) }
     }
 }
 

@@ -18,7 +18,7 @@ private val navigationContainers = Lesson(
 private val backHandler = Lesson(
     titleResId = R.string.lesson_back_handler_title,
     descriptionResId = R.string.TODO,
-    pages = listOf(),
+    pages = backHandlerPages,
 )
 
 private val navigationSuite = Lesson(

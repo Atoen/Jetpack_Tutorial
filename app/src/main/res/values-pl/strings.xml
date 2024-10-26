@@ -653,5 +653,12 @@
     <string name="nav_containers_5_heading">Kontrolowanie stanu menu</string>
     <string name="nav_containers_6_heading">Dostosowywanie wyglądu menu</string>
     <string name="nav_containers_7_heading">Synchronizowanie ścieżki nawigacji</string>
+    <string name="back_3_first">Pierwszy powrót</string>
+    <string name="back_3_second">Drugi powrót</string>
+    <string name="back_handled">Wciśnięto powrót</string>
+    <string name="back_3_heading">Podwójny powrót</string>
+    <string name="back_2_heading">Warunkowa obsługa</string>
+    <string name="back_1_heading">Wywoływanie zdarzeń przy powrocie</string>
+    <string name="back_text_not_empty">Tekst nie jest pusty</string>
 
 </resources>

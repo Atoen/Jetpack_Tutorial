@@ -704,4 +704,11 @@
     <string name="nav_containers_5_heading">Controlling drawer state</string>
     <string name="nav_containers_6_heading">Customizing drawer appearance</string>
     <string name="nav_containers_7_heading">Syncing navigation route</string>
+    <string name="back_3_first">First back</string>
+    <string name="back_3_second">Second back</string>
+    <string name="back_handled">Back pressed</string>
+    <string name="back_3_heading">Double back handler</string>
+    <string name="back_2_heading">Conditional handling</string>
+    <string name="back_1_heading">Invoking actions on back</string>
+    <string name="back_text_not_empty">The text is not empty</string>
 </resources>

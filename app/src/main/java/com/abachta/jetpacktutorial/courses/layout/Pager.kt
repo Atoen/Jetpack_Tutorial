@@ -210,7 +210,7 @@ private val pager_4 = LessonPage (
         code = """
             val pagerState = c-rememberPagerState(...)
             
-            LaunchedEffect(pagerState) {
+            c-LaunchedEffect(pagerState) {
                 snapshotFlow {
                     pagerState.currentPage
                 }.collect { page ->
