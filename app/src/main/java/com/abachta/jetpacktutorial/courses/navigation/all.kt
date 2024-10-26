@@ -10,7 +10,7 @@ private val navControllerAndHost = Lesson(
 )
 
 private val navigationContainers = Lesson(
-    titleResId = R.string.lesson_bottom_navbar_title,
+    titleResId = R.string.lesson_nav_containers_title,
     descriptionResId = R.string.TODO,
     pages = navigationContainersPages,
 )

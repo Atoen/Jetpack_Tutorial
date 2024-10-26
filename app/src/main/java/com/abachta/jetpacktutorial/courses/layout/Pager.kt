@@ -82,7 +82,7 @@ private val pager_1 = LessonPage (
                 pageCount = { 10 }
             )
             
-            or VerticalPager
+            // or VerticalPager
             c-HorizontalPager(
                 state = pagerState
             ) { page ->

@@ -663,7 +663,7 @@
     <string name="lesson_notification_title">Sending notifications</string>
     <string name="lesson_pager_title">Pager</string>
     <string name="lesson_nav_ctr_host_title">Nav controller and host</string>
-    <string name="lesson_bottom_navbar_title">Bottom navigation bar</string>
+    <string name="lesson_nav_containers_title">Navigation containers</string>
     <string name="lesson_back_handler_title">Back handler</string>
     <string name="lesson_navigation_suite_title">Navigation suite</string>
     <string name="lesson_animated_visibility_title">Animating content</string>
@@ -695,4 +695,13 @@
     <string name="pager_4_heading">Listening for page changes</string>
     <string name="pager_5_heading">Page indicator</string>
     <string name="pager_6_heading">Custom page sizes</string>
+    <string name="nav_drawer_text">Swipe to the right to open the drawer</string>
+    <string name="nav_drawer_text_2">Click to open navigation drawer</string>
+    <string name="nav_containers_1_heading">Bottom navigation bar</string>
+    <string name="nav_containers_2_heading">Adding navigation routes</string>
+    <string name="nav_containers_3_heading">Customizing navigation items</string>
+    <string name="nav_containers_4_heading">Navigation drawer</string>
+    <string name="nav_containers_5_heading">Controlling drawer state</string>
+    <string name="nav_containers_6_heading">Customizing drawer appearance</string>
+    <string name="nav_containers_7_heading">Syncing navigation route</string>
 </resources>

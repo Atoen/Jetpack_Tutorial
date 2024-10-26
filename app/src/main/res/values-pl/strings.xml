@@ -611,9 +611,9 @@
     <string name="lesson_biometrics_title">Biometryka</string>
     <string name="lesson_notification_title">Wysyłanie powiadiomień</string>
     <string name="lesson_pager_title">Pager</string>
-    <string name="lesson_nav_ctr_host_title">Kontroller i host nawigacji</string>
-    <string name="lesson_bottom_navbar_title">Dolny pasek nawigacji</string>
-    <string name="lesson_back_handler_title">Obługa cofania</string>
+    <string name="lesson_nav_ctr_host_title">Kontroler i host nawigacji</string>
+    <string name="lesson_nav_containers_title">Układy nawigacyjne</string>
+    <string name="lesson_back_handler_title">Obsługa cofania</string>
     <string name="lesson_navigation_suite_title">Zestaw nawigacyjny</string>
     <string name="lesson_animated_visibility_title">Animowanie interfejsu</string>
     <string name="lesson_animate_values_title">Animowanie wartości</string>
@@ -644,5 +644,14 @@
     <string name="pager_4_heading">Nasłuchwanie zmian stron</string>
     <string name="pager_5_heading">Wskaźnik strony</string>
     <string name="pager_6_heading">Zmienianie rozmarów stron</string>
+    <string name="nav_drawer_text">Przeciągni w prawo, aby otworzyć menu nawigacji</string>
+    <string name="nav_drawer_text_2">Kliknij, aby otworzyć menu nawigacji</string>
+    <string name="nav_containers_1_heading">Dolny pasek nawigacji</string>
+    <string name="nav_containers_2_heading">Dodawanie ścieżek nawigacji</string>
+    <string name="nav_containers_3_heading">Dostosowywanie elementów nawigacyjnych</string>
+    <string name="nav_containers_4_heading">Menu nawigacyjne</string>
+    <string name="nav_containers_5_heading">Kontrolowanie stanu menu</string>
+    <string name="nav_containers_6_heading">Dostosowywanie wyglądu menu</string>
+    <string name="nav_containers_7_heading">Synchronizowanie ścieżki nawigacji</string>
 
 </resources>
