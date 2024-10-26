@@ -304,7 +304,7 @@ private val animated_visibility_4 = LessonPage (
     }
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        AnimatedVisibility(visible) {
+        this@LessonPage.AnimatedVisibility(visible) {
             Card(
                 colors = CardDefaults.cardColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,

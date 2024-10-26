@@ -2,6 +2,7 @@ package com.abachta.jetpacktutorial.ui.components
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -13,7 +14,7 @@ import androidx.compose.ui.unit.dp
 fun Preview(
     modifier: Modifier = Modifier,
     showBorder: Boolean = true,
-    content: @Composable () -> Unit,
+    content: @Composable BoxScope.() -> Unit,
 ) {
     Box(
         contentAlignment = Alignment.Center,

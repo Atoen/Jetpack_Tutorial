@@ -635,5 +635,14 @@
     <string name="animated_visibility_3_heading">Łączenie przejść</string>
     <string name="animated_visibility_4_heading">Animowanie wewnętrznej zawartości</string>
     <string name="animated_visibility_5_heading">Animowanie zmian zawartości</string>
+    <string name="pager_scroll_forward">Przewiń do przodu</string>
+    <string name="pager_scroll_backward">Przewiń wstecz</string>
+    <string name="pager_current_page_snackbar">Obecna strona</string>
+    <string name="pager_1_heading">Pionowy i poziomy pager</string>
+    <string name="pager_2_heading">Leniwy układ</string>
+    <string name="pager_3_heading">Kontrolowanie pozycji</string>
+    <string name="pager_4_heading">Nasłuchwanie zmian stron</string>
+    <string name="pager_5_heading">Wskaźnik strony</string>
+    <string name="pager_6_heading">Zmienianie rozmarów stron</string>
 
 </resources>

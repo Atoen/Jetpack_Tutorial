@@ -686,4 +686,13 @@
     <string name="animated_visibility_3_heading">Combining transtions</string>
     <string name="animated_visibility_4_heading">Animating child content</string>
     <string name="animated_visibility_5_heading">Animating content changes</string>
+    <string name="pager_scroll_forward">Scroll forward</string>
+    <string name="pager_scroll_backward">Scroll backward</string>
+    <string name="pager_current_page_snackbar">Current page</string>
+    <string name="pager_1_heading">Vertical and horizontal pager</string>
+    <string name="pager_2_heading">Lazy layout</string>
+    <string name="pager_3_heading">Controlling position</string>
+    <string name="pager_4_heading">Listening for page changes</string>
+    <string name="pager_5_heading">Page indicator</string>
+    <string name="pager_6_heading">Custom page sizes</string>
 </resources>

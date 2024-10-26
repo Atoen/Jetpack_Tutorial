@@ -44,7 +44,7 @@ private val bottomSheet = Lesson(
 private val pager = Lesson(
     titleResId = R.string.lesson_pager_title,
     descriptionResId = R.string.TODO,
-    pages = listOf(),
+    pages = pagerPages,
 )
 
 val layoutLessons = listOf(
