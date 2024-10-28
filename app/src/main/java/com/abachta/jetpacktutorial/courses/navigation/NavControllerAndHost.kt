@@ -43,11 +43,16 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 import kotlinx.serialization.Serializable
 
 private val navigation_1 = LessonPage (
    headingResId = R.string.navigation_1_heading
 ) {
+
+    ResText(R.string.navigation_1_1)
+
+    ResText(R.string.navigation_1_2)
 
     CodeListing(
         code = """
@@ -62,6 +67,8 @@ private val navigation_1 = LessonPage (
         """.trimIndent()
     )
 
+    ResText(R.string.navigation_1_3)
+
     CodeListing(
         code = """
             [plugins]
@@ -75,12 +82,7 @@ private val navigation_1 = LessonPage (
             plugins {
                 // ...
                 alias(libs.plugins.jetbrains.kotlin.serialization)
-        """.trimIndent()
-    )
-
-    CodeListing(
-        code = """
-            val navController = c-rememberNavController()            
+            }
         """.trimIndent()
     )
 }
@@ -88,6 +90,10 @@ private val navigation_1 = LessonPage (
 private val navigation_2 = LessonPage (
    headingResId = R.string.navigation_2_heading
 ) {
+
+    ResText(R.string.navigation_2_1)
+
+    ResText(R.string.navigation_2_2)
 
     CodeListing(
         code = """
@@ -113,6 +119,8 @@ private val navigation_2 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.navigation_2_3)
 
     CodeListing(
         code = """              
@@ -179,12 +187,13 @@ private val navigation_3 = LessonPage (
    headingResId = R.string.navigation_3_heading
 ) {
 
+    ResText(R.string.navigation_3_1)
+
+    ResText(R.string.navigation_3_2)
+
     CodeListing(
         code = """              
-            c-NavHost(
-                navController = navController,
-                startDestination = HomeScreen
-            ) {
+            c-NavHost(...) { {
                 composable<HomeScreen> { 
                     c-HomeScreen(
                         onGoToSettings = {
@@ -296,29 +305,32 @@ private val navigation_4 = LessonPage (
    headingResId = R.string.navigation_4_heading
 ) {
 
+    ResText(R.string.navigation_4_1)
+
     CodeListing(
-        code = """ 
+        code = """
             @Serializable
             data class Profile(val id: String)
-            
-            c-NavHost(
-                navController = navController,
-                startDestination = HomeScreen
-            ) {
+        """.trimIndent()
+    )
+
+    ResText(R.string.navigation_4_2)
+
+    CodeListing(
+        code = """ 
+            c-NavHost(...) {
                 composable<HomeScreen> {
                     c-HomeScreen(
-                        onGoToProfile = { id ->
+                        onClick = { id ->
                             navController.navigate(ProfileScreen(id))
                         }
                     )
                 }
                 composable<ProfileScreen> {
+                    // access the data
                     val arg = it.toRoute<ProfileScreen>()
                     c-ProfileScreen(
-                        profile = arg,
-                        onBack = {
-                            navController.navigateUp()
-                        }
+                        profile = arg
                     )
                 }
             }
@@ -383,21 +395,21 @@ private val navigation_5 = LessonPage (
    headingResId = R.string.navigation_5_heading
 ) {
 
+    ResText(R.string.navigation_5_1)
+
+    ResText(R.string.navigation_5_2)
+
     val context = LocalContext.current
 
-    Column(
-        modifier = Modifier.align(Alignment.CenterHorizontally)
-    ) {
-        Button(onClick = {
-
+    Button(
+        modifier = Modifier.align(Alignment.CenterHorizontally),
+        onClick = {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 it.requestPermission(Manifest.permission.POST_NOTIFICATIONS)
             }
-
             sendDeeplinkNotification(context, 20)
-        }) {
-            Text("Send deeplink notification")
-        }
+    }) {
+        ResText(R.string.navigation_5_send_deeplink)
     }
 
     CodeListing(
@@ -409,16 +421,12 @@ private val navigation_5 = LessonPage (
                     )
                 )
             ) {
-                val id = it.toRoute<DeepLinkScreen>().id
-                Box(
-                    modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(text = "The ID is ${'$'}id")
-                }
+                val arg = it.toRoute<DeepLinkScreen>()
             }
         """.trimIndent()
     )
+
+    ResText(R.string.navigation_5_3)
 
     CodeListing(
         code = """
@@ -437,7 +445,6 @@ private val navigation_5 = LessonPage (
             ...
         """.trimIndent()
     )
-
 }
 
 val navControllerPages = listOf(

@@ -49,9 +49,9 @@ import com.abachta.jetpacktutorial.ui.components.Preview
 import com.abachta.jetpacktutorial.ui.components.ResText
 import kotlinx.coroutines.launch
 
-data class TopLevelRoute<T>(
+data class TopLevelRoute(
     val name: String,
-    val route: T,
+    val route: Any,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
 )
@@ -66,6 +66,10 @@ val topLevelRoutes = listOf(
 private val nav_containers_1 = LessonPage (
     headingResId = R.string.nav_containers_1_heading
 ) {
+
+    ResText(R.string.nav_containers_1_1)
+
+    ResText(R.string.nav_containers_1_2)
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         val navController = rememberNavController()
@@ -118,8 +122,30 @@ private val nav_containers_1 = LessonPage (
 }
 
 private val nav_containers_2 = LessonPage (
-    headingResId = R.string.nav_containers_2_heading
+   headingResId = R.string.nav_containers_2_heading
 ) {
+
+    ResText(R.string.nav_containers_2_1)
+
+    CodeListing(
+        code = """
+            data class TopLevelRoute(
+                val name: String,
+                val route: Any,
+                val selectedIcon: ImageVector,
+                val unselectedIcon: ImageVector,
+            )
+        """.trimIndent()
+    )
+}
+
+private val nav_containers_3 = LessonPage (
+    headingResId = R.string.nav_containers_3_heading
+) {
+
+    ResText(R.string.nav_containers_3_1)
+
+    ResText(R.string.nav_containers_3_2)
 
     CodeListing(
         code = """
@@ -143,9 +169,11 @@ private val nav_containers_2 = LessonPage (
     )
 }
 
-private val nav_containers_3 = LessonPage (
-    headingResId = R.string.nav_containers_3_heading
+private val nav_containers_4 = LessonPage (
+    headingResId = R.string.nav_containers_4_heading
 ) {
+
+    ResText(R.string.nav_containers_4_1)
 
     CodeListing(
         code = """
@@ -234,9 +262,13 @@ private fun DrawerItem(
     }
 }
 
-private val nav_containers_4 = LessonPage (
-    headingResId = R.string.nav_containers_4_heading
+private val nav_containers_5 = LessonPage (
+    headingResId = R.string.nav_containers_5_heading
 ) {
+
+    ResText(R.string.nav_containers_5_1)
+
+    ResText(R.string.nav_containers_5_2)
 
     CodeListing(
         code = """
@@ -278,9 +310,6 @@ private val nav_containers_4 = LessonPage (
                             onClick = {
                                 selectedIndex = index
                                 navController.navigate(item.route)
-                                scope.launch {
-                                    drawerState.close()
-                                }
                             },
                             label = { Text(item.name) },
                             icon = {
@@ -338,9 +367,13 @@ private val nav_containers_4 = LessonPage (
     }
 }
 
-private val nav_containers_5 = LessonPage (
-    headingResId = R.string.nav_containers_5_heading
+private val nav_containers_6 = LessonPage (
+    headingResId = R.string.nav_containers_6_heading
 ) {
+
+    ResText(R.string.nav_containers_6_1)
+
+    ResText(R.string.nav_containers_6_2)
 
     CodeListing(
         code = """
@@ -367,9 +400,13 @@ private val nav_containers_5 = LessonPage (
     )
 }
 
-private val nav_containers_6 = LessonPage (
-    headingResId = R.string.nav_containers_6_heading
+private val nav_containers_7 = LessonPage (
+    headingResId = R.string.nav_containers_7_heading
 ) {
+
+    ResText(R.string.nav_containers_7_1)
+
+    ResText(R.string.nav_containers_7_2)
 
     CodeListing(
         code = """
@@ -380,6 +417,7 @@ private val nav_containers_6 = LessonPage (
                     c-ModalDrawerSheet(
                         drawerContainerColor = ...,
                         drawerContentColor = ...,
+                        drawerShape = ...,
                         modifier = Modifier.fillMaxWidth(0.7f)
                     ) { 
                         c-NavigationDrawerItem(...)
@@ -426,7 +464,9 @@ private val nav_containers_6 = LessonPage (
                             selected = isSelected,
                             onClick = {
                                 selectedIndex = index
-                                navController.navigate(item.route)
+                                navController.navigate(item.route) {
+
+                                }
                                 scope.launch {
                                     drawerState.close()
                                 }
@@ -486,9 +526,13 @@ private val nav_containers_6 = LessonPage (
     }
 }
 
-private val nav_containers_7 = LessonPage (
-    headingResId = R.string.nav_containers_7_heading
+private val nav_containers_8 = LessonPage (
+    headingResId = R.string.nav_containers_8_heading
 ) {
+
+    ResText(R.string.nav_containers_8_1)
+
+    ResText(R.string.nav_containers_8_2)
 
     CodeListing(
         code = """
@@ -511,6 +555,8 @@ private val nav_containers_7 = LessonPage (
             ) { ... }
         """.trimIndent()
     )
+
+    ResText(R.string.nav_containers_8_3)
 
     CodeListing(
         code = """
@@ -538,5 +584,6 @@ val navigationContainersPages = listOf(
     nav_containers_4,
     nav_containers_5,
     nav_containers_6,
-    nav_containers_7
+    nav_containers_7,
+    nav_containers_8
 )

@@ -18,12 +18,15 @@ import com.abachta.jetpacktutorial.ui.SnackbarController
 import com.abachta.jetpacktutorial.ui.SnackbarEvent
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.Preview
+import com.abachta.jetpacktutorial.ui.components.ResText
 import com.abachta.jetpacktutorial.ui.components.TwiceBackHandler
 import kotlinx.coroutines.launch
 
 private val back_1 = LessonPage (
    headingResId = R.string.back_1_heading
 ) {
+
+    ResText(R.string.back_1_1)
 
     CodeListing(
         code = """
@@ -32,6 +35,8 @@ private val back_1 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.back_1_2)
 
     val scope = rememberCoroutineScope()
 
@@ -52,6 +57,8 @@ private val back_1 = LessonPage (
 private val back_2 = LessonPage (
    headingResId = R.string.back_2_heading
 ) {
+
+    ResText(R.string.back_2_1)
 
     CodeListing(
         code = """
@@ -98,6 +105,8 @@ private val back_3 = LessonPage (
    headingResId = R.string.back_3_heading
 ) {
 
+    ResText(R.string.back_3_1)
+
     CodeListing(
         code = """
             enum class BackNavigation {
@@ -105,6 +114,8 @@ private val back_3 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.back_3_2)
 
     CodeListing(
         code = """

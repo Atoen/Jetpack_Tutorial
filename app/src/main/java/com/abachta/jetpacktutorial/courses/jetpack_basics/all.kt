@@ -55,6 +55,13 @@ private val modifier = Lesson(
     quiz = modifierQuiz
 )
 
+private val sideEffects = Lesson(
+    titleResId = R.string.lesson_side_effects_title,
+    descriptionResId = R.string.TODO,
+    pages = sideEffectPages
+)
+
+
 private val toast = Lesson(
     titleResId = R.string.lesson_toast_title,
     descriptionResId = R.string.TODO,
@@ -68,5 +75,6 @@ val jetpackBasicsLessons = listOf(
     image,
     card,
     modifier,
+    sideEffects,
     toast
 )
