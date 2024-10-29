@@ -62,7 +62,6 @@ val topLevelRoutes = listOf(
     TopLevelRoute("Settings", SettingsScreen, Icons.Filled.Settings, Icons.Outlined.Settings)
 )
 
-
 private val nav_containers_1 = LessonPage (
     headingResId = R.string.nav_containers_1_heading
 ) {

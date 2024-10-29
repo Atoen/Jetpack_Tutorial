@@ -3,6 +3,12 @@ package com.abachta.jetpacktutorial.courses.advanced
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.Lesson
 
+private val permissions = Lesson(
+    titleResId = R.string.lesson_permissions_title,
+    descriptionResId = R.string.TODO,
+    pages = permissionsPages
+)
+
 private val notifications = Lesson(
     titleResId = R.string.lesson_notification_title,
     descriptionResId = R.string.TODO,
@@ -16,6 +22,7 @@ private val biometrics = Lesson(
 )
 
 val advancedLessons = listOf(
+    permissions,
     notifications,
     biometrics,
 )

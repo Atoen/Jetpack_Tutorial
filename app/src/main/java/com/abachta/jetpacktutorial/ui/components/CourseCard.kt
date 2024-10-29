@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material3.CardDefaults
@@ -23,7 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -107,14 +106,16 @@ fun CourseCard(
 
             val indicatorModifier = Modifier
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(4.dp))
                 .height(8.dp)
 
             LinearProgressIndicator(
                 progress = { animatedProgress },
                 modifier = indicatorModifier,
                 color = progressColor,
-                trackColor = trackColor
+                trackColor = trackColor,
+                gapSize = 0.dp,
+                strokeCap = StrokeCap.Round,
+                drawStopIndicator = {}
             )
 
             Spacer(modifier = Modifier.height(8.dp))
