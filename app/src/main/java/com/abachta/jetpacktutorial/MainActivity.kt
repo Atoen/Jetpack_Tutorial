@@ -1,6 +1,7 @@
 package com.abachta.jetpacktutorial
 
 import android.app.Activity
+import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
@@ -20,6 +21,8 @@ import com.abachta.jetpacktutorial.ui.components.PermissionDialogQueue
 import com.abachta.jetpacktutorial.ui.theme.JetpackTutorialTheme
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -27,6 +30,8 @@ class MainActivity : AppCompatActivity() {
     private val viewModel by viewModels<SettingsViewModel>()
 
     private val promptManager = BiometricPromptManager(this)
+
+    private val resultChannel = Channel<PermissionResult>()
 
     private val permissionLauncher = registerForActivityResult(
         contract = ActivityResultContracts.RequestMultiplePermissions()
@@ -41,6 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel.biometricPromptManager = promptManager
         viewModel.permissionRequester = { permissionLauncher.launch(it) }
+        viewModel.permissionPromptResults = resultChannel.receiveAsFlow()
 
         installSplashScreen().setKeepOnScreenCondition {
             !viewModel.isReady.value
@@ -70,6 +76,24 @@ class MainActivity : AppCompatActivity() {
                     )
                 }
             }
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+
+        permissions.forEachIndexed { index, permission ->
+            val result = if (grantResults[index] == PackageManager.PERMISSION_GRANTED) {
+                PermissionResult.Granted(permission)
+            } else {
+                PermissionResult.Denied(permission)
+            }
+
+            resultChannel.trySend(result)
         }
     }
 

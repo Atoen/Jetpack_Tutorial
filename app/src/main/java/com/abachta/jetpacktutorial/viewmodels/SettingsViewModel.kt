@@ -9,6 +9,7 @@ import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abachta.jetpacktutorial.BiometricPromptManager
+import com.abachta.jetpacktutorial.PermissionResult
 import com.abachta.jetpacktutorial.data.Preferences
 import com.abachta.jetpacktutorial.settings.AppLocale
 import com.abachta.jetpacktutorial.settings.AppTheme
@@ -40,10 +41,11 @@ class SettingsViewModel @Inject constructor(
 
     lateinit var biometricPromptManager: BiometricPromptManager
     lateinit var permissionRequester: (Array<String>) -> Unit
+    lateinit var permissionPromptResults: Flow<PermissionResult>
 
     val visiblePermissionDialogQueue = mutableStateListOf<String>()
 
-    fun dismissDialog() = visiblePermissionDialogQueue.removeLast()
+    fun dismissDialog() = visiblePermissionDialogQueue.removeAt(visiblePermissionDialogQueue.lastIndex)
 
     fun onPermissionResult(permission: String, isGranted: Boolean) {
         if (!isGranted) {
@@ -153,6 +155,9 @@ class SettingsViewModel @Inject constructor(
             override val biometricResults: Flow<BiometricPromptManager.BiometricResult>
                 get() = biometricPromptManager.promptResults
 
+            override val permissionResults: Flow<PermissionResult>
+                get() = permissionPromptResults
+
             override fun requestPermission(permission: String) {
                 permissionRequester(arrayOf(permission))
             }
@@ -160,7 +165,6 @@ class SettingsViewModel @Inject constructor(
             override fun requestPermissions(permissions: Array<String>) {
                 permissionRequester(permissions)
             }
-
         }
     }
 

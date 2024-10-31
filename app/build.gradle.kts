@@ -103,7 +103,13 @@ dependencies {
 
     implementation(libs.androidx.biometric)
 
-    implementation(libs.androidx.material3.adaptive.navigation.suite)
+//    implementation(libs.androidx.material3.adaptive.navigation.suite)
+
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.extensions)
 }
 
 kapt {

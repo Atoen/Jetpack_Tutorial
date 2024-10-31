@@ -25,6 +25,7 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
 import com.abachta.jetpacktutorial.ui.components.ResText
+import com.abachta.jetpacktutorial.ui.components.openAppSettings
 
 private val permissions_1 = LessonPage (
    headingResId = R.string.permissions_1_heading
@@ -195,10 +196,39 @@ private val permissions_5 = LessonPage (
     )
 }
 
+private val permissions_6 = LessonPage (
+    headingResId = R.string.permissions_6_heading
+) {
+
+    CodeListing(
+        code = """
+            fun Activity.openAppSettings() {
+                val intent = Intent(
+                    Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                    Uri.fromParts("package", packageName, null)
+                )
+                
+                startActivity(intent)
+            }
+        """.trimIndent()
+    )
+
+    val context = LocalContext.current
+    val activity = context as? Activity
+
+    Button(
+        onClick = { activity?.openAppSettings() },
+        modifier = Modifier.align(Alignment.CenterHorizontally)
+    ) {
+        ResText(R.string.permissions_6_open_app_settings)
+    }
+}
+
 val permissionsPages = listOf(
     permissions_1,
     permissions_2,
     permissions_3,
     permissions_4,
-    permissions_5
+    permissions_5,
+    permissions_6
 )

@@ -28,7 +28,7 @@ fun PermissionDialogQueue(
     }
 }
 
-private fun Activity.openAppSettings() {
+fun Activity.openAppSettings() {
     Intent(
         Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
         Uri.fromParts("package", packageName, null)

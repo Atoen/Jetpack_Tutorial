@@ -21,8 +21,7 @@ private val viewmodel_1 = LessonPage (
         code = """
         import androidx.lifecycle.ViewModel
         
-        class AppViewModel : ViewModel() {
-        }
+        class AppViewModel : ViewModel()
         """.trimIndent()
     )
 }

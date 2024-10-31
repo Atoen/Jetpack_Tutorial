@@ -815,4 +815,16 @@
     <string name="permissions_3_heading">Requesting permissions</string>
     <string name="permissions_4_heading">Checking granted permissions</string>
     <string name="permissions_5_heading">Permission workflow</string>
+    <string name="lesson_camera_titile">Camera</string>
+    <string name="permissions_6_open_app_settings">Go to application settings</string>
+    <string name="permissions_6_heading">Opening application settings</string>
+    <string name="camera_no_permissions">No camera permissions</string>
+    <string name="camera_request_permission">Request camera permission</string>
+    <string name="camera_switch">Switch camera</string>
+    <string name="camera_capture_error">Unexpected error while capturing image</string>
+    <string name="camera_take_photo">Take photo</string>
+    <string name="camera_open_gallery">Open gallery</string>
+    <string name="camera_gallery_no_photos">No photos taken</string>
+    <string name="camera_start_recording">Start recording</string>
+    <string name="camera_stop_recording">Stop recording</string>
 </resources>

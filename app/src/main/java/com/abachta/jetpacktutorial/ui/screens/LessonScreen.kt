@@ -58,7 +58,7 @@ import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.LessonPage
-import com.abachta.jetpacktutorial.data.LessonPagesScope
+import com.abachta.jetpacktutorial.data.LessonPageScope
 import com.abachta.jetpacktutorial.data.Quiz
 import com.abachta.jetpacktutorial.ui.Screen
 import com.abachta.jetpacktutorial.viewmodels.AppFeatureAccessor
@@ -207,8 +207,8 @@ private fun Page(
 
 private fun ColumnScope.createLessonPageScope(
     isCurrentPage: () -> Boolean
-): LessonPagesScope {
-    return object : LessonPagesScope {
+): LessonPageScope {
+    return object : LessonPageScope {
         override val isCurrentPage: Boolean
             get() = isCurrentPage()
 

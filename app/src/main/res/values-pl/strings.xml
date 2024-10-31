@@ -763,5 +763,17 @@
     <string name="permissions_3_heading">Przyznawanie uprawnień</string>
     <string name="permissions_4_heading">Sprawdzanie przyznanych uprawnień</string>
     <string name="permissions_5_heading">Praca z uprawnieniami</string>
+    <string name="lesson_camera_titile">Kamera</string>
+    <string name="permissions_6_open_app_settings">Przejdź do ustawień aplikacji</string>
+    <string name="permissions_6_heading">Otwieranie ustawień aplikacji</string>
+    <string name="camera_no_permissions">Brak uprawnień do kamery</string>
+    <string name="camera_request_permission">Poproś o uprawnienia do kamery</string>
+    <string name="camera_switch">Zmień kamerę</string>
+    <string name="camera_capture_error">Niespodziewany błąd podczas robienia zdjęcia</string>
+    <string name="camera_take_photo">Zrób zdjęcie</string>
+    <string name="camera_open_gallery">Otwórz galerię</string>
+    <string name="camera_gallery_no_photos">Brak zroboionych zdjęć</string>
+    <string name="camera_start_recording">Rozpocznij nagrywanie</string>
+    <string name="camera_stop_recording">Zakończ nagrywanie</string>
 
 </resources>

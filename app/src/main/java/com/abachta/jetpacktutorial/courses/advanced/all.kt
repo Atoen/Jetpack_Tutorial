@@ -15,6 +15,13 @@ private val notifications = Lesson(
     pages = notificationPages
 )
 
+private val camera = Lesson(
+    titleResId = R.string.lesson_camera_titile,
+    descriptionResId = R.string.TODO,
+    pages = cameraPages
+)
+
+
 private val biometrics = Lesson(
     titleResId = R.string.lesson_biometrics_title,
     descriptionResId = R.string.TODO,
@@ -24,5 +31,6 @@ private val biometrics = Lesson(
 val advancedLessons = listOf(
     permissions,
     notifications,
+    camera,
     biometrics,
 )

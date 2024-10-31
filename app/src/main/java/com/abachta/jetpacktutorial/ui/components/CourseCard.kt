@@ -113,9 +113,7 @@ fun CourseCard(
                 modifier = indicatorModifier,
                 color = progressColor,
                 trackColor = trackColor,
-                gapSize = 0.dp,
                 strokeCap = StrokeCap.Round,
-                drawStopIndicator = {}
             )
 
             Spacer(modifier = Modifier.height(8.dp))

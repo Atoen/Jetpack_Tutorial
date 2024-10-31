@@ -65,12 +65,12 @@ class LessonProgress {
     }
 }
 
-interface LessonPagesScope : ColumnScope {
+interface LessonPageScope : ColumnScope {
     val isCurrentPage: Boolean
 }
 
 class LessonPage(
     @StringRes
     val headingResId: Int? = null,
-    val content: @Composable LessonPagesScope.(AppFeatureAccessor) -> Unit
+    val content: @Composable LessonPageScope.(AppFeatureAccessor) -> Unit
 )
