@@ -72,10 +72,16 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.io.File
 
-private fun hasPhotoPermission(context: Context) =
+private fun hasCameraPermission(context: Context) =
     ContextCompat.checkSelfPermission(
         context,
         Manifest.permission.CAMERA
+    ) == PackageManager.PERMISSION_GRANTED
+
+private fun hasMicrophonePermission(context: Context) =
+    ContextCompat.checkSelfPermission(
+        context,
+        Manifest.permission.RECORD_AUDIO
     ) == PackageManager.PERMISSION_GRANTED
 
 private val recordingPermissions = arrayOf(
@@ -83,16 +89,8 @@ private val recordingPermissions = arrayOf(
     Manifest.permission.RECORD_AUDIO,
 )
 
-private fun hasRecordPermission(context: Context) =
-    recordingPermissions.all {
-        ContextCompat.checkSelfPermission(
-            context,
-            it
-        ) == PackageManager.PERMISSION_GRANTED
-    }
-
 private val camera_1 = LessonPage (
-//   headingResId = R.string.camera_1_heading
+   headingResId = R.string.camera_1_heading
 ) {
 
     CodeListing(
@@ -110,13 +108,40 @@ private val camera_1 = LessonPage (
 }
 
 private val camera_2 = LessonPage (
-//   headingResId = R.string.camera_2_heading
+   headingResId = R.string.camera_2_heading
 ) {
 
     CodeListing(
         code = """
+            val context = LocalContext.c-current
+            val lifecycleOwner = LocalLifecycleOwner.c-current
+
+            val cameraController = remember {
+                LifecycleCameraController(context).apply {
+                    setEnabledUseCases(
+                        CameraController.IMAGE_CAPTURE
+                    )
+                }
+            }
         """.trimIndent()
     )
+
+    CodeListing(
+        code = """
+            c-AndroidView(
+                factory = {
+                    PreviewView(it).apply {
+                        controller = cameraController
+                        cameraController.bindToLifecycle(lifecycleOwner)
+
+                        scaleType = PreviewView.ScaleType.FIT_CENTER
+                    }
+                }
+            )
+        """.trimIndent()
+    )
+
+    if (!isCurrentPage) return@LessonPage
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -124,17 +149,17 @@ private val camera_2 = LessonPage (
     val cameraController = remember {
         LifecycleCameraController(context).apply {
             setEnabledUseCases(
-                CameraController.IMAGE_CAPTURE or CameraController.VIDEO_CAPTURE
+                CameraController.IMAGE_CAPTURE
             )
         }
     }
 
-    var hasPermission by remember { mutableStateOf(hasPhotoPermission(context)) }
+    var hasPermission by remember { mutableStateOf(hasCameraPermission(context)) }
 
     LaunchedEffect(Unit) {
         it.permissionResults.collect { result ->
             if (result is PermissionResult.Granted &&
-                result.permission == Manifest.permission.CAMERA) {
+                result.permission.name == Manifest.permission.CAMERA) {
                 hasPermission = true
             }
         }
@@ -152,37 +177,47 @@ private val camera_2 = LessonPage (
     }
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        if (this@LessonPage.isCurrentPage) {
-            if (hasPermission) {
-                AndroidView(
-                    factory = {
-                        PreviewView(it).apply {
-                            controller = cameraController
-                            cameraController.bindToLifecycle(lifecycleOwner)
+        if (hasPermission) {
+            AndroidView(
+                factory = {
+                    PreviewView(it).apply {
+                        controller = cameraController
+                        cameraController.bindToLifecycle(lifecycleOwner)
 
-                            scaleType = PreviewView.ScaleType.FIT_CENTER
-                        }
-                    },
-                    modifier = Modifier.size(300.dp)
-                )
-            } else {
-                ResText(
-                    resId = R.string.camera_no_permissions,
-                    modifier = Modifier.padding(16.dp)
-                )
-            }
+                        scaleType = PreviewView.ScaleType.FIT_CENTER
+                    }
+                },
+                modifier = Modifier.size(300.dp)
+            )
+        } else {
+            ResText(
+                resId = R.string.camera_no_permissions,
+                modifier = Modifier.padding(16.dp)
+            )
         }
     }
 }
 
 private val camera_3 = LessonPage (
-//   headingResId = R.string.camera_3_heading
+   headingResId = R.string.camera_3_heading
 ) {
 
     CodeListing(
         code = """
+            c-Button(
+                onClick = {
+                    cameraController.cameraSelector =
+                        if (cameraController.cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
+                            CameraSelector.DEFAULT_FRONT_CAMERA
+                        } else {
+                            CameraSelector.DEFAULT_BACK_CAMERA
+                        }
+                }
+            ) { ... }
         """.trimIndent()
     )
+
+    if (!isCurrentPage) return@LessonPage
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -195,12 +230,12 @@ private val camera_3 = LessonPage (
         }
     }
 
-    var hasPermission by remember { mutableStateOf(hasPhotoPermission(context)) }
+    var hasPermission by remember { mutableStateOf(hasCameraPermission(context)) }
 
     LaunchedEffect(Unit) {
         it.permissionResults.collect { result ->
             if (result is PermissionResult.Granted &&
-                result.permission == Manifest.permission.CAMERA) {
+                result.permission.name == Manifest.permission.CAMERA) {
                 hasPermission = true
             }
         }
@@ -244,6 +279,7 @@ private val camera_3 = LessonPage (
 
     Button(
         modifier = Modifier.align(Alignment.CenterHorizontally),
+        enabled = hasPermission,
         onClick = {
             cameraController.cameraSelector =
                 if (cameraController.cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
@@ -335,13 +371,26 @@ private fun PhotoBottomSheet(
 
 @OptIn(ExperimentalMaterial3Api::class)
 private val camera_4 = LessonPage (
-//   headingResId = R.string.camera_4_heading
+   headingResId = R.string.camera_4_heading
 ) {
 
     if (!isCurrentPage) return@LessonPage
 
     CodeListing(
         code = """
+            cameraController.takePicture(
+                ContextCompat.getMainExecutor(context),
+                object : OnImageCapturedCallback() {
+                    override fun onError(exception: ImageCaptureException) {
+                        // handle the error
+                    }
+
+                    override fun onCaptureSuccess(image: ImageProxy) {
+                        val bitmap = image.toBitmap()
+                        // use the bitmap
+                    }
+                }
+            )
         """.trimIndent()
     )
 
@@ -356,12 +405,12 @@ private val camera_4 = LessonPage (
         }
     }
 
-    var hasPermission by remember { mutableStateOf(hasPhotoPermission(context)) }
+    var hasPermission by remember { mutableStateOf(hasCameraPermission(context)) }
 
     LaunchedEffect(Unit) {
         it.permissionResults.collect { result ->
             if (result is PermissionResult.Granted &&
-                result.permission == Manifest.permission.CAMERA) {
+                result.permission.name == Manifest.permission.CAMERA) {
                 hasPermission = true
             }
         }
@@ -379,26 +428,24 @@ private val camera_4 = LessonPage (
     }
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        if (this@LessonPage.isCurrentPage) {
-            if (hasPermission) {
-                AndroidView(
-                    factory = {
-                        PreviewView(it).apply {
-                            controller = cameraController
-                            cameraController.bindToLifecycle(lifecycleOwner)
+        if (hasPermission) {
+            AndroidView(
+                factory = {
+                    PreviewView(it).apply {
+                        controller = cameraController
+                        cameraController.bindToLifecycle(lifecycleOwner)
 
-                            scaleType = PreviewView.ScaleType.FIT_CENTER
+                        scaleType = PreviewView.ScaleType.FIT_CENTER
 
-                        }
-                    },
-                    modifier = Modifier.size(300.dp)
-                )
-            } else {
-                ResText(
-                    resId = R.string.camera_no_permissions,
-                    modifier = Modifier.padding(16.dp)
-                )
-            }
+                    }
+                },
+                modifier = Modifier.size(300.dp)
+            )
+        } else {
+            ResText(
+                resId = R.string.camera_no_permissions,
+                modifier = Modifier.padding(16.dp)
+            )
         }
     }
 
@@ -417,6 +464,7 @@ private val camera_4 = LessonPage (
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
         IconButton (
+            enabled = hasPermission,
             onClick = {
                 takePhoto(
                     context = context,
@@ -453,6 +501,7 @@ private val camera_4 = LessonPage (
         }
 
         IconButton(
+            enabled = hasPermission,
             onClick = {
                 cameraController.cameraSelector =
                     if (cameraController.cameraSelector == CameraSelector.DEFAULT_BACK_CAMERA) {
@@ -480,7 +529,7 @@ private val camera_4 = LessonPage (
 }
 
 private val camera_5 = LessonPage (
-//   headingResId = R.string.camera_5_heading
+   headingResId = R.string.camera_5_heading
 ) {
 
     CodeListing(
@@ -498,8 +547,8 @@ private val camera_5 = LessonPage (
                     matrix,
                     true
                 )
-
-                onPhotoTaken(rotatedBitmap)
+                
+                // use the rotated bitmap
             }
         }
         """.trimIndent()
@@ -511,7 +560,9 @@ private var recording by mutableStateOf<Recording?>(null)
 @SuppressLint("MissingPermission")
 private fun recordVideo(
     context: Context,
-    controller: LifecycleCameraController
+    controller: LifecycleCameraController,
+    successMessage: String,
+    errorMessage: String
 ) {
     if (recording != null) {
         recording?.stop()
@@ -520,11 +571,7 @@ private fun recordVideo(
     }
 
     val outputFile = File(context.filesDir, "recording.mp4")
-    recording = controller.startRecording(
-        FileOutputOptions.Builder(outputFile).build(),
-        AudioConfig.create(true),
-        ContextCompat.getMainExecutor(context)
-    ) { event ->
+    val listener = { event: VideoRecordEvent ->
         when(event) {
             is VideoRecordEvent.Finalize -> {
                 if(event.hasError()) {
@@ -533,29 +580,86 @@ private fun recordVideo(
 
                     Toast.makeText(
                         context,
-                        "Video capture failed",
+                        errorMessage,
                         Toast.LENGTH_LONG
                     ).show()
                 } else {
                     Toast.makeText(
                         context,
-                        "Video capture succeeded",
+                        successMessage,
                         Toast.LENGTH_LONG
                     ).show()
                 }
             }
         }
     }
+
+    recording = controller.startRecording(
+        FileOutputOptions.Builder(outputFile).build(),
+        AudioConfig.create(true),
+        ContextCompat.getMainExecutor(context),
+        listener
+    )
 }
 
 private val camera_6 = LessonPage (
-//   headingResId = R.string.camera_5_heading
+   headingResId = R.string.camera_6_heading
 ) {
 
     CodeListing(
         code = """
+            setEnabledUseCases(
+                CameraController.IMAGE_CAPTURE or CameraController.VIDEO_CAPTURE
+            )
         """.trimIndent()
     )
+
+    CodeListing(
+        code = """
+            var recording: Recording? = null
+            
+            fun recordVideo(
+                context: Context,
+                controller: LifecycleCameraController
+            ) {
+                if (recording != null) {
+                    recording?.stop()
+                    recording = null
+                    return
+                }
+                
+                val outputFile = File(context.filesDir, "recording.mp4")
+                val listener: (VideoRecordEvent) -> Unit = ...
+                
+                recording = controller.startRecording(
+                    FileOutputOptions.Builder(outputFile).build(),
+                    AudioConfig.create(true),
+                    ContextCompat.getMainExecutor(context),
+                    listener
+                )
+            }
+        """.trimIndent()
+    )
+
+    CodeListing(
+        code = """
+            val listener = { event: VideoRecordEvent ->
+                when(event) {
+                    is VideoRecordEvent.Finalize -> {
+                        if(event.hasError()) {
+                        recording?.close()
+                        recording = null
+    
+                        // Capture failed
+                    } else {
+                        // Capture succeeded
+                    }
+                }
+            }
+        """.trimIndent()
+    )
+
+    if (!isCurrentPage) return@LessonPage
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -568,54 +672,70 @@ private val camera_6 = LessonPage (
         }
     }
 
-    var hasPermission by remember { mutableStateOf(hasRecordPermission(context)) }
+    var hasCameraPermission by remember { mutableStateOf(hasCameraPermission(context)) }
+    var hasMicrophonePermission by remember { mutableStateOf(hasMicrophonePermission(context)) }
+
+    val hasPermissions = hasCameraPermission && hasMicrophonePermission
 
     LaunchedEffect(Unit) {
         it.permissionResults.collect { result ->
-            if (result is PermissionResult.Granted && result.permission == Manifest.permission.CAMERA) {
-                hasPermission = true
+            if (result is PermissionResult.Granted &&
+                result.permission.name == Manifest.permission.CAMERA) {
+                hasCameraPermission = true
+            }
+
+            if (result is PermissionResult.Granted &&
+                result.permission.name == Manifest.permission.RECORD_AUDIO) {
+                hasMicrophonePermission = true
             }
         }
     }
 
-    if (!hasPermission) {
+    if (!hasPermissions) {
         Button(
             modifier = Modifier.align(Alignment.CenterHorizontally),
             onClick = {
                 it.requestPermissions(recordingPermissions)
             }
         ) {
-            ResText(R.string.camera_request_permission)
+            ResText(R.string.camera_recording_request_permissions)
         }
     }
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        if (this@LessonPage.isCurrentPage) {
-            if (hasPermission) {
-                AndroidView(
-                    factory = {
-                        PreviewView(it).apply {
-                            controller = cameraController
-                            cameraController.bindToLifecycle(lifecycleOwner)
+        if (hasPermissions) {
+            AndroidView(
+                factory = {
+                    PreviewView(it).apply {
+                        controller = cameraController
+                        cameraController.bindToLifecycle(lifecycleOwner)
 
-                            scaleType = PreviewView.ScaleType.FIT_CENTER
-                        }
-                    },
-                    modifier = Modifier.size(300.dp)
-                )
-            } else {
-                ResText(
-                    resId = R.string.camera_no_permissions,
-                    modifier = Modifier.padding(16.dp)
-                )
-            }
+                        scaleType = PreviewView.ScaleType.FIT_CENTER
+                    }
+                },
+                modifier = Modifier.size(300.dp)
+            )
+        } else {
+            ResText(
+                resId = R.string.camera_recording_no_permissions,
+                modifier = Modifier.padding(16.dp)
+            )
         }
     }
 
+    val successMessage = stringResource(R.string.capture_succeeded)
+    val errorMessage = stringResource(R.string.capture_failed)
+
     Button(
         onClick = {
-            recordVideo(context, cameraController)
+            recordVideo(
+                context = context,
+                controller = cameraController,
+                successMessage = successMessage,
+                errorMessage = errorMessage
+            )
         },
+        enabled = hasPermissions,
         modifier = Modifier.align(Alignment.CenterHorizontally)
     ) {
         val text = if (recording == null) {

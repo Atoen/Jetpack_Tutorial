@@ -772,8 +772,35 @@
     <string name="camera_capture_error">Niespodziewany błąd podczas robienia zdjęcia</string>
     <string name="camera_take_photo">Zrób zdjęcie</string>
     <string name="camera_open_gallery">Otwórz galerię</string>
-    <string name="camera_gallery_no_photos">Brak zroboionych zdjęć</string>
+    <string name="camera_gallery_no_photos">Brak zrobionych zdjęć</string>
     <string name="camera_start_recording">Rozpocznij nagrywanie</string>
     <string name="camera_stop_recording">Zakończ nagrywanie</string>
+    <string name="dialog_grant_permission">Przyznaj uprawnienie</string>
+    <string name="dialog_permission_required">Wymagane uprawnienia</string>
+    <string name="action_needs_permission">Ta czynność wymaga uprawnień do %1$s.</string>
+    <string name="permission_permanently_declined">Wygląda na to, że trwale odmówiono uprawnień do %1$s. Możesz przejść do ustawień aplikacji, aby je przyznać.</string>
+    <string name="camera_genitive">kamery</string>
+    <string name="notifications_genitive">wysyłania powiadomień</string>
+    <string name="microphone_genitive">mikrofonu</string>
+    <string name="camera_recording_no_permissions">Brak uprawnień do nagrywania z dźwiękiem</string>
+    <string name="camera_recording_request_permissions">Poproś o uprawnienia do nagrywania z dźwiękiem</string>
+    <string name="camera_1_heading">Instalowanie bibliotek</string>
+    <string name="camera_2_heading">Wyświetlanie podglądu z kamery</string>
+    <string name="camera_3_heading">Zmienianie kamery</string>
+    <string name="camera_4_heading">Robienie zdjęć</string>
+    <string name="camera_5_heading">Przetwarzanie zdjęć</string>
+    <string name="camera_6_heading">Nagrywanie filmów</string>
+    <string name="capture_succeeded">Nagranie zapisane</string>
+    <string name="capture_failed">Nagranie nie powiodło się</string>
+    <string name="biometrics_prompt_title">Tytuł monitu uwierzytelniającego</string>
+    <string name="biometrics_prompt_description">Przydatny opis</string>
+    <string name="biometrics_prompt_show">Wyświetl monit uwierzytelniający</string>
+    <string name="biometric_prompt_subtitle">Podtytuł</string>
+    <string name="biometrics_1_heading">Instalowanie bibliotek</string>
+    <string name="biometrics_2_heading">Tworzenie monitu</string>
+    <string name="biometrics_3_heading">Wyświetlanie monitu</string>
+    <string name="biometrics_4_heading">Nasłuchwanie rezultatów</string>
+    <string name="biometrics_5_heading">Używanie danych logowania</string>
+    <string name="biometrics_6_heading">Ustawianie uwierzytelniania biometrycznego, jeśli nie jest obecne</string>
 
 </resources>

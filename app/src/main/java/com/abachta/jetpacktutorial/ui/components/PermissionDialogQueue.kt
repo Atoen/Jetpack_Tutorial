@@ -6,20 +6,21 @@ import android.net.Uri
 import android.provider.Settings
 import androidx.compose.runtime.Composable
 import androidx.core.app.ActivityCompat.shouldShowRequestPermissionRationale
+import com.abachta.jetpacktutorial.PermissionModel
 
 @Composable
 fun PermissionDialogQueue(
     activity: Activity,
-    queue: List<String>,
+    queue: List<PermissionModel>,
     onDialogDismiss: () -> Unit,
 ) {
 
-    queue.reversed().forEach { permission ->
+    queue.reversed().forEach { permissionModel ->
         PermissionDialog(
-            permissionTextProvider = DefaultPermissionTextProvider(permission),
+            permissionTextProvider = PermissionTextProvider(permissionModel),
             isPermanentlyDeclined = !shouldShowRequestPermissionRationale(
                 activity,
-                permission
+                permissionModel.name
             ),
             onDismiss = onDialogDismiss,
             onOkClick = onDialogDismiss,

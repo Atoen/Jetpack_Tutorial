@@ -4,7 +4,11 @@ import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import com.abachta.jetpacktutorial.PermissionModel
+import com.abachta.jetpacktutorial.R
 
 @Composable
 fun PermissionDialog(
@@ -15,7 +19,6 @@ fun PermissionDialog(
     onGoToAppSettingsClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-
     AlertDialog(
         onDismissRequest = onDismiss,
         confirmButton = {
@@ -31,9 +34,9 @@ fun PermissionDialog(
             ) {
                 Text(
                     text = if (isPermanentlyDeclined) {
-                        "Grant permission"
+                        stringResource(R.string.dialog_grant_permission)
                     } else {
-                        "OK"
+                        stringResource(R.string.ok)
                     }
                 )
             }
@@ -41,12 +44,12 @@ fun PermissionDialog(
         dismissButton = {
             if (isPermanentlyDeclined) {
                 TextButton(onClick = onDismiss) {
-                    Text(text = "Cancel")
+                    Text(stringResource(R.string.dialog_cancel))
                 }
             }
         },
         title = {
-            Text(text = "Permission required")
+            Text(stringResource(R.string.dialog_permission_required))
         },
         text = {
             Text(
@@ -57,26 +60,20 @@ fun PermissionDialog(
     )
 }
 
-interface PermissionTextProvider {
-    fun getDescription(isPermanentlyDeclined: Boolean): String
-}
+class PermissionTextProvider(private val permissionModel: PermissionModel) {
 
-class DefaultPermissionTextProvider(permission: String) : PermissionTextProvider {
+    private val friendlyName
+        @Composable
+        @ReadOnlyComposable
+        get() = stringResource(permissionModel.friendlyNameResId)
 
-    private val friendlyPermissionName by lazy { convertToFriendlyName(permission) }
-
-    override fun getDescription(isPermanentlyDeclined: Boolean): String {
+    @Composable
+    @ReadOnlyComposable
+    fun getDescription(isPermanentlyDeclined: Boolean): String {
         return if (isPermanentlyDeclined) {
-            "It seems you permanently declined $friendlyPermissionName permission." +
-                    "You can go to the app settings to grant it."
+            stringResource(R.string.permission_permanently_declined, friendlyName)
         } else {
-            "This app needs access to $friendlyPermissionName."
+            stringResource(R.string.action_needs_permission, friendlyName)
         }
-    }
-
-    private fun convertToFriendlyName(permission: String): String {
-        return permission
-            .replace('_', ' ')
-            .lowercase()
     }
 }

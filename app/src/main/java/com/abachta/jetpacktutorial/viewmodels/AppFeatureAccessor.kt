@@ -14,8 +14,10 @@ interface AppFeatureAccessor {
 
     fun showBiometricsPrompt(
         title: String,
-        description: String,
-        negativeButtonText: String
+        subtitle: String? = null,
+        description: String? = null,
+        negativeButtonText: String,
+        allowDeviceCredentials: Boolean
     )
 
     val biometricResults: Flow<BiometricPromptManager.BiometricResult>

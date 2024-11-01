@@ -9,6 +9,7 @@ import androidx.core.os.LocaleListCompat
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.abachta.jetpacktutorial.BiometricPromptManager
+import com.abachta.jetpacktutorial.PermissionModel
 import com.abachta.jetpacktutorial.PermissionResult
 import com.abachta.jetpacktutorial.data.Preferences
 import com.abachta.jetpacktutorial.settings.AppLocale
@@ -18,9 +19,11 @@ import com.abachta.jetpacktutorial.settings.DynamicColorsOption
 import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
@@ -39,17 +42,22 @@ class SettingsViewModel @Inject constructor(
     private val _listingFont = mutableStateOf<CodeListingFont>(CodeListingFont.Medium)
     private val _questionShuffling = mutableStateOf<QuizShufflingOption>(QuizShufflingOption.ShuffleQuestions)
 
-    lateinit var biometricPromptManager: BiometricPromptManager
-    lateinit var permissionRequester: (Array<String>) -> Unit
-    lateinit var permissionPromptResults: Flow<PermissionResult>
+    private val permissionResultChannel = Channel<PermissionResult>()
 
-    val visiblePermissionDialogQueue = mutableStateListOf<String>()
+    internal lateinit var biometricPromptManager: BiometricPromptManager
+    internal lateinit var permissionRequester: (Array<String>) -> Unit
+
+    val visiblePermissionDialogQueue = mutableStateListOf<PermissionModel>()
 
     fun dismissDialog() = visiblePermissionDialogQueue.removeAt(visiblePermissionDialogQueue.lastIndex)
 
-    fun onPermissionResult(permission: String, isGranted: Boolean) {
-        if (!isGranted) {
-            visiblePermissionDialogQueue.add(0, permission)
+    fun onPermissionResult(permissionResult: PermissionResult) {
+        if (permissionResult is PermissionResult.Denied) {
+            visiblePermissionDialogQueue.add(0, permissionResult.permission)
+        }
+
+        viewModelScope.launch {
+            permissionResultChannel.send(permissionResult)
         }
     }
 
@@ -146,17 +154,25 @@ class SettingsViewModel @Inject constructor(
 
             override fun showBiometricsPrompt(
                 title: String,
-                description: String,
-                negativeButtonText: String
+                subtitle: String?,
+                description: String?,
+                negativeButtonText: String,
+                allowDeviceCredentials: Boolean
             ) {
-                biometricPromptManager.showBiometricPrompt(title, description, negativeButtonText)
+                biometricPromptManager.showBiometricPrompt(
+                    title = title,
+                    subtitle = subtitle,
+                    description = description,
+                    negativeButtonText = negativeButtonText,
+                    allowDeviceCredentials = allowDeviceCredentials
+                )
             }
 
             override val biometricResults: Flow<BiometricPromptManager.BiometricResult>
                 get() = biometricPromptManager.promptResults
 
-            override val permissionResults: Flow<PermissionResult>
-                get() = permissionPromptResults
+            override val permissionResults: Flow<PermissionResult> =
+                permissionResultChannel.receiveAsFlow()
 
             override fun requestPermission(permission: String) {
                 permissionRequester(arrayOf(permission))
