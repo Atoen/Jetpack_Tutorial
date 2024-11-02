@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
                     enableEdgeToEdge(appTheme = viewModel.theme)
 
                     PermissionDialogQueue(
-                        activity = LocalContext.current as Activity,
+                        activity = this,
                         queue = viewModel.visiblePermissionDialogQueue,
                         onDialogDismiss = viewModel::dismissDialog
                     )

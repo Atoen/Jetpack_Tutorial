@@ -6,6 +6,8 @@ import android.app.PendingIntent
 import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.os.Build
 import androidx.compose.material3.Button
 import androidx.compose.ui.Alignment
@@ -62,8 +64,7 @@ private fun sendNotificationWithButton(
     context: Context,
     title: String,
     content: String,
-    actionTitle: String,
-    actionTitle2: String
+    actionTitle: String
 ) {
 
     val activityIntent = Intent(context, MainActivity::class.java)
@@ -77,7 +78,6 @@ private fun sendNotificationWithButton(
         .setContentTitle(title)
         .setContentText(content)
         .addAction(R.drawable.chart_histogram, actionTitle, pendingIntent)
-        .addAction(R.drawable.chart_histogram, actionTitle2, null)
         .setPriority(NotificationCompat.PRIORITY_HIGH)
         .build()
 
@@ -139,6 +139,27 @@ private fun sendTextBlockNotification(
         .setContentText(content)
         .setStyle(NotificationCompat.BigTextStyle()
             .bigText(bigText))
+        .build()
+
+    val notificationManager = context.getSystemService<NotificationManager>()!!
+    notificationManager.notify(9, notification)
+}
+
+private fun sendImageNotification(
+    context: Context,
+    title: String,
+    content: String,
+) {
+    val imageBitmap = BitmapFactory.decodeResource(context.resources, R.drawable.image_dog_landscape)
+
+    val notification = NotificationCompat.Builder(context, "channel_id")
+        .setSmallIcon(R.drawable.jetpack_compose)
+        .setContentTitle(title)
+        .setContentText(content)
+        .setLargeIcon(imageBitmap)
+        .setStyle(NotificationCompat.BigPictureStyle()
+            .bigPicture(imageBitmap)
+            .bigLargeIcon(null as Bitmap?))
         .build()
 
     val notificationManager = context.getSystemService<NotificationManager>()!!
@@ -308,14 +329,13 @@ private val notification_4 = LessonPage (
     val title = stringResource(R.string.notification_2_title)
     val content = stringResource(R.string.notification_3_content)
     val actionTitle = stringResource(R.string.notification_4_action_label)
-    val actionTitle2 = stringResource(R.string.notification_4_null_action)
 
     Button(
         onClick = {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 it.requestPermission(Manifest.permission.POST_NOTIFICATIONS)
             }
-            sendNotificationWithButton(context, title, content, actionTitle, actionTitle2)
+            sendNotificationWithButton(context, title, content, actionTitle)
         },
         modifier = Modifier.align(Alignment.CenterHorizontally)
     ) {
@@ -372,18 +392,34 @@ private val notification_6 = LessonPage (
     CodeListing(
         code = """            
             val notification = NotificationCompat
-                .Builder(context, "channel_id")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle(title)
-                .setContentText(content)
+                ...
                 .setStyle(NotificationCompat.BigTextStyle()
                     .bigText(bigText))
                 .build()
         """.trimIndent()
     )
 
+    CodeListing(
+        code = """            
+            val imageBitmap = BitmapFactory
+                .decodeResource(
+                    context.resources,
+                    R.drawable.image
+                )
+        
+            val notification = NotificationCompat
+                ...
+                .setLargeIcon(imageBitmap)
+                .setStyle(NotificationCompat.BigPictureStyle()
+                    .bigPicture(imageBitmap)
+                    .bigLargeIcon(null))
+                .build()
+        """.trimIndent()
+    )
+
     val context = LocalContext.current
-    val title = stringResource(R.string.notification_6_block_title)
+    val titleText = stringResource(R.string.notification_6_block_title)
+    val titleImage = stringResource(R.string.notification_6_image_title)
     val content = stringResource(R.string.notification_6_block_content)
     val loremIpsum = stringResource(R.string.lorem_ipsum)
 
@@ -392,11 +428,23 @@ private val notification_6 = LessonPage (
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                 it.requestPermission(Manifest.permission.POST_NOTIFICATIONS)
             }
-            sendTextBlockNotification(context, title, content, loremIpsum)
+            sendTextBlockNotification(context, titleText, content, loremIpsum)
         },
         modifier = Modifier.align(Alignment.CenterHorizontally)
     ) {
-        ResText(R.string.notification_2_send)
+        ResText(R.string.notification_6_text)
+    }
+
+    Button(
+        onClick = {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                it.requestPermission(Manifest.permission.POST_NOTIFICATIONS)
+            }
+            sendImageNotification(context, titleImage, content)
+        },
+        modifier = Modifier.align(Alignment.CenterHorizontally)
+    ) {
+        ResText(R.string.notification_6_image)
     }
 }
 

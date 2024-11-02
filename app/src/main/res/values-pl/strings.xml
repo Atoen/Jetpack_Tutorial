@@ -802,5 +802,20 @@
     <string name="biometrics_4_heading">Nasłuchwanie rezultatów</string>
     <string name="biometrics_5_heading">Używanie danych logowania</string>
     <string name="biometrics_6_heading">Ustawianie uwierzytelniania biometrycznego, jeśli nie jest obecne</string>
+    <string name="notification_6_text">Wyślij powiadomienie z tekstem</string>
+    <string name="notification_6_image">Wyślij powiadomienie z obrazem</string>
+    <string name="notification_6_image_title">Powiadomienie z obrazem</string>
+    <string name="lesson_room_title">Baza danych Room</string>
+    <string name="hilt_1_heading">Instalowanie bibliotek</string>
+    <string name="hilt_2_heading">Klasa aplikacji Hilt</string>
+    <string name="hilt_3_heading">Wstrzykiwanie zależności</string>
+    <string name="hilt_4_heading">Definiowanie bindingów</string>
+    <string name="hilt_5_heading">Bindowanie interfejsów</string>
+    <string name="hilt_6_heading">Wstrzykiwanie wystąpień obiektów</string>
+    <string name="hilt_7_heading">Wiele bindingów dla tego samego typu</string>
+    <string name="hilt_8_heading">Predefiniowane kwalifikatory</string>
+    <string name="hilt_9_heading">Wygenerowane komponenty</string>
+    <string name="hilt_10_heading">Czas życia komponentów</string>
+    <string name="hilt_11_heading">Zakres komponentów</string>
 
 </resources>

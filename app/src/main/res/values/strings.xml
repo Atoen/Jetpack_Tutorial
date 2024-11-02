@@ -855,4 +855,20 @@
     <string name="biometrics_5_heading">Allowing device credentials</string>
     <string name="biometrics_6_heading">Setting biometric auth if not present</string>
     <string name="ok" translatable="false">OK</string>
+    <string name="notification_6_text">Send text notification</string>
+    <string name="notification_6_image">Send image notification</string>
+    <string name="notification_6_image_title">Notification with an image</string>
+    <string name="lesson_hilt_title" translatable="false">Hilt</string>
+    <string name="lesson_room_title">Room DB</string>
+    <string name="hilt_1_heading">Installing dependencies</string>
+    <string name="hilt_2_heading">Hilt application class</string>
+    <string name="hilt_3_heading">Injecting dependencies</string>
+    <string name="hilt_4_heading">Defining bindings</string>
+    <string name="hilt_5_heading">Binding interfaces</string>
+    <string name="hilt_6_heading">Injecting instances</string>
+    <string name="hilt_7_heading">Multiple bindings for the same type</string>
+    <string name="hilt_8_heading">Predefined qualifiers</string>
+    <string name="hilt_9_heading">Generated components</string>
+    <string name="hilt_10_heading">Component lifetimes</string>
+    <string name="hilt_11_heading">Component scopes</string>
 </resources>
