@@ -17,13 +17,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.data.COURSE_QUIZ_ID_OFFSET
 import com.abachta.jetpacktutorial.data.CodeChallenge
+import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.Quiz
+import com.abachta.jetpacktutorial.data.QuizId
 import com.abachta.jetpacktutorial.data.getCourseById
 import com.abachta.jetpacktutorial.data.models.completedCount
 import com.abachta.jetpacktutorial.ui.Screen
+import com.abachta.jetpacktutorial.ui.components.CourseQuizCard
 import com.abachta.jetpacktutorial.ui.components.LessonCard
 
 @Composable
@@ -61,7 +65,6 @@ fun CourseScreen(
 
         Spacer(modifier = Modifier.height(4.dp))
 
-
         LazyColumn(
             modifier = Modifier.fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -74,6 +77,26 @@ fun CourseScreen(
                     onGoToChallenge = onGoToChallenge
                 )
             }
+
+            item {
+                CourseQuizCard(
+                    onClick = {
+                        val quiz = createCourseQuiz(course)
+                        onGoToQuiz(quiz)
+                    },
+                    highlighted = course.isCompleted
+                )
+            }
         }
     }
+}
+
+private fun createCourseQuiz(course: Course): Quiz {
+    val id = QuizId(course.id.value + COURSE_QUIZ_ID_OFFSET)
+
+    return Quiz(
+        titleResId = course.titleResId,
+        questions = listOf(),
+        id = id
+    )
 }

@@ -6,11 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.abachta.jetpacktutorial.courses.getQuizById
 import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
-import com.abachta.jetpacktutorial.data.QuizId
+import com.abachta.jetpacktutorial.data.Quiz
 import com.abachta.jetpacktutorial.data.allCourses
 import com.abachta.jetpacktutorial.data.db.LessonRepository
 import com.abachta.jetpacktutorial.data.models.QuizModel
@@ -61,19 +60,18 @@ class CourseViewModel @Inject constructor(
         } else LessonPopupType.Continue
     }
 
-
-    // TODO: Not resetting the model on configuration changes
-    fun getQuizModel(quizId: QuizId): QuizModel {
+    fun getQuizModel(quiz: Quiz, reset: Boolean): QuizModel {
         val model = currentQuizModel
-        if (model == null || model.id != quizId) {
-
-            val newModel = QuizModel.crate(getQuizById(quizId))
+        if (model == null || model.id != quiz.id) {
+            val newModel = QuizModel.crate(quiz)
 
             currentQuizModel = newModel
             return newModel
         }
 
-        model.reset()
+        if (reset) {
+            model.reset()
+        }
 
         return model
     }

@@ -9,8 +9,14 @@ data class Quiz(
     val id: QuizId = QuizId.next()
 )
 
+const val COURSE_QUIZ_ID_OFFSET = 100
+
 @JvmInline
 value class QuizId(val value: Int) {
+
+    val isCourseQuizId
+        get() = value > COURSE_QUIZ_ID_OFFSET
+
     companion object {
 
         const val START_ID = 1
@@ -23,7 +29,7 @@ value class QuizId(val value: Int) {
     }
 }
 
-class QuizQuestion(
+data class QuizQuestion(
     @StringRes val textResId: Int,
     val content: (@Composable () -> Unit)? = null,
     val answers: List<QuizAnswer>

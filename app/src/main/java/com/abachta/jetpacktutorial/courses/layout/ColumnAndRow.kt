@@ -385,7 +385,7 @@ private val column_row_6 = LessonPage (
 
     CodeListing(
         code = """
-            c-Row(modifier = Modifier.fillMaxWidth()) {
+            c-Row {
                 c-RowCard(
                     text = "A",
                     modifier = Modifier.weight(1f)
@@ -403,7 +403,7 @@ private val column_row_6 = LessonPage (
     )
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row {
             RowPreviewCard("A", modifier = Modifier.weight(1f))
             RowPreviewCard("B", modifier = Modifier.weight(2f))
             RowPreviewCard("C", modifier = Modifier.weight(3f))

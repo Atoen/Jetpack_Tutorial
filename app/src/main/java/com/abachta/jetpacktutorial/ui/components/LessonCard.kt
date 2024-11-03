@@ -58,9 +58,10 @@ fun LessonCard(
             .fillMaxWidth()
             .padding(bottom = 12.dp),
         elevation = CardDefaults.cardElevation(4.dp),
-        colors = CardDefaults.cardColors(containerColor = if (lessonIsCompleted) {
-            MaterialTheme.colorScheme.primaryContainer
-        } else MaterialTheme.colorScheme.surfaceVariant ),
+        colors = CardDefaults.cardColors(
+            containerColor = if (lessonIsCompleted) {
+                MaterialTheme.colorScheme.primaryContainer
+            } else MaterialTheme.colorScheme.surfaceVariant ),
         onClick = onClick
     ) {
         Column(
@@ -74,7 +75,6 @@ fun LessonCard(
                     text = stringResource(lesson.titleResId),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onPrimaryContainer,
                     maxLines = 2,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f)

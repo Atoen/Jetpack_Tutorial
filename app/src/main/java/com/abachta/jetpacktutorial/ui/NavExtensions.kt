@@ -23,26 +23,27 @@ data class ScreenData(
     @StringRes val title: Int,
     val order: Int
 ) {
-    val isHome
-        get() = order == 0
+    val isHome = order == 0
 }
 
 fun NavBackStackEntry?.getScreenData(): ScreenData {
     return when {
-        this == null -> defaultScreen
-        isOn<Screen.Home>() -> screenData<Screen.Home>()
-        isOn<Screen.Settings>() -> screenData<Screen.Settings>()
+        this == null -> homeScreenData
+        isOn<Screen.Home>() -> homeScreenData
+        isOn<Screen.Settings>() -> settingScreenData
         isOn<Screen.Course>() -> screenData<Screen.Course>()
         isOn<Screen.Lesson>() -> screenData<Screen.Lesson>()
         isOn<Screen.Quiz>() -> screenData<Screen.Quiz>()
         isOn<Screen.Challenge>() -> screenData<Screen.Challenge>()
-        else -> defaultScreen
+        isOn<Screen.DeepLinkScreen>() -> screenData<Screen.DeepLinkScreen>()
+        else -> homeScreenData
     }
 }
 
-private val defaultScreen = ScreenData(R.string.app_name, 0)
+private val homeScreenData = ScreenData(R.string.app_name, 0)
+private val settingScreenData = ScreenData(R.string.settings, -1)
 
-inline fun <reified T: Screen> NavBackStackEntry.isOn(): Boolean {
+inline fun <reified T : Screen> NavBackStackEntry.isOn(): Boolean {
     return destination.hasRouteCached(T::class)
 }
 

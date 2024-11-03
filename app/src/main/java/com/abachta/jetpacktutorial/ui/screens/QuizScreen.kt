@@ -1,6 +1,5 @@
 package com.abachta.jetpacktutorial.ui.screens
 
-import android.annotation.SuppressLint
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -61,7 +60,6 @@ import com.abachta.jetpacktutorial.ui.components.QuizAnswerCard
 import com.abachta.jetpacktutorial.ui.components.ResText
 import kotlinx.coroutines.launch
 
-@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
 fun QuizScreen(
     quiz: QuizModel,
@@ -90,7 +88,6 @@ fun QuizScreen(
     Scaffold(
         bottomBar = {
             if (currentPage < questionCount) {
-                val currentQuestion = questions[currentPage]
                 BottomAppBar(
                     actions = {
                         IconButton(
@@ -110,10 +107,12 @@ fun QuizScreen(
                         Text(stringResource(R.string.quiz_question_n_of, currentPage + 1, questionCount))
                     },
                     floatingActionButton = {
+                        val currentQuestion = questions[currentPage]
+                        val revealed = currentQuestion.revealed
                         ExtendableFloatingActionButton(
                             text = { Text(stringResource(R.string.quiz_check)) },
                             icon = {
-                                val icon = if (!currentQuestion.revealed) {
+                                val icon = if (!revealed) {
                                     Icons.Filled.Check
                                 } else Icons.AutoMirrored.Filled.ArrowForward
 
@@ -123,7 +122,7 @@ fun QuizScreen(
                                 )
                             },
                             onClick = {
-                                if (!currentQuestion.revealed) {
+                                if (!revealed) {
                                     currentQuestion.reveal()
                                 } else {
                                     scope.launch {
@@ -131,7 +130,7 @@ fun QuizScreen(
                                     }
                                 }
                             },
-                            extended = !currentQuestion.revealed
+                            extended = !revealed
                         )
                     }
                 )
@@ -141,21 +140,15 @@ fun QuizScreen(
         HorizontalPager(
             state = pagerState,
             userScrollEnabled = false,
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .padding(bottom = it.calculateBottomPadding())
+                .fillMaxSize()
         ) { page ->
             if (page < questionCount) {
-                val question = questions[page]
-
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .verticalScroll(rememberScrollState())
-                ) {
-                    QuizQuestionScreen(
-                        question = question,
-                        shuffleAnswers = shuffleMode.shuffleAnswers
-                    )
-                }
+                QuizQuestionScreen(
+                    question = questions[page],
+                    shuffleAnswers = shuffleMode.shuffleAnswers
+                )
             } else {
                 QuizSummaryScreen(
                     quiz = quiz,
@@ -189,6 +182,7 @@ private fun QuizQuestionScreen(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
+            .verticalScroll(rememberScrollState())
     ) {
         ResText(
             resId = question.textResId,
@@ -197,7 +191,9 @@ private fun QuizQuestionScreen(
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        val answers = remember {
+        val answers = rememberSaveable(
+            question.textResId, shuffleAnswers
+        ) {
             if (shuffleAnswers) {
                 question.answers.shuffled()
             } else question.answers

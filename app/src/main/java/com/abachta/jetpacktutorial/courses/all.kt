@@ -9,12 +9,15 @@ import com.abachta.jetpacktutorial.courses.layout.layoutLessons
 import com.abachta.jetpacktutorial.courses.navigation.navigationLessons
 import com.abachta.jetpacktutorial.courses.state_lifecycle.stateLessons
 import com.abachta.jetpacktutorial.courses.styling.styingLessons
+import com.abachta.jetpacktutorial.data.COURSE_QUIZ_ID_OFFSET
 import com.abachta.jetpacktutorial.data.ChallengeId
 import com.abachta.jetpacktutorial.data.CodeChallenge
+import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.Quiz
 import com.abachta.jetpacktutorial.data.QuizId
+import com.abachta.jetpacktutorial.data.getCourseById
 
 val allLessons = listOf(
     gettingStartedLessons,
@@ -44,6 +47,11 @@ fun getLessonById(lessonId: LessonId): Lesson {
 }
 
 fun getQuizById(quizId: QuizId): Quiz {
+
+    if (quizId.isCourseQuizId) {
+        return createCourseQuiz(quizId)
+    }
+
     return quizMap.getOrElse(quizId) {
         Log.e(null, "Unable to retrieve quiz with id $quizId")
         allQuizzes.first()
@@ -55,4 +63,20 @@ fun getChallengeById(challengeId: ChallengeId): CodeChallenge {
         Log.e(null, "Unable to retrieve challenge with id $challengeId")
         allChallenges.first()
     }
+}
+
+private fun createCourseQuiz(quizId: QuizId): Quiz {
+
+    val courseId = CourseId(quizId.value - COURSE_QUIZ_ID_OFFSET)
+    val course = getCourseById(courseId)
+
+    val questions = course.lessons
+        .mapNotNull { it.quiz }
+        .flatMap { it.questions.shuffled().take(2) }
+
+    return Quiz(
+        titleResId = course.titleResId,
+        questions = questions,
+        id = quizId
+    )
 }
