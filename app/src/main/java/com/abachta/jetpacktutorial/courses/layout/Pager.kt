@@ -219,8 +219,7 @@ private val pager_4 = LessonPage (
             }
             
             c-HorizontalPager(
-                state = pagerState,
-                userScrollEnabled = false
+                state = pagerState
             ) { page ->
                 ...
             }
@@ -342,8 +341,7 @@ private val pager_6 = LessonPage (
 ) {
     CodeListing(
         code = """
-            HorizontalPager(
-                state = pagerState,
+            c-HorizontalPager(
                 pageSize = PageSize.Fixed(100.dp)
             ) { page ->
                 ...

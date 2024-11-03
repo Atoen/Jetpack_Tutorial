@@ -817,5 +817,17 @@
     <string name="hilt_9_heading">Wygenerowane komponenty</string>
     <string name="hilt_10_heading">Czas życia komponentów</string>
     <string name="hilt_11_heading">Zakres komponentów</string>
+    <string name="room_1_heading">Instalowanie biblioteki</string>
+    <string name="room_2_heading">Definiowanie encji</string>
+    <string name="room_3_heading">Klucze główne</string>
+    <string name="room_4_heading">Ignorowanie pól</string>
+    <string name="room_5_heading">Tworzenie indeksów</string>
+    <string name="room_7_heading">Wykonywanie zapytań</string>
+    <string name="room_8_heading">Asynchroniczne DAO</string>
+    <string name="room_9_heading">Tworzenie bazy danych</string>
+    <string name="room_10_heading">Zwracanie mapowania</string>
+    <string name="room_12_heading">Związki jeden do wielu</string>
+    <string name="room_11_heading">Osadzanie encji</string>
+    <string name="room_13_heading">Związki wiele do wielu</string>
 
 </resources>

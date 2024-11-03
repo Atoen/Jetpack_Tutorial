@@ -169,11 +169,11 @@ private val bottom_sheet_3 = LessonPage (
 ) {
     CodeListing(
         code = """
-            ModalBottomSheet(
-                // ...
+            c-ModalBottomSheet(
+                ...
                 sheetMaxWidth = 200.dp,
                 dragHandle = {
-                    Text(
+                    c-Text(
                         text = "Custom handle",
                         modifier = Modifier.padding(8.dp)
                     )
@@ -226,8 +226,8 @@ private val bottom_sheet_4 = LessonPage (
 ) {
     CodeListing(
         code = """
-        ModalBottomSheet(
-            // ...
+        c-ModalBottomSheet(
+            ...
             shape = CutCornerShape(
                 topStart = 20.dp,
                 topEnd = 20.dp

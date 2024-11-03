@@ -871,4 +871,17 @@
     <string name="hilt_9_heading">Generated components</string>
     <string name="hilt_10_heading">Component lifetimes</string>
     <string name="hilt_11_heading">Component scopes</string>
+    <string name="room_1_heading">Installing dependencies</string>
+    <string name="room_2_heading">Defining entities</string>
+    <string name="room_3_heading">Primary keys</string>
+    <string name="room_4_heading">Ignoring fields</string>
+    <string name="room_5_heading">Creating indices</string>
+    <string name="room_6_heading" translatable="false">Data access object (DAO)</string>
+    <string name="room_7_heading">Perofrming queries</string>
+    <string name="room_8_heading">Asynchronous DAO</string>
+    <string name="room_9_heading">Creating the data base</string>
+    <string name="room_10_heading">Returning mapping</string>
+    <string name="room_12_heading">One to many relationships</string>
+    <string name="room_11_heading">Embedding entities</string>
+    <string name="room_13_heading">Many to many relationships</string>
 </resources>

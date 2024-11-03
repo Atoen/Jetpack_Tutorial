@@ -36,7 +36,7 @@ private val hilt = Lesson(
 private val room = Lesson(
     titleResId = R.string.lesson_room_title,
     descriptionResId = R.string.TODO,
-    pages = listOf()
+    pages = roomPages
 )
 
 val advancedLessons = listOf(

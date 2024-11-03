@@ -75,11 +75,19 @@ private val darkCodeColors = CodeColors(
     comment =  Color(0xFF8F8F8F)
 )
 
-private const val keywordPattern = "\\b(abstract|constructor|lateinit|const|val|var|fun|by|in|if|else|for|while|when|object|return|true|false|null|class|enum|override|data|import|super|suspend|private|sealed|interface|annotation)\\b"
+private val keywords = setOf(
+    "abstract", "constructor", "lateinit", "const", "val", "var", "fun", "by",
+    "in", "if", "else", "for", "while", "when", "object", "return", "true",
+    "false", "null", "class", "enum", "override", "data", "import", "super",
+    "suspend", "private", "sealed", "interface", "annotation", "open"
+)
+
+private val keywordPattern = "\\b(${keywords.joinToString("|")})\\b"
 private const val annotationPattern = "@\\w+"
 private const val stringPattern = "\"(.*?)\""
 private const val commentPattern = "//.*"
 private const val composablePattern = "\\bc-(\\w+)\\b"
+//private const val interpolationPattern =
 
 private val combinedPattern = Regex(
     "($annotationPattern)|($stringPattern)|($commentPattern)|$composablePattern|$keywordPattern"
