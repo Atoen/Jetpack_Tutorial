@@ -44,10 +44,6 @@ import com.abachta.jetpacktutorial.ui.screens.SettingsScreen
 import com.abachta.jetpacktutorial.viewmodels.CourseViewModel
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
 import kotlinx.coroutines.launch
-import kotlinx.serialization.Serializable
-
-@Serializable
-private data class DeepLinkScreen(val id: Int)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -60,8 +56,8 @@ fun AppLayout(
     val snackbarHostState = remember { SnackbarHostState() }
 
     val currentBackStackEntry by navController.currentBackStackEntryAsState()
-    val titleRes = currentBackStackEntry.appBarTitle()
-    val isOnHomeScreen = titleRes == R.string.app_name
+
+    val screenData = currentBackStackEntry.getScreenData()
 
     ObserveAsEvents(
         flow = SnackbarController.events,
@@ -103,20 +99,20 @@ fun AppLayout(
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         topBar = {
             CenterAlignedTopAppBar(
-                title = { Text(stringResource(titleRes)) },
+                title = { Text(stringResource(screenData.title)) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     titleContentColor = MaterialTheme.colorScheme.primary,
                 ),
                 navigationIcon = {
                     IconButton(onClick = {
-                        if (isOnHomeScreen) {
+                        if (screenData.isHome) {
                             navController.navigate(Screen.Settings)
                         } else {
                             navController.navigateUp()
                         }
                     }) {
-                        val icon = if (isOnHomeScreen) {
+                        val icon = if (screenData.isHome) {
                             Icons.Filled.Menu
                         } else Icons.AutoMirrored.Filled.ArrowBack
 
@@ -132,9 +128,31 @@ fun AppLayout(
         NavHost(
             navController = navController,
             startDestination = Screen.Home,
-            modifier = Modifier.padding(contentPadding)
+            modifier = Modifier.padding(contentPadding),
+            enterTransition = {
+                val initialData = initialState.getScreenData()
+                val targetData = targetState.getScreenData()
+                val delta = initialData.order - targetData.order
+
+                if (delta >= 0) {
+                    slideInFromLeft
+                } else {
+                    slideInFromRight
+                }
+            },
+            exitTransition = {
+                val initialData = initialState.getScreenData()
+                val targetData = targetState.getScreenData()
+                val delta = initialData.order - targetData.order
+
+                if (delta >= 0) {
+                    slideOutToRight
+                } else {
+                    slideOutToLeft
+                }
+            }
         ) {
-            slidingComposable<Screen.Home> {
+            composable<Screen.Home> {
                 HomeScreen(
                     viewModel = courseViewModel,
                     showPopup = settingsViewModel.lessonPopup.enabled,
@@ -146,7 +164,7 @@ fun AppLayout(
                 )
             }
 
-            slidingComposable<Screen.Settings> {
+            composable<Screen.Settings> {
                 SettingsScreen(
                     viewModel = settingsViewModel,
                     onClearLessons = courseViewModel::clearProgress,
@@ -156,7 +174,7 @@ fun AppLayout(
                 )
             }
 
-            slidingComposable<Screen.Course> {
+            composable<Screen.Course> {
                 val arg = it.toRoute<Screen.Course>()
                 CourseScreen(
                     courseData = arg,
@@ -168,7 +186,7 @@ fun AppLayout(
                 )
             }
 
-            slidingComposable<Screen.Lesson> {
+            composable<Screen.Lesson> {
                 val arg = it.toRoute<Screen.Lesson>()
                 LessonScreen(
                     lessonData = arg,
@@ -180,7 +198,7 @@ fun AppLayout(
                 )
             }
 
-            slidingComposable<Screen.Quiz> {
+            composable<Screen.Quiz> {
                 val arg = it.toRoute<Screen.Quiz>()
                 QuizScreen(
                     quiz = courseViewModel.getQuizModel(arg.id),
@@ -189,26 +207,26 @@ fun AppLayout(
                 )
             }
 
-            slidingComposable<Screen.Challenge> {
+            composable<Screen.Challenge> {
                 val arg = it.toRoute<Screen.Challenge>()
                 ChallengeScreen(
                     challengeData = arg
                 )
             }
 
-            composable<DeepLinkScreen>(
+            composable<Screen.DeepLinkScreen>(
                 deepLinks = listOf(
-                    navDeepLink<DeepLinkScreen>(
+                    navDeepLink<Screen.DeepLinkScreen>(
                         basePath = "custom-scheme://deeplink-host"
                     )
                 )
             ) {
-                val id = it.toRoute<DeepLinkScreen>().id
+                val number = it.toRoute<Screen.DeepLinkScreen>().number
                 Box(
                     modifier = Modifier.fillMaxSize(),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "The ID is $id")
+                    Text(text = "The number is $number")
                 }
             }
         }

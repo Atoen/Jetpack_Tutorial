@@ -1,18 +1,13 @@
 package com.abachta.jetpacktutorial.ui
 
+import android.annotation.SuppressLint
 import androidx.annotation.StringRes
-import androidx.compose.animation.AnimatedContentScope
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
-import androidx.compose.runtime.Composable
 import androidx.navigation.NavBackStackEntry
-import androidx.navigation.NavDestination.Companion.hasRoute
-import androidx.navigation.NavDestination.Companion.hierarchy
-import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
+import androidx.navigation.serialization.generateHashCode
 import androidx.navigation.toRoute
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.CodeChallenge
@@ -20,125 +15,61 @@ import com.abachta.jetpacktutorial.data.Course
 import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.Quiz
+import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.serializer
 import kotlin.reflect.KClass
 
-@StringRes
-fun NavBackStackEntry?.appBarTitle() : Int {
-    if (this == null) return R.string.app_name
-
-    if (isOn<Screen.Home>()) return R.string.app_name
-    if (isOn<Screen.Settings>()) return R.string.settings
-
-    if (isOn<Screen.Course>()) {
-        return getCourseNameRes()
-    }
-
-    if (isOn<Screen.Lesson>()) {
-        return getLessonNameRes()
-    }
-
-    if (isOn<Screen.Quiz>()) {
-        return getQuizNameRes()
-    }
-
-    if (isOn<Screen.Challenge>()) {
-        return getChallengeNameRes()
-    }
-
-    return R.string.app_name
+data class ScreenData(
+    @StringRes val title: Int,
+    val order: Int
+) {
+    val isHome
+        get() = order == 0
 }
 
-inline fun <reified T: Screen> NavBackStackEntry.isOn(): Boolean =
-    this.destination.hierarchy.any {
-        it.hasRoute(T::class)
-    }
-
-@StringRes
-private fun NavBackStackEntry.getCourseNameRes(): Int =
-    this.toRoute<Screen.Course>().titleResId
-
-@StringRes
-private fun NavBackStackEntry.getLessonNameRes(): Int =
-    this.toRoute<Screen.Lesson>().titleResId
-
-@StringRes
-private fun NavBackStackEntry.getQuizNameRes(): Int =
-    this.toRoute<Screen.Quiz>().titleResId
-
-@StringRes
-private fun NavBackStackEntry.getChallengeNameRes(): Int =
-    this.toRoute<Screen.Challenge>().titleResId
-
-fun <T : Screen> order(screen: KClass<T>): Int {
-    return when (screen) {
-        Screen.Home::class -> 0
-        Screen.Settings::class -> -1
-        Screen.Course::class -> 1
-        Screen.Lesson::class -> 2
-        else -> 0
+fun NavBackStackEntry?.getScreenData(): ScreenData {
+    return when {
+        this == null -> defaultScreen
+        isOn<Screen.Home>() -> screenData<Screen.Home>()
+        isOn<Screen.Settings>() -> screenData<Screen.Settings>()
+        isOn<Screen.Course>() -> screenData<Screen.Course>()
+        isOn<Screen.Lesson>() -> screenData<Screen.Lesson>()
+        isOn<Screen.Quiz>() -> screenData<Screen.Quiz>()
+        isOn<Screen.Challenge>() -> screenData<Screen.Challenge>()
+        else -> defaultScreen
     }
 }
 
-//inline fun <reified T : Screen>
-//AnimatedContentTransitionScope<NavBackStackEntry>.enterTransition(): EnterTransition {
-//    var order = order(T::class)
-//    if (order == 0) order = if (targetState.isOn<Screen.Settings>()) -1 else 1
-//
-//    return if (order > 0) {
-//        slideInFromLeft
-//    } else {
-//        slideInFromRight
-//    }
-//}
-//
-//inline fun <reified T : Screen>
-//AnimatedContentTransitionScope<NavBackStackEntry>.exitTransition(): ExitTransition {
-//    var order = order(T::class)
-//    if (order == 0) order = if (targetState.isOn<Screen.Settings>()) -1 else 1
-//
-//    return if (order < 0) {
-//        slideOutToLeft
-//    } else {
-//        slideOutToRight
-//    }
-//}
+private val defaultScreen = ScreenData(R.string.app_name, 0)
+
+inline fun <reified T: Screen> NavBackStackEntry.isOn(): Boolean {
+    return destination.hasRouteCached(T::class)
+}
+
+@SuppressLint("RestrictedApi")
+@OptIn(InternalSerializationApi::class)
+fun <T : Any> NavDestination.hasRouteCached(route: KClass<T>): Boolean {
+    val routeHash = routeHashCodes.getOrPut(route) {
+        route.serializer().generateHashCode()
+    }
+    return routeHash == id
+}
+
+private val routeHashCodes = mutableMapOf<KClass<*>, Int>()
+
+private inline fun <reified T : Screen> NavBackStackEntry.screenData(): ScreenData {
+    val screen = this.toRoute<T>()
+    return ScreenData(
+        title = screen.getTitleRes(),
+        order = screen.order
+    )
+}
 
 val slideInFromLeft = slideInHorizontally { -it }
 val slideInFromRight = slideInHorizontally { it }
 
 val slideOutToLeft = slideOutHorizontally { -it }
 val slideOutToRight = slideOutHorizontally { it }
-
-inline fun <reified T : Screen> NavGraphBuilder.slidingComposable(
-    noinline content: @Composable (AnimatedContentScope.(NavBackStackEntry) -> Unit)
-) {
-    composable<T>(
-        enterTransition = { enterTransition(false) },
-        exitTransition = { exitTransition(false) },
-        popEnterTransition = { enterTransition(true) },
-        popExitTransition = { exitTransition(true) }
-    ) {
-        content(this, it)
-    }
-}
-
-fun enterTransition(reversed: Boolean): EnterTransition {
-
-    return if (reversed) {
-        slideInHorizontally { it }
-    } else {
-        slideInHorizontally { -it }
-    }
-}
-
-fun exitTransition(reversed: Boolean): ExitTransition {
-
-    return if (reversed) {
-        slideOutHorizontally { it }
-    } else {
-        slideOutHorizontally { it }
-    }
-}
 
 fun NavHostController.navigateToCourse(course: Course) {
     navigate(
@@ -178,4 +109,3 @@ fun NavHostController.navigateToChallenge(challenge: CodeChallenge) {
         )
     )
 }
-
