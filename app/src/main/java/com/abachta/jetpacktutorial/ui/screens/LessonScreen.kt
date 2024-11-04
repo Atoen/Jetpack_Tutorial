@@ -248,7 +248,7 @@ private fun LessonFinishedScreen(
             LessonOptionCard(
                 text = stringResource(R.string.code_challenge),
                 icon = Icons.Filled.Code,
-                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
                 onClick = { onCodeChallengeClick(it) }
             )
         }
@@ -257,13 +257,13 @@ private fun LessonFinishedScreen(
             LessonOptionCard(
                 text = stringResource(R.string.start_quiz),
                 icon = Icons.Filled.Lightbulb,
-                containerColor = MaterialTheme.colorScheme.secondaryContainer,
+                containerColor = MaterialTheme.colorScheme.tertiaryContainer,
                 onClick = { onQuizClick(it) }
             )
         }
 
         LessonOptionCard(
-            text = stringResource(R.string.finish_lesson),
+            text = stringResource(R.string.lesson_finished),
             icon = Icons.Filled.Check,
             containerColor = MaterialTheme.colorScheme.primaryContainer,
             onClick = onCompleteClick

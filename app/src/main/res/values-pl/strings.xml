@@ -24,7 +24,7 @@
     <string name="completed_percent">Ukończono %1$d%%</string>
     <string name="popup_continue">Kontynuuj</string>
     <string name="swipe_to_dismiss">Przesuń, aby ukryć</string>
-    <string name="finish_lesson">Lekcja ukończona</string>
+    <string name="lesson_finished">Lekcja ukończona</string>
 
     <!-- Lessons -->
     <plurals name="lesson_pages">
@@ -298,10 +298,10 @@
     <string name="quiz_creating_first_3_1">Używając domyślnych argumentów</string>
     <string name="quiz_creating_first_3_2">Tworząc funkcję podglądu, która dostarcza wymagane parametry</string>
     <string name="quiz_creating_first_3_3">Podgląd można stosować tylko w przypadku funkcji bez parametrów</string>
-    <string name="quiz_button_1_1">Tak, możesz wyświetlić dowolną funkcję kompozycjną wewnątrz przycisku</string>
+    <string name="quiz_button_1_1">Tak, można wyświetlić dowolną funkcję kompozycjną wewnątrz przycisku</string>
     <string name="quiz_button_1_2">Tak, ale dozwolone są tylko funkcje kompozycyjne oznaczone adnotacją *@Interactable*</string>
-    <string name="quiz_button_1_3">Nie, możesz umieścić tylko tekst wewnątrz przycisków</string>
-    <string name="quiz_button_2">Jakiej funkcji kompozycyjnej możesz użyć, aby utworzyć przycisk, na którym widoczny będzie tylko tekst?\n</string>
+    <string name="quiz_button_1_3">Nie, można umieścić tylko tekst wewnątrz przycisków</string>
+    <string name="quiz_button_2">Jakiej funkcji kompozycyjnej można użyć, aby utworzyć przycisk, na którym widoczny będzie tylko tekst?</string>
     <string name="quiz_text_field_1">Jak można ustawić liczbę widocznych wierszy w polu tekstowym?</string>
     <string name="quiz_text_field_1_1">Za pomocą parametrów *minLines* i *maxLines*</string>
     <string name="quiz_text_field_1_2">Za pomocą parametru *visibleLines*</string>
@@ -403,7 +403,7 @@
     <string name="quiz_column_row_2_2">Stosując modyfikator *verticalScroll*</string>
     <string name="quiz_column_row_2_3">Kolumny i rzędy są domyślnie przewyjalne</string>
     <string name="quiz_column_row_3">Które funkcje kompozycyjne najlepiej nadają się do wyświetlania dużej liczby elementów?</string>
-    <string name="quiz_box_1">Jak możesz ustawić pozycję zawartości *Box*-a?</string>
+    <string name="quiz_box_1">Jak można ustawić pozycję zawartości *Box*-a?</string>
     <string name="quiz_box_1_1">Za pomocą parametru kontenera *contentAlignment*</string>
     <string name="quiz_box_1_2">Za pomocą parametru zawartości *alignment*</string>
     <string name="quiz_box_1_3">Stosując modyfikator *align* na zawartości</string>
@@ -420,7 +420,7 @@
     <string name="quiz_grid_2_1">Stosując modyfikator *LazyScrollable*</string>
     <string name="quiz_grid_2_2">Ustawiając parametr *scrollable* na *true*</string>
     <string name="quiz_grid_2_3">Leniwe siatki są domyślnie przewijalne</string>
-    <string name="quiz_grid_3">Jak możesz dodać odstępy między elementami wewnątrz *LazyVerticalGrid*?</string>
+    <string name="quiz_grid_3">Jak można dodać odstępy między elementami wewnątrz *LazyVerticalGrid*?</string>
     <string name="quiz_grid_3_1">Za pomocą parametru *itemSpacing*</string>
     <string name="quiz_grid_3_2">Używając *Arrangement.spacedBy* dla parametrów *verticalArrangement* i *horizontalArrangement*</string>
     <string name="quiz_grid_3_3">Poprzez zastosowanie modyfikatora *contentPadding*</string>
@@ -711,7 +711,7 @@
     <string name="quiz_nav_ctr_host_3">W jaki sposób można przekazać dane podczas nawigowania?</string>
     <string name="quiz_nav_ctr_host_3_1">Używając klasy z polami jako obiekt trasy</string>
     <string name="quiz_nav_ctr_host_3_2">Poprzez użycie wielu obiektów trasy</string>
-    <string name="quiz_nav_ctr_host_3_3">Zapisując argumenty za pomocą |rememberSaveable|</string>
+    <string name="quiz_nav_ctr_host_3_3">Zapisując argumenty za pomocą *rememberSaveable*</string>
     <string name="quiz_nav_containers_1">Jak można programowo otworzyć menu nawigacyjne?</string>
     <string name="quiz_nav_containers_1_1">Ustawiając parametr *isOpen* menu na *true*</string>
     <string name="quiz_nav_containers_1_2">Wywołując metodę *drawerState.open*</string>

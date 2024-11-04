@@ -19,11 +19,10 @@ import com.abachta.jetpacktutorial.settings.DynamicColorsOption
 import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.QuizShufflingOption
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import java.util.Locale
 import javax.inject.Inject
@@ -42,7 +41,7 @@ class SettingsViewModel @Inject constructor(
     private val _listingFont = mutableStateOf<CodeListingFont>(CodeListingFont.Medium)
     private val _questionShuffling = mutableStateOf<QuizShufflingOption>(QuizShufflingOption.ShuffleQuestions)
 
-    private val permissionResultChannel = Channel<PermissionResult>()
+    private val permissionResultFlow = MutableSharedFlow<PermissionResult>()
 
     internal lateinit var biometricPromptManager: BiometricPromptManager
     internal lateinit var permissionRequester: (Array<String>) -> Unit
@@ -57,7 +56,7 @@ class SettingsViewModel @Inject constructor(
         }
 
         viewModelScope.launch {
-            permissionResultChannel.send(permissionResult)
+            permissionResultFlow.emit(permissionResult)
         }
     }
 
@@ -172,7 +171,7 @@ class SettingsViewModel @Inject constructor(
                 get() = biometricPromptManager.promptResults
 
             override val permissionResults: Flow<PermissionResult> =
-                permissionResultChannel.receiveAsFlow()
+                permissionResultFlow
 
             override fun requestPermission(permission: String) {
                 permissionRequester(arrayOf(permission))

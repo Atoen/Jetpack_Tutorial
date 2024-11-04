@@ -265,7 +265,7 @@ private val room_10 = LessonPage(
 }
 
 private val room_11 = LessonPage(
-    headingResId = R.string.room_12_heading
+    headingResId = R.string.room_11_heading
 ) {
 
     CodeListing(

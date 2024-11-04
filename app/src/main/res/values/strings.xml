@@ -29,7 +29,7 @@
     <string name="TODO" translatable="false">!!TODO!!</string>
     <string name="popup_continue">Continue</string>
     <string name="swipe_to_dismiss">Swipe to dismiss</string>
-    <string name="finish_lesson">Complete</string>
+    <string name="lesson_finished">Lesson completed</string>
 
     <!-- Lessons -->
     <plurals name="lesson_pages">

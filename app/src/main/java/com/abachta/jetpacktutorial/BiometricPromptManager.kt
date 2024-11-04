@@ -7,15 +7,17 @@ import androidx.biometric.BiometricManager.Authenticators.BIOMETRIC_STRONG
 import androidx.biometric.BiometricManager.Authenticators.DEVICE_CREDENTIAL
 import androidx.biometric.BiometricPrompt
 import androidx.biometric.BiometricPrompt.PromptInfo
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 
 class BiometricPromptManager(
     private val activity: AppCompatActivity
 ) {
 
-    private val resultChannel = Channel<BiometricResult>()
-    val promptResults = resultChannel.receiveAsFlow()
+    private val resultFlow = MutableSharedFlow<BiometricResult>(
+        replay = 1
+    )
+    val promptResults = resultFlow.asSharedFlow()
 
     fun showBiometricPrompt(
         title: String,
@@ -31,15 +33,15 @@ class BiometricPromptManager(
 
         when(manager.canAuthenticate(authenticators)) {
             BiometricManager.BIOMETRIC_ERROR_HW_UNAVAILABLE -> {
-                resultChannel.trySend(BiometricResult.HardwareUnavailable)
+                resultFlow.tryEmit(BiometricResult.HardwareUnavailable)
                 return
             }
             BiometricManager.BIOMETRIC_ERROR_NO_HARDWARE -> {
-                resultChannel.trySend(BiometricResult.FeatureUnavailable)
+                resultFlow.tryEmit(BiometricResult.FeatureUnavailable)
                 return
             }
             BiometricManager.BIOMETRIC_ERROR_NONE_ENROLLED -> {
-                resultChannel.trySend(BiometricResult.AuthenticationNotSet)
+                resultFlow.tryEmit(BiometricResult.AuthenticationNotSet)
                 return
             }
             else -> Unit
@@ -59,15 +61,15 @@ class BiometricPromptManager(
             activity,
             object : BiometricPrompt.AuthenticationCallback() {
                 override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
-                    resultChannel.trySend(BiometricResult.AuthenticationError(errString.toString()))
+                    resultFlow.tryEmit(BiometricResult.AuthenticationError(errString.toString()))
                 }
 
                 override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
-                    resultChannel.trySend(BiometricResult.AuthenticationSuccess)
+                    resultFlow.tryEmit(BiometricResult.AuthenticationSuccess)
                 }
 
                 override fun onAuthenticationFailed() {
-                    resultChannel.trySend(BiometricResult.AuthenticationFailed)
+                    resultFlow.tryEmit(BiometricResult.AuthenticationFailed)
                 }
             }
         )
