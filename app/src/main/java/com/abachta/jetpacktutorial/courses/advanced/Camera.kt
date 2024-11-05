@@ -93,6 +93,8 @@ private val camera_1 = LessonPage (
    headingResId = R.string.camera_1_heading
 ) {
 
+    ResText(R.string.camera_1_1)
+
     CodeListing(
         code = """
             dependencies {
@@ -111,11 +113,11 @@ private val camera_2 = LessonPage (
    headingResId = R.string.camera_2_heading
 ) {
 
+    ResText(R.string.camera_2_1)
+
     CodeListing(
         code = """
             val context = LocalContext.c-current
-            val lifecycleOwner = LocalLifecycleOwner.c-current
-
             val cameraController = remember {
                 LifecycleCameraController(context).apply {
                     setEnabledUseCases(
@@ -126,8 +128,11 @@ private val camera_2 = LessonPage (
         """.trimIndent()
     )
 
+    ResText(R.string.camera_2_2)
+
     CodeListing(
         code = """
+            val lifecycleOwner = LocalLifecycleOwner.c-current
             c-AndroidView(
                 factory = {
                     PreviewView(it).apply {
@@ -140,6 +145,8 @@ private val camera_2 = LessonPage (
             )
         """.trimIndent()
     )
+
+    ResText(R.string.camera_2_3)
 
     if (!isCurrentPage) return@LessonPage
 
@@ -201,6 +208,8 @@ private val camera_2 = LessonPage (
 private val camera_3 = LessonPage (
    headingResId = R.string.camera_3_heading
 ) {
+
+    ResText(R.string.camera_3_1)
 
     CodeListing(
         code = """
@@ -374,7 +383,7 @@ private val camera_4 = LessonPage (
    headingResId = R.string.camera_4_heading
 ) {
 
-    if (!isCurrentPage) return@LessonPage
+    ResText(R.string.camera_4_1)
 
     CodeListing(
         code = """
@@ -393,6 +402,8 @@ private val camera_4 = LessonPage (
             )
         """.trimIndent()
     )
+
+    if (!isCurrentPage) return@LessonPage
 
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
@@ -532,6 +543,8 @@ private val camera_5 = LessonPage (
    headingResId = R.string.camera_5_heading
 ) {
 
+    ResText(R.string.camera_5_1)
+
     CodeListing(
         code = """
             override fun onCaptureSuccess(image: ImageProxy) {
@@ -606,6 +619,8 @@ private val camera_6 = LessonPage (
    headingResId = R.string.camera_6_heading
 ) {
 
+    ResText(R.string.camera_6_1)
+
     CodeListing(
         code = """
             setEnabledUseCases(
@@ -613,6 +628,10 @@ private val camera_6 = LessonPage (
             )
         """.trimIndent()
     )
+
+    ResText(R.string.camera_6_2)
+
+    ResText(R.string.camera_6_3)
 
     CodeListing(
         code = """
@@ -640,6 +659,8 @@ private val camera_6 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.camera_6_4)
 
     CodeListing(
         code = """

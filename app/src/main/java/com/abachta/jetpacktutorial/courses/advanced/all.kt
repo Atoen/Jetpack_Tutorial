@@ -1,30 +1,38 @@
 package com.abachta.jetpacktutorial.courses.advanced
 
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.courses.advanced.quizzes.biometricsQuiz
+import com.abachta.jetpacktutorial.courses.advanced.quizzes.cameraQuiz
+import com.abachta.jetpacktutorial.courses.advanced.quizzes.notificationQuiz
+import com.abachta.jetpacktutorial.courses.advanced.quizzes.permissionsQuiz
 import com.abachta.jetpacktutorial.data.Lesson
 
 private val permissions = Lesson(
     titleResId = R.string.lesson_permissions_title,
     descriptionResId = R.string.TODO,
-    pages = permissionsPages
+    pages = permissionsPages,
+    quiz = permissionsQuiz
 )
 
 private val notifications = Lesson(
     titleResId = R.string.lesson_notification_title,
     descriptionResId = R.string.TODO,
-    pages = notificationPages
+    pages = notificationPages,
+    quiz = notificationQuiz
 )
 
 private val camera = Lesson(
     titleResId = R.string.lesson_camera_titile,
     descriptionResId = R.string.TODO,
-    pages = cameraPages
+    pages = cameraPages,
+    quiz = cameraQuiz
 )
 
 private val biometrics = Lesson(
     titleResId = R.string.lesson_biometrics_title,
     descriptionResId = R.string.TODO,
-    pages = biometricsPages
+    pages = biometricsPages,
+    quiz = biometricsQuiz
 )
 
 private val hilt = Lesson(

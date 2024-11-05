@@ -884,4 +884,97 @@
     <string name="room_12_heading">One to many relationships</string>
     <string name="room_11_heading">Embedding entities</string>
     <string name="room_13_heading">Many to many relationships</string>
+    <string name="permissions_1_1">Permissions in Android are split into multiple categories, including install-time permissions and runtime permissions.\nEach permission\'s type indicates the scope of restricted data your app can access and the actions it can perform.</string>
+    <string name="permissions_1_2">Install-time permissions lets your app access data and perform actions that minimally affect the system or other apps.\nThe system automatically grants your app these permissions when the user installs your app.</string>
+    <string name="permissions_1_3">Runtime permissions give your app additional access to data or actions that more substantially affect the system and other apps. That is why you need to request runtime permissions in your app before you can use them.</string>
+    <string name="permissions_1_4">If your app requires any permissions, either install-time or runtime, you must declare them in your app\'s manifest file:</string>
+    <string name="permissions_2_1">Some permissions, such as |CAMERA|, let your app access hardware that not all Android device have.\nIf your app declares one of such permissions, consider wether it is nescessary to use that hardware, and mark it either as required or optional.</string>
+    <string name="permissions_2_2">If your app declares some hardware as optional, you can check whether a device has this specific hardware available by using the |hasSystemFeature| method:</string>
+    <string name="permissions_3_1">To request runtime permissions you can use the composable function |rememberLauncherForActivityResult| with the |RequestPermission| contract.\nThe |onResult| callback lets you access the information whether the permissions was granted by the user.</string>
+    <string name="permissions_4_1">You can check if your app already has been granted permissions with the |ContextCompat.checkSelfPermission| method.</string>
+    <string name="permissions_4_2">You can also check if user declined the permission permanently (by declining the request multiple times) using the |ActivityCompat.shouldShowRequestPermissionRationale|. If the result is *false*, then the permissions most probably has been permanently declined.</string>
+    <string name="permissions_5_1">The recommended approach for handling runtime permissions has three steps:</string>
+    <string name="permissions_5_2">*Check* if the app already has the necessary permission</string>
+    <string name="permissions_5_3">*Request the permission* if it hasn\'t been granted</string>
+    <string name="permissions_5_4">*Explain why the permission is needed* if the user declines, to help them understand its importance for the app\'s functionality</string>
+    <string name="permissions_6_1">If a user permanently denies a permission, you can still inform them of its importance within the app’s UI.\nYou may also provide an option to open the app\'s system settings, allowing the user to manually grant the required permissions if they reconsider.</string>
+    <string name="permissions_6_2">Example extension function opening the app\'s settings:</string>
+    <string name="notification_1_1">To send notifications from your app, first you need to declare the required permission. On Android 13 (API level 33) and higher this is a *runtime permission*.</string>
+    <string name="notification_1_2">Starting with Android 8 (API level 26), you also need to register your app\'s notification channel with the system before you can deliver any notifications.\nYou can do this using the |NotificationManager.createNotificationChannel| method. When you create a channel, you can set its name, ID, and importance level.</string>
+    <string name="notification_2_1">To send a notification you need to create a object describing its content.\nYou can use the |NotificationCompat.Builder| to set the specific elements of the notification.\nThe only required element is the |smallIcon|.</string>
+    <string name="notification_2_2">To send the built notification you can use |NotificationManager.notify| method. It accepts the object describing the notification and its ID. By using the same ID multiple times you can update an existing notification.</string>
+    <string name="notification_3_1">Notifications can also be used to open the app that send them. You can add this functionality by creating a *pending intent* and passing it to the notification builder.\nNotifications with |autoCancel| set to *true* will be automatically dismissed after being clicked by the user.</string>
+    <string name="notification_4_1">Instead of making the whole notification clickable, you can add a simple button with the |addAction| method. The button will invoke the specified intent when pressed.\nSingle notification can have multiple buttons.</string>
+    <string name="notification_5_1">You can display related notifications in a single group. To create a notification group, define a uniqe identifier and assign the notification to the group by passing the identifier to the |setGroup| method.</string>
+    <string name="notification_5_2">Grouped notification must have an extra notification that acts as the summary of the group. To mark a notification as summary, use the |setGroupSummary| method.</string>
+    <string name="notification_6_1">You can change the appearance of the notification by providing custom *style template* to the |setStyle| method.</string>
+    <string name="notification_6_2">Displaying big block of text:</string>
+    <string name="notification_6_3">Displaying picture:</string>
+    <string name="notification_7_1">You can cancel previously sent notification using the |NotificationManager.cancelAll| to cancell all notifications or |NotificationManager.cancel| to cancel a specific one.</string>
+    <string name="notification_8_1">You can hide sensitive information by setting the notification\'s visibility to |VISIBILITY_PRIVATE| or |VISIBILITY_SECRET|.\nNon-public notifications will have its content hidden on the lock screen.</string>
+    <string name="notification_8_2">When using the |VISIBILITY_PRIVATE| you can set a public version of the notification to be displayed instead of the one with sensitive data.</string>
+    <string name="camera_1_1">The *CameraX* is the recommended library when working with camera in Android.\nYou can install it by adding the following implementations into the |dependencies| block of your app\'s |build.gradle.kts| file:</string>
+    <string name="camera_2_1">To obtain a camera controller, you can use the |LifecycleCameraController| function.\nYou can enable specific functionalities for this controller with the |setEnabledUseCases| method.</string>
+    <string name="camera_2_2">You can use the |AndroidView| composable to display the camera preview.\nInside the |factory| lambda you can bind the controller to the app\'s lifecycle and set the scaling of the preview.</string>
+    <string name="camera_2_3">Before displaying the preview remember to ask for required permissions. Otherwise your app could be halted by |SecurityException|.</string>
+    <string name="camera_3_1">You can change the selected camera by setting the |cameraSelector| property of the controller.</string>
+    <string name="camera_4_1">You can use the |LifecycleCameraController| to take photos using its |takePicture| method.\nThis method takes two arguments: the task executor and the callback object. In the callback you can access the taken image and handle the potential error.</string>
+    <string name="camera_5_1">You can process the taken images by applying matrix transformation on them. The rotation can be especially useful, as the images are captured sideways by default.</string>
+    <string name="camera_6_1">The camera controller also allows you to record videos. In order to do that you have to add the |VIDEO_CAPTURE| to the enabled use cases.</string>
+    <string name="camera_6_2">To record a video you can use the |startRecording| method. It takes four parameetrs: the file oputput options, configuration of the audio, executor and callback.\nYou can set whether to record audio with the |AudioConfig.create| method.</string>
+    <string name="camera_6_3">When handling recordings, it is important to ensure that only one is active at any given time. It may be helpful to store the recording object outside of the recording function to prevent multiple simultaneous video captures from starting\n</string>
+    <string name="camera_6_4">You can use the callback to listen for the recording events to respond to capture succeeding or to handle any errors.</string>
+    <string name="biometrics_1_1">You can add the biometric authentication functionality to your app with the *Biometric* library. You can install it by adding the following dependencies in your app\'s |build.gradle.kts| file:</string>
+    <string name="biometrics_1_2">Because the library uses |AppCompatActivity| you should change your activity to inherit from this class.</string>
+    <string name="biometrics_1_3">When using |AppCompatActivity| you should also use the |AppCompat| themes in your activity.</string>
+    <string name="biometrics_2_1">To create the authentication prompt, you can use the |PromptInfo.Builder()|. It allows you to set the title, subtitle and description to display on the prompt.</string>
+    <string name="biometrics_2_2">Before displaying the prompt you should check if the required hardware is present in the device and if it is not currently occupied.\nYou should also handle the possibility of the user has not registeried any biometric data.</string>
+    <string name="biometrics_3_1">When displaying the prompt you should create a callback to respond to different authentication events.</string>
+    <string name="biometrics_4_1">It can be useful to display the result of the authentication on the UI. To do this you can use a |Channel| or |MutableSharedFlow| that will be used to emit results of the authentication.\nCreating a dedicated type to handle all the possible results can simplify the code.</string>
+    <string name="biometrics_4_2">In the UI, you can collect the results with the |collectAsStateWithLifecycle| composable function and display relevant informations.</string>
+    <string name="biometrics_5_1">You can allow the user to also use device credentials in the prompt. This can be done by setting the *allowed authenticators* in the builder to |BIOMETRIC_STRONG or DEVICE_CREDENTIAL|.\nNote that credentials can only be used on devices with API level 30 or greater.</string>
+    <string name="quiz_permissions_1">Where are the app\'s permissions declared?</string>
+    <string name="quiz_permissions_1_1">In the file with *MainActivity*</string>
+    <string name="quiz_permissions_1_2">In the app\'s manifest</string>
+    <string name="quiz_permissions_1_3">In the app\'s resources</string>
+    <string name="quiz_permissions_2">What are the two main types of permissions?</string>
+    <string name="quiz_permissions_2_1">*Static* and *dynamic*</string>
+    <string name="quiz_permissions_2_2">*Hardware* and *software*</string>
+    <string name="quiz_permissions_2_3">*Install-time* and *runtime*</string>
+    <string name="quiz_permissions_3">How can you check whether the app has specific permission?</string>
+    <string name="quiz_permissions_3_1">By trying to use it</string>
+    <string name="quiz_permissions_3_2">Using the *checkSelfPermission* method</string>
+    <string name="quiz_permissions_3_3">Permissions are always granted during installation</string>
+    <string name="quiz_notification_1">What permission is required to send notifications?</string>
+    <string name="quiz_notification_1_1" translatable="false">*SEND_NOTIFICATIONS*</string>
+    <string name="quiz_notification_1_2" translatable="false">*DISPLAY_NOTIFICATIONS*</string>
+    <string name="quiz_notification_1_3" translatable="false">*POST_NOTIFICATIONS*</string>
+    <string name="quiz_notification_2">What is the required element of a notification?</string>
+    <string name="quiz_notification_2_1">Content text</string>
+    <string name="quiz_notification_2_2">Group ID</string>
+    <string name="quiz_notification_2_3">Small icon</string>
+    <string name="quiz_notification_3">When can you set public version for a notification?</string>
+    <string name="quiz_notification_3_1">When it has private visibility</string>
+    <string name="quiz_notification_3_2">When it is marked as *Internal*</string>
+    <string name="quiz_notification_3_3">If it has no content text set</string>
+    <string name="quiz_camera_1">How can you enable specific functions of the camera controller?</string>
+    <string name="quiz_camera_1_1">By using the *enableFeatures* method</string>
+    <string name="quiz_camera_1_2">By using the *setEnabledUseCases* method</string>
+    <string name="quiz_camera_1_3">By specifying the allowed features in the manifest</string>
+    <string name="quiz_camera_2">Which composable can be used to display the camera view?</string>
+    <string name="quiz_camera_2_1" translatable="false">*CameraView*</string>
+    <string name="quiz_camera_2_2" translatable="false">*NativeView*</string>
+    <string name="quiz_camera_2_3" translatable="false">*AndroidView*</string>
+    <string name="quiz_camera_3">How can you change the selected camera?</string>
+    <string name="quiz_camera_3_1">By changing the *cameraSelector* property of the controller</string>
+    <string name="quiz_camera_3_2">By calling the *switchCamera* method on the controller</string>
+    <string name="quiz_camera_3_3">By creating another camera controller</string>
+    <string name="quiz_biometrics_1">What is the type of activity used by the *Biometric* library?</string>
+    <string name="quiz_biometrics_1_1">Any *Activity*</string>
+    <string name="quiz_biometrics_1_2" translatable="false">*FragmentActivity*</string>
+    <string name="quiz_biometrics_1_3" translatable="false">*AppCompatActivity*</string>
+    <string name="quiz_biometrics_2">How can you allow to use biometrics as well as device credentials?</string>
+    <string name="quiz_biometrics_2_1">By calling the |allowDeviceCredentials| method on the prompt builder</string>
+    <string name="quiz_biometrics_2_2">By using the *DEVICE_CREDENTIAL* in the prompt authenticators</string>
+    <string name="quiz_biometrics_2_3">By using *DeviceCredendialPrompt*</string>
 </resources>

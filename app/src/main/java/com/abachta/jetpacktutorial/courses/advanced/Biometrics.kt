@@ -25,6 +25,8 @@ private val biometrics_1 = LessonPage (
     headingResId = R.string.biometrics_1_heading
 ) {
 
+    ResText(R.string.biometrics_1_1)
+
     CodeListing(
         code = """
             dependencies {
@@ -35,6 +37,8 @@ private val biometrics_1 = LessonPage (
         """.trimIndent()
     )
 
+    ResText(R.string.biometrics_1_2)
+
     CodeListing(
         code = """
             class MainActivity : AppCompatActivity() {
@@ -44,6 +48,8 @@ private val biometrics_1 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.biometrics_1_3)
 
     CodeListing(
         code = """
@@ -74,6 +80,8 @@ private val biometrics_2 = LessonPage (
     headingResId = R.string.biometrics_2_heading
 ) {
 
+    ResText(R.string.biometrics_2_1)
+
     CodeListing(
         code = """
             val activity: AppCompatActivity = ...
@@ -86,12 +94,11 @@ private val biometrics_2 = LessonPage (
                 .setSubtitle(subtitle)
                 .setDescription(description)
                 .setAllowedAuthenticators(authenticators)
-                
-            if (Build.VERSION.SDK_INT < 30) {
-                promptInfo.setNegativeButtonText(negativeButtonText)
-            }
+                .setNegativeButtonText(negativeButtonText)
         """.trimIndent()
     )
+
+    ResText(R.string.biometrics_2_2)
 
     CodeListing(
         code = """
@@ -114,6 +121,8 @@ private val biometrics_2 = LessonPage (
 private val biometrics_3 = LessonPage (
     headingResId = R.string.biometrics_3_heading
 ) {
+
+    ResText(R.string.biometrics_3_1)
 
     CodeListing(
         code = """
@@ -167,6 +176,8 @@ private val biometrics_4 = LessonPage (
     headingResId = R.string.biometrics_4_heading
 ) {
 
+    ResText(R.string.biometrics_4_1)
+
     CodeListing(
         code = """
             sealed interface BiometricResult {
@@ -186,6 +197,8 @@ private val biometrics_4 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.biometrics_4_2)
 
     CodeListing(
         code = """
@@ -255,6 +268,8 @@ private val biometrics_5 = LessonPage (
     headingResId = R.string.biometrics_5_heading
 ) {
 
+    ResText(R.string.biometrics_5_1)
+
     CodeListing(
         code = """
             val authenticators = if (Build.VERSION.SDK_INT >= 30) {
@@ -321,6 +336,8 @@ private val biometrics_6 = LessonPage (
     headingResId = R.string.biometrics_6_heading
 ) {
 
+//    ResText(R.string.biometrics_6_1)
+
     CodeListing(
         code = """
             val biometricResult = ...
@@ -334,7 +351,9 @@ private val biometrics_6 = LessonPage (
             c-LaunchedEffect(biometricResult) {
                 if(biometricResult is BiometricResult.AuthenticationNotSet) {
                     if(Build.VERSION.SDK_INT >= 30) {
-                        val enrollIntent = Intent(Settings.ACTION_BIOMETRIC_ENROLL).apply {
+                        val enrollIntent = Intent(
+                            Settings.ACTION_BIOMETRIC_ENROLL
+                        ).apply {
                             putExtra(
                                 Settings.EXTRA_BIOMETRIC_AUTHENTICATORS_ALLOWED,
                                 BIOMETRIC_STRONG or DEVICE_CREDENTIAL

@@ -193,6 +193,18 @@ private val notification_1 = LessonPage (
    headingResId = R.string.notification_1_heading
 ) {
 
+    ResText(R.string.notification_1_1)
+
+    CodeListing(
+        code = """
+            ...
+            <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+            ...
+        """.trimIndent()
+    )
+
+    ResText(R.string.notification_1_2)
+
     CodeListing(
         code = """
             class JetpackApplication : Application() {
@@ -215,19 +227,15 @@ private val notification_1 = LessonPage (
             }
         """.trimIndent()
     )
-
-    CodeListing(
-        code = """
-            ...
-            <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-            ...
-        """.trimIndent()
-    )
 }
 
 private val notification_2 = LessonPage (
    headingResId = R.string.notification_2_heading
 ) {
+
+    ResText(R.string.notification_2_1)
+
+    ResText(R.string.notification_2_2)
 
     CodeListing(
         code = """
@@ -266,6 +274,8 @@ private val notification_2 = LessonPage (
 private val notification_3 = LessonPage (
    headingResId = R.string.notification_3_heading
 ) {
+
+    ResText(R.string.notification_3_1)
 
     CodeListing(
         code = """
@@ -308,6 +318,8 @@ private val notification_4 = LessonPage (
    headingResId = R.string.notification_4_heading
 ) {
 
+    ResText(R.string.notification_4_1)
+
     CodeListing(
         code = """
             ...
@@ -319,7 +331,6 @@ private val notification_4 = LessonPage (
                 .setContentTitle(title)
                 .setContentText(content)
                 .addAction(R.drawable.action, title1, pendingIntent)
-                .addAction(R.drawable.action, title2, null)
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .build()
         """.trimIndent()
@@ -346,6 +357,10 @@ private val notification_4 = LessonPage (
 private val notification_5 = LessonPage (
    headingResId = R.string.notification_5_heading
 ) {
+
+    ResText(R.string.notification_5_1)
+
+    ResText(R.string.notification_5_2)
 
     CodeListing(
         code = """
@@ -388,6 +403,10 @@ private val notification_5 = LessonPage (
 private val notification_6 = LessonPage (
    headingResId = R.string.notification_6_heading
 ) {
+
+    ResText(R.string.notification_6_1)
+
+    ResText(R.string.notification_6_2)
 
     CodeListing(
         code = """            
@@ -452,15 +471,20 @@ private val notification_7 = LessonPage (
    headingResId = R.string.notification_7_heading
 ) {
 
+    ResText(R.string.notification_7_1)
+
     CodeListing(
         code = """            
-            val notification = NotificationCompat
-                .Builder(context, "channel_id")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .setContentTitle(title)
-                .setContentText(content)
-                .setFullScreenIntent(pendingIntent, true)
-                .build()
+            context.getSystemService<NotificationManager>()
+                ?.cancelAll()
+        """.trimIndent()
+    )
+
+    CodeListing(
+        code = """  
+            val notificationId = 5
+            context.getSystemService<NotificationManager>()
+                ?.cancel(notificationId)
         """.trimIndent()
     )
 
@@ -482,7 +506,7 @@ private val notification_7 = LessonPage (
 
     Button(
         onClick = {
-            context.getSystemService<NotificationManager>()?.cancelAll()
+            context.getSystemService<NotificationManager>()?.cancel(5)
         },
         modifier = Modifier.align(Alignment.CenterHorizontally)
     ) {
@@ -493,6 +517,10 @@ private val notification_7 = LessonPage (
 private val notification_8 = LessonPage (
    headingResId = R.string.notification_8_heading
 ) {
+
+    ResText(R.string.notification_8_1)
+
+    ResText(R.string.notification_8_1)
 
     CodeListing(
         code = """          

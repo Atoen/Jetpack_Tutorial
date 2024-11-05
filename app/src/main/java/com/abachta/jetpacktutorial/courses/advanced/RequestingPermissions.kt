@@ -2,6 +2,7 @@ package com.abachta.jetpacktutorial.courses.advanced
 
 import android.Manifest
 import android.app.Activity
+import android.content.Context
 import android.content.pm.PackageManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -9,7 +10,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,6 +24,9 @@ import androidx.core.content.ContextCompat
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
+import com.abachta.jetpacktutorial.ui.components.ItemizationMode
+import com.abachta.jetpacktutorial.ui.components.ItemizedList
+import com.abachta.jetpacktutorial.ui.components.ListItem.Companion.toTextItem
 import com.abachta.jetpacktutorial.ui.components.ResText
 import com.abachta.jetpacktutorial.ui.components.openAppSettings
 
@@ -31,10 +34,20 @@ private val permissions_1 = LessonPage (
    headingResId = R.string.permissions_1_heading
 ) {
 
+    ResText(R.string.permissions_1_1)
+
+    ResText(R.string.permissions_1_2)
+
+    ResText(R.string.permissions_1_3)
+
+    ResText(R.string.permissions_1_4)
+
     CodeListing(
         code = """
             <manifest ...>
                 <uses-permission android:name="android.permission.CAMERA"/>
+                <uses-permission android:name="android.permission.INTERNET" />
+                
                 <application ...>
                     ...
                 </application>
@@ -46,6 +59,8 @@ private val permissions_1 = LessonPage (
 private val permissions_2 = LessonPage (
    headingResId = R.string.permissions_2_heading
 ) {
+
+    ResText(R.string.permissions_2_1)
 
     CodeListing(
         code = """
@@ -59,6 +74,8 @@ private val permissions_2 = LessonPage (
         """.trimIndent()
     )
 
+    ResText(R.string.permissions_2_2)
+
     CodeListing(
         code = """
             if (applicationContext.packageManager.hasSystemFeature(
@@ -71,9 +88,18 @@ private val permissions_2 = LessonPage (
     )
 }
 
+private fun hasCameraPermission(context: Context) =
+    ContextCompat.checkSelfPermission(
+        context,
+        Manifest.permission.CAMERA
+    ) == PackageManager.PERMISSION_GRANTED
+
 private val permissions_3 = LessonPage (
    headingResId = R.string.permissions_3_heading
 ) {
+
+    ResText(R.string.permissions_3_1)
+
     CodeListing(
         code = """
             var hasPermission by c-remember { mutableStateOf(false) }
@@ -91,32 +117,31 @@ private val permissions_3 = LessonPage (
             )
             
             c-Button(onClick = {
-                recordVideoLauncher.launch(Manifest.permission.CAMERA)
+                recordVideoLauncher.launch(
+                    Manifest.permission.CAMERA
+                )
             }) { ... }
         """.trimIndent()
     )
 
-    var hasPermission by remember { mutableStateOf(false) }
-    var isPermanentlyDeclined by remember { mutableStateOf(false) }
-
     val context = LocalContext.current
+    var asked by remember { mutableStateOf(false) }
 
-    SideEffect {
-        hasPermission = ContextCompat.checkSelfPermission(
-            context,
-            Manifest.permission.CAMERA
-        ) == PackageManager.PERMISSION_GRANTED
-
-        isPermanentlyDeclined = !hasPermission && !ActivityCompat.shouldShowRequestPermissionRationale(
-            context as Activity,
-            Manifest.permission.CAMERA
-        )
-    }
+    var hasPermission by remember { mutableStateOf(hasCameraPermission(context)) }
+    var isPermanentlyDeclined by remember { mutableStateOf(false) }
 
     val recordVideoLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
         onResult = { isGranted ->
+            asked = true
             hasPermission = isGranted
+
+            if (!isGranted) {
+                isPermanentlyDeclined = !ActivityCompat.shouldShowRequestPermissionRationale(
+                    context as Activity,
+                    Manifest.permission.CAMERA
+                )
+            }
         }
     )
 
@@ -131,14 +156,16 @@ private val permissions_3 = LessonPage (
             ResText(R.string.permission_3_request)
         }
 
-        val text = if (hasPermission) {
-            stringResource(R.string.permission_granted)
-        } else stringResource(R.string.permission_declined)
+        if (asked) {
+            val text = if (hasPermission) {
+                stringResource(R.string.permission_granted)
+            } else stringResource(R.string.permission_declined)
 
-        Text(text)
+            Text(text)
 
-        if (isPermanentlyDeclined) {
-            ResText(R.string.permission_declined_permanently)
+            if (isPermanentlyDeclined) {
+                ResText(R.string.permission_declined_permanently)
+            }
         }
     }
 }
@@ -146,6 +173,9 @@ private val permissions_3 = LessonPage (
 private val permissions_4 = LessonPage (
    headingResId = R.string.permissions_4_heading
 ) {
+
+    ResText(R.string.permissions_4_1)
+
     CodeListing(
         code = """
             val hasPermission = ContextCompat.checkSelfPermission(
@@ -154,6 +184,8 @@ private val permissions_4 = LessonPage (
             ) == PackageManager.PERMISSION_GRANTED
         """.trimIndent()
     )
+
+    ResText(R.string.permissions_4_2)
 
     CodeListing(
         code = """
@@ -168,6 +200,16 @@ private val permissions_4 = LessonPage (
 private val permissions_5 = LessonPage (
    headingResId = R.string.permissions_5_heading
 ) {
+
+    ResText(R.string.permissions_5_1)
+
+    ItemizedList(
+        R.string.permissions_5_2.toTextItem(),
+        R.string.permissions_5_3.toTextItem(),
+        R.string.permissions_5_4.toTextItem(),
+        itemizationMode = ItemizationMode.Numeric
+    )
+
     CodeListing(
         code = """
             when {
@@ -199,6 +241,10 @@ private val permissions_5 = LessonPage (
 private val permissions_6 = LessonPage (
     headingResId = R.string.permissions_6_heading
 ) {
+
+    ResText(R.string.permissions_6_1)
+
+    ResText(R.string.permissions_6_2)
 
     CodeListing(
         code = """
