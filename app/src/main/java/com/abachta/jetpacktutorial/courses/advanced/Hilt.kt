@@ -1,12 +1,30 @@
 package com.abachta.jetpacktutorial.courses.advanced
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val hilt_1 = LessonPage(
     headingResId = R.string.hilt_1_heading
 ) {
+
+    ResText(R.string.hilt_1_1)
+
+    ResText(R.string.hilt_1_2)
 
     CodeListing(
         code = """
@@ -16,6 +34,8 @@ private val hilt_1 = LessonPage(
             }
         """.trimIndent()
     )
+
+    ResText(R.string.hilt_1_3)
 
     CodeListing(
         code = """
@@ -50,17 +70,23 @@ private val hilt_2 = LessonPage(
     headingResId = R.string.hilt_2_heading
 ) {
 
+    ResText(R.string.hilt_2_1)
+
     CodeListing(
         code = """
             @HiltAndroidApp
             class JetpackApplication : Application() { ... }
         """.trimIndent()
     )
+
+    ResText(R.string.hilt_2_2)
 }
 
 private val hilt_3 = LessonPage(
     headingResId = R.string.hilt_3_heading
 ) {
+
+    ResText(R.string.hilt_3_1)
 
     CodeListing(
         code = """
@@ -68,6 +94,8 @@ private val hilt_3 = LessonPage(
             class ExampleActivity : AppCompatActivity() { ... }
         """.trimIndent()
     )
+
+    ResText(R.string.hilt_3_2)
 
     CodeListing(
         code = """
@@ -86,6 +114,8 @@ private val hilt_4 = LessonPage(
     headingResId = R.string.hilt_4_heading
 ) {
 
+    ResText(R.string.hilt_4_1)
+
     CodeListing(
         code = """
             class UserSettingsAdapter @Inject constructor(
@@ -98,6 +128,12 @@ private val hilt_4 = LessonPage(
 private val hilt_5 = LessonPage(
     headingResId = R.string.hilt_5_heading
 ) {
+
+    ResText(R.string.hilt_5_1)
+
+    ResText(R.string.hilt_5_2)
+
+    ResText(R.string.hilt_5_3)
 
     CodeListing(
         code = """
@@ -130,6 +166,8 @@ private val hilt_6 = LessonPage(
     headingResId = R.string.hilt_6_heading
 ) {
 
+    ResText(R.string.hilt_6_1)
+
     CodeListing(
         code = """
             @Module
@@ -153,6 +191,8 @@ private val hilt_7 = LessonPage(
     headingResId = R.string.hilt_7_heading
 ) {
 
+    ResText(R.string.hilt_7_1)
+
     CodeListing(
         code = """
             @Qualifier
@@ -164,6 +204,8 @@ private val hilt_7 = LessonPage(
             annotation class OtherHttpClient
         """.trimIndent()
     )
+
+    ResText(R.string.hilt_7_2)
 
     CodeListing(
         code = """
@@ -186,6 +228,8 @@ private val hilt_7 = LessonPage(
         """.trimIndent()
     )
 
+    ResText(R.string.hilt_7_3)
+
     CodeListing(
         code = """
             class ExampleServiceImpl @Inject constructor(
@@ -203,6 +247,8 @@ private val hilt_8 = LessonPage(
     headingResId = R.string.hilt_8_heading
 ) {
 
+    ResText(R.string.hilt_8_1)
+
     CodeListing(
         code = """
             class UserSettingsAdapter @Inject constructor(
@@ -217,22 +263,56 @@ private val hilt_9 = LessonPage(
     headingResId = R.string.hilt_9_heading
 ) {
 
-    // Generated components
+    ResText(R.string.hilt_9_1)
+
+    val table = remember {
+        listOf(
+            "SingletonComponent" to "Application",
+            "ViewModelComponent" to "ViewModel",
+            "ActivityComponent" to "Activity",
+            "FragmentComponent" to "Fragment",
+            "ViewComponent" to "View",
+            "ServiceComponent" to "Service",
+        )
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(MaterialTheme.colorScheme.surfaceVariant)
+            .padding(8.dp)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(vertical = 4.dp)
+        ) {
+            ResText(R.string.hilt_component)
+
+            ResText(R.string.injector_for)
+        }
+
+        table.forEach { (first, second) ->
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 4.dp)
+            ) {
+                Text(
+                    fontFamily = FontFamily.Monospace,
+                    text = first
+                )
+
+                Text(second)
+            }
+        }
+    }
 }
 
-private val hilt_10 = LessonPage(
-    headingResId = R.string.hilt_10_heading
-) {
-
-    // Lifetimes
-}
-
-private val hilt_11 = LessonPage(
-    headingResId = R.string.hilt_11_heading
-) {
-    
-    // Scopes
-}
 
 val hiltPages = listOf(
     hilt_1,
@@ -243,7 +323,5 @@ val hiltPages = listOf(
     hilt_6,
     hilt_7,
     hilt_8,
-    hilt_9,
-    hilt_10,
-    hilt_11,
+    hilt_9
 )

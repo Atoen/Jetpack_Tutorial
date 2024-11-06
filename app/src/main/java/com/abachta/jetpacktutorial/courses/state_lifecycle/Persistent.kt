@@ -3,10 +3,15 @@ package com.abachta.jetpacktutorial.courses.state_lifecycle
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val persistent_1 = LessonPage (
     headingResId = R.string.persistent_1_heading
 ) {
+
+    ResText(R.string.persistent_1_1)
+
+    ResText(R.string.persistent_1_2)
 
     CodeListing(
         code = """
@@ -22,6 +27,8 @@ private val persistent_2 = LessonPage (
     headingResId = R.string.persistent_2_heading
 ) {
 
+    ResText(R.string.persistent_2_1)
+
     CodeListing(
         code = """
             private const val PREFERENCES_NAME = "settings"
@@ -30,6 +37,10 @@ private val persistent_2 = LessonPage (
             )
         """.trimIndent()
     )
+
+    ResText(R.string.persistent_2_2)
+
+    ResText(R.string.persistent_2_3)
 
     CodeListing(
         code = """
@@ -57,6 +68,8 @@ private val persistent_3 = LessonPage (
     headingResId = R.string.persistent_3_heading
 ) {
 
+    ResText(R.string.persistent_3_1)
+
     CodeListing(
         code = """
             class AppViewModel : ViewModel() {
@@ -74,6 +87,8 @@ private val persistent_3 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.persistent_3_2)
 
     CodeListing(
         code = """
@@ -96,6 +111,8 @@ private val persistent_3 = LessonPage (
 private val persistent_4 = LessonPage (
     headingResId = R.string.persistent_4_heading
 ) {
+
+    ResText(R.string.persistent_4_1)
 
     CodeListing(
         code = """

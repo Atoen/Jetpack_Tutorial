@@ -46,6 +46,10 @@ private val animating_values_1 = LessonPage (
    headingResId = R.string.animating_values_1_heading
 ) {
 
+    ResText(R.string.animating_values_1_1)
+
+    ResText(R.string.animating_values_1_2)
+
     CodeListing(
         code = """
             var enabled by c-remember { mutableStateOf(false) }
@@ -107,6 +111,8 @@ private val animating_values_1 = LessonPage (
 private val animating_values_2 = LessonPage (
    headingResId = R.string.animating_values_2_heading
 ) {
+
+    ResText(R.string.animating_values_2_1)
 
     CodeListing(
         code = """            
@@ -177,6 +183,8 @@ private val animating_values_2 = LessonPage (
 private val animating_values_3 = LessonPage (
    headingResId = R.string.animating_values_3_heading
 ) {
+
+    ResText(R.string.animating_values_3_1)
 
     CodeListing(
         code = """
@@ -255,6 +263,8 @@ private val animating_values_4 = LessonPage (
    headingResId = R.string.animating_values_4_heading
 ) {
 
+    ResText(R.string.animating_values_4_1)
+
     CodeListing(
         code = """
             enum class BoxState {
@@ -264,6 +274,8 @@ private val animating_values_4 = LessonPage (
         """.trimIndent()
     )
 
+    ResText(R.string.animating_values_4_2)
+
     CodeListing(
         code = """
             var currentState by c-remember {
@@ -272,6 +284,8 @@ private val animating_values_4 = LessonPage (
             val transition = c-updateTransition(currentState)
         """.trimIndent()
     )
+
+    ResText(R.string.animating_values_4_3)
 
     CodeListing(
         code = """
@@ -331,6 +345,8 @@ private val animating_values_4 = LessonPage (
 private val animating_values_5 = LessonPage (
    headingResId = R.string.animating_values_5_heading
 ) {
+
+    ResText(R.string.animating_values_5_1)
 
     CodeListing(
         code = """

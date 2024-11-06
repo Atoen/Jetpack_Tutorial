@@ -59,17 +59,21 @@ private val animated_visibility_1 = LessonPage (
    headingResId = R.string.animated_visibility_1_heading
 ) {
 
+    ResText(R.string.animated_visibility_1_1)
+
     CodeListing(
         code = """
-            var show by c-remember { mutableStateOf(true) }
+            var show by c-remember {
+                mutableStateOf(true)
+            }
             
-            c-Column {
-                c-AnimatedVisibility(show) {
-                    c-Box { ... }
-                }
+            c-AnimatedVisibility(show) {
+                c-Box { ... }
             }
         """.trimIndent()
     )
+
+    ResText(R.string.animated_visibility_1_2)
 
     Preview(
         modifier = Modifier
@@ -154,6 +158,8 @@ private val animated_visibility_2 = LessonPage (
    headingResId = R.string.animated_visibility_2_heading
 ) {
 
+    ResText(R.string.animated_visibility_2_1)
+
     val enterTransitions = remember { listOf(
         fadeIn() to fadeOut() to "fade",
         slideInHorizontally() to slideOutHorizontally() to "slideHorizontally",
@@ -216,6 +222,8 @@ private val animated_visibility_3 = LessonPage (
    headingResId = R.string.animated_visibility_3_heading
 ) {
 
+    ResText(R.string.animated_visibility_3_1)
+
     CodeListing(
         code = """
             c-AnimatedVisibility(
@@ -273,6 +281,8 @@ private val animated_visibility_3 = LessonPage (
 private val animated_visibility_4 = LessonPage (
    headingResId = R.string.animated_visibility_4_heading
 ) {
+
+    ResText(R.string.animated_visibility_4_1)
 
     CodeListing(
         code = """
@@ -352,6 +362,10 @@ private val animated_visibility_5 = LessonPage (
    headingResId = R.string.animated_visibility_5_heading
 ) {
 
+    ResText(R.string.animated_visibility_5_1)
+
+    ResText(R.string.animated_visibility_5_2)
+
     CodeListing(
         code = """
             var count by c-remember { mutableIntStateOf(5) }
@@ -389,7 +403,6 @@ private val animated_visibility_5 = LessonPage (
             Text("+")
         }
     }
-
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         AnimatedContent(

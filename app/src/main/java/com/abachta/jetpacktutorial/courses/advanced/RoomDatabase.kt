@@ -3,10 +3,13 @@ package com.abachta.jetpacktutorial.courses.advanced
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val room_1 = LessonPage(
     headingResId = R.string.room_1_heading
 ) {
+
+    ResText(R.string.room_1_1)
 
     CodeListing(
         code = """
@@ -51,6 +54,8 @@ private val room_2 = LessonPage(
     headingResId = R.string.room_2_heading
 ) {
 
+    ResText(R.string.room_2_1)
+
     CodeListing(
         code = """
             @Entity
@@ -61,6 +66,8 @@ private val room_2 = LessonPage(
             )
         """.trimIndent()
     )
+
+    ResText(R.string.room_2_2)
 
     CodeListing(
         code = """
@@ -77,6 +84,8 @@ private val room_2 = LessonPage(
 private val room_3 = LessonPage(
     headingResId = R.string.room_3_heading
 ) {
+
+    ResText(R.string.room_3_1)
 
     CodeListing(
         code = """
@@ -104,6 +113,8 @@ private val room_4 = LessonPage(
     headingResId = R.string.room_4_heading
 ) {
 
+    ResText(R.string.room_4_1)
+
     CodeListing(
         code = """
             @Entity
@@ -115,6 +126,8 @@ private val room_4 = LessonPage(
             )
         """.trimIndent()
     )
+
+    ResText(R.string.room_4_2)
 
     CodeListing(
         code = """
@@ -134,6 +147,8 @@ private val room_5 = LessonPage(
     headingResId = R.string.room_5_heading
 ) {
 
+    ResText(R.string.room_5_1)
+
     CodeListing(
         code = """
             @Entity(indices = [Index(value = ["firstName", "lastName"])])
@@ -151,6 +166,8 @@ private val room_6 = LessonPage(
     headingResId = R.string.room_6_heading
 ) {
 
+    ResText(R.string.room_6_1)
+
     CodeListing(
         code = """
             @Dao
@@ -166,11 +183,16 @@ private val room_6 = LessonPage(
             }
         """.trimIndent()
     )
+
+    ResText(R.string.room_6_2)
+
 }
 
 private val room_7 = LessonPage(
     headingResId = R.string.room_7_heading
 ) {
+
+    ResText(R.string.room_7_1)
 
     CodeListing(
         code = """
@@ -188,6 +210,8 @@ private val room_7 = LessonPage(
         """.trimIndent()
     )
 
+    ResText(R.string.room_7_2)
+
     CodeListing(
         code = """
         @Query("SELECT * FROM user WHERE first_name like :name")
@@ -201,6 +225,8 @@ private val room_8 = LessonPage(
     headingResId = R.string.room_8_heading
 ) {
 
+    ResText(R.string.room_8_1)
+
     CodeListing(
         code = """
             @Dao
@@ -213,6 +239,8 @@ private val room_8 = LessonPage(
             }
         """.trimIndent()
     )
+
+    ResText(R.string.room_8_2)
 
     CodeListing(
         code = """
@@ -229,6 +257,8 @@ private val room_9 = LessonPage(
     headingResId = R.string.room_9_heading
 ) {
 
+    ResText(R.string.room_9_1)
+
     CodeListing(
         code = """
             @Database(entities = [User::class], version = 1)
@@ -237,6 +267,8 @@ private val room_9 = LessonPage(
             }
         """.trimIndent()
     )
+
+    ResText(R.string.room_9_2)
 
     CodeListing(
         code = """
@@ -253,6 +285,8 @@ private val room_10 = LessonPage(
     headingResId = R.string.room_10_heading
 ) {
 
+    ResText(R.string.room_10_1)
+
     CodeListing(
         code = """
             @Query(
@@ -267,6 +301,8 @@ private val room_10 = LessonPage(
 private val room_11 = LessonPage(
     headingResId = R.string.room_11_heading
 ) {
+
+    ResText(R.string.room_11_1)
 
     CodeListing(
         code = """
@@ -283,11 +319,29 @@ private val room_11 = LessonPage(
             )
         """.trimIndent()
     )
+
+    ResText(R.string.room_11_2)
+
+    ResText(R.string.room_11_3)
+
+    CodeListing(
+        code = """            
+            @Entity
+            data class User(
+                @PrimaryKey val id: Int,
+                val name: String?,
+                @Embedded(prefix = address) val address: Address?
+                @Embedded(prefix = billing) val billing: Billing?
+            )
+        """.trimIndent()
+    )
 }
 
 private val room_12 = LessonPage(
     headingResId = R.string.room_12_heading
 ) {
+
+    ResText(R.string.room_12_1)
 
     CodeListing(
         code = """
@@ -306,6 +360,8 @@ private val room_12 = LessonPage(
         """.trimIndent()
     )
 
+    ResText(R.string.room_12_2)
+
     CodeListing(
         code = """
             data class UserWithMessages(
@@ -319,6 +375,8 @@ private val room_12 = LessonPage(
         """.trimIndent()
     )
 
+    ResText(R.string.room_12_3)
+
     CodeListing(
         code = """
             @Transaction
@@ -331,6 +389,8 @@ private val room_12 = LessonPage(
 private val room_13 = LessonPage(
     headingResId = R.string.room_13_heading
 ) {
+
+    ResText(R.string.room_13_1)
 
     CodeListing(
         code = """
@@ -354,6 +414,8 @@ private val room_13 = LessonPage(
         """.trimIndent()
     )
 
+    ResText(R.string.room_13_2)
+
     CodeListing(
         code = """
             data class UserWithGroups(
@@ -365,9 +427,12 @@ private val room_13 = LessonPage(
                         UserGroupCrossRef::class
                     )
                 )
+                val groups: List<GroupChat>
             )
         """.trimIndent()
     )
+
+    ResText(R.string.room_13_3)
 
     CodeListing(
         code = """

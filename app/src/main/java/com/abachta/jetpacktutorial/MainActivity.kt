@@ -1,7 +1,5 @@
 package com.abachta.jetpacktutorial
 
-import android.app.Activity
-import android.content.pm.PackageManager
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
@@ -11,7 +9,6 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.platform.LocalContext
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.abachta.jetpacktutorial.settings.AppTheme
 import com.abachta.jetpacktutorial.settings.LocalAppTheme
@@ -66,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                     enableEdgeToEdge(appTheme = viewModel.theme)
 
                     PermissionDialogQueue(
-                        activity = this,
+                        activity = this@MainActivity,
                         queue = viewModel.visiblePermissionDialogQueue,
                         onDialogDismiss = viewModel::dismissDialog
                     )

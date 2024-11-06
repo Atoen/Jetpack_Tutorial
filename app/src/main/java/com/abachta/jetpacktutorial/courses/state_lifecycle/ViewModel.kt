@@ -3,10 +3,18 @@ package com.abachta.jetpacktutorial.courses.state_lifecycle
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
+import com.abachta.jetpacktutorial.ui.components.ItemizationMode
+import com.abachta.jetpacktutorial.ui.components.ItemizedList
+import com.abachta.jetpacktutorial.ui.components.ListItem.Companion.toTextItem
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val viewmodel_1 = LessonPage (
    headingResId = R.string.viewmodel_1_heading
 ) {
+
+    ResText(R.string.viewmodel_1_1)
+
+    ResText(R.string.viewmodel_1_2)
 
     CodeListing(
         code = """
@@ -30,13 +38,21 @@ private val viewmodel_2 = LessonPage (
    headingResId = R.string.viewmodel_2_heading
 ) {
 
+    ResText(R.string.viewmodel_2_1)
+
     CodeListing(
         code = """
             data class AppUiState(
                 val isLoggedIn: Boolean = false,
                 val username: String? = null
             )
-            
+        """.trimIndent()
+    )
+
+    ResText(R.string.viewmodel_2_2)
+
+    CodeListing(
+        code = """            
             class AppViewModel : ViewModel() {
             
                 // Expose screen ui state
@@ -61,6 +77,10 @@ private val viewmodel_3 = LessonPage (
    headingResId = R.string.viewmodel_3_heading
 ) {
 
+    ResText(R.string.viewmodel_3_1)
+
+    ResText(R.string.viewmodel_3_2)
+
     CodeListing(
         code = """
             @Composable
@@ -78,6 +98,8 @@ private val viewmodel_4 = LessonPage (
    headingResId = R.string.viewmodel_4_heading
 ) {
 
+    ResText(R.string.viewmodel_4_1)
+
     CodeListing(
         code = """
             class AppViewModel : ViewModel() {
@@ -91,6 +113,8 @@ private val viewmodel_4 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.viewmodel_4_2)
 
     CodeListing(
         code = """
@@ -112,6 +136,12 @@ private val viewmodel_5 = LessonPage (
     headingResId = R.string.viewmodel_5_heading
 ) {
 
+    ItemizedList(
+        R.string.viewmodel_5_1.toTextItem(),
+        R.string.viewmodel_5_2.toTextItem(),
+        R.string.viewmodel_5_3.toTextItem(),
+        itemizationMode = ItemizationMode.Bullet
+    )
 }
 
 val viewModelPages = listOf(

@@ -3,8 +3,10 @@ package com.abachta.jetpacktutorial.courses.advanced
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.advanced.quizzes.biometricsQuiz
 import com.abachta.jetpacktutorial.courses.advanced.quizzes.cameraQuiz
+import com.abachta.jetpacktutorial.courses.advanced.quizzes.hiltQuiz
 import com.abachta.jetpacktutorial.courses.advanced.quizzes.notificationQuiz
 import com.abachta.jetpacktutorial.courses.advanced.quizzes.permissionsQuiz
+import com.abachta.jetpacktutorial.courses.advanced.quizzes.roomQuiz
 import com.abachta.jetpacktutorial.data.Lesson
 
 private val permissions = Lesson(
@@ -38,13 +40,15 @@ private val biometrics = Lesson(
 private val hilt = Lesson(
     titleResId = R.string.lesson_hilt_title,
     descriptionResId = R.string.TODO,
-    pages = hiltPages
+    pages = hiltPages,
+    quiz = hiltQuiz
 )
 
 private val room = Lesson(
     titleResId = R.string.lesson_room_title,
     descriptionResId = R.string.TODO,
-    pages = roomPages
+    pages = roomPages,
+    quiz = roomQuiz
 )
 
 val advancedLessons = listOf(

@@ -27,15 +27,8 @@ private val backHandler = Lesson(
     quiz = backHandlerQuiz
 )
 
-private val navigationSuite = Lesson(
-    titleResId = R.string.lesson_navigation_suite_title,
-    descriptionResId = R.string.TODO,
-    pages = navigationSuitePages,
-)
-
 val navigationLessons = listOf(
     navControllerAndHost,
     navigationContainers,
-    backHandler,
-    navigationSuite
+    backHandler
 )
