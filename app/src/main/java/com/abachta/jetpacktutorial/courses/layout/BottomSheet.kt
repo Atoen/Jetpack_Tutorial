@@ -31,6 +31,8 @@ private val bottom_sheet_1 = LessonPage (
    headingResId = R.string.bottom_sheet_1_heading
 ) {
 
+    ResText(R.string.bottom_sheet_1_1)
+
     CodeListing(
         code = """
             var showBottomSheet by c-remember { mutableStateOf(false) }
@@ -46,6 +48,8 @@ private val bottom_sheet_1 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.bottom_sheet_1_2)
 
     var showBottomSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
@@ -101,9 +105,7 @@ private val bottom_sheet_1 = LessonPage (
                         showBottomSheet = false
                     }
                 }
-            }) {
-                // sheet content
-            }
+            }) { ... }
         """.trimIndent()
     )
 }
@@ -112,6 +114,9 @@ private val bottom_sheet_1 = LessonPage (
 private val bottom_sheet_2 = LessonPage (
    headingResId = R.string.bottom_sheet_2_heading
 ) {
+
+    ResText(R.string.bottom_sheet_2_1)
+
     CodeListing(
         code = """
             var showBottomSheet by c-remember { mutableStateOf(false) }
@@ -167,6 +172,9 @@ private val bottom_sheet_2 = LessonPage (
 private val bottom_sheet_3 = LessonPage (
    headingResId = R.string.bottom_sheet_3_heading
 ) {
+
+    ResText(R.string.bottom_sheet_3_1)
+
     CodeListing(
         code = """
             c-ModalBottomSheet(
@@ -183,6 +191,8 @@ private val bottom_sheet_3 = LessonPage (
             }
         """.trimIndent()
     )
+
+    ResText(R.string.bottom_sheet_3_2)
 
     var showBottomSheet by remember { mutableStateOf(false) }
     val sheetState = rememberModalBottomSheetState()
@@ -211,7 +221,7 @@ private val bottom_sheet_3 = LessonPage (
             }
         ) {
             ResText(
-                resId = R.string.bottom_sheet_2_content,
+                resId = R.string.bottom_sheet_1_content,
                 modifier = Modifier
                     .padding(16.dp)
                     .align(Alignment.CenterHorizontally)
@@ -224,6 +234,9 @@ private val bottom_sheet_3 = LessonPage (
 private val bottom_sheet_4 = LessonPage (
    headingResId = R.string.bottom_sheet_4_heading
 ) {
+
+    ResText(R.string.bottom_sheet_4_1)
+
     CodeListing(
         code = """
         c-ModalBottomSheet(

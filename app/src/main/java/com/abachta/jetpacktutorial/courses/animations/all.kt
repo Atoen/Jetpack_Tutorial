@@ -2,6 +2,7 @@ package com.abachta.jetpacktutorial.courses.animations
 
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.animations.quizzes.contentQuiz
+import com.abachta.jetpacktutorial.courses.animations.quizzes.navTransitionsQuiz
 import com.abachta.jetpacktutorial.courses.animations.quizzes.stateQuiz
 import com.abachta.jetpacktutorial.data.Lesson
 
@@ -22,7 +23,8 @@ private val animatedVisibility = Lesson(
 private val navigationTransitions = Lesson(
     titleResId = R.string.lesson_nav_transitions_title,
     descriptionResId = R.string.TODO,
-    pages = listOf(),
+    pages = navigationTransitionsPages,
+    quiz = navTransitionsQuiz
 )
 
 val animationsLessons = listOf(

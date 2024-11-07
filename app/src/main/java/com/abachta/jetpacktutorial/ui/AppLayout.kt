@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Bookmarks
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -45,6 +46,7 @@ import com.abachta.jetpacktutorial.ui.screens.CourseScreen
 import com.abachta.jetpacktutorial.ui.screens.HomeScreen
 import com.abachta.jetpacktutorial.ui.screens.LessonScreen
 import com.abachta.jetpacktutorial.ui.screens.QuizScreen
+import com.abachta.jetpacktutorial.ui.screens.SavedLessonsScreen
 import com.abachta.jetpacktutorial.ui.screens.SettingsScreen
 import com.abachta.jetpacktutorial.viewmodels.CourseViewModel
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
@@ -126,6 +128,18 @@ fun AppLayout(
                             contentDescription = null
                         )
                     }
+                },
+                actions = {
+                    if (screenData.isHome) {
+                        IconButton(onClick = {
+                            navController.navigate(Screen.SavedLessons)
+                        }) {
+                            Icon(
+                                imageVector = Icons.Filled.Bookmarks,
+                                contentDescription = null
+                            )
+                        }
+                    }
                 }
             )
         }
@@ -164,8 +178,8 @@ fun AppLayout(
                     onCourseClick = navController::navigateToCourse,
                     onContinueClick = { course, lesson ->
                         navController.navigateToCourse(course)
-                        navController.navigateToLesson(lesson, course.id)
-                    },
+                        navController.navigateToLesson(lesson)
+                    }
                 )
             }
 
@@ -184,7 +198,7 @@ fun AppLayout(
                 CourseScreen(
                     courseData = arg,
                     onLessonClick = { lesson ->
-                        navController.navigateToLesson(lesson, arg.id)
+                        navController.navigateToLesson(lesson)
                     },
                     onGoToQuiz = navController::navigateToQuiz,
                     onGoToChallenge = navController::navigateToChallenge
@@ -199,7 +213,7 @@ fun AppLayout(
                     onLessonComplete = courseViewModel::markLessonCompleted,
                     onGoToQuiz = navController::navigateToQuiz,
                     onGoToCodeChallenge = navController::navigateToChallenge,
-                    visualsAccessor = settingsViewModel.featureAccessor
+                    featureAccessor = settingsViewModel.featureAccessor
                 )
             }
 
@@ -228,6 +242,14 @@ fun AppLayout(
                 val arg = it.toRoute<Screen.Challenge>()
                 ChallengeScreen(
                     challengeData = arg
+                )
+            }
+
+            composable<Screen.SavedLessons> {
+                SavedLessonsScreen(
+                    savedLessons = listOf(),
+                    onLessonClicked = navController::navigateToLesson,
+                    onRemoveLesson = courseViewModel::removeSavedLesson
                 )
             }
 

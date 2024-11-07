@@ -79,7 +79,8 @@ private val keywords = setOf(
     "abstract", "constructor", "lateinit", "const", "val", "var", "fun", "by",
     "in", "if", "else", "for", "while", "when", "object", "return", "true",
     "false", "null", "class", "enum", "override", "data", "import", "super",
-    "suspend", "private", "sealed", "interface", "annotation", "open"
+    "suspend", "private", "sealed", "interface", "annotation", "open", "inline",
+    "reified", "noinline"
 )
 
 private val keywordPattern = "\\b(${keywords.joinToString("|")})\\b"

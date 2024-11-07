@@ -38,6 +38,15 @@ sealed class Screen {
     }
 
     @Serializable
+    data object SavedLessons : Screen() {
+
+        @Transient
+        override val order = 1
+
+        override fun getTitleRes() = R.string.saved_lessons
+    }
+
+    @Serializable
     data class Course(
         @StringRes val titleResId: Int,
         @StringRes val descriptionResId: Int,
@@ -45,7 +54,7 @@ sealed class Screen {
     ) : Screen() {
 
         @Transient
-        override val order = 1
+        override val order = 2
 
         override fun getTitleRes() = titleResId
 
@@ -57,12 +66,11 @@ sealed class Screen {
     data class Lesson(
         @StringRes val titleResId: Int,
         @StringRes val descriptionResId: Int,
-        val courseId: Int,
         val lessonId: Int
     ) : Screen() {
 
         @Transient
-        override val order = 2
+        override val order = 3
 
         override fun getTitleRes() = titleResId
 
@@ -77,7 +85,7 @@ sealed class Screen {
     ) : Screen() {
 
         @Transient
-        override val order = 3
+        override val order = 4
 
         override fun getTitleRes() = titleResId
 
@@ -92,7 +100,7 @@ sealed class Screen {
     ) : Screen() {
 
         @Transient
-        override val order = 4
+        override val order = 5
 
         override fun getTitleRes() = titleResId
 
@@ -106,7 +114,7 @@ sealed class Screen {
     ) : Screen() {
 
         @Transient
-        override val order = 5
+        override val order = 6
 
         override fun getTitleRes() = R.string.app_name
     }

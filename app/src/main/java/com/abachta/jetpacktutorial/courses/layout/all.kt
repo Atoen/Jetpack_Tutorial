@@ -1,9 +1,11 @@
 package com.abachta.jetpacktutorial.courses.layout
 
 import com.abachta.jetpacktutorial.R
+import com.abachta.jetpacktutorial.courses.layout.quizzes.bottomSheetQuiz
 import com.abachta.jetpacktutorial.courses.layout.quizzes.boxQuiz
 import com.abachta.jetpacktutorial.courses.layout.quizzes.columnAndRowQuiz
 import com.abachta.jetpacktutorial.courses.layout.quizzes.gridQuiz
+import com.abachta.jetpacktutorial.courses.layout.quizzes.pagerQuiz
 import com.abachta.jetpacktutorial.courses.layout.quizzes.scaffoldQuiz
 import com.abachta.jetpacktutorial.data.Lesson
 
@@ -38,13 +40,15 @@ private val scaffold = Lesson(
 private val bottomSheet = Lesson(
     titleResId = R.string.lesson_bottom_sheet_title,
     descriptionResId = R.string.TODO,
-    pages = bottomSheetPages
+    pages = bottomSheetPages,
+    quiz = bottomSheetQuiz
 )
 
 private val pager = Lesson(
     titleResId = R.string.lesson_pager_title,
     descriptionResId = R.string.TODO,
     pages = pagerPages,
+    quiz = pagerQuiz
 )
 
 val layoutLessons = listOf(

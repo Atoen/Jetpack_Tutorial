@@ -9,10 +9,8 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.serialization.generateHashCode
 import androidx.navigation.toRoute
-import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.CodeChallenge
 import com.abachta.jetpacktutorial.data.Course
-import com.abachta.jetpacktutorial.data.CourseId
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.Quiz
 import kotlinx.serialization.InternalSerializationApi
@@ -31,6 +29,7 @@ fun NavBackStackEntry?.getScreenData(): ScreenData {
         this == null -> homeScreenData
         isOn<Screen.Home>() -> homeScreenData
         isOn<Screen.Settings>() -> settingScreenData
+        isOn<Screen.SavedLessons>() -> savedLessonsScreenData
         isOn<Screen.Course>() -> screenData<Screen.Course>()
         isOn<Screen.Lesson>() -> screenData<Screen.Lesson>()
         isOn<Screen.Quiz>() -> screenData<Screen.Quiz>()
@@ -40,8 +39,13 @@ fun NavBackStackEntry?.getScreenData(): ScreenData {
     }
 }
 
-private val homeScreenData = ScreenData(R.string.app_name, 0)
-private val settingScreenData = ScreenData(R.string.settings, -1)
+private fun Screen.toDataObject(): ScreenData {
+    return ScreenData(getTitleRes(), order)
+}
+
+private val homeScreenData = Screen.Home.toDataObject()
+private val settingScreenData = Screen.Settings.toDataObject()
+private val savedLessonsScreenData = Screen.SavedLessons.toDataObject()
 
 inline fun <reified T : Screen> NavBackStackEntry.isOn(): Boolean {
     return destination.hasRouteCached(T::class)
@@ -60,10 +64,7 @@ private val routeHashCodes = mutableMapOf<KClass<*>, Int>()
 
 private inline fun <reified T : Screen> NavBackStackEntry.screenData(): ScreenData {
     val screen = this.toRoute<T>()
-    return ScreenData(
-        title = screen.getTitleRes(),
-        order = screen.order
-    )
+    return screen.toDataObject()
 }
 
 val slideInFromLeft = slideInHorizontally { -it }
@@ -82,12 +83,11 @@ fun NavHostController.navigateToCourse(course: Course) {
     )
 }
 
-fun NavHostController.navigateToLesson(lesson: Lesson, courseId: CourseId) {
+fun NavHostController.navigateToLesson(lesson: Lesson) {
     navigate(
         Screen.Lesson(
             titleResId = lesson.titleResId,
             descriptionResId = lesson.descriptionResId,
-            courseId = courseId.value,
             lessonId = lesson.id.value
         )
     )

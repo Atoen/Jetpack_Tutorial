@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
         contract = ActivityResultContracts.RequestMultiplePermissions()
     ) { permissions ->
         permissions.forEach { (permission, isGranted) ->
-
             val model = PermissionModel.create(permission)
             val result = if (isGranted) {
                 PermissionResult.Granted(model)
@@ -63,16 +62,14 @@ class MainActivity : AppCompatActivity() {
                     enableEdgeToEdge(appTheme = viewModel.theme)
 
                     PermissionDialogQueue(
-                        activity = this@MainActivity,
+                        activity = this,
                         queue = viewModel.visiblePermissionDialogQueue,
                         onDialogDismiss = viewModel::dismissDialog
                     )
 
                     AppLayout(
                         settingsViewModel = viewModel,
-                        onExit = {
-                            finishAffinity()
-                        }
+                        onExit = ::finishAffinity
                     )
                 }
             }
@@ -83,7 +80,7 @@ class MainActivity : AppCompatActivity() {
         val barStyle = when (appTheme) {
             AppTheme.Auto -> SystemBarStyle.auto(Color.TRANSPARENT, Color.TRANSPARENT)
             AppTheme.Light -> SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT)
-            else -> SystemBarStyle.dark(Color.TRANSPARENT)
+            AppTheme.Dark -> SystemBarStyle.dark(Color.TRANSPARENT)
         }
 
         enableEdgeToEdge(

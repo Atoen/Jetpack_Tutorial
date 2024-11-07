@@ -76,6 +76,8 @@ private val pager_1 = LessonPage (
   headingResId = R.string.pager_1_heading
 ) {
 
+    ResText(R.string.pager_1_1)
+
     CodeListing(
         code = """
             val pagerState = c-rememberPagerState(
@@ -93,6 +95,8 @@ private val pager_1 = LessonPage (
         """.trimIndent()
     )
 
+    ResText(R.string.pager_1_2)
+
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         val pagerState = rememberPagerState { 10 }
 
@@ -105,6 +109,8 @@ private val pager_1 = LessonPage (
             )
         }
     }
+
+    ResText(R.string.pager_1_3)
 
     Preview(modifier = Modifier
         .align(Alignment.CenterHorizontally)
@@ -125,6 +131,11 @@ private val pager_1 = LessonPage (
 private val pager_2 = LessonPage (
    headingResId = R.string.pager_2_heading
 ) {
+
+    ResText(R.string.pager_2_1)
+
+    ResText(R.string.pager_2_2)
+
     CodeListing(
         code = """
             c-VerticalPager(
@@ -142,6 +153,9 @@ private val pager_2 = LessonPage (
 private val pager_3 = LessonPage (
    headingResId = R.string.pager_3_heading
 ) {
+
+    ResText(R.string.pager_3_1)
+
     CodeListing(
         code = """
             val scope = c-rememberCoroutineScope()
@@ -150,7 +164,9 @@ private val pager_3 = LessonPage (
             c-Button(onClick = {
                 scope.launch {
                     val currentPage = pagerState.currentPage
-                    pagerState.animateScrollToPage(currentPage + 1)
+                    pagerState.animateScrollToPage(
+                        currentPage + 1
+                    )
                 }
             }) { ... }
             
@@ -206,6 +222,9 @@ private val pager_3 = LessonPage (
 private val pager_4 = LessonPage (
    headingResId = R.string.pager_4_heading
 ) {
+
+    ResText(R.string.pager_4_1)
+
     CodeListing(
         code = """
             val pagerState = c-rememberPagerState(...)
@@ -265,6 +284,11 @@ private val pager_4 = LessonPage (
 private val pager_5 = LessonPage (
    headingResId = R.string.pager_5_heading
 ) {
+
+    ResText(R.string.pager_5_1)
+
+    ResText(R.string.pager_5_2)
+
     CodeListing(
         code = """
             val pagerState = c-rememberPagerState(...)
@@ -339,6 +363,9 @@ private val twoPagesPerViewport = object : PageSize {
 private val pager_6 = LessonPage (
     headingResId = R.string.pager_6_heading
 ) {
+
+    ResText(R.string.pager_6_1)
+
     CodeListing(
         code = """
             c-HorizontalPager(

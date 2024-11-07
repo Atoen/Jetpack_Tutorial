@@ -72,7 +72,7 @@ fun LessonScreen(
     onLessonComplete: (Lesson) -> Unit,
     onGoToCodeChallenge: (CodeChallenge) -> Unit,
     onGoToQuiz: (Quiz) -> Unit,
-    visualsAccessor: AppFeatureAccessor
+    featureAccessor: AppFeatureAccessor
 ) {
     val lesson = getLessonById(LessonId(lessonData.lessonId))
     val lessonPageCount = lesson.pages.count()
@@ -109,7 +109,7 @@ fun LessonScreen(
                 Page(
                     page = lesson.pages[page],
                     isCurrentPage = { page == pagerState.currentPage },
-                    visualsAccessor = visualsAccessor
+                    visualsAccessor = featureAccessor
                 )
             } else {
                 LessonFinishedScreen(

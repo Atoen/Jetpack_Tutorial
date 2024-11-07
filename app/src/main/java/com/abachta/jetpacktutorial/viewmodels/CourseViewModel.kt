@@ -76,6 +76,14 @@ class CourseViewModel @Inject constructor(
         return model
     }
 
+    fun saveLessonForLater(lesson: Lesson) {
+
+    }
+
+    fun removeSavedLesson(lesson: Lesson) {
+
+    }
+
     fun refreshLessonPopup() {
         viewModelScope.launch {
             updateLessonPopup()
