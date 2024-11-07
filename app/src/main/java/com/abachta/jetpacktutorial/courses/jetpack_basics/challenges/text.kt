@@ -20,7 +20,7 @@ val textChallenge = CodeChallenge(
         )
     },
     code = """
-        Text(
+        c-Text(
             text = "Underlined red text in cursive",
             color = Color.Red,
             fontSize = 32.sp,

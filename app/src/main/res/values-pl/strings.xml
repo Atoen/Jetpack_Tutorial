@@ -663,8 +663,8 @@
     <string name="lesson_side_effects_title">Efekty uboczne</string>
     <string name="side_effects_4_heading">Udostępnianie stanu kompozycji</string>
     <string name="side_effects_3_heading">Czyszczenie zasobów</string>
-    <string name="side_effects_2_heading">Dostęp do zakresu coroutine</string>
-    <string name="side_effects_1_heading">Wykonywanie funkcji suspend</string>
+    <string name="side_effects_2_heading">Dostęp do coroutine</string>
+    <string name="side_effects_1_heading">Wykonywanie asynchrnonicznych operacji</string>
     <string name="navigation_1_1">Nawigacja umożliwia tworzenie bardziej zaawansowanych aplikacji, które posiadają wiele różnych ekraanów.</string>
     <string name="navigation_1_2">Aby dodać obsługę nawigacji, dodaj następującą zależność w pliku |build.grade| swojej aplikacji:</string>
     <string name="navigation_1_3">Aby korzystać z nowocześniejszego i bezpieczniejszego sposobu nawigacji, należy również dołączyć plugin |kotlin-serialization|:</string>
@@ -1029,7 +1029,7 @@
     <string name="quiz_persistent_1_1">Dużymi i dobrze ustrukturyzowanymi zbiorami danych</string>
     <string name="quiz_persistent_1_2">Szybko zmiennymi danymi</string>
     <string name="quiz_persistent_1_3">Prostymi zestawami danych</string>
-    <string name="quiz_persistent_2">Jak można utwożyć *DataStore*?</string>
+    <string name="quiz_persistent_2">Jak można utworzyć *DataStore*?</string>
     <string name="quiz_persistent_2_1">Wywołując jego publiczny konstruktor</string>
     <string name="quiz_persistent_2_2">Za pomocą delegata *preferencesDataStore*</string>
     <string name="quiz_persistent_2_3">Uzyskując do niego dostęp z *Context*</string>
@@ -1051,5 +1051,23 @@
     <string name="quiz_content_2_2">Tak, za pomocą modyfikatora *animateEnterExit*</string>
     <string name="quiz_content_2_3">Nie jest to możliwe</string>
     <string name="quiz_content_3">Jaką funkcję można wykorzystać do animacji różnych treści?</string>
+    <string name="side_effects_1_1">Aby wykonać pracę w trakcie życia obiektu composable i móc wywołać funkcje suspend, możesz użyć obiektu composable |LaunchedEffect|.\nGdy obiekt wchodzi do kompozycji, uruchamia coroutine z blokiem kodu przekazanym jako parametr. Ten coroutine zostanie anulowany, jeśli obiekt |LaunchedEffect| opuści kompozycję.</string>
+    <string name="side_effects_1_2">Jeżeli |LaunchedEffect| zostanie zrekomponowany z innymi kluczami, istniejący coroutine zostanie anulowany i uruchomiony zostanie nowy.</string>
+    <string name="side_effects_2_1">Aby uruchomić coroutine poza composable, użyj |rememberCoroutineScope|. Coroutine nadal zostanie anulowane, gdy composable opuści kompozycję.</string>
+    <string name="side_effects_3_1">W przypadku efektów ubocznych, które należy usunąć po opuszczeniu kompozycji przez obiekt composable lub jeśli klucze ulegną zmianie, użyj |DisposableEffect|.\nUżyj funkcji |onDispose|, aby zwolnić użyte zasoby.</string>
+    <string name="side_effects_4_1">Możesz udostępnić stan obiektów kompozycyjnych z innymi obiektami, które nie są zarządzane przez Compose, za pomocą funkcji |SideEffect|.\n|SideEffect| gwarantuje, że efekt zostanie wykonany po każdej pomyślnej rekompozycji.</string>
+    <string name="side_effects_5_1">W niektórych przypadkach możesz chcieć przechwycić wartość w taki sposób, że jeśli się zmieni, nie uruchomi ponownie efektu (jak w |LaunchedEffect|).\nAby to zrobić, możesz użyć |rememberUpdatedState|. Funckja ta tworzy referencję do wartości, którą można później zaktualizować.</string>
+    <string name="quiz_side_effects_1">Kiedy *LaunchedEffect* ponownie uruchamia swoją coroutine?</string>
+    <string name="quiz_side_effects_1_1">Tylko przy początkowej kompozycji</string>
+    <string name="quiz_side_effects_1_2">Gdy zostanie wywołana metoda *restart*</string>
+    <string name="quiz_side_effects_1_3">Kiedy zostanie zrekomponowny z innymi kluczami</string>
+    <string name="quiz_side_effects_2">W jaki sposób można oczyścić zasoby, gdy obiekt kompozycyjny opuszcza kompozycję?</string>
+    <string name="quiz_side_effects_2_1">Wszystkie zasoby są automatycznie usuwane, gdy elementy kompozycyjne opuszczają kompozycję</string>
+    <string name="quiz_side_effects_2_2">Używająć *DisposableEffect*</string>
+    <string name="quiz_side_effects_2_3">Poprzez nadpisanie metody *onCleanup*</string>
+    <string name="quiz_side_effects_3">Kiedy powinno się stosować *SideEffect*?</string>
+    <string name="quiz_side_effects_3_1">Gdy chcesz wykonać jakąś operację w tle</string>
+    <string name="quiz_side_effects_3_2">Gdy chcesz kontrolować cykl życia elementu kompozycyjnego</string>
+    <string name="quiz_side_effects_3_3">Gdy chcesz udostępnić stan elementu kompozycyjnego innym obiektom</string>
 
 </resources>

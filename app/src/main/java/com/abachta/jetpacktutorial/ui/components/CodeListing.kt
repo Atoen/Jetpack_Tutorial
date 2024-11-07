@@ -87,7 +87,6 @@ private const val annotationPattern = "@\\w+"
 private const val stringPattern = "\"(.*?)\""
 private const val commentPattern = "//.*"
 private const val composablePattern = "\\bc-(\\w+)\\b"
-//private const val interpolationPattern =
 
 private val combinedPattern = Regex(
     "($annotationPattern)|($stringPattern)|($commentPattern)|$composablePattern|$keywordPattern"

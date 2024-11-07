@@ -4,6 +4,7 @@ import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.courses.state_lifecycle.quizzes.lifecycleQuiz
 import com.abachta.jetpacktutorial.courses.state_lifecycle.quizzes.persistentQuiz
 import com.abachta.jetpacktutorial.courses.state_lifecycle.quizzes.rememberQuiz
+import com.abachta.jetpacktutorial.courses.state_lifecycle.quizzes.sideEffectQuiz
 import com.abachta.jetpacktutorial.courses.state_lifecycle.quizzes.viewModelQuiz
 import com.abachta.jetpacktutorial.data.Lesson
 
@@ -19,6 +20,13 @@ private val rememberingState = Lesson(
     descriptionResId = R.string.TODO,
     pages = rememberPages,
     quiz = rememberQuiz
+)
+
+private val sideEffects = Lesson(
+    titleResId = R.string.lesson_side_effects_title,
+    descriptionResId = R.string.TODO,
+    pages = sideEffectPages,
+    quiz = sideEffectQuiz
 )
 
 private val viewModel = Lesson(
@@ -38,6 +46,7 @@ private val persistent = Lesson(
 val stateLessons = listOf(
     lifecycle,
     rememberingState,
+    sideEffects,
     viewModel,
     persistent
 )

@@ -1,12 +1,18 @@
-package com.abachta.jetpacktutorial.courses.jetpack_basics
+package com.abachta.jetpacktutorial.courses.state_lifecycle
 
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.data.LessonPage
 import com.abachta.jetpacktutorial.ui.components.CodeListing
+import com.abachta.jetpacktutorial.ui.components.ResText
 
 private val side_effects_1 = LessonPage (
     headingResId = R.string.side_effects_1_heading
 ) {
+
+    ResText(R.string.side_effects_1_1)
+
+    ResText(R.string.side_effects_1_2)
+
     CodeListing(
         code = """
             c-LaunchedEffect(keys) {
@@ -20,11 +26,14 @@ private val side_effects_1 = LessonPage (
 private val side_effects_2 = LessonPage (
     headingResId = R.string.side_effects_2_heading
 ) {
+
+    ResText(R.string.side_effects_2_1)
+
     CodeListing(
         code = """
             val scope = c-rememberCoroutineScope()
             
-            Button(onClick = {
+            c-Button(onClick = {
                 scope.launch {
                     // do something
                 }
@@ -38,6 +47,9 @@ private val side_effects_2 = LessonPage (
 private val side_effects_3 = LessonPage (
     headingResId = R.string.side_effects_3_heading
 ) {
+
+    ResText(R.string.side_effects_3_1)
+
     CodeListing(
         code = """
             val lifecycleOwner = LocalLifecycleOwner.c-current
@@ -63,6 +75,9 @@ private val side_effects_3 = LessonPage (
 private val side_effects_4 = LessonPage (
     headingResId = R.string.side_effects_4_heading
 ) {
+
+    ResText(R.string.side_effects_4_1)
+
     CodeListing(
         code = """
             @Composable
@@ -84,6 +99,9 @@ private val side_effects_4 = LessonPage (
 private val side_effects_5 = LessonPage (
     headingResId = R.string.side_effects_5_heading
 ) {
+
+    ResText(R.string.side_effects_5_1)
+
     CodeListing(
         code = """
             @Composable

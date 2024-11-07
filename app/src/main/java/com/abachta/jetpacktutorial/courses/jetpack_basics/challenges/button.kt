@@ -19,11 +19,14 @@ val buttonChallenge = CodeChallenge(
         }
     },
     code = """
-        FilledTonalButton(
-            border = BorderStroke(width = 2.dp, color = Color.Red),
+        c-FilledTonalButton(
+            border = BorderStroke(
+                width = 2.dp,
+                color = Color.Red
+            ),
             onClick = {}
         ) {
-            Text("Filled tonal button")
+            c-Text("Filled tonal button")
         }
     """.trimIndent()
 )
