@@ -1128,5 +1128,10 @@
     <string name="quiz_pager_3_1">Poprzez zmianę parametru *displayedPages*</string>
     <string name="quiz_pager_3_2">Za pomocą niestandardowego obiektu *PageSize*</string>
     <string name="quiz_pager_3_3">Sprawiając, że pager wypełni cały ekran</string>
+    <string name="no_saved_lessons">Brak zapisanych lekcji</string>
+    <string name="bookmark_lesson">Dodaj do zapisanych</string>
+    <string name="unbookmark_lesson">Usuń z zapisanych</string>
+    <string name="bookmarked_lesson_template">Dodano do zapisanych: %1$s</string>
+    <string name="unbookmarked_lesson_template">Usunięto z zapisanych: %1$s</string>
 
 </resources>

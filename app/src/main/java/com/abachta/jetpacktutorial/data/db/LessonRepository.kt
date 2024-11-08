@@ -1,20 +1,12 @@
 package com.abachta.jetpacktutorial.data.db
 
+import com.abachta.jetpacktutorial.courses.allLessons
+import com.abachta.jetpacktutorial.courses.getLessonById
 import com.abachta.jetpacktutorial.data.Lesson
 import com.abachta.jetpacktutorial.data.LessonId
 import com.abachta.jetpacktutorial.data.db.daos.LessonDao
 import com.abachta.jetpacktutorial.data.db.entities.DbLesson
-import com.abachta.jetpacktutorial.courses.allLessons
-import com.abachta.jetpacktutorial.courses.getLessonById
 import javax.inject.Inject
-
-//interface LessonRepository {
-//    suspend fun getAllLessons(): List<Lesson>
-//    suspend fun insertLesson(lesson: Lesson)
-//    suspend fun removeAllLessons()
-//    suspend fun removeLessonsByIds(ids: List<Int>)
-//    suspend fun removeLessonById(id: Int)
-//}
 
 class LessonRepository @Inject constructor(
     private val lessonDao: LessonDao
@@ -27,17 +19,19 @@ class LessonRepository @Inject constructor(
             } else {
                 lesson.progress.reset()
             }
+
+            lesson.isBookmarked = dbLesson.bookmarked
         }
 
         val mapped = allLessons.map { lesson ->
-            DbLesson(lesson.id.value, lesson.isCompleted)
+            DbLesson(lesson.id.value, lesson.isCompleted, lesson.isBookmarked)
         }
 
         lessonDao.insertBulk(mapped)
     }
 
     suspend fun insertLesson(lesson: Lesson) {
-        lessonDao.insert(DbLesson(lesson.id.value, lesson.isCompleted))
+        lessonDao.insert(DbLesson(lesson.id.value, lesson.isCompleted, lesson.isBookmarked))
     }
 
     suspend fun getNextLesson(): Lesson? {
@@ -47,15 +41,14 @@ class LessonRepository @Inject constructor(
         }
     }
 
+    suspend fun getBookmarkedLessons(): List<Lesson> {
+        val ids = lessonDao.getBookmarkedLessonsId()
+        return ids.map {
+            getLessonById(LessonId(it))
+        }
+    }
+
     suspend fun clearAllProgress() {
         lessonDao.clearAll()
-    }
-
-    suspend fun removeLessonsByIds(ids: List<Int>) {
-        lessonDao.clearByIds(ids)
-    }
-
-    suspend fun removeLessonById(id: Int) {
-        lessonDao.clearById(id)
     }
 }

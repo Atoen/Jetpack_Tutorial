@@ -2,6 +2,7 @@ package com.abachta.jetpacktutorial.viewmodels
 
 import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,8 @@ import com.abachta.jetpacktutorial.ui.components.LessonPopupData
 import com.abachta.jetpacktutorial.ui.components.LessonPopupType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import javax.inject.Inject
 
 @HiltViewModel
@@ -27,6 +30,9 @@ class CourseViewModel @Inject constructor(
     private var popupLesson by mutableStateOf<Lesson?>(null)
     private var popupType by mutableStateOf(LessonPopupType.Start)
     private var currentQuizModel by mutableStateOf<QuizModel?>(null)
+    private var _bookmarkedLessons = mutableStateListOf<Lesson>()
+
+    private val mutex = Mutex()
 
     var shouldAnimatePopup by mutableStateOf(true)
     val lessonPopupData by derivedStateOf {
@@ -34,6 +40,8 @@ class CourseViewModel @Inject constructor(
             LessonPopupData(it, popupType)
         }
     }
+
+    val bookmarkedLessons = _bookmarkedLessons as List<Lesson>
 
     lateinit var courses: List<Course>
 
@@ -43,6 +51,8 @@ class CourseViewModel @Inject constructor(
 
             lessonRepository.updateLessonsProgress()
             updateLessonPopup()
+
+            _bookmarkedLessons.addAll(lessonRepository.getBookmarkedLessons())
         }
     }
 
@@ -76,12 +86,31 @@ class CourseViewModel @Inject constructor(
         return model
     }
 
-    fun saveLessonForLater(lesson: Lesson) {
 
+    fun bookmarkLesson(lesson: Lesson) {
+        viewModelScope.launch {
+            mutex.withLock {
+                if (_bookmarkedLessons.contains(lesson)) return@withLock
+
+                lesson.isBookmarked = true
+                _bookmarkedLessons.add(lesson)
+
+                lessonRepository.insertLesson(lesson)
+            }
+        }
     }
 
-    fun removeSavedLesson(lesson: Lesson) {
+    fun unbookmarkLesson(lesson: Lesson) {
+        viewModelScope.launch {
+            mutex.withLock {
+                if (!_bookmarkedLessons.contains(lesson)) return@withLock
 
+                lesson.isBookmarked = false
+                _bookmarkedLessons.remove(lesson)
+
+                lessonRepository.insertLesson(lesson)
+            }
+        }
     }
 
     fun refreshLessonPopup() {

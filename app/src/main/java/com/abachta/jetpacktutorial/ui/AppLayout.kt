@@ -148,28 +148,8 @@ fun AppLayout(
             navController = navController,
             startDestination = Screen.Home,
             modifier = Modifier.padding(contentPadding),
-            enterTransition = {
-                val initialData = initialState.getScreenData()
-                val targetData = targetState.getScreenData()
-                val delta = initialData.order - targetData.order
-
-                if (delta >= 0) {
-                    slideInFromLeft
-                } else {
-                    slideInFromRight
-                }
-            },
-            exitTransition = {
-                val initialData = initialState.getScreenData()
-                val targetData = targetState.getScreenData()
-                val delta = initialData.order - targetData.order
-
-                if (delta >= 0) {
-                    slideOutToRight
-                } else {
-                    slideOutToLeft
-                }
-            }
+            enterTransition = { slideEnter() },
+            exitTransition = { slideExit() }
         ) {
             composable<Screen.Home> {
                 HomeScreen(
@@ -201,7 +181,9 @@ fun AppLayout(
                         navController.navigateToLesson(lesson)
                     },
                     onGoToQuiz = navController::navigateToQuiz,
-                    onGoToChallenge = navController::navigateToChallenge
+                    onGoToChallenge = navController::navigateToChallenge,
+                    onBookmarkLesson = courseViewModel::bookmarkLesson,
+                    onUnbookmarkLesson = courseViewModel::unbookmarkLesson
                 )
             }
 
@@ -247,9 +229,9 @@ fun AppLayout(
 
             composable<Screen.SavedLessons> {
                 SavedLessonsScreen(
-                    savedLessons = listOf(),
+                    savedLessons = courseViewModel.bookmarkedLessons,
                     onLessonClicked = navController::navigateToLesson,
-                    onRemoveLesson = courseViewModel::removeSavedLesson
+                    onRemoveLesson = courseViewModel::unbookmarkLesson
                 )
             }
 

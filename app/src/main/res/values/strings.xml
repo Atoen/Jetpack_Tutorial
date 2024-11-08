@@ -1159,9 +1159,9 @@
     <string name="quiz_nav_transitions_2_1">By placing the route inside the *AnimateTransition* block</string>
     <string name="quiz_nav_transitions_2_2">By using the *transition* parameters of the *composable&lt;T&gt;* method</string>
     <string name="quiz_nav_transitions_2_3">By creating a separate *NavHost* for that route</string>
-    <string name="bottom_sheet_1_1">You can create a bottom sheetm you can use the |ModalBottomSheet| composable. To progrmatically open and close the sheet you can use the |SheetState|, which you can access by using |rememberModalSheetState|.</string>
+    <string name="bottom_sheet_1_1">You can create a bottom sheet you can use the |ModalBottomSheet| composable. To programmatically open and close the sheet you can use the |SheetState|, which you can access by using |rememberModalSheetState|.</string>
     <string name="bottom_sheet_1_2">To smoothly close the sheet, first wait for the closing animation to finish and then hide it completely.</string>
-    <string name="bottom_sheet_2_1">You can partially extend the sheet by setting the |skipPartiallyExpanded| to *false* and making it fill max height with a modfier.\nThis allows the user to make the sheet full screen or to dismiss it easly.</string>
+    <string name="bottom_sheet_2_1">You can partially extend the sheet by setting the |skipPartiallyExpanded| to *false* and making it fill max height with a modifier.\nThis allows the user to make the sheet full screen or to dismiss it easily.</string>
     <string name="bottom_sheet_3_1">You can customize the bottom sheet by changing its width and the drag handle. You can use the |maxSheetWidth| and |dragHandle| parameters to do this.</string>
     <string name="bottom_sheet_3_2">The content of the handle can be any composable, but it is important to keep it readable for the user.</string>
     <string name="bottom_sheet_4_1">You can also change the |containerColor|, |contentColor| and the |shape| of the sheet.\nThe color of screen overlay, visible when the sheet is opened, can be changed with the |scrimColor| parameter.</string>
@@ -1181,7 +1181,7 @@
     <string name="pager_1_1">To allow your user to swipe through content horizontally or vertically, you can use the |HorizontalPager| and |VerticalPager| composables.</string>
     <string name="pager_1_2">Horizontal pager:</string>
     <string name="pager_1_3">Vertical pager:</string>
-    <string name="pager_2_1">Pages in both *pagers* are laizly composed when required. This means that pages that are not visible to the user are not present in the composition.</string>
+    <string name="pager_2_1">Pages in both *pagers* are lazily composed when required. This means that pages that are not visible to the user are not present in the composition.</string>
     <string name="pager_2_2">"You can change the number of pages composed around the currently displayed one with the |beyondBoundsPageCount| parameter. It defaults to zero. "</string>
     <string name="pager_3_1">You can control the position of the pager with the |scrollToPage| and |animateScrollToPage| methods of the |pagerState|.\nYou can also disable scrolling with gestures by setting the |userScrollEnbaled| parameter to *false*</string>
     <string name="pager_4_1">You can observe the current page of the pager by creating a |snapshotFlow| from the |currentPage|, |settledPage| or |targetPage| properties of the |pagerState|.</string>
@@ -1200,4 +1200,9 @@
     <string name="quiz_pager_3_1">By changing the *displayedPages* parameter</string>
     <string name="quiz_pager_3_2">By using a custom *PageSize* object</string>
     <string name="quiz_pager_3_3">By making the pager fill whole screen</string>
+    <string name="no_saved_lessons">No saved lessons</string>
+    <string name="bookmark_lesson">Bookmark</string>
+    <string name="unbookmark_lesson">Unbookmark</string>
+    <string name="bookmarked_lesson_template">Bookmarked: %1$s</string>
+    <string name="unbookmarked_lesson_template">Unbookmarked: %1$s</string>
 </resources>

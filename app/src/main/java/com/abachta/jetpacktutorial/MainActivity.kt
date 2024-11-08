@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         viewModel.biometricPromptManager = promptManager
-        viewModel.permissionRequester = { permissionLauncher.launch(it) }
+        viewModel.permissionRequestDispatcher = { permissionLauncher.launch(it) }
 
         installSplashScreen().setKeepOnScreenCondition {
             !viewModel.isReady.value

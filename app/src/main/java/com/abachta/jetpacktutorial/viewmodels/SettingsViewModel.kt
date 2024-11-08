@@ -44,7 +44,7 @@ class SettingsViewModel @Inject constructor(
     private val permissionResultFlow = MutableSharedFlow<PermissionResult>()
 
     internal lateinit var biometricPromptManager: BiometricPromptManager
-    internal lateinit var permissionRequester: (Array<String>) -> Unit
+    internal lateinit var permissionRequestDispatcher: (Array<String>) -> Unit
 
     val visiblePermissionDialogQueue = mutableStateListOf<PermissionModel>()
 
@@ -174,11 +174,11 @@ class SettingsViewModel @Inject constructor(
                 permissionResultFlow
 
             override fun requestPermission(permission: String) {
-                permissionRequester(arrayOf(permission))
+                permissionRequestDispatcher(arrayOf(permission))
             }
 
             override fun requestPermissions(permissions: Array<String>) {
-                permissionRequester(permissions)
+                permissionRequestDispatcher(permissions)
             }
         }
     }

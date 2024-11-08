@@ -2,6 +2,9 @@ package com.abachta.jetpacktutorial.ui
 
 import android.annotation.SuppressLint
 import androidx.annotation.StringRes
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.navigation.NavBackStackEntry
@@ -72,6 +75,30 @@ val slideInFromRight = slideInHorizontally { it }
 
 val slideOutToLeft = slideOutHorizontally { -it }
 val slideOutToRight = slideOutHorizontally { it }
+
+fun AnimatedContentTransitionScope<NavBackStackEntry>.slideEnter(): EnterTransition {
+    val initialData = initialState.getScreenData()
+    val targetData = targetState.getScreenData()
+    val delta = initialData.order - targetData.order
+
+    return if (delta >= 0) {
+        slideInFromLeft
+    } else {
+        slideInFromRight
+    }
+}
+
+fun AnimatedContentTransitionScope<NavBackStackEntry>.slideExit(): ExitTransition {
+    val initialData = initialState.getScreenData()
+    val targetData = targetState.getScreenData()
+    val delta = initialData.order - targetData.order
+
+    return if (delta >= 0) {
+        slideOutToRight
+    } else {
+        slideOutToLeft
+    }
+}
 
 fun NavHostController.navigateToCourse(course: Course) {
     navigate(

@@ -23,11 +23,9 @@ class Lesson(
     val isCompleted
         get() = progress.completed
 
+    var isBookmarked: Boolean = false
+
     val courseId = LessonCourseId(defaultCourseId)
-
-    val hasQuiz = quiz != null
-
-    val hasChallenge = challenge != null
 
     fun complete() = progress.complete()
 }

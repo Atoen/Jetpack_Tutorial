@@ -6,5 +6,6 @@ import androidx.room.PrimaryKey
 @Entity
 data class DbLesson(
     @PrimaryKey val id: Int,
-    val completed: Boolean
+    val completed: Boolean,
+    val bookmarked: Boolean
 )

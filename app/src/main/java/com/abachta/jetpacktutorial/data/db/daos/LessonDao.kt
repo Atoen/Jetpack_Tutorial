@@ -21,6 +21,9 @@ interface LessonDao {
     @Query("SELECT id FROM DbLesson WHERE completed = 0 ORDER BY id ASC")
     suspend fun getFirstUncompletedLessonId(): Int?
 
+    @Query("SELECT id FROM DbLesson WHERE bookmarked = 1 ORDER BY id ASC")
+    suspend fun getBookmarkedLessonsId(): List<Int>
+
     @Query("UPDATE DbLesson SET completed = 0")
     suspend fun clearAll()
 

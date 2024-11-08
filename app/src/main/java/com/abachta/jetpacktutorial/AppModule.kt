@@ -14,21 +14,14 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-//    @Provides
-//    @Singleton
-//    fun provideLessonRepository(lessonDao: LessonDao): LessonRepository {
-//        return LessonRepositoryImpl(lessonDao)
-//    }
-
     @Singleton
     @Provides
-    fun provideLessonDatabase(@ApplicationContext context: Context): LessonDatabase {
-        return Room.databaseBuilder(context, LessonDatabase::class.java, "lesson_database")
+    fun provideLessonDatabase(@ApplicationContext context: Context) =
+        Room.databaseBuilder(context, LessonDatabase::class.java, "lesson_database")
+            .fallbackToDestructiveMigration()
             .build()
-    }
 
     @Singleton
     @Provides
     fun provideLessonDao(database: LessonDatabase) = database.lessonDao()
-
 }
