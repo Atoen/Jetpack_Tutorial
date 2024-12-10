@@ -29,11 +29,12 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -102,8 +103,6 @@ dependencies {
     implementation(libs.androidx.core.splashscreen)
 
     implementation(libs.androidx.biometric)
-
-//    implementation(libs.androidx.material3.adaptive.navigation.suite)
 
     implementation(libs.androidx.camera.core)
     implementation(libs.androidx.camera.camera2)

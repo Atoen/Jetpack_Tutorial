@@ -60,11 +60,6 @@ fun CourseScreen(
             fontWeight = FontWeight.Bold
         )
 
-        Text(
-            text = stringResource(courseData.descriptionResId),
-            style = MaterialTheme.typography.bodyLarge
-        )
-
         Spacer(modifier = Modifier.height(8.dp))
 
         val course = getCourseById(CourseId(courseData.courseId))

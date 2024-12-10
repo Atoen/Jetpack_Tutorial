@@ -210,7 +210,7 @@
     <string name="quiz_shuffling_mode">Losownanie pytań quizu</string>
     <string name="challenge_show_code">Pokaż kod</string>
     <string name="challenge_hide_code">Ukryj kod</string>
-    <string name="quiz_text_1">Której funkcji kompozycyjnej można użyć do wyświetlania tekstuw Jetpack Compose?</string>
+    <string name="quiz_text_1">Której funkcji kompozycyjnej można użyć do wyświetlania tekstu w Jetpack Compose?</string>
     <string name="quiz_introduction_1">Który język programowania jest głównie używany w Jetpack Compose?</string>
     <string name="quiz_text_2">Jak można zmienić rozmiar czcionki tekstu w Jetpack Compose?</string>
     <string name="quiz_text_2_1">Stosując *FontModifier* na tekście</string>
@@ -911,7 +911,7 @@
     <string name="quiz_biometrics_1">Jaki rodzaj aktywności wykorzystuje biblioteka *Biometryczna*?</string>
     <string name="quiz_biometrics_1_1">Dowolne *Activity*</string>
     <string name="quiz_biometrics_2">W jaki sposób można zezwolić na korzystanie z danych biometrycznych i danych uwierzytelniających urządzenia?</string>
-    <string name="quiz_biometrics_2_1">Korzystając z *DEVICE_CREDENTIAL* w uwierzytelniaczach monitu</string>
+    <string name="quiz_biometrics_2_1">Korzystając z metody *allowDeviceCredantials* buildera monitu</string>
     <string name="quiz_biometrics_2_2">Korzystając z *DEVICE_CREDENTIAL* w uwierzytelniaczach monitu</string>
     <string name="quiz_biometrics_2_3">Korzystając z *DeviceCredendialPrompt*</string>
     <string name="hilt_1_1">Hilt to biblioteka wstrzykiwania zależności (#DI#) dla Androida. Zmniejsza ona ilość kodu boilerplate stosowanego w przypadku ręcznego DI.\nHilt zapewnia standardowy sposób korzystania z DI, dostarczając kontenery dla klas Androida i automatycznie zarządzając ich cyklem życia.</string>

@@ -974,7 +974,7 @@
     <string name="quiz_biometrics_1_2" translatable="false">*FragmentActivity*</string>
     <string name="quiz_biometrics_1_3" translatable="false">*AppCompatActivity*</string>
     <string name="quiz_biometrics_2">How can you allow to use biometrics as well as device credentials?</string>
-    <string name="quiz_biometrics_2_1">By calling the |allowDeviceCredentials| method on the prompt builder</string>
+    <string name="quiz_biometrics_2_1">By calling the *allowDeviceCredentials* method on the prompt builder</string>
     <string name="quiz_biometrics_2_2">By using the *DEVICE_CREDENTIAL* in the prompt authenticators</string>
     <string name="quiz_biometrics_2_3">By using *DeviceCredentialPrompt*</string>
     <string name="hilt_1_1">Hilt is a dependency injection (#DI#) library for Android. It reduces the boilerplate of doing manual DI in your projects.\nHilt provides a standard way to use DI by providing containers for Android classes and managing their lifecycle automatically.</string>

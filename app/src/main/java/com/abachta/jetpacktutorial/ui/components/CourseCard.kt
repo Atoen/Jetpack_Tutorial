@@ -78,16 +78,6 @@ fun CourseCard(
                 }
             }
 
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Text(
-                text = stringResource(course.descriptionResId),
-                fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.secondary,
-                maxLines = 3,
-                overflow = TextOverflow.Ellipsis
-            )
-
             Spacer(modifier = Modifier.height(16.dp))
 
             val progressColor = if (courseIsCompleted) {

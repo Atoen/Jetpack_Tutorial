@@ -18,7 +18,7 @@ interface LessonDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertBulk(lessons: List<DbLesson>)
 
-    @Query("SELECT id FROM DbLesson WHERE completed = 0 ORDER BY id ASC")
+    @Query("SELECT id FROM DbLesson WHERE completed = 0 ORDER BY id ASC LIMIT 1")
     suspend fun getFirstUncompletedLessonId(): Int?
 
     @Query("SELECT id FROM DbLesson WHERE bookmarked = 1 ORDER BY id ASC")
@@ -26,11 +26,4 @@ interface LessonDao {
 
     @Query("UPDATE DbLesson SET completed = 0")
     suspend fun clearAll()
-
-    @Query("UPDATE DbLesson SET completed = 0 WHERE id IN (:ids)")
-    suspend fun clearByIds(ids: List<Int>)
-
-    @Query("UPDATE DbLesson SET completed = 0 WHERE id = :id")
-    suspend fun clearById(id: Int)
-
 }

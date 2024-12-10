@@ -19,13 +19,12 @@ fun Preview(
     Box(
         contentAlignment = Alignment.Center,
         modifier = modifier
-            .then(
-                if (showBorder) {
+            .then(if (showBorder) {
                     Modifier.border(2.dp, MaterialTheme.colorScheme.tertiaryContainer)
-                } else Modifier
-            )
+                } else Modifier)
             .padding(8.dp)
     ) {
         content()
     }
 }
+

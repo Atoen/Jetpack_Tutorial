@@ -36,10 +36,9 @@ import com.abachta.jetpacktutorial.ui.components.ResText
 // https://www.publicdomainpictures.net/en/view-image.php?image=53874&picture=dogs-golden-retriever
 // Uicons by <a href="https://www.flaticon.com/uicons">Flaticon</a>
 
-private val image_1 = LessonPage (
+private val image_1 = LessonPage(
    headingResId = R.string.image_1_heading
 ) {
-
     ResText(R.string.image_1_1)
 
     CodeListing(
@@ -53,7 +52,6 @@ private val image_1 = LessonPage (
             }
         """.trimIndent()
     )
-
 
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         Image(
@@ -81,13 +79,17 @@ private val image_2 = LessonPage (
         """.trimIndent()
     )
 
-
     Preview(modifier = Modifier.align(Alignment.CenterHorizontally)) {
         Image(
             painter = painterResource(R.drawable.chart_histogram),
             contentDescription = null
         )
     }
+
+    Text(
+        style = MaterialTheme.typography.labelMedium,
+        text = "Icon provided by Flaticon.com"
+    )
 }
 
 

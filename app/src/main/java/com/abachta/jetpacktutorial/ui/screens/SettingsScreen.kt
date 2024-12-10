@@ -5,8 +5,10 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Code
@@ -37,10 +39,11 @@ import androidx.compose.ui.unit.dp
 import com.abachta.jetpacktutorial.R
 import com.abachta.jetpacktutorial.settings.AppLocale
 import com.abachta.jetpacktutorial.settings.AppTheme
-import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.CodeListingFont
 import com.abachta.jetpacktutorial.settings.DynamicColorsOption
+import com.abachta.jetpacktutorial.settings.LessonPopupOption
 import com.abachta.jetpacktutorial.settings.QuizShufflingOption
+import com.abachta.jetpacktutorial.ui.components.AttributionsDialog
 import com.abachta.jetpacktutorial.ui.components.SelectableTextProvider
 import com.abachta.jetpacktutorial.ui.components.SelectionDialog
 import com.abachta.jetpacktutorial.viewmodels.SettingsViewModel
@@ -147,6 +150,10 @@ fun SettingsScreen(
             dialogText = stringResource(R.string.dialog_clear_text),
             onConfirm = onClearLessons
         )
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+        AttributionsDialog()
     }
 }
 
