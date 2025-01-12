@@ -269,7 +269,7 @@
     <string name="setting_up_4_1">The Android Emulator lets you test your app on many different virtual devices. The emulator is bundled with Android Studio.\nTo use the emulator follow these steps:</string>
     <string name="setting_up_4_2">Emulator system requirements</string>
     <string name="setting_up_4_3" translatable="false">16 GB RAM</string>
-    <string name="setting_up_4_4">64-bit Windows 10 or higher, MacOS 12 or higher, Linux, or ChromeOS operating system</string>
+    <string name="setting_up_4_4">64-bit Windows 10 or higher, macOS 12 or higher, Linux, or ChromeOS operating system</string>
     <string name="setting_up_4_5">16 GB disk space</string>
     <string name="setting_up_4_6">Create an Android Virtual Device (AVD)</string>
     <string name="setting_up_4_7">Each instance of the Android Emulator uses and AVD to specify the Android version and hardware of the simulated device.\nTo create an AVD you can use the *Device Manager*.</string>
@@ -277,7 +277,7 @@
     <string name="setting_up_4_9">In the toolbar, select the AVD you want to run your app on.</string>
     <string name="setting_up_4_10">Click *Run*. The emulator might take a while to launch for the first time.</string>
     <string name="setting_up_5_heading">Running your app on a local device</string>
-    <string name="setting_up_5_1">Before you can launch you app on your device you need to enable *USB debugging* in the *Developer options*.\nAfter connecting your device to the computer via USB cable you can click *Run* in Android studio to build and start the application on the device.</string>
+    <string name="setting_up_5_1">Before you can launch your app on your device you need to enable *USB debugging* in the *Developer options*.\nAfter connecting your device to the computer via USB cable you can click *Run* in Android studio to build and start the application on the device.</string>
     <string name="quiz_introduction_1">Which programming language is primarily used in Jetpack Compose?</string>
     <string name="quiz_introduction_1_2" translatable="false">Kotlin</string>
     <string name="quiz_introduction_1_3" translatable="false">Java</string>
@@ -473,7 +473,7 @@
     <string name="scaffold_2_1">The main components of the *Scaffold* are the Top App Bar, the Bottom App Bar, and the FAB (Floating Action Button).\nEach of these components comes in several different versions.</string>
     <string name="scaffold_3_1">You can customize the default colors of the content with the |containerColor| and |contentColor| parameters.</string>
     <string name="scaffold_4_1">You can change the FAB position with the |floatingActionButtonPosition| parameter. The available positions are |Start|, |Center|, |End| and |EndOverlay|.</string>
-    <string name="scaffold_5_1">Another component of |Scaffold| is the snackbar. It it used to display short messages to the user. Unlike the toasts, snackbar messages can be interacted with.</string>
+    <string name="scaffold_5_1">Another component of |Scaffold| is the snackbar. It is used to display short messages to the user. Unlike the toasts, snackbar messages can be interacted with.</string>
     <string name="scaffold_5_2">To use the snackbar, you can use the |snackbarHost| parameter like so:</string>
     <string name="scaffold_5_3">In order to display a message you can use the |showSnackbar| method.\nSnackbar messages can have different duration and optional action label.\nYou can check if the action label was clicked by the user using the return value of the method. Note that displaying snackbar messages is a suspending operation.</string>
     <string name="scaffold_3_2">Note that, when adding content to the scaffold, you should use the provided padding values:</string>
@@ -519,7 +519,7 @@
     <string name="color_scheme_1_1">You can create color palette for you application using XML resources.\nCreating a palette allows for easier reuse of colors and helps make your application design become more consistent.</string>
     <string name="color_scheme_1_2">Example |colors.xml| file:</string>
     <string name="color_scheme_1_3">To access the colors from the palette you can use the |colorResource| function:</string>
-    <string name="color_scheme_2_1">Many composables have defined default values (eg. |CardDefaults|) that help when applying the color palette.</string>
+    <string name="color_scheme_2_1">Many composables have defined default values (e.g. |CardDefaults|) that help when applying the color palette.</string>
     <string name="color_scheme_3_1">If the composable doesn\'t accept colors directly you can use the |background| modifier to set the background color.</string>
     <string name="material_theme_1_1">Material theme is a more standardized way of creating an application theme. When creating color scheme, the individual colors are named based of their function rather than their value.</string>
     <string name="material_theme_1_2">After creating the color scheme you can use it in the |MaterialTheme| composable to apply it to the content.</string>
@@ -532,7 +532,7 @@
     <string name="material_theme_5_1">To use the created text styles you can use the |MaterialTheme.typography| object.</string>
     <string name="material_theme_6_1">The shapes of the composables can also be customized using |MaterialTheme|</string>
     <string name="material_theme_7_1">Most composables use the specified shapes automatically. When you want to set it explicitly you can use the |MaterialTheme.shapes| object.</string>
-    <string name="material_theme_8_1">You can opt-out of the main design of the application by creating separate |MaterialTheme| scope with different values:</string>
+    <string name="material_theme_8_1">You can opt out of the main design of the application by creating separate |MaterialTheme| scope with different values:</string>
     <string name="app_theme_1_1">You can add the ability to change the app theme by creating separate color schemes for light and dark mode and deciding which to use based on certain condition.</string>
     <string name="app_theme_1_2">You can determine whether the device uses dark system theme by using the |isSystemInDarkTheme| function.</string>
     <string name="app_theme_2_1">Devices with Android 12 and above can use the dynamic colors feature.\nThis feature uses special algorithm that creates custom color scheme based on the user\'s wallpaper.\nThis allows the app to become more personalized and better match the system theme.</string>
@@ -590,7 +590,7 @@
     <string name="lifecycle_1_3">Recomposition is usually triggered by a change to a |State&lt;T&gt;| object. Compose tracks such objects and runs all composables that read the changed state object.</string>
     <string name="lifecycle_2_heading">Instances of composable</string>
     <string name="lifecycle_2_1">The instance of a composable in Composition is identified by its *call site*. The Compose compiler considers each call site as unique.\nCalling composables from multiple call sites will create multiple instances of the composables in Composition.</string>
-    <string name="lifecycle_2_2">If during a recomposition a composable calls different composables than it did during the previous composition, Compose will identify which composables were or were not called.\nIn case a composable was called in both compositions, Compose will avoiding recomposing it if its inputs haven\'t changed.</string>
+    <string name="lifecycle_2_2">If during a recomposition a composable calls different composables than it did during the previous composition, Compose will identify which composables were or were not called.\nIn case a composable was called in both compositions, Compose will avoid recomposing it if its inputs haven\'t changed.</string>
     <string name="lifecycle_3_heading">Multiple composables in one call site</string>
     <string name="lifecycle_3_1">When calling a composable multiple times from the same call site, Compose doesn\'t have any information to uniquely identify each call to that composable, so the order of execution is used in addition to the call site in order to keep the instances distinct.</string>
     <string name="lifecycle_3_2">In the example above, Compose uses the execution order in addition to the call site to keep the instances distinct in the Composition.\nIf a new |user| is added to the #bottom# of the list, Compose can reuse the instances present in the Composition.</string>
@@ -598,11 +598,11 @@
     <string name="lifecycle_4_heading">Skipping recompositions</string>
     <string name="lifecycle_4_1">You can help Compose identifying composables by wrapping them in the |key| composable. The value for a |key| doesn\'t need to be #globally# unique, it only needs to be unique for the current call site.</string>
     <string name="remember_1_1">In Jetpack Compose state of the UI is represented using the observable |State| types. When creating state object inside a composable you should wrap it in |remember| function.\nThe |remember| function stores the result of the computation during initial composition and reuses it later during recompositions.</string>
-    <string name="remember_1_2">There are three way to create a |MutableState| object in a composable:</string>
+    <string name="remember_1_2">There are three ways to create a |MutableState| object in a composable:</string>
     <string name="remember_1_3">These declarations are equivalent. You should pick the one that is the easiest to read for you.\nThe |by| delegate syntax requires the following imports:</string>
     <string name="remember_2_1">The |State| objects are responsible for triggering the recompositions and updating the UI.\nWhile the |remember| function accepts any parameters, only modifying state objects will result in change to the UI.</string>
     <string name="remember_2_2">In this example, both buttons have an identical lambda |onClick|. You can see that the *CountInt* button does not update when clicked.</string>
-    <string name="remember_3_1">A composable that uses |remember| to store an object creates internal state, resulting in the composable being #stateful#. Stateful composables can be easier to use but they tend to be less reusable and flexible.</string>
+    <string name="remember_3_1">A composable that uses |remember| to store an object creates internal state, resulting in the composable being #stateful#. Stateful composables can be easier to use, but they tend to be less reusable and flexible.</string>
     <string name="remember_3_2">You can make a stateful composition function stateless using *state hoisting*. This involves replacing the state variable with two parameters: one giving the current value and the other being a callback to request a change to the value.</string>
     <string name="remember_3_3">State that is hoisted this way has some important properties:</string>
     <string name="remember_3_4">*Single source of truth*: Moving the state instead of duplicating it helps avoid many bugs.</string>
@@ -635,7 +635,7 @@
     <string name="quiz_remember_3_1">By providing *key* parameter to the *remember* function</string>
     <string name="quiz_remember_3_2">By using *rememberSaveable*</string>
     <string name="quiz_remember_3_3">By using data classes for storing the state</string>
-    <string name="remember_4_3">Because |rememberSaveable| stores the data in the |Bundle| saving complex types is not as straightforward as when using |remember|.\nThe simplest solution is to annotate your type with |@Parcelize|. Another options is to use |mapSaver| to define your own rules for converting an object into set of values that can be saved in |Bundle|.</string>
+    <string name="remember_4_3">Because |rememberSaveable| stores the data in the |Bundle| saving complex types is not as straightforward as when using |remember|.\nThe simplest solution is to annotate your type with |@Parcelize|. Another options are to use |mapSaver| to define your own rules for converting an object into set of values that can be saved in |Bundle|.</string>
     <string name="lesson_bottom_sheet_title">Bottom sheet</string>
     <string name="bottom_sheet_display">Display bottom sheet</string>
     <string name="bottom_sheet_hide">Hide bottom sheet</string>
@@ -888,9 +888,9 @@
     <string name="permissions_1_2">Install-time permissions lets your app access data and perform actions that minimally affect the system or other apps.\nThe system automatically grants your app these permissions when the user installs your app.</string>
     <string name="permissions_1_3">Runtime permissions give your app additional access to data or actions that more substantially affect the system and other apps. That is why you need to request runtime permissions in your app before you can use them.</string>
     <string name="permissions_1_4">If your app requires any permissions, either install-time or runtime, you must declare them in your app\'s manifest file:</string>
-    <string name="permissions_2_1">Some permissions, such as |CAMERA|, let your app access hardware that not all Android device have.\nIf your app declares one of such permissions, consider wether it is nescessary to use that hardware, and mark it either as required or optional.</string>
+    <string name="permissions_2_1">Some permissions, such as |CAMERA|, let your app access hardware that not all Android device have.\nIf your app declares one of such permissions, consider whether it is necessary to use that hardware, and mark it either as required or optional.</string>
     <string name="permissions_2_2">If your app declares some hardware as optional, you can check whether a device has this specific hardware available by using the |hasSystemFeature| method:</string>
-    <string name="permissions_3_1">To request runtime permissions you can use the composable function |rememberLauncherForActivityResult| with the |RequestPermission| contract.\nThe |onResult| callback lets you access the information whether the permissions was granted by the user.</string>
+    <string name="permissions_3_1">To request runtime permissions you can use the composable function |rememberLauncherForActivityResult| with the |RequestPermission| contract.\nThe |onResult| callback lets you access the information whether the permissions were granted by the user.</string>
     <string name="permissions_4_1">You can check if your app already has been granted permissions with the |ContextCompat.checkSelfPermission| method.</string>
     <string name="permissions_4_2">You can also check if user declined the permission permanently (by declining the request multiple times) using the |ActivityCompat.shouldShowRequestPermissionRationale|. If the result is *false*, then the permissions most probably has been permanently declined.</string>
     <string name="permissions_5_1">The recommended approach for handling runtime permissions has three steps:</string>
@@ -901,11 +901,11 @@
     <string name="permissions_6_2">Example extension function opening the app\'s settings:</string>
     <string name="notification_1_1">To send notifications from your app, first you need to declare the required permission. On Android 13 (API level 33) and higher this is a *runtime permission*.</string>
     <string name="notification_1_2">Starting with Android 8 (API level 26), you also need to register your app\'s notification channel with the system before you can deliver any notifications.\nYou can do this using the |NotificationManager.createNotificationChannel| method. When you create a channel, you can set its name, ID, and importance level.</string>
-    <string name="notification_2_1">To send a notification you need to create a object describing its content.\nYou can use the |NotificationCompat.Builder| to set the specific elements of the notification.\nThe only required element is the |smallIcon|.</string>
+    <string name="notification_2_1">To send a notification you need to create an object describing its content.\nYou can use the |NotificationCompat.Builder| to set the specific elements of the notification.\nThe only required element is the |smallIcon|.</string>
     <string name="notification_2_2">To send the built notification you can use |NotificationManager.notify| method. It accepts the object describing the notification and its ID. By using the same ID multiple times you can update an existing notification.</string>
     <string name="notification_3_1">Notifications can also be used to open the app that send them. You can add this functionality by creating a *pending intent* and passing it to the notification builder.\nNotifications with |autoCancel| set to *true* will be automatically dismissed after being clicked by the user.</string>
     <string name="notification_4_1">Instead of making the whole notification clickable, you can add a simple button with the |addAction| method. The button will invoke the specified intent when pressed.\nSingle notification can have multiple buttons.</string>
-    <string name="notification_5_1">You can display related notifications in a single group. To create a notification group, define a uniqe identifier and assign the notification to the group by passing the identifier to the |setGroup| method.</string>
+    <string name="notification_5_1">You can display related notifications in a single group. To create a notification group, define a unique identifier and assign the notification to the group by passing the identifier to the |setGroup| method.</string>
     <string name="notification_5_2">Grouped notification must have an extra notification that acts as the summary of the group. To mark a notification as summary, use the |setGroupSummary| method.</string>
     <string name="notification_6_1">You can change the appearance of the notification by providing custom *style template* to the |setStyle| method.</string>
     <string name="notification_6_2">Displaying big block of text:</string>
@@ -916,13 +916,13 @@
     <string name="camera_1_1">The *CameraX* is the recommended library when working with camera in Android.\nYou can install it by adding the following implementations into the |dependencies| block of your app\'s |build.gradle.kts| file:</string>
     <string name="camera_2_1">To obtain a camera controller, you can use the |LifecycleCameraController| function.\nYou can enable specific functionalities for this controller with the |setEnabledUseCases| method.</string>
     <string name="camera_2_2">You can use the |AndroidView| composable to display the camera preview.\nInside the |factory| lambda you can bind the controller to the app\'s lifecycle and set the scaling of the preview.</string>
-    <string name="camera_2_3">Before displaying the preview remember to ask for required permissions. Otherwise your app could be halted by |SecurityException|.</string>
+    <string name="camera_2_3">Before displaying the preview remember to ask for required permissions. Otherwise, your app could be halted by |SecurityException|.</string>
     <string name="camera_3_1">You can change the selected camera by setting the |cameraSelector| property of the controller.</string>
     <string name="camera_4_1">You can use the |LifecycleCameraController| to take photos using its |takePicture| method.\nThis method takes two arguments: the task executor and the callback object. In the callback you can access the taken image and handle the potential error.</string>
     <string name="camera_5_1">You can process the taken images by applying matrix transformation on them. The rotation can be especially useful, as the images are captured sideways by default.</string>
     <string name="camera_6_1">The camera controller also allows you to record videos. In order to do that you have to add the |VIDEO_CAPTURE| to the enabled use cases.</string>
     <string name="camera_6_2">To record a video you can use the |startRecording| method. It takes four parameters: the file output options, configuration of the audio, executor and callback.\nYou can set whether to record audio with the |AudioConfig.create| method.</string>
-    <string name="camera_6_3">When handling recordings, it is important to ensure that only one is active at any given time. It may be helpful to store the recording object outside of the recording function to prevent multiple simultaneous video captures from starting\n</string>
+    <string name="camera_6_3">When handling recordings, it is important to ensure that only one is active at any given time. It may be helpful to store the recording object outside the recording function to prevent multiple simultaneous video captures from starting\n</string>
     <string name="camera_6_4">You can use the callback to listen for the recording events to respond to capture succeeding or to handle any errors.</string>
     <string name="biometrics_1_1">You can add the biometric authentication functionality to your app with the *Biometric* library. You can install it by adding the following dependencies in your app\'s |build.gradle.kts| file:</string>
     <string name="biometrics_1_2">Because the library uses |AppCompatActivity| you should change your activity to inherit from this class.</string>
@@ -984,7 +984,7 @@
     <string name="hilt_2_2">The generated component is attached to the |Application| object\'s lifecycle and provides dependencies to it.</string>
     <string name="hilt_3_1">When Hilt is set up in your project, it can provide dependencies to other Android classes annotated with |@AndroidEntryPoint|:</string>
     <string name="hilt_3_2">To obtain dependencies from the generated Hilt component, use the |@Inject| annotation to perform field injection:</string>
-    <string name="hilt_4_1">To perform the injection, Hilt needs to know how to provide instances of the necessary dependencies. A #binding# contains the needed information.\nOne way to create a binding is #constructor injecton#. Use the |@Inject| annotation on the constructor of a class, to tell Hilt how to provide instances of that class.</string>
+    <string name="hilt_4_1">To perform the injection, Hilt needs to know how to provide instances of the necessary dependencies. A #binding# contains the needed information.\nOne way to create a binding is #constructor injection#. Use the |@Inject| annotation on the constructor of a class, to tell Hilt how to provide instances of that class.</string>
     <string name="hilt_5_1">Some types cannot be constructor-injected. For example, you cannot constructor-inject interface or a type that you do not ow, such as a class from an external library. In these cases you can create bindings by using #Hilt modules#.</string>
     <string name="hilt_5_2">A Hilt module is a class that is annotated with |@Module|.</string>
     <string name="hilt_5_3">To inject an interface you can create an abstract function annotated with |@Binds|:</string>
@@ -1034,7 +1034,7 @@
     <string name="animating_values_4_3">After creating the object, you can use its extension functions to define a child animation.</string>
     <string name="animating_values_5_1">|InfiniteTransition| behaves similarly to the |Transition|, but the animation starts as soon as it enters the composition and stop only after being removed.</string>
     <string name="animated_visibility_1_1">The |AnimatedVisibility| composable animates the appearance and disappearance of its content.</string>
-    <string name="animated_visibility_1_2">By default, the content appears by fading in and expanding, and disappears by fading out and shrinking.\nBy using the |AnimatedVisibility| inside a column or a row, the default animations are changed to changed to better match its surrounding.</string>
+    <string name="animated_visibility_1_2">By default, the content appears by fading in and expanding, and disappears by fading out and shrinking.\nBy using the |AnimatedVisibility| inside a column or a row, the default animations are changed to better match its surrounding.</string>
     <string name="animated_visibility_2_1">Jetpack Compose provides multiple built in types of animations:</string>
     <string name="animated_visibility_3_1">You can combine different types of animations with the addition operator. Note that you cannot combine *enter* animations with *exit* ones.</string>
     <string name="animated_visibility_4_1">Inside the scope of the |AnimatedVisibility| you can apply the |animateEnterExit| modifier to animate inner composables independently of the main container.</string>
@@ -1044,7 +1044,7 @@
     <string name="viewmodel_1_2">To create a ViewModel you should first add the following implementation to your app\'s |build.gradle| file:</string>
     <string name="viewmodel_2_1">After creating the ViewModel you can define the state it should expose to the UI.</string>
     <string name="viewmodel_2_2">To make sure the UI reacts to changes to the state, you can use a |StateFlow|.\nStateFlow acts as a data holder that emits the current value and new state updates.</string>
-    <string name="viewmodel_3_1">To access the ViewModel data in the UI, you can use the |viewModel&lt;T&gt;| composable function to retrieve the instance of the ViewModel associated with curent navigation route (or activity).</string>
+    <string name="viewmodel_3_1">To access the ViewModel data in the UI, you can use the |viewModel&lt;T&gt;| composable function to retrieve the instance of the ViewModel associated with current navigation route (or activity).</string>
     <string name="viewmodel_3_2">After retrieving the instance you can use |collectAsState| or |collectAsStateWithLifecycle| composable functions to access the current value of the |StateFlow|.</string>
     <string name="viewmodel_4_1">"You can use the |viewModelScope| to perform asynchronous business logic, that shouldn't be handled by the UI. "</string>
     <string name="viewmodel_4_2">The ViewModel exists in the app from the start of the activity to when it is destroyed. You can clear any ongoing tasks by overriding the |onCleared| method.</string>
@@ -1123,9 +1123,9 @@
     <string name="quiz_content_3_1" translatable="false">*AnimatedVisibility*</string>
     <string name="quiz_content_3_2" translatable="false">*AnimatedContent*</string>
     <string name="quiz_content_3_3" translatable="false">*AnimatedView*</string>
-    <string name="side_effects_1_1">To perform work over the life of a composable and be able to call suspend functions, you can use the |LaunchedEffect| composable.\nWhen it enters the composition, it launches a coroutine with the block of code passed as a parameter. This coroutine will be cancelled if |LaunchedEffect| leaves the composiiton.</string>
+    <string name="side_effects_1_1">To perform work over the life of a composable and be able to call suspend functions, you can use the |LaunchedEffect| composable.\nWhen it enters the composition, it launches a coroutine with the block of code passed as a parameter. This coroutine will be cancelled if |LaunchedEffect| leaves the composition.</string>
     <string name="side_effects_1_2">If |LaunchedEffect| is recomposed with different keys, the existing coroutine will be cancelled and new one will be launched.</string>
-    <string name="side_effects_2_1">In order to launch a coroutine outside of a composable use |rememberCoroutineScope|. This coroutine will still be canceled when the composable leaves the composition.</string>
+    <string name="side_effects_2_1">In order to launch a coroutine outside a composable use |rememberCoroutineScope|. This coroutine will still be canceled when the composable leaves the composition.</string>
     <string name="side_effects_3_1">For side effects that should be disposed of after the composable leaves the composition or if the keys change, use |DisposableEffect|.\nUse the |onDispose| function to perform any cleanup needed.</string>
     <string name="side_effects_4_1">You can share state of composables with objects not managed by Compose with the |SideEffect| function.\n|SideEffect| guarantees that the effect will be executed after every successful recomposition.</string>
     <string name="side_effects_5_1">In some cases, you might want to capture a value in such way, that if it changes it won\'t restart the effect (as in |LaunchedEffect|).\nTo do this you can use the |rememberUpdatedState|. It creates a reference to the value which can be later updated.</string>
@@ -1148,7 +1148,7 @@
     <string name="nav_transitions_3_heading">Per-route animations</string>
     <string name="nav_transitions_4_heading">Reusing transitions</string>
     <string name="nav_transitions_1_1">You can customize the |NavHost| animations with the |enterTransition| and |exitTransition| parameters.\nThe transitions work just like with the |AnimatedVisibility|.</string>
-    <string name="nav_transitions_2_1">You can also provide different |pop| transitions, for when the user navigates back. By default they are the same as the \"forward\" transitions.</string>
+    <string name="nav_transitions_2_1">You can also provide different |pop| transitions, for when the user navigates back. By default, they are the same as the \"forward\" transitions.</string>
     <string name="nav_transitions_3_1">Instead of using the same animations for every route, you can set different transitions for different routes using the |composable&lt;T&gt;| function parameters.</string>
     <string name="nav_transitions_4_1">You can also reuse the specific transition combination by creating an extension function for the |NavGraphBuilder| class.\nDoing so can help with managing the multiple transition parameters while still allowing you to fully customize each route.</string>
     <string name="quiz_nav_transitions_1">How can you set different transitions for navigating \"forward\" and \"backward\" when using *NavHost*?</string>
@@ -1183,9 +1183,9 @@
     <string name="pager_1_3">Vertical pager:</string>
     <string name="pager_2_1">Pages in both *pagers* are lazily composed when required. This means that pages that are not visible to the user are not present in the composition.</string>
     <string name="pager_2_2">"You can change the number of pages composed around the currently displayed one with the |beyondBoundsPageCount| parameter. It defaults to zero. "</string>
-    <string name="pager_3_1">You can control the position of the pager with the |scrollToPage| and |animateScrollToPage| methods of the |pagerState|.\nYou can also disable scrolling with gestures by setting the |userScrollEnbaled| parameter to *false*</string>
+    <string name="pager_3_1">You can control the position of the pager with the |scrollToPage| and |animateScrollToPage| methods of the |pagerState|.\nYou can also disable scrolling with gestures by setting the |userScrollEnabled| parameter to *false*</string>
     <string name="pager_4_1">You can observe the current page of the pager by creating a |snapshotFlow| from the |currentPage|, |settledPage| or |targetPage| properties of the |pagerState|.</string>
-    <string name="pager_5_1">It can be useful to display some kind of a page indicator. You can crate a simple one by repeating |Box|es inside a row, that is aligned to the bottom.</string>
+    <string name="pager_5_1">It can be useful to display some kind of page indicator. You can crate a simple one by repeating |Box|es inside a row, that is aligned to the bottom.</string>
     <string name="pager_5_2">You can change the color of one of the boxes to indicate the current page.</string>
     <string name="pager_6_1">By default, pager displays only one page at a time. You can change it by setting the |pageSize| parameter to |Fixed|, or by creating a custom |PageSize| object.</string>
     <string name="quiz_pager_2">How can you control the position of the pager?</string>
